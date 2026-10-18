@@ -1,0 +1,37 @@
+/* Encadrés pédagogiques : à retenir, attention, exercice */
+.retenir, .attention, .exercice {
+  padding: 0.8em 1em;
+  margin: 1em 0;
+  border-left: 5px solid;
+  border-radius: 4px;
+}
+.retenir   { border-color: #2e7d32; background: #edf7ee; }
+.attention { border-color: #c62828; background: #fdecea; }
+.exercice  { border-color: #1565c0; background: #e8f1fb; }
+
+details {
+  margin: 0.5em 0 1.2em 0;
+  padding: 0.5em 1em;
+  background: #f7f7f7;
+  border-radius: 4px;
+}
+details summary { cursor: pointer; font-weight: bold; }
+
+/* Schéma des quatre panneaux de RStudio */
+.rstudio-panneaux {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 6px;
+  max-width: 640px;
+  margin: 1em auto;
+  font-size: 0.9em;
+}
+.rstudio-panneaux > div {
+  border: 2px solid #5a6b7b;
+  border-radius: 4px;
+  padding: 0.6em 0.8em;
+  background: #f4f6f8;
+  min-height: 6em;
+}
+.rstudio-panneaux strong { display: block; margin-bottom: 0.3em; }

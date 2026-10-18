@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Page not found | Data Science sous R</title>
+  <meta name="description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Page not found | Data Science sous R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Page not found | Data Science sous R" />
+  
+  <meta name="twitter:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+<meta name="author" content="ESME — 2026-2027" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science sous R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Avant-propos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objectifs-du-module"><i class="fa fa-check"></i>Objectifs du module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comment-utiliser-ces-notes"><i class="fa fa-check"></i>Comment utiliser ces notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions-web-et-pdf"><i class="fa fa-check"></i>Versions web et PDF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#logiciels-et-packages"><i class="fa fa-check"></i>Logiciels et packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#les-données-du-cours"><i class="fa fa-check"></i>Les données du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bibliographie"><i class="fa fa-check"></i>Bibliographie</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ch-science.html"><a href="ch-science.html"><i class="fa fa-check"></i><b>1</b> Introduction à la science des données</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ch-science.html"><a href="ch-science.html#quest-ce-que-la-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que la science des données ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="ch-science.html"><a href="ch-science.html#une-pratique-ancienne-un-nom-récent"><i class="fa fa-check"></i><b>1.1.1</b> Une pratique ancienne, un nom récent</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ch-science.html"><a href="ch-science.html#définition"><i class="fa fa-check"></i><b>1.1.2</b> Définition</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ch-science.html"><a href="ch-science.html#quatre-grands-types-danalyse"><i class="fa fa-check"></i><b>1.1.3</b> Quatre grands types d’analyse</a></li>
+<li class="chapter" data-level="1.1.4" data-path="ch-science.html"><a href="ch-science.html#la-science-des-données-en-marketing"><i class="fa fa-check"></i><b>1.1.4</b> La science des données en marketing</a></li>
+<li class="chapter" data-level="1.1.5" data-path="ch-science.html"><a href="ch-science.html#les-projets-réels-sont-exigeants"><i class="fa fa-check"></i><b>1.1.5</b> Les projets réels sont exigeants</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ch-science.html"><a href="ch-science.html#science-des-données-véridique"><i class="fa fa-check"></i><b>1.2</b> Science des données véridique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ch-science.html"><a href="ch-science.html#les-trois-mondes"><i class="fa fa-check"></i><b>1.2.1</b> Les trois mondes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch-science.html"><a href="ch-science.html#pensée-critique-les-bonnes-questions-à-se-poser"><i class="fa fa-check"></i><b>1.2.2</b> Pensée critique : les bonnes questions à se poser</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch-science.html"><a href="ch-science.html#se-méfier-des-biais"><i class="fa fa-check"></i><b>1.2.3</b> Se méfier des biais</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ch-science.html"><a href="ch-science.html#étude-de-cas-les-feux-de-brousse-australiens-20192020"><i class="fa fa-check"></i><b>1.2.4</b> Étude de cas : les feux de brousse australiens (2019–2020)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch-science.html"><a href="ch-science.html#le-cadre-pcs-prédictibilité-calculabilité-stabilité"><i class="fa fa-check"></i><b>1.3</b> Le cadre PCS : prédictibilité, calculabilité, stabilité</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ch-science.html"><a href="ch-science.html#prédictibilité"><i class="fa fa-check"></i><b>1.3.1</b> Prédictibilité</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch-science.html"><a href="ch-science.html#calculabilité"><i class="fa fa-check"></i><b>1.3.2</b> Calculabilité</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ch-science.html"><a href="ch-science.html#stabilité"><i class="fa fa-check"></i><b>1.3.3</b> Stabilité</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ch-science.html"><a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-données"><i class="fa fa-check"></i><b>1.4</b> Le cycle de vie d’un projet de science des données</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="ch-science.html"><a href="ch-science.html#le-dslc"><i class="fa fa-check"></i><b>1.4.1</b> Le DSLC</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ch-science.html"><a href="ch-science.html#crisp-dm"><i class="fa fa-check"></i><b>1.4.2</b> CRISP-DM</a></li>
+<li class="chapter" data-level="1.4.3" data-path="ch-science.html"><a href="ch-science.html#gouvernance-des-données"><i class="fa fa-check"></i><b>1.4.3</b> Gouvernance des données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ch-science.html"><a href="ch-science.html#résumé"><i class="fa fa-check"></i><b>1.5</b> Résumé</a></li>
+<li class="chapter" data-level="1.6" data-path="ch-science.html"><a href="ch-science.html#exercices"><i class="fa fa-check"></i><b>1.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-langage-r.html"><a href="ch-langage-r.html"><i class="fa fa-check"></i><b>2</b> Introduction au langage R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-un-peu-dhistoire"><i class="fa fa-check"></i><b>2.1</b> R : un peu d’histoire</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#introduction-à-rstudio"><i class="fa fa-check"></i><b>2.2</b> Introduction à RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-et-rstudio-le-moteur-et-le-tableau-de-bord"><i class="fa fa-check"></i><b>2.2.1</b> R et RStudio : le moteur et le tableau de bord</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-quatre-panneaux"><i class="fa fa-check"></i><b>2.2.2</b> Les quatre panneaux</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#console-ou-script"><i class="fa fa-check"></i><b>2.2.3</b> Console ou script ?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-projets-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Les projets RStudio</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-notebooks-r-markdown-et-quarto"><i class="fa fa-check"></i><b>2.2.5</b> Les notebooks : R Markdown et Quarto</a></li>
+<li class="chapter" data-level="2.2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#longlet-environnement"><i class="fa fa-check"></i><b>2.2.6</b> L’onglet Environnement</a></li>
+<li class="chapter" data-level="2.2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-du-code-efficacement"><i class="fa fa-check"></i><b>2.2.7</b> Écrire du code efficacement</a></li>
+<li class="chapter" data-level="2.2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#réglages-recommandés"><i class="fa fa-check"></i><b>2.2.8</b> Réglages recommandés</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#premiers-pas-r-comme-calculatrice"><i class="fa fa-check"></i><b>2.3</b> Premiers pas : R comme calculatrice</a></li>
+<li class="chapter" data-level="2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#variables-et-assignation"><i class="fa fa-check"></i><b>2.4</b> Variables et assignation</a></li>
+<li class="chapter" data-level="2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#types-de-données"><i class="fa fa-check"></i><b>2.5</b> Types de données</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-types-de-base"><i class="fa fa-check"></i><b>2.5.1</b> Les types de base</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#conversions"><i class="fa fa-check"></i><b>2.5.2</b> Conversions</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#valeurs-spéciales"><i class="fa fa-check"></i><b>2.5.3</b> Valeurs spéciales</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-de-données"><i class="fa fa-check"></i><b>2.6</b> Structures de données</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs"><i class="fa fa-check"></i><b>2.6.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#facteurs"><i class="fa fa-check"></i><b>2.6.2</b> Facteurs</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-tableaux"><i class="fa fa-check"></i><b>2.6.3</b> Matrices et tableaux</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes"><i class="fa fa-check"></i><b>2.6.4</b> Listes</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#data-frames"><i class="fa fa-check"></i><b>2.6.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs"><i class="fa fa-check"></i><b>2.7</b> Opérateurs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-arithmétiques"><i class="fa fa-check"></i><b>2.7.1</b> Opérateurs arithmétiques</a></li>
+<li class="chapter" data-level="2.7.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-de-comparaison"><i class="fa fa-check"></i><b>2.7.2</b> Opérateurs de comparaison</a></li>
+<li class="chapter" data-level="2.7.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-logiques"><i class="fa fa-check"></i><b>2.7.3</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#accéder-aux-éléments-et-les-modifier"><i class="fa fa-check"></i><b>2.8</b> Accéder aux éléments et les modifier</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs-1"><i class="fa fa-check"></i><b>2.8.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.8.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-data-frames-ligne-colonne"><i class="fa fa-check"></i><b>2.8.2</b> Matrices et data frames : <code>[ligne, colonne]</code></a></li>
+<li class="chapter" data-level="2.8.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes-contre"><i class="fa fa-check"></i><b>2.8.3</b> Listes : <code>[ ]</code> contre <code>[[ ]]</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-algorithmiques"><i class="fa fa-check"></i><b>2.9</b> Structures algorithmiques</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#branchements-conditionnels-if-else"><i class="fa fa-check"></i><b>2.9.1</b> Branchements conditionnels : <code>if</code>, <code>else</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-for"><i class="fa fa-check"></i><b>2.9.2</b> Boucles <code>for</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-while-et-repeat"><i class="fa fa-check"></i><b>2.9.3</b> Boucles <code>while</code> et <code>repeat</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucle-ou-vectorisation"><i class="fa fa-check"></i><b>2.9.4</b> Boucle ou vectorisation ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-programmation-modulaire"><i class="fa fa-check"></i><b>2.10</b> Fonctions et programmation modulaire</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-une-fonction"><i class="fa fa-check"></i><b>2.10.1</b> Écrire une fonction</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-procédures"><i class="fa fa-check"></i><b>2.10.2</b> Fonctions et procédures</a></li>
+<li class="chapter" data-level="2.10.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#appliquer-une-fonction-à-chaque-élément"><i class="fa fa-check"></i><b>2.10.3</b> Appliquer une fonction à chaque élément</a></li>
+<li class="chapter" data-level="2.10.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#découper-un-programme-en-modules"><i class="fa fa-check"></i><b>2.10.4</b> Découper un programme en modules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="ch-langage-r.html"><a href="ch-langage-r.html#packages-et-aide"><i class="fa fa-check"></i><b>2.11</b> Packages et aide</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#installer-et-charger-un-package"><i class="fa fa-check"></i><b>2.11.1</b> Installer et charger un package</a></li>
+<li class="chapter" data-level="2.11.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#trouver-de-laide"><i class="fa fa-check"></i><b>2.11.2</b> Trouver de l’aide</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="ch-langage-r.html"><a href="ch-langage-r.html#résumé-1"><i class="fa fa-check"></i><b>2.12</b> Résumé</a></li>
+<li class="chapter" data-level="2.13" data-path="ch-langage-r.html"><a href="ch-langage-r.html#exercices-1"><i class="fa fa-check"></i><b>2.13</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-manipulation.html"><a href="ch-manipulation.html"><i class="fa fa-check"></i><b>3</b> Manipulation de données avec R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#les-données-de-ce-chapitre"><i class="fa fa-check"></i><b>3.1</b> Les données de ce chapitre</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#la-boutique-en-ligne-données-simulées"><i class="fa fa-check"></i><b>3.1.1</b> La boutique en ligne (données simulées)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>3.2</b> Importer et exporter des données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#le-répertoire-de-travail"><i class="fa fa-check"></i><b>3.2.1</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#lire-un-fichier-csv"><i class="fa fa-check"></i><b>3.2.2</b> Lire un fichier CSV</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#autres-formats"><i class="fa fa-check"></i><b>3.2.3</b> Autres formats</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#écrire-des-données"><i class="fa fa-check"></i><b>3.2.4</b> Écrire des données</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-intégrées-aux-packages"><i class="fa fa-check"></i><b>3.2.5</b> Données intégrées aux packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#structure-dun-tableau-de-données"><i class="fa fa-check"></i><b>3.3</b> Structure d’un tableau de données</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-univariée"><i class="fa fa-check"></i><b>3.4</b> Analyse univariée</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Variable quantitative</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-qualitative"><i class="fa fa-check"></i><b>3.4.2</b> Variable qualitative</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-bivariée"><i class="fa fa-check"></i><b>3.5</b> Analyse bivariée</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-qualitatives-un-test-ab"><i class="fa fa-check"></i><b>3.5.1</b> Deux variables qualitatives : un test A/B</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#une-variable-quantitative-et-une-qualitative"><i class="fa fa-check"></i><b>3.5.2</b> Une variable quantitative et une qualitative</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>3.5.3</b> Deux variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#manipuler-des-données-avec-dplyr"><i class="fa fa-check"></i><b>3.6</b> Manipuler des données avec <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#filtrer-les-lignes"><i class="fa fa-check"></i><b>3.6.1</b> Filtrer les lignes</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#trier"><i class="fa fa-check"></i><b>3.6.2</b> Trier</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#sélectionner-renommer-et-réordonner-des-colonnes"><i class="fa fa-check"></i><b>3.6.3</b> Sélectionner, renommer et réordonner des colonnes</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#créer-des-variables"><i class="fa fa-check"></i><b>3.6.4</b> Créer des variables</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#enchaîner-les-opérations-le-pipe"><i class="fa fa-check"></i><b>3.6.5</b> Enchaîner les opérations : le <em>pipe</em></a></li>
+<li class="chapter" data-level="3.6.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumer-par-groupe"><i class="fa fa-check"></i><b>3.6.6</b> Résumer par groupe</a></li>
+<li class="chapter" data-level="3.6.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exemple-marketing-les-indicateurs-rfm"><i class="fa fa-check"></i><b>3.6.7</b> Exemple marketing : les indicateurs RFM</a></li>
+<li class="chapter" data-level="3.6.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#décaler-des-valeurs-lag-et-lead"><i class="fa fa-check"></i><b>3.6.8</b> Décaler des valeurs : <code>lag()</code> et <code>lead()</code></a></li>
+<li class="chapter" data-level="3.6.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#concaténer-des-tables"><i class="fa fa-check"></i><b>3.6.9</b> Concaténer des tables</a></li>
+<li class="chapter" data-level="3.6.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#joindre-des-tables"><i class="fa fa-check"></i><b>3.6.10</b> Joindre des tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-rangées-tidy-data"><i class="fa fa-check"></i><b>3.7</b> Données rangées (<em>tidy data</em>)</a></li>
+<li class="chapter" data-level="3.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#valeurs-manquantes"><i class="fa fa-check"></i><b>3.8</b> Valeurs manquantes</a></li>
+<li class="chapter" data-level="3.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#générer-des-données"><i class="fa fa-check"></i><b>3.9</b> Générer des données</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#séquences-régulières"><i class="fa fa-check"></i><b>3.9.1</b> Séquences régulières</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#tirages-aléatoires"><i class="fa fa-check"></i><b>3.9.2</b> Tirages aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumé-2"><i class="fa fa-check"></i><b>3.10</b> Résumé</a></li>
+<li class="chapter" data-level="3.11" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exercices-2"><i class="fa fa-check"></i><b>3.11</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-graphiques.html"><a href="ch-graphiques.html"><i class="fa fa-check"></i><b>4</b> Représentations graphiques et régression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#pourquoi-visualiser"><i class="fa fa-check"></i><b>4.1</b> Pourquoi visualiser ?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#principes-dun-bon-graphique"><i class="fa fa-check"></i><b>4.1.1</b> Principes d’un bon graphique</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#choisir-un-graphique"><i class="fa fa-check"></i><b>4.1.2</b> Choisir un graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-r-de-base"><i class="fa fa-check"></i><b>4.2</b> Graphiques avec R de base</a></li>
+<li class="chapter" data-level="4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-ggplot2"><i class="fa fa-check"></i><b>4.3</b> Graphiques avec <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#initialisation-et-premier-geom"><i class="fa fa-check"></i><b>4.3.1</b> Initialisation et premier <em>geom</em></a></li>
+<li class="chapter" data-level="4.3.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#les-principaux-geoms"><i class="fa fa-check"></i><b>4.3.2</b> Les principaux <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#mappages"><i class="fa fa-check"></i><b>4.3.3</b> Mappages</a></li>
+<li class="chapter" data-level="4.3.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#positions-des-barres"><i class="fa fa-check"></i><b>4.3.4</b> Positions des barres</a></li>
+<li class="chapter" data-level="4.3.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#superposer-plusieurs-geoms"><i class="fa fa-check"></i><b>4.3.5</b> Superposer plusieurs <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#faceting"><i class="fa fa-check"></i><b>4.3.6</b> <em>Faceting</em></a></li>
+<li class="chapter" data-level="4.3.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#scales"><i class="fa fa-check"></i><b>4.3.7</b> <em>Scales</em></a></li>
+<li class="chapter" data-level="4.3.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#titres-et-thèmes"><i class="fa fa-check"></i><b>4.3.8</b> Titres et thèmes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>4.4</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle"><i class="fa fa-check"></i><b>4.4.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#ajuster-le-modèle-avec-lm"><i class="fa fa-check"></i><b>4.4.2</b> Ajuster le modèle avec <code>lm()</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire"><i class="fa fa-check"></i><b>4.4.3</b> Prédire</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#vérifier-les-hypothèses-les-résidus"><i class="fa fa-check"></i><b>4.4.4</b> Vérifier les hypothèses : les résidus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#quand-la-réponse-est-binaire"><i class="fa fa-check"></i><b>4.6.1</b> Quand la réponse est binaire</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exemple-choix-de-marque"><i class="fa fa-check"></i><b>4.6.2</b> Exemple : choix de marque</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire-des-probabilités"><i class="fa fa-check"></i><b>4.6.3</b> Prédire des probabilités</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#résumé-3"><i class="fa fa-check"></i><b>4.7</b> Résumé</a></li>
+<li class="chapter" data-level="4.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exercices-3"><i class="fa fa-check"></i><b>4.8</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html"><i class="fa fa-check"></i><b>5</b> Analyse en composantes principales et arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#analyse-en-composantes-principales-acp"><i class="fa fa-check"></i><b>5.1</b> Analyse en composantes principales (ACP)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#le-problème"><i class="fa fa-check"></i><b>5.1.1</b> Le problème</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe-mathématique"><i class="fa fa-check"></i><b>5.1.2</b> Principe mathématique</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-1-le-décathlon"><i class="fa fa-check"></i><b>5.1.3</b> Exemple 1 : le décathlon</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-2-le-comportement-des-clients-de-la-boutique"><i class="fa fa-check"></i><b>5.1.4</b> Exemple 2 : le comportement des clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#arbres-de-décision"><i class="fa fa-check"></i><b>5.2</b> Arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#les-données-le-choix-dune-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.2.2</b> Les données : le choix d’une marque de jus d’orange</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#construire-larbre"><i class="fa fa-check"></i><b>5.2.3</b> Construire l’arbre</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#élaguer-larbre"><i class="fa fa-check"></i><b>5.2.4</b> Élaguer l’arbre</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#prédire-1"><i class="fa fa-check"></i><b>5.2.5</b> Prédire</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#matrice-de-confusion"><i class="fa fa-check"></i><b>5.2.6</b> Matrice de confusion</a></li>
+<li class="chapter" data-level="5.2.7" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#courbe-roc-et-auc"><i class="fa fa-check"></i><b>5.2.7</b> Courbe ROC et AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#résumé-4"><i class="fa fa-check"></i><b>5.3</b> Résumé</a></li>
+<li class="chapter" data-level="5.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exercices-4"><i class="fa fa-check"></i><b>5.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-classification.html"><a href="ch-classification.html"><i class="fa fa-check"></i><b>6</b> Classification automatique, éthique et R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ch-classification.html"><a href="ch-classification.html#classification-non-supervisée"><i class="fa fa-check"></i><b>6.1</b> Classification non supervisée</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="ch-classification.html"><a href="ch-classification.html#supervisé-ou-non-supervisé"><i class="fa fa-check"></i><b>6.1.1</b> Supervisé ou non supervisé ?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ch-classification.html"><a href="ch-classification.html#distances-et-standardisation"><i class="fa fa-check"></i><b>6.1.2</b> Distances et standardisation</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch-classification.html"><a href="ch-classification.html#les-données-les-clients-de-la-boutique"><i class="fa fa-check"></i><b>6.1.3</b> Les données : les clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch-classification.html"><a href="ch-classification.html#les-k-moyennes-k-means"><i class="fa fa-check"></i><b>6.2</b> Les k-moyennes (<em>k-means</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme"><i class="fa fa-check"></i><b>6.2.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-classification.html"><a href="ch-classification.html#décomposition-de-linertie"><i class="fa fa-check"></i><b>6.2.2</b> Décomposition de l’inertie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-classification.html"><a href="ch-classification.html#classification-ascendante-hiérarchique-cah"><i class="fa fa-check"></i><b>6.3</b> Classification ascendante hiérarchique (CAH)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme-1"><i class="fa fa-check"></i><b>6.3.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="ch-classification.html"><a href="ch-classification.html#k-moyennes-ou-cah"><i class="fa fa-check"></i><b>6.3.2</b> k-moyennes ou CAH ?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ch-classification.html"><a href="ch-classification.html#choisir-le-nombre-de-classes"><i class="fa fa-check"></i><b>6.4</b> Choisir le nombre de classes</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-classification.html"><a href="ch-classification.html#méthode-du-coude"><i class="fa fa-check"></i><b>6.4.1</b> Méthode du coude</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-classification.html"><a href="ch-classification.html#indice-de-silhouette"><i class="fa fa-check"></i><b>6.4.2</b> Indice de silhouette</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-classification.html"><a href="ch-classification.html#le-saut-dinertie-du-dendrogramme"><i class="fa fa-check"></i><b>6.4.3</b> Le saut d’inertie du dendrogramme</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-classification.html"><a href="ch-classification.html#décrire-les-classes"><i class="fa fa-check"></i><b>6.5</b> Décrire les classes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-classification.html"><a href="ch-classification.html#moyennes-par-classe"><i class="fa fa-check"></i><b>6.5.1</b> Moyennes par classe</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-classification.html"><a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée"><i class="fa fa-check"></i><b>6.5.2</b> Les classes retrouvent-elles la structure simulée ?</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-classification.html"><a href="ch-classification.html#acp-puis-cah-la-fonction-hcpc"><i class="fa fa-check"></i><b>6.5.3</b> ACP puis CAH : la fonction <code>HCPC()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-classification.html"><a href="ch-classification.html#léthique-dans-la-science-des-données"><i class="fa fa-check"></i><b>6.6</b> L’éthique dans la science des données</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-classification.html"><a href="ch-classification.html#quelques-cas-marquants"><i class="fa fa-check"></i><b>6.6.1</b> Quelques cas marquants</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-classification.html"><a href="ch-classification.html#enjeux-propres-au-marketing"><i class="fa fa-check"></i><b>6.6.2</b> Enjeux propres au marketing</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-classification.html"><a href="ch-classification.html#sources-de-problèmes-éthiques"><i class="fa fa-check"></i><b>6.6.3</b> Sources de problèmes éthiques</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-classification.html"><a href="ch-classification.html#le-cadre-légal-en-europe"><i class="fa fa-check"></i><b>6.6.4</b> Le cadre légal en Europe</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ch-classification.html"><a href="ch-classification.html#questions-à-se-poser-dans-tout-projet"><i class="fa fa-check"></i><b>6.6.5</b> Questions à se poser dans tout projet</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-classification.html"><a href="ch-classification.html#interfaces-graphiques-avec-r-shiny"><i class="fa fa-check"></i><b>6.7</b> Interfaces graphiques avec R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-classification.html"><a href="ch-classification.html#quest-ce-que-shiny"><i class="fa fa-check"></i><b>6.7.1</b> Qu’est-ce que Shiny ?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-classification.html"><a href="ch-classification.html#structure-dune-application"><i class="fa fa-check"></i><b>6.7.2</b> Structure d’une application</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-classification.html"><a href="ch-classification.html#un-exemple-complet-explorer-la-segmentation-des-clients"><i class="fa fa-check"></i><b>6.7.3</b> Un exemple complet : explorer la segmentation des clients</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-classification.html"><a href="ch-classification.html#la-réactivité"><i class="fa fa-check"></i><b>6.7.4</b> La réactivité</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-classification.html"><a href="ch-classification.html#partager-une-application"><i class="fa fa-check"></i><b>6.7.5</b> Partager une application</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-classification.html"><a href="ch-classification.html#résumé-5"><i class="fa fa-check"></i><b>6.8</b> Résumé</a></li>
+<li class="chapter" data-level="6.9" data-path="ch-classification.html"><a href="ch-classification.html#exercices-5"><i class="fa fa-check"></i><b>6.9</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-projet.html"><a href="ch-projet.html"><i class="fa fa-check"></i><b>7</b> Projet et évaluation des acquis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ch-projet.html"><a href="ch-projet.html#déroulé-dun-projet-le-dslc-en-pratique"><i class="fa fa-check"></i><b>7.1</b> Déroulé d’un projet : le DSLC en pratique</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-projet.html"><a href="ch-projet.html#le-rendu-un-notebook-reproductible"><i class="fa fa-check"></i><b>7.2</b> Le rendu : un notebook reproductible</a></li>
+<li class="chapter" data-level="7.3" data-path="ch-projet.html"><a href="ch-projet.html#grille-dauto-évaluation"><i class="fa fa-check"></i><b>7.3</b> Grille d’auto-évaluation</a></li>
+<li class="chapter" data-level="7.4" data-path="ch-projet.html"><a href="ch-projet.html#réussir-la-soutenance"><i class="fa fa-check"></i><b>7.4</b> Réussir la soutenance</a></li>
+<li class="chapter" data-level="7.5" data-path="ch-projet.html"><a href="ch-projet.html#où-trouver-des-jeux-de-données"><i class="fa fa-check"></i><b>7.5</b> Où trouver des jeux de données</a></li>
+<li class="chapter" data-level="7.6" data-path="ch-projet.html"><a href="ch-projet.html#fiche-de-révision"><i class="fa fa-check"></i><b>7.6</b> Fiche de révision</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="ch-projet.html"><a href="ch-projet.html#le-langage-r-chapitre-2"><i class="fa fa-check"></i><b>7.6.1</b> Le langage R (chapitre 2)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="ch-projet.html"><a href="ch-projet.html#manipulation-chapitre-3"><i class="fa fa-check"></i><b>7.6.2</b> Manipulation (chapitre 3)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="ch-projet.html"><a href="ch-projet.html#graphiques-et-régression-chapitre-4"><i class="fa fa-check"></i><b>7.6.3</b> Graphiques et régression (chapitre 4)</a></li>
+<li class="chapter" data-level="7.6.4" data-path="ch-projet.html"><a href="ch-projet.html#acp-et-arbres-chapitre-5"><i class="fa fa-check"></i><b>7.6.4</b> ACP et arbres (chapitre 5)</a></li>
+<li class="chapter" data-level="7.6.5" data-path="ch-projet.html"><a href="ch-projet.html#classification-chapitre-6"><i class="fa fa-check"></i><b>7.6.5</b> Classification (chapitre 6)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="ch-projet.html"><a href="ch-projet.html#questions-de-révision"><i class="fa fa-check"></i><b>7.7</b> Questions de révision</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science sous R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="page-not-found" class="section level1">
+<h1>Page not found</h1>
+<p>The page you requested cannot be found (perhaps it was moved or renamed).</p>
+<p>You may want to try searching to find the page's new location, or use
+the table of contents to find the page you are looking for.</p>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["notes-de-cours-data-science-sous-R.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

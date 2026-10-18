@@ -1,0 +1,1214 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 1 Introduction à la science des données | Data Science sous R</title>
+  <meta name="description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 1 Introduction à la science des données | Data Science sous R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 1 Introduction à la science des données | Data Science sous R" />
+  
+  <meta name="twitter:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+<meta name="author" content="ESME — 2026-2027" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="ch-langage-r.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science sous R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Avant-propos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objectifs-du-module"><i class="fa fa-check"></i>Objectifs du module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comment-utiliser-ces-notes"><i class="fa fa-check"></i>Comment utiliser ces notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions-web-et-pdf"><i class="fa fa-check"></i>Versions web et PDF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#logiciels-et-packages"><i class="fa fa-check"></i>Logiciels et packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#les-données-du-cours"><i class="fa fa-check"></i>Les données du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bibliographie"><i class="fa fa-check"></i>Bibliographie</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ch-science.html"><a href="ch-science.html"><i class="fa fa-check"></i><b>1</b> Introduction à la science des données</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ch-science.html"><a href="ch-science.html#quest-ce-que-la-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que la science des données ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="ch-science.html"><a href="ch-science.html#une-pratique-ancienne-un-nom-récent"><i class="fa fa-check"></i><b>1.1.1</b> Une pratique ancienne, un nom récent</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ch-science.html"><a href="ch-science.html#définition"><i class="fa fa-check"></i><b>1.1.2</b> Définition</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ch-science.html"><a href="ch-science.html#quatre-grands-types-danalyse"><i class="fa fa-check"></i><b>1.1.3</b> Quatre grands types d’analyse</a></li>
+<li class="chapter" data-level="1.1.4" data-path="ch-science.html"><a href="ch-science.html#la-science-des-données-en-marketing"><i class="fa fa-check"></i><b>1.1.4</b> La science des données en marketing</a></li>
+<li class="chapter" data-level="1.1.5" data-path="ch-science.html"><a href="ch-science.html#les-projets-réels-sont-exigeants"><i class="fa fa-check"></i><b>1.1.5</b> Les projets réels sont exigeants</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ch-science.html"><a href="ch-science.html#science-des-données-véridique"><i class="fa fa-check"></i><b>1.2</b> Science des données véridique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ch-science.html"><a href="ch-science.html#les-trois-mondes"><i class="fa fa-check"></i><b>1.2.1</b> Les trois mondes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch-science.html"><a href="ch-science.html#pensée-critique-les-bonnes-questions-à-se-poser"><i class="fa fa-check"></i><b>1.2.2</b> Pensée critique : les bonnes questions à se poser</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch-science.html"><a href="ch-science.html#se-méfier-des-biais"><i class="fa fa-check"></i><b>1.2.3</b> Se méfier des biais</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ch-science.html"><a href="ch-science.html#étude-de-cas-les-feux-de-brousse-australiens-20192020"><i class="fa fa-check"></i><b>1.2.4</b> Étude de cas : les feux de brousse australiens (2019–2020)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch-science.html"><a href="ch-science.html#le-cadre-pcs-prédictibilité-calculabilité-stabilité"><i class="fa fa-check"></i><b>1.3</b> Le cadre PCS : prédictibilité, calculabilité, stabilité</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ch-science.html"><a href="ch-science.html#prédictibilité"><i class="fa fa-check"></i><b>1.3.1</b> Prédictibilité</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch-science.html"><a href="ch-science.html#calculabilité"><i class="fa fa-check"></i><b>1.3.2</b> Calculabilité</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ch-science.html"><a href="ch-science.html#stabilité"><i class="fa fa-check"></i><b>1.3.3</b> Stabilité</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ch-science.html"><a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-données"><i class="fa fa-check"></i><b>1.4</b> Le cycle de vie d’un projet de science des données</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="ch-science.html"><a href="ch-science.html#le-dslc"><i class="fa fa-check"></i><b>1.4.1</b> Le DSLC</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ch-science.html"><a href="ch-science.html#crisp-dm"><i class="fa fa-check"></i><b>1.4.2</b> CRISP-DM</a></li>
+<li class="chapter" data-level="1.4.3" data-path="ch-science.html"><a href="ch-science.html#gouvernance-des-données"><i class="fa fa-check"></i><b>1.4.3</b> Gouvernance des données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ch-science.html"><a href="ch-science.html#résumé"><i class="fa fa-check"></i><b>1.5</b> Résumé</a></li>
+<li class="chapter" data-level="1.6" data-path="ch-science.html"><a href="ch-science.html#exercices"><i class="fa fa-check"></i><b>1.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-langage-r.html"><a href="ch-langage-r.html"><i class="fa fa-check"></i><b>2</b> Introduction au langage R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-un-peu-dhistoire"><i class="fa fa-check"></i><b>2.1</b> R : un peu d’histoire</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#introduction-à-rstudio"><i class="fa fa-check"></i><b>2.2</b> Introduction à RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-et-rstudio-le-moteur-et-le-tableau-de-bord"><i class="fa fa-check"></i><b>2.2.1</b> R et RStudio : le moteur et le tableau de bord</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-quatre-panneaux"><i class="fa fa-check"></i><b>2.2.2</b> Les quatre panneaux</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#console-ou-script"><i class="fa fa-check"></i><b>2.2.3</b> Console ou script ?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-projets-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Les projets RStudio</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-notebooks-r-markdown-et-quarto"><i class="fa fa-check"></i><b>2.2.5</b> Les notebooks : R Markdown et Quarto</a></li>
+<li class="chapter" data-level="2.2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#longlet-environnement"><i class="fa fa-check"></i><b>2.2.6</b> L’onglet Environnement</a></li>
+<li class="chapter" data-level="2.2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-du-code-efficacement"><i class="fa fa-check"></i><b>2.2.7</b> Écrire du code efficacement</a></li>
+<li class="chapter" data-level="2.2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#réglages-recommandés"><i class="fa fa-check"></i><b>2.2.8</b> Réglages recommandés</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#premiers-pas-r-comme-calculatrice"><i class="fa fa-check"></i><b>2.3</b> Premiers pas : R comme calculatrice</a></li>
+<li class="chapter" data-level="2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#variables-et-assignation"><i class="fa fa-check"></i><b>2.4</b> Variables et assignation</a></li>
+<li class="chapter" data-level="2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#types-de-données"><i class="fa fa-check"></i><b>2.5</b> Types de données</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-types-de-base"><i class="fa fa-check"></i><b>2.5.1</b> Les types de base</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#conversions"><i class="fa fa-check"></i><b>2.5.2</b> Conversions</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#valeurs-spéciales"><i class="fa fa-check"></i><b>2.5.3</b> Valeurs spéciales</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-de-données"><i class="fa fa-check"></i><b>2.6</b> Structures de données</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs"><i class="fa fa-check"></i><b>2.6.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#facteurs"><i class="fa fa-check"></i><b>2.6.2</b> Facteurs</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-tableaux"><i class="fa fa-check"></i><b>2.6.3</b> Matrices et tableaux</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes"><i class="fa fa-check"></i><b>2.6.4</b> Listes</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#data-frames"><i class="fa fa-check"></i><b>2.6.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs"><i class="fa fa-check"></i><b>2.7</b> Opérateurs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-arithmétiques"><i class="fa fa-check"></i><b>2.7.1</b> Opérateurs arithmétiques</a></li>
+<li class="chapter" data-level="2.7.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-de-comparaison"><i class="fa fa-check"></i><b>2.7.2</b> Opérateurs de comparaison</a></li>
+<li class="chapter" data-level="2.7.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-logiques"><i class="fa fa-check"></i><b>2.7.3</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#accéder-aux-éléments-et-les-modifier"><i class="fa fa-check"></i><b>2.8</b> Accéder aux éléments et les modifier</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs-1"><i class="fa fa-check"></i><b>2.8.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.8.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-data-frames-ligne-colonne"><i class="fa fa-check"></i><b>2.8.2</b> Matrices et data frames : <code>[ligne, colonne]</code></a></li>
+<li class="chapter" data-level="2.8.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes-contre"><i class="fa fa-check"></i><b>2.8.3</b> Listes : <code>[ ]</code> contre <code>[[ ]]</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-algorithmiques"><i class="fa fa-check"></i><b>2.9</b> Structures algorithmiques</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#branchements-conditionnels-if-else"><i class="fa fa-check"></i><b>2.9.1</b> Branchements conditionnels : <code>if</code>, <code>else</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-for"><i class="fa fa-check"></i><b>2.9.2</b> Boucles <code>for</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-while-et-repeat"><i class="fa fa-check"></i><b>2.9.3</b> Boucles <code>while</code> et <code>repeat</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucle-ou-vectorisation"><i class="fa fa-check"></i><b>2.9.4</b> Boucle ou vectorisation ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-programmation-modulaire"><i class="fa fa-check"></i><b>2.10</b> Fonctions et programmation modulaire</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-une-fonction"><i class="fa fa-check"></i><b>2.10.1</b> Écrire une fonction</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-procédures"><i class="fa fa-check"></i><b>2.10.2</b> Fonctions et procédures</a></li>
+<li class="chapter" data-level="2.10.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#appliquer-une-fonction-à-chaque-élément"><i class="fa fa-check"></i><b>2.10.3</b> Appliquer une fonction à chaque élément</a></li>
+<li class="chapter" data-level="2.10.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#découper-un-programme-en-modules"><i class="fa fa-check"></i><b>2.10.4</b> Découper un programme en modules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="ch-langage-r.html"><a href="ch-langage-r.html#packages-et-aide"><i class="fa fa-check"></i><b>2.11</b> Packages et aide</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#installer-et-charger-un-package"><i class="fa fa-check"></i><b>2.11.1</b> Installer et charger un package</a></li>
+<li class="chapter" data-level="2.11.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#trouver-de-laide"><i class="fa fa-check"></i><b>2.11.2</b> Trouver de l’aide</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="ch-langage-r.html"><a href="ch-langage-r.html#résumé-1"><i class="fa fa-check"></i><b>2.12</b> Résumé</a></li>
+<li class="chapter" data-level="2.13" data-path="ch-langage-r.html"><a href="ch-langage-r.html#exercices-1"><i class="fa fa-check"></i><b>2.13</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-manipulation.html"><a href="ch-manipulation.html"><i class="fa fa-check"></i><b>3</b> Manipulation de données avec R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#les-données-de-ce-chapitre"><i class="fa fa-check"></i><b>3.1</b> Les données de ce chapitre</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#la-boutique-en-ligne-données-simulées"><i class="fa fa-check"></i><b>3.1.1</b> La boutique en ligne (données simulées)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>3.2</b> Importer et exporter des données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#le-répertoire-de-travail"><i class="fa fa-check"></i><b>3.2.1</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#lire-un-fichier-csv"><i class="fa fa-check"></i><b>3.2.2</b> Lire un fichier CSV</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#autres-formats"><i class="fa fa-check"></i><b>3.2.3</b> Autres formats</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#écrire-des-données"><i class="fa fa-check"></i><b>3.2.4</b> Écrire des données</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-intégrées-aux-packages"><i class="fa fa-check"></i><b>3.2.5</b> Données intégrées aux packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#structure-dun-tableau-de-données"><i class="fa fa-check"></i><b>3.3</b> Structure d’un tableau de données</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-univariée"><i class="fa fa-check"></i><b>3.4</b> Analyse univariée</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Variable quantitative</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-qualitative"><i class="fa fa-check"></i><b>3.4.2</b> Variable qualitative</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-bivariée"><i class="fa fa-check"></i><b>3.5</b> Analyse bivariée</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-qualitatives-un-test-ab"><i class="fa fa-check"></i><b>3.5.1</b> Deux variables qualitatives : un test A/B</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#une-variable-quantitative-et-une-qualitative"><i class="fa fa-check"></i><b>3.5.2</b> Une variable quantitative et une qualitative</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>3.5.3</b> Deux variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#manipuler-des-données-avec-dplyr"><i class="fa fa-check"></i><b>3.6</b> Manipuler des données avec <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#filtrer-les-lignes"><i class="fa fa-check"></i><b>3.6.1</b> Filtrer les lignes</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#trier"><i class="fa fa-check"></i><b>3.6.2</b> Trier</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#sélectionner-renommer-et-réordonner-des-colonnes"><i class="fa fa-check"></i><b>3.6.3</b> Sélectionner, renommer et réordonner des colonnes</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#créer-des-variables"><i class="fa fa-check"></i><b>3.6.4</b> Créer des variables</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#enchaîner-les-opérations-le-pipe"><i class="fa fa-check"></i><b>3.6.5</b> Enchaîner les opérations : le <em>pipe</em></a></li>
+<li class="chapter" data-level="3.6.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumer-par-groupe"><i class="fa fa-check"></i><b>3.6.6</b> Résumer par groupe</a></li>
+<li class="chapter" data-level="3.6.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exemple-marketing-les-indicateurs-rfm"><i class="fa fa-check"></i><b>3.6.7</b> Exemple marketing : les indicateurs RFM</a></li>
+<li class="chapter" data-level="3.6.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#décaler-des-valeurs-lag-et-lead"><i class="fa fa-check"></i><b>3.6.8</b> Décaler des valeurs : <code>lag()</code> et <code>lead()</code></a></li>
+<li class="chapter" data-level="3.6.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#concaténer-des-tables"><i class="fa fa-check"></i><b>3.6.9</b> Concaténer des tables</a></li>
+<li class="chapter" data-level="3.6.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#joindre-des-tables"><i class="fa fa-check"></i><b>3.6.10</b> Joindre des tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-rangées-tidy-data"><i class="fa fa-check"></i><b>3.7</b> Données rangées (<em>tidy data</em>)</a></li>
+<li class="chapter" data-level="3.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#valeurs-manquantes"><i class="fa fa-check"></i><b>3.8</b> Valeurs manquantes</a></li>
+<li class="chapter" data-level="3.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#générer-des-données"><i class="fa fa-check"></i><b>3.9</b> Générer des données</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#séquences-régulières"><i class="fa fa-check"></i><b>3.9.1</b> Séquences régulières</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#tirages-aléatoires"><i class="fa fa-check"></i><b>3.9.2</b> Tirages aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumé-2"><i class="fa fa-check"></i><b>3.10</b> Résumé</a></li>
+<li class="chapter" data-level="3.11" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exercices-2"><i class="fa fa-check"></i><b>3.11</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-graphiques.html"><a href="ch-graphiques.html"><i class="fa fa-check"></i><b>4</b> Représentations graphiques et régression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#pourquoi-visualiser"><i class="fa fa-check"></i><b>4.1</b> Pourquoi visualiser ?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#principes-dun-bon-graphique"><i class="fa fa-check"></i><b>4.1.1</b> Principes d’un bon graphique</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#choisir-un-graphique"><i class="fa fa-check"></i><b>4.1.2</b> Choisir un graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-r-de-base"><i class="fa fa-check"></i><b>4.2</b> Graphiques avec R de base</a></li>
+<li class="chapter" data-level="4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-ggplot2"><i class="fa fa-check"></i><b>4.3</b> Graphiques avec <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#initialisation-et-premier-geom"><i class="fa fa-check"></i><b>4.3.1</b> Initialisation et premier <em>geom</em></a></li>
+<li class="chapter" data-level="4.3.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#les-principaux-geoms"><i class="fa fa-check"></i><b>4.3.2</b> Les principaux <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#mappages"><i class="fa fa-check"></i><b>4.3.3</b> Mappages</a></li>
+<li class="chapter" data-level="4.3.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#positions-des-barres"><i class="fa fa-check"></i><b>4.3.4</b> Positions des barres</a></li>
+<li class="chapter" data-level="4.3.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#superposer-plusieurs-geoms"><i class="fa fa-check"></i><b>4.3.5</b> Superposer plusieurs <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#faceting"><i class="fa fa-check"></i><b>4.3.6</b> <em>Faceting</em></a></li>
+<li class="chapter" data-level="4.3.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#scales"><i class="fa fa-check"></i><b>4.3.7</b> <em>Scales</em></a></li>
+<li class="chapter" data-level="4.3.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#titres-et-thèmes"><i class="fa fa-check"></i><b>4.3.8</b> Titres et thèmes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>4.4</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle"><i class="fa fa-check"></i><b>4.4.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#ajuster-le-modèle-avec-lm"><i class="fa fa-check"></i><b>4.4.2</b> Ajuster le modèle avec <code>lm()</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire"><i class="fa fa-check"></i><b>4.4.3</b> Prédire</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#vérifier-les-hypothèses-les-résidus"><i class="fa fa-check"></i><b>4.4.4</b> Vérifier les hypothèses : les résidus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#quand-la-réponse-est-binaire"><i class="fa fa-check"></i><b>4.6.1</b> Quand la réponse est binaire</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exemple-choix-de-marque"><i class="fa fa-check"></i><b>4.6.2</b> Exemple : choix de marque</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire-des-probabilités"><i class="fa fa-check"></i><b>4.6.3</b> Prédire des probabilités</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#résumé-3"><i class="fa fa-check"></i><b>4.7</b> Résumé</a></li>
+<li class="chapter" data-level="4.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exercices-3"><i class="fa fa-check"></i><b>4.8</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html"><i class="fa fa-check"></i><b>5</b> Analyse en composantes principales et arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#analyse-en-composantes-principales-acp"><i class="fa fa-check"></i><b>5.1</b> Analyse en composantes principales (ACP)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#le-problème"><i class="fa fa-check"></i><b>5.1.1</b> Le problème</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe-mathématique"><i class="fa fa-check"></i><b>5.1.2</b> Principe mathématique</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-1-le-décathlon"><i class="fa fa-check"></i><b>5.1.3</b> Exemple 1 : le décathlon</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-2-le-comportement-des-clients-de-la-boutique"><i class="fa fa-check"></i><b>5.1.4</b> Exemple 2 : le comportement des clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#arbres-de-décision"><i class="fa fa-check"></i><b>5.2</b> Arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#les-données-le-choix-dune-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.2.2</b> Les données : le choix d’une marque de jus d’orange</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#construire-larbre"><i class="fa fa-check"></i><b>5.2.3</b> Construire l’arbre</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#élaguer-larbre"><i class="fa fa-check"></i><b>5.2.4</b> Élaguer l’arbre</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#prédire-1"><i class="fa fa-check"></i><b>5.2.5</b> Prédire</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#matrice-de-confusion"><i class="fa fa-check"></i><b>5.2.6</b> Matrice de confusion</a></li>
+<li class="chapter" data-level="5.2.7" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#courbe-roc-et-auc"><i class="fa fa-check"></i><b>5.2.7</b> Courbe ROC et AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#résumé-4"><i class="fa fa-check"></i><b>5.3</b> Résumé</a></li>
+<li class="chapter" data-level="5.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exercices-4"><i class="fa fa-check"></i><b>5.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-classification.html"><a href="ch-classification.html"><i class="fa fa-check"></i><b>6</b> Classification automatique, éthique et R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ch-classification.html"><a href="ch-classification.html#classification-non-supervisée"><i class="fa fa-check"></i><b>6.1</b> Classification non supervisée</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="ch-classification.html"><a href="ch-classification.html#supervisé-ou-non-supervisé"><i class="fa fa-check"></i><b>6.1.1</b> Supervisé ou non supervisé ?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ch-classification.html"><a href="ch-classification.html#distances-et-standardisation"><i class="fa fa-check"></i><b>6.1.2</b> Distances et standardisation</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch-classification.html"><a href="ch-classification.html#les-données-les-clients-de-la-boutique"><i class="fa fa-check"></i><b>6.1.3</b> Les données : les clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch-classification.html"><a href="ch-classification.html#les-k-moyennes-k-means"><i class="fa fa-check"></i><b>6.2</b> Les k-moyennes (<em>k-means</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme"><i class="fa fa-check"></i><b>6.2.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-classification.html"><a href="ch-classification.html#décomposition-de-linertie"><i class="fa fa-check"></i><b>6.2.2</b> Décomposition de l’inertie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-classification.html"><a href="ch-classification.html#classification-ascendante-hiérarchique-cah"><i class="fa fa-check"></i><b>6.3</b> Classification ascendante hiérarchique (CAH)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme-1"><i class="fa fa-check"></i><b>6.3.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="ch-classification.html"><a href="ch-classification.html#k-moyennes-ou-cah"><i class="fa fa-check"></i><b>6.3.2</b> k-moyennes ou CAH ?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ch-classification.html"><a href="ch-classification.html#choisir-le-nombre-de-classes"><i class="fa fa-check"></i><b>6.4</b> Choisir le nombre de classes</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-classification.html"><a href="ch-classification.html#méthode-du-coude"><i class="fa fa-check"></i><b>6.4.1</b> Méthode du coude</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-classification.html"><a href="ch-classification.html#indice-de-silhouette"><i class="fa fa-check"></i><b>6.4.2</b> Indice de silhouette</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-classification.html"><a href="ch-classification.html#le-saut-dinertie-du-dendrogramme"><i class="fa fa-check"></i><b>6.4.3</b> Le saut d’inertie du dendrogramme</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-classification.html"><a href="ch-classification.html#décrire-les-classes"><i class="fa fa-check"></i><b>6.5</b> Décrire les classes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-classification.html"><a href="ch-classification.html#moyennes-par-classe"><i class="fa fa-check"></i><b>6.5.1</b> Moyennes par classe</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-classification.html"><a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée"><i class="fa fa-check"></i><b>6.5.2</b> Les classes retrouvent-elles la structure simulée ?</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-classification.html"><a href="ch-classification.html#acp-puis-cah-la-fonction-hcpc"><i class="fa fa-check"></i><b>6.5.3</b> ACP puis CAH : la fonction <code>HCPC()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-classification.html"><a href="ch-classification.html#léthique-dans-la-science-des-données"><i class="fa fa-check"></i><b>6.6</b> L’éthique dans la science des données</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-classification.html"><a href="ch-classification.html#quelques-cas-marquants"><i class="fa fa-check"></i><b>6.6.1</b> Quelques cas marquants</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-classification.html"><a href="ch-classification.html#enjeux-propres-au-marketing"><i class="fa fa-check"></i><b>6.6.2</b> Enjeux propres au marketing</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-classification.html"><a href="ch-classification.html#sources-de-problèmes-éthiques"><i class="fa fa-check"></i><b>6.6.3</b> Sources de problèmes éthiques</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-classification.html"><a href="ch-classification.html#le-cadre-légal-en-europe"><i class="fa fa-check"></i><b>6.6.4</b> Le cadre légal en Europe</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ch-classification.html"><a href="ch-classification.html#questions-à-se-poser-dans-tout-projet"><i class="fa fa-check"></i><b>6.6.5</b> Questions à se poser dans tout projet</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-classification.html"><a href="ch-classification.html#interfaces-graphiques-avec-r-shiny"><i class="fa fa-check"></i><b>6.7</b> Interfaces graphiques avec R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-classification.html"><a href="ch-classification.html#quest-ce-que-shiny"><i class="fa fa-check"></i><b>6.7.1</b> Qu’est-ce que Shiny ?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-classification.html"><a href="ch-classification.html#structure-dune-application"><i class="fa fa-check"></i><b>6.7.2</b> Structure d’une application</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-classification.html"><a href="ch-classification.html#un-exemple-complet-explorer-la-segmentation-des-clients"><i class="fa fa-check"></i><b>6.7.3</b> Un exemple complet : explorer la segmentation des clients</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-classification.html"><a href="ch-classification.html#la-réactivité"><i class="fa fa-check"></i><b>6.7.4</b> La réactivité</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-classification.html"><a href="ch-classification.html#partager-une-application"><i class="fa fa-check"></i><b>6.7.5</b> Partager une application</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-classification.html"><a href="ch-classification.html#résumé-5"><i class="fa fa-check"></i><b>6.8</b> Résumé</a></li>
+<li class="chapter" data-level="6.9" data-path="ch-classification.html"><a href="ch-classification.html#exercices-5"><i class="fa fa-check"></i><b>6.9</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-projet.html"><a href="ch-projet.html"><i class="fa fa-check"></i><b>7</b> Projet et évaluation des acquis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ch-projet.html"><a href="ch-projet.html#déroulé-dun-projet-le-dslc-en-pratique"><i class="fa fa-check"></i><b>7.1</b> Déroulé d’un projet : le DSLC en pratique</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-projet.html"><a href="ch-projet.html#le-rendu-un-notebook-reproductible"><i class="fa fa-check"></i><b>7.2</b> Le rendu : un notebook reproductible</a></li>
+<li class="chapter" data-level="7.3" data-path="ch-projet.html"><a href="ch-projet.html#grille-dauto-évaluation"><i class="fa fa-check"></i><b>7.3</b> Grille d’auto-évaluation</a></li>
+<li class="chapter" data-level="7.4" data-path="ch-projet.html"><a href="ch-projet.html#réussir-la-soutenance"><i class="fa fa-check"></i><b>7.4</b> Réussir la soutenance</a></li>
+<li class="chapter" data-level="7.5" data-path="ch-projet.html"><a href="ch-projet.html#où-trouver-des-jeux-de-données"><i class="fa fa-check"></i><b>7.5</b> Où trouver des jeux de données</a></li>
+<li class="chapter" data-level="7.6" data-path="ch-projet.html"><a href="ch-projet.html#fiche-de-révision"><i class="fa fa-check"></i><b>7.6</b> Fiche de révision</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="ch-projet.html"><a href="ch-projet.html#le-langage-r-chapitre-2"><i class="fa fa-check"></i><b>7.6.1</b> Le langage R (chapitre 2)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="ch-projet.html"><a href="ch-projet.html#manipulation-chapitre-3"><i class="fa fa-check"></i><b>7.6.2</b> Manipulation (chapitre 3)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="ch-projet.html"><a href="ch-projet.html#graphiques-et-régression-chapitre-4"><i class="fa fa-check"></i><b>7.6.3</b> Graphiques et régression (chapitre 4)</a></li>
+<li class="chapter" data-level="7.6.4" data-path="ch-projet.html"><a href="ch-projet.html#acp-et-arbres-chapitre-5"><i class="fa fa-check"></i><b>7.6.4</b> ACP et arbres (chapitre 5)</a></li>
+<li class="chapter" data-level="7.6.5" data-path="ch-projet.html"><a href="ch-projet.html#classification-chapitre-6"><i class="fa fa-check"></i><b>7.6.5</b> Classification (chapitre 6)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="ch-projet.html"><a href="ch-projet.html#questions-de-révision"><i class="fa fa-check"></i><b>7.7</b> Questions de révision</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science sous R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch-science" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">Chapitre 1</span> Introduction à la science des données<a href="ch-science.html#ch-science" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Objectifs du chapitre</strong></p>
+<ul>
+<li>Comprendre ce qu’est la science des données et à quoi elle sert, notamment
+en marketing.</li>
+<li>Savoir pourquoi un résultat issu de données doit être évalué avec un regard
+critique.</li>
+<li>Connaître le cadre PCS (prédictibilité, calculabilité, stabilité) et savoir
+découper des données en ensembles d’entraînement, de validation et de test.</li>
+<li>Connaître le cycle de vie d’un projet de science des données.</li>
+</ul>
+<p><em>Support de cours : diaporama <code>01-Science-des-donnees.pdf</code>. Les exercices
+sont regroupés en fin de chapitre.</em></p>
+<div id="quest-ce-que-la-science-des-données" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> Qu’est-ce que la science des données ?<a href="ch-science.html#quest-ce-que-la-science-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="une-pratique-ancienne-un-nom-récent" class="section level3 hasAnchor" number="1.1.1">
+<h3><span class="header-section-number">1.1.1</span> Une pratique ancienne, un nom récent<a href="ch-science.html#une-pratique-ancienne-un-nom-récent" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Utiliser des données pour répondre à des questions concrètes n’est pas
+nouveau : on parlait autrefois d’« analyse de données » ou de « statistique
+appliquée ». Le traitement automatisé des données commence avec les cartes
+perforées d’Herman Hollerith, conçues pour dépouiller le recensement américain
+de 1890 ; sa société est l’une des quatre qui fusionneront pour former IBM.
+Pour une histoire de la discipline, lire l’article de David Donoho,
+<em>50 Years of Data Science</em> (2017).</p>
+</div>
+<div id="définition" class="section level3 hasAnchor" number="1.1.2">
+<h3><span class="header-section-number">1.1.2</span> Définition<a href="ch-science.html#définition" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<blockquote>
+<p>La science des données unifie la statistique, l’analyse de données,
+l’informatique et leurs méthodes associées pour <strong>comprendre et analyser des
+phénomènes réels à partir de données</strong>.</p>
+</blockquote>
+<p>Elle se situe à l’intersection de trois domaines :</p>
+<ul>
+<li>l’<strong>informatique</strong> : techniques de calcul, programmation, stockage ;</li>
+<li>les <strong>mathématiques et la statistique</strong> : modèles, inférence, incertitude ;</li>
+<li>l’<strong>expertise du domaine</strong> : connaissance du contexte de la question.</li>
+</ul>
+<p>Un·e <em>data scientist</em> écrit du code, l’associe à des connaissances statistiques
+pour extraire de l’information des données, puis <strong>communique</strong> ses résultats
+à des publics variés afin d’éclairer une décision.</p>
+<p><strong>Deux exemples.</strong></p>
+<ul>
+<li><em>Santé</em> : un hôpital veut prédire quels patients risquent d’être réadmis
+après leur sortie. Le modèle transmet cette information aux médecins, qui
+décident de la sortie.</li>
+<li><em>Marketing</em> : un opérateur de téléphonie veut repérer les abonnés qui
+risquent de résilier (<em>churn</em>). Le modèle produit une liste de clients à
+risque ; l’équipe de fidélisation décide à qui proposer une offre, et
+laquelle.</li>
+</ul>
+<p>Dans les deux cas, le but final n’est pas « d’avoir un modèle », mais
+d’<strong>aider une décision réelle</strong>, prise par des personnes.</p>
+</div>
+<div id="quatre-grands-types-danalyse" class="section level3 hasAnchor" number="1.1.3">
+<h3><span class="header-section-number">1.1.3</span> Quatre grands types d’analyse<a href="ch-science.html#quatre-grands-types-danalyse" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="12%" />
+<col width="21%" />
+<col width="25%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Type</th>
+<th align="left">Question</th>
+<th align="left">Techniques</th>
+<th align="left">Exemple marketing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Descriptive</td>
+<td align="left">Que s’est-il passé ?</td>
+<td align="left">tableaux, statistiques, graphiques</td>
+<td align="left">tableau de bord des ventes par canal</td>
+</tr>
+<tr class="even">
+<td align="left">Diagnostique</td>
+<td align="left">Pourquoi est-ce arrivé ?</td>
+<td align="left">exploration, corrélations, fouille de données</td>
+<td align="left">pourquoi les ventes ont-elles baissé en mars ?</td>
+</tr>
+<tr class="odd">
+<td align="left">Prédictive</td>
+<td align="left">Que va-t-il se passer ?</td>
+<td align="left">régression, arbres, apprentissage automatique</td>
+<td align="left">quels clients vont résilier ? quelles ventes à Noël ?</td>
+</tr>
+<tr class="even">
+<td align="left">Prescriptive</td>
+<td align="left">Que faut-il faire ?</td>
+<td align="left">optimisation, simulation, recommandation</td>
+<td align="left">quel budget publicitaire par canal ? quel produit recommander ?</td>
+</tr>
+</tbody>
+</table>
+<p>Ce module couvre surtout l’analyse descriptive (chapitres 3 et 4), les
+méthodes exploratoires (ACP et classification, chapitres 5 et 6) et quelques
+méthodes prédictives (régression, arbres de décision).</p>
+</div>
+<div id="la-science-des-données-en-marketing" class="section level3 hasAnchor" number="1.1.4">
+<h3><span class="header-section-number">1.1.4</span> La science des données en marketing<a href="ch-science.html#la-science-des-données-en-marketing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le marketing est l’un des domaines qui utilisent le plus les données :</p>
+<ul>
+<li><strong>connaissance client</strong> : segmentation, valeur client (<em>customer lifetime
+value</em>), analyse RFM (récence, fréquence, montant) ;</li>
+<li><strong>acquisition</strong> : ciblage publicitaire, attribution des ventes aux canaux
+(moteur de recherche, réseaux sociaux, emailing…) ;</li>
+<li><strong>fidélisation</strong> : prédiction de l’attrition (<em>churn</em>), programmes de
+fidélité ;</li>
+<li><strong>offre</strong> : recommandation de produits, prix, analyse du panier ;</li>
+<li><strong>expérimentation</strong> : tests A/B (comparer deux versions d’un email, d’une
+page web, d’une offre sur des clients tirés au hasard).</li>
+</ul>
+<p>Le fil rouge marketing de ces notes est une <strong>boutique en ligne fictive</strong>
+dont les données (clients, commandes, campagne d’emailing) sont simulées par le
+script <code>datasets/generer-boutique.R</code>. Elles sont décrites en détail au chapitre
+<a href="ch-manipulation.html#ch-manipulation">3</a>, où elles sont utilisées pour la première fois.</p>
+</div>
+<div id="les-projets-réels-sont-exigeants" class="section level3 hasAnchor" number="1.1.5">
+<h3><span class="header-section-number">1.1.5</span> Les projets réels sont exigeants<a href="ch-science.html#les-projets-réels-sont-exigeants" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un projet réel commence souvent par une <strong>question floue</strong> (« pourquoi nos
+ventes baissent-elles ? »), à laquelle on doit répondre avec des <strong>données
+imparfaites</strong> : ambiguës, erronées, et presque jamais collectées pour votre
+question. Les données d’un site de vente sont par exemple collectées pour
+facturer, pas pour comprendre les clients. L’analyse suit un chemin sinueux et
+aboutit parfois à des résultats peu concluants. C’est normal : l’enjeu est de
+rendre ces difficultés visibles plutôt que de les cacher.</p>
+<p>Les projets échouent souvent pour les raisons suivantes :</p>
+<ol style="list-style-type: decimal">
+<li>décalage entre la vision métier et la vision technique ;</li>
+<li>objectifs flous ;</li>
+<li>données de mauvaise qualité ;</li>
+<li>traitement des données incorrect ;</li>
+<li>méthodes inadaptées à la question.</li>
+</ol>
+</div>
+</div>
+<div id="science-des-données-véridique" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> Science des données véridique<a href="ch-science.html#science-des-données-véridique" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="les-trois-mondes" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> Les trois mondes<a href="ch-science.html#les-trois-mondes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Yu et Barter (2024) proposent de distinguer trois « mondes » :</p>
+<ol style="list-style-type: decimal">
+<li><strong>la réalité</strong>, que l’on cherche à comprendre ;</li>
+<li><strong>les données</strong>, qui n’en sont qu’une <em>approximation</em> (mesures partielles,
+bruitées, collectées dans un contexte donné) ;</li>
+<li><strong>le monde des constructions mentales</strong> : nos hypothèses, nos analyses et
+nos algorithmes.</li>
+</ol>
+<p>Un résultat calculé à partir de données vit dans le troisième monde. Pour qu’il
+nous apprenne quelque chose sur la réalité, il faut justifier chaque passage
+d’un monde à l’autre. C’est pourquoi un résultat issu de données est une
+<strong>preuve</strong> (<em>evidence</em>) en faveur d’une conclusion, pas une <strong>démonstration</strong>.</p>
+<p>Exemple : la colonne <code>nb_visites</code> d’un outil d’audience web ne compte pas des
+<em>personnes</em>, mais des sessions de navigateur. Une même personne sur son
+téléphone et son ordinateur compte deux fois ; une personne qui refuse les
+cookies ne compte pas. Les données approximent la réalité, avec des écarts
+qu’il faut connaître.</p>
+<div class="retenir">
+<p><strong>Science des données véridique</strong> : mener des analyses en assumant les
+jugements humains qu’elles contiennent et en s’appuyant sur la connaissance du
+domaine, afin d’extraire et de communiquer des informations <strong>utiles et
+fiables</strong> pour résoudre un problème réel.</p>
+</div>
+</div>
+<div id="pensée-critique-les-bonnes-questions-à-se-poser" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> Pensée critique : les bonnes questions à se poser<a href="ch-science.html#pensée-critique-les-bonnes-questions-à-se-poser" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Sur le problème</strong></p>
+<ul>
+<li>La question formulée correspond-elle vraiment à ce qui nous intéresse ?</li>
+<li>La question est-elle éthique ?</li>
+</ul>
+<p><strong>Sur les données</strong></p>
+<ul>
+<li>D’où viennent-elles ? La source est-elle fiable ?</li>
+<li>Sont-elles pertinentes pour la question et pour les situations où le
+résultat sera utilisé ?</li>
+<li>À quoi correspond, dans le monde réel, chaque valeur du tableau ?</li>
+</ul>
+<p><strong>Sur l’analyse et les résultats</strong></p>
+<ul>
+<li>Que signifient les résultats dans la réalité ? Sont-ils plausibles ?</li>
+<li>Quelles hypothèses la méthode fait-elle ? Sont-elles raisonnables ?</li>
+<li>Les résultats répondent-ils à la question posée ?</li>
+<li>La façon de les communiquer est-elle fidèle ?</li>
+</ul>
+<p>Quand c’est possible, allez <strong>sur le terrain</strong> (le <em>shoe leather</em> de
+D. Freedman) : parlez aux personnes qui produisent les données (vendeurs,
+service client), observez le processus de collecte.</p>
+</div>
+<div id="se-méfier-des-biais" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Se méfier des biais<a href="ch-science.html#se-méfier-des-biais" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Biais cognitifs</strong> de l’analyste :</p>
+<ul>
+<li><strong>biais de confirmation</strong> : on vérifie moins un résultat qui correspond à nos
+attentes ;</li>
+<li><strong>biais de désirabilité</strong> : on cherche le résultat que l’on pense attendu par
+les autres (client, responsable, enseignant…).</li>
+</ul>
+<p>On ne peut pas éliminer ces biais, même avec de l’entraînement. On peut en
+revanche cultiver un <strong>scepticisme sain</strong> envers <em>tous</em> les résultats,
+qu’ils confirment ou non nos attentes.</p>
+<p><strong>Biais dans les données</strong>, très fréquents en marketing :</p>
+<ul>
+<li><strong>biais de survie</strong> : une enquête de satisfaction envoyée aux clients
+<em>actuels</em> ignore ceux qui sont partis, justement parce qu’ils étaient
+insatisfaits ;</li>
+<li><strong>biais de sélection</strong> : les avis en ligne sont surtout laissés par des
+clients très satisfaits ou très mécontents ; leur moyenne ne représente pas
+l’ensemble des clients ;</li>
+<li><strong>biais de mesure</strong> : un changement de l’outil de suivi du site peut créer
+une « hausse » des visites qui n’existe pas.</li>
+</ul>
+</div>
+<div id="étude-de-cas-les-feux-de-brousse-australiens-20192020" class="section level3 hasAnchor" number="1.2.4">
+<h3><span class="header-section-number">1.2.4</span> Étude de cas : les feux de brousse australiens (2019–2020)<a href="ch-science.html#étude-de-cas-les-feux-de-brousse-australiens-20192020" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pendant la saison 2019–2020, des incendies ont ravagé plus de 42 millions
+d’acres (environ 17 millions d’hectares) en Australie. Le professeur Chris
+Dickman (Université de Sydney) a estimé que « plus d’un milliard d’animaux ont
+péri ». D’où vient ce chiffre ?</p>
+<ul>
+<li><strong>Les données</strong> : il provient d’un rapport de 2007 pour le WWF sur l’impact du
+défrichement en Nouvelle-Galles du Sud. Le chiffre inclut mammifères (hors
+chauves-souris), oiseaux et reptiles, mais ni les grenouilles, ni les
+insectes, ni les autres invertébrés.</li>
+<li><strong>L’analyse</strong> : on a estimé des densités d’animaux par hectare dans une zone
+limitée, puis multiplié par la surface brûlée. Cette extrapolation ignore les
+différences de densité entre régions et leur évolution dans le temps.</li>
+</ul>
+<p>Le chiffre n’est pas « faux » : c’était la meilleure estimation possible avec
+les données disponibles, produite par des personnes de bonne foi. Mais il est
+<strong>très incertain</strong>, et cette incertitude doit être communiquée.</p>
+<p>La même démarche s’applique à un chiffre marketing comme « notre campagne a
+généré 2 millions d’euros de ventes » : quelles ventes sont comptées ? Celles
+qui auraient eu lieu sans la campagne sont-elles exclues ? Comment a-t-on
+extrapolé ?</p>
+<p>Cette étude de cas est approfondie dans l’exercice 1.3 en fin de chapitre.</p>
+</div>
+</div>
+<div id="le-cadre-pcs-prédictibilité-calculabilité-stabilité" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> Le cadre PCS : prédictibilité, calculabilité, stabilité<a href="ch-science.html#le-cadre-pcs-prédictibilité-calculabilité-stabilité" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Le cadre PCS donne des lignes directrices pour <strong>évaluer empiriquement la
+fiabilité</strong> des résultats à chaque étape d’un projet. Prédictibilité et
+stabilité fournissent des <em>indices</em> de fiabilité ; elles ne la prouvent pas,
+car il faudrait pour cela tester tous les scénarios possibles. L’esprit est
+proche de la <strong>réfutabilité</strong> de Karl Popper : un résultat gagne en crédibilité
+quand il résiste à des tentatives sérieuses de le mettre en défaut.</p>
+<div id="prédictibilité" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> Prédictibilité<a href="ch-science.html#prédictibilité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un résultat est <strong>prédictible</strong> s’il se retrouve dans de nouveaux contextes
+pertinents. La meilleure preuve consiste à le vérifier sur des données
+<strong>futures ou externes</strong>. À défaut, on simule ces données futures en découpant
+le jeu de données :</p>
+<ul>
+<li><strong>entraînement</strong> : explorer les données et ajuster les modèles ;</li>
+<li><strong>validation</strong> : comparer les modèles et choisir les réglages ; elle joue le
+rôle de « données futures » ;</li>
+<li><strong>test</strong> : évaluation finale, une seule fois, sur des données jamais vues.</li>
+</ul>
+<p>Le découpage doit refléter la relation entre les données actuelles et celles
+auxquelles le résultat sera appliqué :</p>
+<table>
+<colgroup>
+<col width="26%" />
+<col width="26%" />
+<col width="46%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Situation</th>
+<th align="left">Découpage</th>
+<th align="left">Exemple marketing</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Observations interchangeables</td>
+<td align="left"><strong>aléatoire</strong></td>
+<td align="left">visiteurs d’un site tirés au hasard pour étudier ce qui mène à un achat</td>
+</tr>
+<tr class="even">
+<td align="left">Données ordonnées dans le temps</td>
+<td align="left"><strong>temporel</strong> : le passé pour entraîner, le plus récent pour valider et tester</td>
+<td align="left">prévoir les ventes : entraîner sur 2023–2024, valider sur début 2025, tester sur fin 2025</td>
+</tr>
+<tr class="odd">
+<td align="left">Groupes naturels, application à un nouveau groupe</td>
+<td align="left"><strong>par groupes</strong> : un groupe entier va dans un seul ensemble</td>
+<td align="left">prévoir les ventes d’un <strong>nouveau magasin</strong> : chaque magasin est entièrement en entraînement, en validation ou en test</td>
+</tr>
+</tbody>
+</table>
+<p>En R, un découpage aléatoire simple (60 % / 20 % / 20 %) s’écrit :</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="ch-science.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)                <span class="co"># rend le tirage reproductible</span></span>
+<span id="cb3-2"><a href="ch-science.html#cb3-2" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">100</span>                      <span class="co"># nombre d&#39;observations</span></span>
+<span id="cb3-3"><a href="ch-science.html#cb3-3" aria-hidden="true" tabindex="-1"></a>ensemble <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;entrainement&quot;</span>, <span class="st">&quot;validation&quot;</span>, <span class="st">&quot;test&quot;</span>),</span>
+<span id="cb3-4"><a href="ch-science.html#cb3-4" aria-hidden="true" tabindex="-1"></a>                   <span class="at">size =</span> n, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.2</span>, <span class="fl">0.2</span>))</span>
+<span id="cb3-5"><a href="ch-science.html#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(ensemble)</span></code></pre></div>
+<pre><code>#&gt; ensemble
+#&gt; entrainement         test   validation 
+#&gt;           63           19           18</code></pre>
+<div class="attention">
+<p><strong>Fuite de données (<em>data leakage</em>)</strong> : de l’information sur la réponse ou sur
+les données de test « fuit » dans l’entraînement. Les performances mesurées
+sont alors trop optimistes, et le modèle déçoit une fois déployé. Exemples :</p>
+<ul>
+<li>prédire la résiliation d’un abonnement avec la variable « nombre d’appels au
+service résiliation », qui n’est connue… qu’une fois le client parti ;</li>
+<li>normaliser les données avec la moyenne calculée sur <strong>tout</strong> le jeu de
+données, test compris ;</li>
+<li>explorer le jeu de test avant de choisir le modèle.</li>
+</ul>
+<p><strong>Faites le découpage avant toute exploration</strong>, et vérifiez que chaque
+variable explicative est réellement disponible <strong>au moment où la prédiction
+sera faite</strong>.</p>
+<p><strong>Data snooping</strong> : tester un grand nombre d’hypothèses ou de modèles sur les
+mêmes données jusqu’à « trouver » un résultat. Si l’on compare 20 objets
+d’email sans réelle différence, l’un d’eux paraîtra « significativement »
+meilleur au seuil de 5 % dans près de deux cas sur trois
+(<span class="math inline">\(1 - 0{,}95^{20} \approx 0{,}64\)</span>), par pur hasard. Pour
+l’éviter : formuler les questions à l’avance, garder un jeu de test intact, et
+rapporter tout ce qui a été essayé.</p>
+</div>
+</div>
+<div id="calculabilité" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> Calculabilité<a href="ch-science.html#calculabilité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La <strong>calculabilité</strong> concerne le calcul lui-même : l’analyse doit être
+réalisable avec les ressources disponibles, <strong>reproductible</strong> (même code et
+mêmes données donnent le même résultat) et documentée. En pratique :</p>
+<ul>
+<li>écrire le code dans des scripts ou des notebooks, jamais seulement dans la
+console ;</li>
+<li>fixer la graine des tirages aléatoires (<code>set.seed()</code>) ;</li>
+<li>noter les versions de R et des packages (<code>sessionInfo()</code>) ;</li>
+<li>utiliser des chemins relatifs et des projets RStudio (chapitre
+<a href="ch-langage-r.html#ch-langage-r">2</a>).</li>
+</ul>
+</div>
+<div id="stabilité" class="section level3 hasAnchor" number="1.3.3">
+<h3><span class="header-section-number">1.3.3</span> Stabilité<a href="ch-science.html#stabilité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un résultat est <strong>stable</strong> s’il change peu lorsqu’on applique des
+<strong>perturbations raisonnables</strong> à chaque étape :</p>
+<ul>
+<li>à la collecte (autre échantillon : rééchantillonnage <em>bootstrap</em>) ;</li>
+<li>au nettoyage (autre façon de traiter les valeurs manquantes ou aberrantes) ;</li>
+<li>à la modélisation (autre algorithme, autres paramètres).</li>
+</ul>
+<p>On distingue l’incertitude <strong>aléatoire</strong> (liée à l’échantillonnage) et
+l’incertitude <strong>épistémique</strong> (liée à nos choix et à nos modèles).</p>
+<p>Exemple : une segmentation de clientèle qui change complètement quand on
+relance l’algorithme avec une autre graine, ou quand on exclut les 1 % de
+clients aux plus gros montants, ne peut pas servir de base à une stratégie
+marketing.</p>
+</div>
+</div>
+<div id="le-cycle-de-vie-dun-projet-de-science-des-données" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> Le cycle de vie d’un projet de science des données<a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="le-dslc" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> Le DSLC<a href="ch-science.html#le-dslc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le cycle de vie de la science des données (<em>data science life cycle</em>, DSLC)
+décrit six étapes. Illustrons-les avec la question « pourquoi les ventes de la
+boutique en ligne baissent-elles ? ».</p>
+<ol style="list-style-type: decimal">
+<li><strong>Formuler</strong> un problème du domaine, poser une question précise et
+collecter des données. <em>Quelles ventes (chiffre d’affaires, nombre de
+commandes) ? Comparées à quelle période ? Données : commandes, clients,
+campagnes, trafic du site.</em></li>
+<li><strong>Nettoyer, prétraiter et explorer</strong> les données. <em>Commandes en double,
+remboursements, effet de saisonnalité.</em></li>
+<li><em>(Optionnel)</em> <strong>Explorer la structure intrinsèque</strong> des données. <em>Existe-t-il
+des segments de clients dont le comportement a changé ?</em></li>
+<li><strong>Modéliser</strong> : entraîner un algorithme prédictif ou mener une analyse
+inférentielle. <em>Modèle des ventes en fonction des prix, de la publicité, de
+la saison.</em></li>
+<li><strong>Évaluer</strong> les résultats (cadre PCS). <em>Le modèle prédit-il bien les mois
+récents ? Les conclusions tiennent-elles avec un autre traitement des
+remboursements ?</em></li>
+<li><strong>Communiquer</strong> les conclusions et mettre à jour les connaissances du
+domaine. <em>Présentation à l’équipe marketing, avec limites et
+recommandations.</em></li>
+</ol>
+<p>Ce cycle n’est <strong>pas linéaire</strong> : on revient souvent en arrière (une anomalie
+découverte à l’étape 4 oblige à revoir le nettoyage). Tous les projets ne
+parcourent pas toutes les étapes. Les jugements faits pendant le nettoyage
+influencent les résultats ; ils doivent donc être documentés. Les experts du
+domaine doivent être consultés <strong>tout au long</strong> du projet, pas seulement au
+début.</p>
+<p>Quand un résultat est <strong>mis en production</strong>, il est intégré dans un outil
+utilisé en continu : système de recommandation, score de risque de résiliation
+recalculé chaque semaine, tableau de bord. Il doit alors être surveillé : les
+données de demain peuvent différer de celles d’aujourd’hui, même si elles sont
+collectées de la même façon. Les confinements de 2020 ont par exemple
+bouleversé du jour au lendemain les habitudes d’achat, et donc la qualité de
+nombreux modèles de prévision.</p>
+</div>
+<div id="crisp-dm" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> CRISP-DM<a href="ch-science.html#crisp-dm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Dans l’industrie, la démarche de référence pour la fouille de données
+(<em>Knowledge Discovery in Databases</em>, KDD) est <strong>CRISP-DM</strong> (<em>Cross-Industry
+Standard Process for Data Mining</em>, 1999). Elle comporte six phases :
+compréhension du métier, compréhension des données, préparation des données,
+modélisation, évaluation et déploiement. On y retrouve la même logique itérative
+que dans le DSLC.</p>
+</div>
+<div id="gouvernance-des-données" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Gouvernance des données<a href="ch-science.html#gouvernance-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La <strong>gouvernance des données</strong> désigne les règles qui protègent les données et
+les personnes qu’elles décrivent : qui peut accéder à quoi, comment les données
+sont stockées et pendant combien de temps, sur quelle base légale elles sont
+traitées (en Europe, le RGPD). En marketing, où l’on traite des données
+personnelles de clients, ces questions sont centrales ; elles sont reprises au
+chapitre <a href="ch-classification.html#ch-classification">6</a>.</p>
+</div>
+</div>
+<div id="résumé" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> Résumé<a href="ch-science.html#résumé" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="retenir">
+<ul>
+<li>La science des données vise à <strong>aider une décision réelle</strong> ; elle combine
+informatique, statistique et connaissance du domaine.</li>
+<li>En marketing : segmentation, ciblage, attrition, recommandation, tests A/B.</li>
+<li>Un résultat issu de données est une <strong>preuve</strong>, pas une démonstration : il
+faut l’évaluer avec le cadre <strong>PCS</strong> (prédictibilité, calculabilité,
+stabilité).</li>
+<li>Se méfier des biais de l’analyste (confirmation, désirabilité) et des biais
+des données (survie, sélection, mesure).</li>
+<li>Découper les données (entraînement / validation / test) <strong>avant</strong> toute
+exploration, selon un découpage adapté (aléatoire, temporel, par groupes) ;
+éviter la fuite de données et le <em>data snooping</em>.</li>
+<li>Le cycle de vie d’un projet est <strong>itératif</strong>.</li>
+</ul>
+</div>
+</div>
+<div id="exercices" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> Exercices<a href="ch-science.html#exercices" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="exercice">
+<p><strong>Exercice 1.1 — Vrai ou faux ?</strong> Pour chaque affirmation, indiquez si elle
+est vraie ou fausse et justifiez brièvement votre réponse.</p>
+<ol style="list-style-type: lower-alpha">
+<li>Les données sont toujours une bonne approximation de la réalité.</li>
+<li>Avec de l’entraînement, il est possible d’éliminer le biais de confirmation.</li>
+<li>Les résultats calculés à partir d’un jeu de données collecté aujourd’hui
+peuvent ne pas s’appliquer à des données qui seront collectées à l’avenir,
+même si les deux jeux de données sont collectés selon le même mécanisme.</li>
+<li>Dès que votre analyse répond à votre question de domaine, vous avez répondu
+de manière concluante.</li>
+<li>Il existe plusieurs façons de démontrer la prédictibilité de vos résultats.</li>
+<li>Il existe de nombreuses façons de formuler un problème de science des
+données.</li>
+<li>Les évaluations de prédictibilité, de calculabilité et de stabilité (PCS) ne
+sont nécessaires que lorsque vous présentez vos résultats à un public
+externe.</li>
+<li>Une fois que vous avez avancé à une nouvelle étape du cycle de vie de la
+science des données (DSLC), il est acceptable de revenir à des étapes
+précédentes et de les mettre à jour.</li>
+<li>Il n’existe qu’une seule bonne façon de mener chaque analyse de données.</li>
+<li>Chaque projet de science des données doit passer par toutes les étapes du
+DSLC.</li>
+<li>Les jugements effectués lors de l’étape de nettoyage des données peuvent
+influencer les résultats ultérieurs.</li>
+<li>La communication avec les experts du domaine n’est importante que pendant
+la phase de formulation du problème.</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: lower-alpha">
+<li><strong>Faux.</strong> Les données ne sont qu’une approximation, partielle et bruitée,
+de la réalité, collectée dans un contexte donné (les « trois mondes »).
+Leur qualité doit toujours être examinée.</li>
+<li><strong>Faux.</strong> On ne peut pas éliminer ce biais ; on peut seulement le limiter en
+vérifiant <strong>tous</strong> les résultats avec le même scepticisme, qu’ils
+confirment ou non nos attentes.</li>
+<li><strong>Vrai.</strong> Le monde change : comportements, prix, contexte (les
+confinements de 2020 ont bouleversé les habitudes d’achat). Un résultat
+mis en production doit être surveillé.</li>
+<li><strong>Faux.</strong> Une réponse n’est qu’une <strong>preuve</strong> en faveur d’une conclusion.
+Il faut encore évaluer sa prédictibilité et sa stabilité, et communiquer son
+incertitude.</li>
+<li><strong>Vrai.</strong> Vérification sur des données futures ou externes, sur un jeu de
+validation ou de test, avec différents découpages, par réplication de
+l’étude…</li>
+<li><strong>Vrai.</strong> Une question floue (« pourquoi les ventes baissent-elles ? »)
+peut se traduire en plusieurs questions précises, mesurées de différentes
+façons (chiffre d’affaires, nombre de commandes, clients actifs…).</li>
+<li><strong>Faux.</strong> Le cadre PCS s’applique <strong>à chaque étape</strong> du projet, d’abord pour
+soi-même : c’est ce qui permet de faire confiance à ses propres résultats.</li>
+<li><strong>Vrai.</strong> Le DSLC est <strong>itératif</strong> : une anomalie découverte pendant la
+modélisation oblige souvent à revoir le nettoyage, voire la question.</li>
+<li><strong>Faux.</strong> De nombreux choix raisonnables existent à chaque étape
+(nettoyage, méthode, paramètres). Explorer ces alternatives, c’est
+précisément évaluer la <strong>stabilité</strong>.</li>
+<li><strong>Faux.</strong> Certaines étapes sont optionnelles (l’exploration de la structure
+intrinsèque) ; un projet descriptif n’a pas forcément de modèle prédictif.</li>
+<li><strong>Vrai.</strong> Le traitement des valeurs manquantes ou aberrantes, par exemple,
+peut changer les conclusions. Ces jugements doivent être documentés et leur
+influence testée.</li>
+<li><strong>Faux.</strong> Les experts du domaine sont utiles <strong>tout au long</strong> du projet :
+pour comprendre ce que signifient les données, juger de la plausibilité des
+résultats et les communiquer.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.2 — Preuve et incertitude.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Expliquez pourquoi un résultat dérivé de données doit être considéré comme
+une <strong>preuve</strong> plutôt qu’une <strong>démonstration</strong> d’un phénomène réel.</li>
+<li>Décrivez au moins deux sources d’incertitude associées à tout résultat fondé
+sur les données.</li>
+<li>Décrivez deux techniques (quantitatives ou qualitatives) qui permettent de
+renforcer la crédibilité d’un résultat fondé sur les données.</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: decimal">
+<li>Un résultat est calculé dans le « monde des constructions mentales », à
+partir de données qui n’approximent la réalité que partiellement, et à
+travers des choix humains (nettoyage, méthode). Il <strong>soutient</strong> une
+conclusion sans la garantir : une démonstration supposerait d’avoir testé
+tous les scénarios de données et d’analyse possibles, ce qui est impossible.</li>
+<li>Par exemple : l’<strong>échantillonnage</strong> (avec un autre échantillon, on aurait
+obtenu un autre résultat), la <strong>mesure</strong> (erreurs de saisie, définition des
+variables), les <strong>choix de nettoyage</strong> (traitement des valeurs manquantes)
+et les <strong>choix de modélisation</strong> (méthode, paramètres).</li>
+<li><strong>Quantitatives</strong> : vérifier la prédictibilité sur un jeu de test ou des
+données externes ; tester la stabilité en perturbant les données
+(<em>bootstrap</em>) ou les choix d’analyse. <strong>Qualitatives</strong> : confronter le
+résultat aux experts du domaine, vérifier sa plausibilité, aller observer le
+terrain.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.3 — Les feux de brousse australiens.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Énumérez au moins deux raisons pour lesquelles les calculs du professeur
+Dickman pourraient ne pas refléter fidèlement le nombre réel d’animaux morts
+lors des incendies de brousse en Australie.</li>
+<li>Imaginez que vous disposiez de ressources illimitées. Décrivez les données
+hypothétiques que vous collecteriez, et la manière dont vous les
+collecteriez, afin de répondre à la question du nombre d’animaux morts avec
+la plus grande précision possible. Soyez précis : quelles valeurs
+mesureriez-vous, et comment les mesureriez-vous physiquement ?</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: decimal">
+<li>Les densités d’animaux proviennent d’une étude de 2007 sur une zone limitée
+de Nouvelle-Galles du Sud : elles varient d’une région à l’autre et ont pu
+évoluer depuis. Le calcul suppose que tous les animaux présents sur les
+surfaces brûlées sont morts, alors que certains ont pu fuir ou survivre ; à
+l’inverse, des animaux ont pu mourir après les feux (faim, perte d’habitat).
+Enfin, le chiffre exclut grenouilles, insectes et invertébrés.</li>
+<li>Par exemple : avant les feux, des inventaires de faune par espèce dans des
+parcelles tirées au hasard dans chaque type de végétation et chaque région
+(pièges photographiques, transects, captures-recaptures, relevés
+acoustiques pour les oiseaux) ; après les feux, les mêmes relevés sur les
+mêmes parcelles, brûlées ou non, pour estimer la mortalité par comparaison ;
+cartographie précise des surfaces brûlées par satellite ; suivi dans le
+temps pour mesurer la mortalité différée.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.4 — Prédictibilité, stabilité et pièges.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Quel est le rôle du jeu de données de <strong>validation</strong> dans l’évaluation de
+la prédictibilité d’un résultat fondé sur les données ?</li>
+<li>Décrivez une technique permettant d’évaluer la <strong>stabilité</strong> d’un résultat.</li>
+<li>Décrivez ce qu’est une <strong>fuite de données</strong> (<em>data leakage</em>) et comment
+l’éviter.</li>
+<li>Décrivez ce qu’est le <strong><em>data snooping</em></strong> (exploration abusive des données)
+et comment l’éviter.</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: decimal">
+<li>Il joue le rôle de <strong>données futures</strong> : il n’est pas utilisé pour ajuster
+les modèles, ce qui permet de mesurer honnêtement leur performance et de
+choisir entre plusieurs modèles ou réglages. Le jeu de test sert ensuite à
+une évaluation finale.</li>
+<li>Par exemple, le <strong>bootstrap</strong> : refaire l’analyse sur de nombreux
+échantillons tirés avec remise dans les données, et regarder si le résultat
+varie beaucoup. On peut aussi refaire l’analyse avec d’autres choix de
+nettoyage, une autre méthode ou une autre graine aléatoire.</li>
+<li>De l’information sur la réponse ou sur les données de test se retrouve dans
+l’apprentissage (variable connue seulement après l’événement à prédire,
+normalisation calculée sur toutes les données…), ce qui rend les
+performances trop optimistes. On l’évite en découpant les données <strong>avant
+toute exploration</strong> et en n’utilisant que des variables disponibles au
+moment de la prédiction.</li>
+<li>Tester de nombreuses hypothèses sur les mêmes données jusqu’à en trouver
+une « significative » par hasard. On l’évite en fixant les questions à
+l’avance, en gardant un jeu de test intact et en rapportant tout ce qui a été
+essayé.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.5 — Choisir un découpage.</strong> Quelle technique de séparation (par
+groupes, temporelle ou aléatoire) serait la plus appropriée pour créer les
+ensembles d’entraînement, de validation et de test dans chacun des scénarios
+suivants ?</p>
+<ol style="list-style-type: lower-alpha">
+<li>Utiliser des données météorologiques historiques pour développer un
+algorithme de prévision du temps.</li>
+<li>Utiliser des données provenant d’enfants de 20 écoles parisiennes pour
+évaluer la relation entre la taille des classes et les résultats scolaires
+dans d’autres écoles de Paris.</li>
+<li>Utiliser les données d’élections précédentes pour développer un algorithme
+de prédiction des résultats d’une élection à venir.</li>
+<li>Utiliser les données d’un sous-ensemble aléatoire des visiteurs d’une
+boutique en ligne pour identifier les caractéristiques associées à l’achat
+d’un produit.</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: lower-alpha">
+<li><strong>Temporelle</strong> : on prévoit le futur à partir du passé ; les années les plus
+récentes servent à la validation et au test.</li>
+<li><strong>Par groupes</strong> (écoles) : le résultat doit s’appliquer à d’autres écoles ;
+toutes les classes d’une même école vont dans le même ensemble.</li>
+<li><strong>Temporelle</strong> : les élections les plus anciennes pour l’entraînement, les
+plus récentes pour la validation et le test.</li>
+<li><strong>Aléatoire</strong> : les visiteurs tirés au hasard sont à peu près
+interchangeables.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.6 — Cycle de vie.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Que signifie le fait qu’un résultat ou une analyse soit « mis en
+production » ?</li>
+<li>Décrivez brièvement chacune des étapes du cycle de vie de la science des
+données (DSLC).</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: decimal">
+<li>Le résultat est intégré dans un outil utilisé en continu, souvent de façon
+automatique (score de risque recalculé chaque semaine, système de
+recommandation, tableau de bord). Il doit alors être surveillé, car les
+données futures peuvent différer de celles qui ont servi à le construire.</li>
+<li><ol style="list-style-type: decimal">
+<li>Formuler la question du domaine et collecter les données ;</li>
+<li>nettoyer, prétraiter et explorer les données ; (3) explorer
+éventuellement leur structure intrinsèque ; (4) modéliser ou mener une
+analyse inférentielle ; (5) évaluer les résultats avec le cadre PCS ;</li>
+<li>communiquer les conclusions et mettre à jour les connaissances du
+domaine. Le cycle est itératif.</li>
+</ol></li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.7 — Découpage en marketing.</strong> Pour chacun des projets suivants, proposez un
+découpage entraînement / validation / test et justifiez-le.</p>
+<ol style="list-style-type: decimal">
+<li>Prédire le chiffre d’affaires hebdomadaire d’une enseigne pour les trois
+prochains mois.</li>
+<li>Prédire le panier moyen des clients d’un magasin qui va ouvrir à Lille, à
+partir des données de 40 magasins existants.</li>
+<li>Prédire, parmi les visiteurs d’un site, ceux qui vont acheter, à partir d’un
+échantillon aléatoire de visites.</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: decimal">
+<li>Découpage <strong>temporel</strong> : on entraîne sur les semaines les plus anciennes et
+on valide et teste sur les plus récentes. Un découpage aléatoire laisserait
+le modèle « voir le futur ».</li>
+<li>Découpage <strong>par groupes</strong> (magasins) : chaque magasin est entièrement dans
+un seul ensemble, pour mesurer la performance sur des magasins jamais vus.</li>
+<li>Découpage <strong>aléatoire</strong> : les visites tirées au hasard sont à peu près
+interchangeables. Attention toutefois : si un même visiteur apparaît
+plusieurs fois, il vaut mieux découper par visiteur.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 1.8 — Fuite de données.</strong> Une banque veut prédire, au moment de
+l’ouverture d’un compte, si le client souscrira une assurance dans l’année. Le
+fichier contient : âge, revenu, canal d’ouverture, montant des primes payées,
+nombre de contacts avec un conseiller, date de souscription. Quelles variables
+posent problème ? Pourquoi ?</p>
+</div>
+<details><summary>Éléments de réponse</summary>
+<p>Le <strong>montant des primes payées</strong> et la <strong>date de souscription</strong> n’existent que
+si le client a souscrit : ils révèlent la réponse. Le <strong>nombre de contacts
+avec un conseiller</strong> est ambigu : s’il est compté sur toute l’année, il inclut
+des contacts postérieurs à l’ouverture, voire liés à la souscription elle-même.
+Seules les informations disponibles <strong>à l’ouverture du compte</strong> doivent être
+utilisées.</p>
+</details>
+<p><strong>Pour aller plus loin</strong></p>
+<ul>
+<li>B. Yu et R. Barter, <em>Veridical Data Science</em>, chapitres 1 et 2
+(<a href="https://vdsbook.com">vdsbook.com</a>).</li>
+<li>D. Donoho, « 50 Years of Data Science », <em>Journal of Computational and
+Graphical Statistics</em>, 26(4), 2017.</li>
+<li>R. Kohavi, D. Tang et Y. Xu, <em>Trustworthy Online Controlled Experiments: A
+Practical Guide to A/B Testing</em>, Cambridge University Press, 2020.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch-langage-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["notes-de-cours-data-science-sous-R.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

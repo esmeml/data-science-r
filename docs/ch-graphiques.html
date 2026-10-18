@@ -1,0 +1,1599 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 4 Représentations graphiques et régression | Data Science sous R</title>
+  <meta name="description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 4 Représentations graphiques et régression | Data Science sous R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 4 Représentations graphiques et régression | Data Science sous R" />
+  
+  <meta name="twitter:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+<meta name="author" content="ESME — 2026-2027" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-manipulation.html"/>
+<link rel="next" href="ch-acp-arbres.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science sous R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Avant-propos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objectifs-du-module"><i class="fa fa-check"></i>Objectifs du module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comment-utiliser-ces-notes"><i class="fa fa-check"></i>Comment utiliser ces notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions-web-et-pdf"><i class="fa fa-check"></i>Versions web et PDF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#logiciels-et-packages"><i class="fa fa-check"></i>Logiciels et packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#les-données-du-cours"><i class="fa fa-check"></i>Les données du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bibliographie"><i class="fa fa-check"></i>Bibliographie</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ch-science.html"><a href="ch-science.html"><i class="fa fa-check"></i><b>1</b> Introduction à la science des données</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ch-science.html"><a href="ch-science.html#quest-ce-que-la-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que la science des données ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="ch-science.html"><a href="ch-science.html#une-pratique-ancienne-un-nom-récent"><i class="fa fa-check"></i><b>1.1.1</b> Une pratique ancienne, un nom récent</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ch-science.html"><a href="ch-science.html#définition"><i class="fa fa-check"></i><b>1.1.2</b> Définition</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ch-science.html"><a href="ch-science.html#quatre-grands-types-danalyse"><i class="fa fa-check"></i><b>1.1.3</b> Quatre grands types d’analyse</a></li>
+<li class="chapter" data-level="1.1.4" data-path="ch-science.html"><a href="ch-science.html#la-science-des-données-en-marketing"><i class="fa fa-check"></i><b>1.1.4</b> La science des données en marketing</a></li>
+<li class="chapter" data-level="1.1.5" data-path="ch-science.html"><a href="ch-science.html#les-projets-réels-sont-exigeants"><i class="fa fa-check"></i><b>1.1.5</b> Les projets réels sont exigeants</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ch-science.html"><a href="ch-science.html#science-des-données-véridique"><i class="fa fa-check"></i><b>1.2</b> Science des données véridique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ch-science.html"><a href="ch-science.html#les-trois-mondes"><i class="fa fa-check"></i><b>1.2.1</b> Les trois mondes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch-science.html"><a href="ch-science.html#pensée-critique-les-bonnes-questions-à-se-poser"><i class="fa fa-check"></i><b>1.2.2</b> Pensée critique : les bonnes questions à se poser</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch-science.html"><a href="ch-science.html#se-méfier-des-biais"><i class="fa fa-check"></i><b>1.2.3</b> Se méfier des biais</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ch-science.html"><a href="ch-science.html#étude-de-cas-les-feux-de-brousse-australiens-20192020"><i class="fa fa-check"></i><b>1.2.4</b> Étude de cas : les feux de brousse australiens (2019–2020)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch-science.html"><a href="ch-science.html#le-cadre-pcs-prédictibilité-calculabilité-stabilité"><i class="fa fa-check"></i><b>1.3</b> Le cadre PCS : prédictibilité, calculabilité, stabilité</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ch-science.html"><a href="ch-science.html#prédictibilité"><i class="fa fa-check"></i><b>1.3.1</b> Prédictibilité</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch-science.html"><a href="ch-science.html#calculabilité"><i class="fa fa-check"></i><b>1.3.2</b> Calculabilité</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ch-science.html"><a href="ch-science.html#stabilité"><i class="fa fa-check"></i><b>1.3.3</b> Stabilité</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ch-science.html"><a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-données"><i class="fa fa-check"></i><b>1.4</b> Le cycle de vie d’un projet de science des données</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="ch-science.html"><a href="ch-science.html#le-dslc"><i class="fa fa-check"></i><b>1.4.1</b> Le DSLC</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ch-science.html"><a href="ch-science.html#crisp-dm"><i class="fa fa-check"></i><b>1.4.2</b> CRISP-DM</a></li>
+<li class="chapter" data-level="1.4.3" data-path="ch-science.html"><a href="ch-science.html#gouvernance-des-données"><i class="fa fa-check"></i><b>1.4.3</b> Gouvernance des données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ch-science.html"><a href="ch-science.html#résumé"><i class="fa fa-check"></i><b>1.5</b> Résumé</a></li>
+<li class="chapter" data-level="1.6" data-path="ch-science.html"><a href="ch-science.html#exercices"><i class="fa fa-check"></i><b>1.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-langage-r.html"><a href="ch-langage-r.html"><i class="fa fa-check"></i><b>2</b> Introduction au langage R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-un-peu-dhistoire"><i class="fa fa-check"></i><b>2.1</b> R : un peu d’histoire</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#introduction-à-rstudio"><i class="fa fa-check"></i><b>2.2</b> Introduction à RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-et-rstudio-le-moteur-et-le-tableau-de-bord"><i class="fa fa-check"></i><b>2.2.1</b> R et RStudio : le moteur et le tableau de bord</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-quatre-panneaux"><i class="fa fa-check"></i><b>2.2.2</b> Les quatre panneaux</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#console-ou-script"><i class="fa fa-check"></i><b>2.2.3</b> Console ou script ?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-projets-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Les projets RStudio</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-notebooks-r-markdown-et-quarto"><i class="fa fa-check"></i><b>2.2.5</b> Les notebooks : R Markdown et Quarto</a></li>
+<li class="chapter" data-level="2.2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#longlet-environnement"><i class="fa fa-check"></i><b>2.2.6</b> L’onglet Environnement</a></li>
+<li class="chapter" data-level="2.2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-du-code-efficacement"><i class="fa fa-check"></i><b>2.2.7</b> Écrire du code efficacement</a></li>
+<li class="chapter" data-level="2.2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#réglages-recommandés"><i class="fa fa-check"></i><b>2.2.8</b> Réglages recommandés</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#premiers-pas-r-comme-calculatrice"><i class="fa fa-check"></i><b>2.3</b> Premiers pas : R comme calculatrice</a></li>
+<li class="chapter" data-level="2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#variables-et-assignation"><i class="fa fa-check"></i><b>2.4</b> Variables et assignation</a></li>
+<li class="chapter" data-level="2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#types-de-données"><i class="fa fa-check"></i><b>2.5</b> Types de données</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-types-de-base"><i class="fa fa-check"></i><b>2.5.1</b> Les types de base</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#conversions"><i class="fa fa-check"></i><b>2.5.2</b> Conversions</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#valeurs-spéciales"><i class="fa fa-check"></i><b>2.5.3</b> Valeurs spéciales</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-de-données"><i class="fa fa-check"></i><b>2.6</b> Structures de données</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs"><i class="fa fa-check"></i><b>2.6.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#facteurs"><i class="fa fa-check"></i><b>2.6.2</b> Facteurs</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-tableaux"><i class="fa fa-check"></i><b>2.6.3</b> Matrices et tableaux</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes"><i class="fa fa-check"></i><b>2.6.4</b> Listes</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#data-frames"><i class="fa fa-check"></i><b>2.6.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs"><i class="fa fa-check"></i><b>2.7</b> Opérateurs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-arithmétiques"><i class="fa fa-check"></i><b>2.7.1</b> Opérateurs arithmétiques</a></li>
+<li class="chapter" data-level="2.7.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-de-comparaison"><i class="fa fa-check"></i><b>2.7.2</b> Opérateurs de comparaison</a></li>
+<li class="chapter" data-level="2.7.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-logiques"><i class="fa fa-check"></i><b>2.7.3</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#accéder-aux-éléments-et-les-modifier"><i class="fa fa-check"></i><b>2.8</b> Accéder aux éléments et les modifier</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs-1"><i class="fa fa-check"></i><b>2.8.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.8.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-data-frames-ligne-colonne"><i class="fa fa-check"></i><b>2.8.2</b> Matrices et data frames : <code>[ligne, colonne]</code></a></li>
+<li class="chapter" data-level="2.8.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes-contre"><i class="fa fa-check"></i><b>2.8.3</b> Listes : <code>[ ]</code> contre <code>[[ ]]</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-algorithmiques"><i class="fa fa-check"></i><b>2.9</b> Structures algorithmiques</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#branchements-conditionnels-if-else"><i class="fa fa-check"></i><b>2.9.1</b> Branchements conditionnels : <code>if</code>, <code>else</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-for"><i class="fa fa-check"></i><b>2.9.2</b> Boucles <code>for</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-while-et-repeat"><i class="fa fa-check"></i><b>2.9.3</b> Boucles <code>while</code> et <code>repeat</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucle-ou-vectorisation"><i class="fa fa-check"></i><b>2.9.4</b> Boucle ou vectorisation ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-programmation-modulaire"><i class="fa fa-check"></i><b>2.10</b> Fonctions et programmation modulaire</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-une-fonction"><i class="fa fa-check"></i><b>2.10.1</b> Écrire une fonction</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-procédures"><i class="fa fa-check"></i><b>2.10.2</b> Fonctions et procédures</a></li>
+<li class="chapter" data-level="2.10.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#appliquer-une-fonction-à-chaque-élément"><i class="fa fa-check"></i><b>2.10.3</b> Appliquer une fonction à chaque élément</a></li>
+<li class="chapter" data-level="2.10.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#découper-un-programme-en-modules"><i class="fa fa-check"></i><b>2.10.4</b> Découper un programme en modules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="ch-langage-r.html"><a href="ch-langage-r.html#packages-et-aide"><i class="fa fa-check"></i><b>2.11</b> Packages et aide</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#installer-et-charger-un-package"><i class="fa fa-check"></i><b>2.11.1</b> Installer et charger un package</a></li>
+<li class="chapter" data-level="2.11.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#trouver-de-laide"><i class="fa fa-check"></i><b>2.11.2</b> Trouver de l’aide</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="ch-langage-r.html"><a href="ch-langage-r.html#résumé-1"><i class="fa fa-check"></i><b>2.12</b> Résumé</a></li>
+<li class="chapter" data-level="2.13" data-path="ch-langage-r.html"><a href="ch-langage-r.html#exercices-1"><i class="fa fa-check"></i><b>2.13</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-manipulation.html"><a href="ch-manipulation.html"><i class="fa fa-check"></i><b>3</b> Manipulation de données avec R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#les-données-de-ce-chapitre"><i class="fa fa-check"></i><b>3.1</b> Les données de ce chapitre</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#la-boutique-en-ligne-données-simulées"><i class="fa fa-check"></i><b>3.1.1</b> La boutique en ligne (données simulées)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>3.2</b> Importer et exporter des données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#le-répertoire-de-travail"><i class="fa fa-check"></i><b>3.2.1</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#lire-un-fichier-csv"><i class="fa fa-check"></i><b>3.2.2</b> Lire un fichier CSV</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#autres-formats"><i class="fa fa-check"></i><b>3.2.3</b> Autres formats</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#écrire-des-données"><i class="fa fa-check"></i><b>3.2.4</b> Écrire des données</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-intégrées-aux-packages"><i class="fa fa-check"></i><b>3.2.5</b> Données intégrées aux packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#structure-dun-tableau-de-données"><i class="fa fa-check"></i><b>3.3</b> Structure d’un tableau de données</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-univariée"><i class="fa fa-check"></i><b>3.4</b> Analyse univariée</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Variable quantitative</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-qualitative"><i class="fa fa-check"></i><b>3.4.2</b> Variable qualitative</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-bivariée"><i class="fa fa-check"></i><b>3.5</b> Analyse bivariée</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-qualitatives-un-test-ab"><i class="fa fa-check"></i><b>3.5.1</b> Deux variables qualitatives : un test A/B</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#une-variable-quantitative-et-une-qualitative"><i class="fa fa-check"></i><b>3.5.2</b> Une variable quantitative et une qualitative</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>3.5.3</b> Deux variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#manipuler-des-données-avec-dplyr"><i class="fa fa-check"></i><b>3.6</b> Manipuler des données avec <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#filtrer-les-lignes"><i class="fa fa-check"></i><b>3.6.1</b> Filtrer les lignes</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#trier"><i class="fa fa-check"></i><b>3.6.2</b> Trier</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#sélectionner-renommer-et-réordonner-des-colonnes"><i class="fa fa-check"></i><b>3.6.3</b> Sélectionner, renommer et réordonner des colonnes</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#créer-des-variables"><i class="fa fa-check"></i><b>3.6.4</b> Créer des variables</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#enchaîner-les-opérations-le-pipe"><i class="fa fa-check"></i><b>3.6.5</b> Enchaîner les opérations : le <em>pipe</em></a></li>
+<li class="chapter" data-level="3.6.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumer-par-groupe"><i class="fa fa-check"></i><b>3.6.6</b> Résumer par groupe</a></li>
+<li class="chapter" data-level="3.6.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exemple-marketing-les-indicateurs-rfm"><i class="fa fa-check"></i><b>3.6.7</b> Exemple marketing : les indicateurs RFM</a></li>
+<li class="chapter" data-level="3.6.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#décaler-des-valeurs-lag-et-lead"><i class="fa fa-check"></i><b>3.6.8</b> Décaler des valeurs : <code>lag()</code> et <code>lead()</code></a></li>
+<li class="chapter" data-level="3.6.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#concaténer-des-tables"><i class="fa fa-check"></i><b>3.6.9</b> Concaténer des tables</a></li>
+<li class="chapter" data-level="3.6.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#joindre-des-tables"><i class="fa fa-check"></i><b>3.6.10</b> Joindre des tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-rangées-tidy-data"><i class="fa fa-check"></i><b>3.7</b> Données rangées (<em>tidy data</em>)</a></li>
+<li class="chapter" data-level="3.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#valeurs-manquantes"><i class="fa fa-check"></i><b>3.8</b> Valeurs manquantes</a></li>
+<li class="chapter" data-level="3.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#générer-des-données"><i class="fa fa-check"></i><b>3.9</b> Générer des données</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#séquences-régulières"><i class="fa fa-check"></i><b>3.9.1</b> Séquences régulières</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#tirages-aléatoires"><i class="fa fa-check"></i><b>3.9.2</b> Tirages aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumé-2"><i class="fa fa-check"></i><b>3.10</b> Résumé</a></li>
+<li class="chapter" data-level="3.11" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exercices-2"><i class="fa fa-check"></i><b>3.11</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-graphiques.html"><a href="ch-graphiques.html"><i class="fa fa-check"></i><b>4</b> Représentations graphiques et régression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#pourquoi-visualiser"><i class="fa fa-check"></i><b>4.1</b> Pourquoi visualiser ?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#principes-dun-bon-graphique"><i class="fa fa-check"></i><b>4.1.1</b> Principes d’un bon graphique</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#choisir-un-graphique"><i class="fa fa-check"></i><b>4.1.2</b> Choisir un graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-r-de-base"><i class="fa fa-check"></i><b>4.2</b> Graphiques avec R de base</a></li>
+<li class="chapter" data-level="4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-ggplot2"><i class="fa fa-check"></i><b>4.3</b> Graphiques avec <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#initialisation-et-premier-geom"><i class="fa fa-check"></i><b>4.3.1</b> Initialisation et premier <em>geom</em></a></li>
+<li class="chapter" data-level="4.3.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#les-principaux-geoms"><i class="fa fa-check"></i><b>4.3.2</b> Les principaux <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#mappages"><i class="fa fa-check"></i><b>4.3.3</b> Mappages</a></li>
+<li class="chapter" data-level="4.3.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#positions-des-barres"><i class="fa fa-check"></i><b>4.3.4</b> Positions des barres</a></li>
+<li class="chapter" data-level="4.3.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#superposer-plusieurs-geoms"><i class="fa fa-check"></i><b>4.3.5</b> Superposer plusieurs <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#faceting"><i class="fa fa-check"></i><b>4.3.6</b> <em>Faceting</em></a></li>
+<li class="chapter" data-level="4.3.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#scales"><i class="fa fa-check"></i><b>4.3.7</b> <em>Scales</em></a></li>
+<li class="chapter" data-level="4.3.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#titres-et-thèmes"><i class="fa fa-check"></i><b>4.3.8</b> Titres et thèmes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>4.4</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle"><i class="fa fa-check"></i><b>4.4.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#ajuster-le-modèle-avec-lm"><i class="fa fa-check"></i><b>4.4.2</b> Ajuster le modèle avec <code>lm()</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire"><i class="fa fa-check"></i><b>4.4.3</b> Prédire</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#vérifier-les-hypothèses-les-résidus"><i class="fa fa-check"></i><b>4.4.4</b> Vérifier les hypothèses : les résidus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#quand-la-réponse-est-binaire"><i class="fa fa-check"></i><b>4.6.1</b> Quand la réponse est binaire</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exemple-choix-de-marque"><i class="fa fa-check"></i><b>4.6.2</b> Exemple : choix de marque</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire-des-probabilités"><i class="fa fa-check"></i><b>4.6.3</b> Prédire des probabilités</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#résumé-3"><i class="fa fa-check"></i><b>4.7</b> Résumé</a></li>
+<li class="chapter" data-level="4.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exercices-3"><i class="fa fa-check"></i><b>4.8</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html"><i class="fa fa-check"></i><b>5</b> Analyse en composantes principales et arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#analyse-en-composantes-principales-acp"><i class="fa fa-check"></i><b>5.1</b> Analyse en composantes principales (ACP)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#le-problème"><i class="fa fa-check"></i><b>5.1.1</b> Le problème</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe-mathématique"><i class="fa fa-check"></i><b>5.1.2</b> Principe mathématique</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-1-le-décathlon"><i class="fa fa-check"></i><b>5.1.3</b> Exemple 1 : le décathlon</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-2-le-comportement-des-clients-de-la-boutique"><i class="fa fa-check"></i><b>5.1.4</b> Exemple 2 : le comportement des clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#arbres-de-décision"><i class="fa fa-check"></i><b>5.2</b> Arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#les-données-le-choix-dune-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.2.2</b> Les données : le choix d’une marque de jus d’orange</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#construire-larbre"><i class="fa fa-check"></i><b>5.2.3</b> Construire l’arbre</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#élaguer-larbre"><i class="fa fa-check"></i><b>5.2.4</b> Élaguer l’arbre</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#prédire-1"><i class="fa fa-check"></i><b>5.2.5</b> Prédire</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#matrice-de-confusion"><i class="fa fa-check"></i><b>5.2.6</b> Matrice de confusion</a></li>
+<li class="chapter" data-level="5.2.7" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#courbe-roc-et-auc"><i class="fa fa-check"></i><b>5.2.7</b> Courbe ROC et AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#résumé-4"><i class="fa fa-check"></i><b>5.3</b> Résumé</a></li>
+<li class="chapter" data-level="5.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exercices-4"><i class="fa fa-check"></i><b>5.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-classification.html"><a href="ch-classification.html"><i class="fa fa-check"></i><b>6</b> Classification automatique, éthique et R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ch-classification.html"><a href="ch-classification.html#classification-non-supervisée"><i class="fa fa-check"></i><b>6.1</b> Classification non supervisée</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="ch-classification.html"><a href="ch-classification.html#supervisé-ou-non-supervisé"><i class="fa fa-check"></i><b>6.1.1</b> Supervisé ou non supervisé ?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ch-classification.html"><a href="ch-classification.html#distances-et-standardisation"><i class="fa fa-check"></i><b>6.1.2</b> Distances et standardisation</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch-classification.html"><a href="ch-classification.html#les-données-les-clients-de-la-boutique"><i class="fa fa-check"></i><b>6.1.3</b> Les données : les clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch-classification.html"><a href="ch-classification.html#les-k-moyennes-k-means"><i class="fa fa-check"></i><b>6.2</b> Les k-moyennes (<em>k-means</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme"><i class="fa fa-check"></i><b>6.2.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-classification.html"><a href="ch-classification.html#décomposition-de-linertie"><i class="fa fa-check"></i><b>6.2.2</b> Décomposition de l’inertie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-classification.html"><a href="ch-classification.html#classification-ascendante-hiérarchique-cah"><i class="fa fa-check"></i><b>6.3</b> Classification ascendante hiérarchique (CAH)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme-1"><i class="fa fa-check"></i><b>6.3.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="ch-classification.html"><a href="ch-classification.html#k-moyennes-ou-cah"><i class="fa fa-check"></i><b>6.3.2</b> k-moyennes ou CAH ?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ch-classification.html"><a href="ch-classification.html#choisir-le-nombre-de-classes"><i class="fa fa-check"></i><b>6.4</b> Choisir le nombre de classes</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-classification.html"><a href="ch-classification.html#méthode-du-coude"><i class="fa fa-check"></i><b>6.4.1</b> Méthode du coude</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-classification.html"><a href="ch-classification.html#indice-de-silhouette"><i class="fa fa-check"></i><b>6.4.2</b> Indice de silhouette</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-classification.html"><a href="ch-classification.html#le-saut-dinertie-du-dendrogramme"><i class="fa fa-check"></i><b>6.4.3</b> Le saut d’inertie du dendrogramme</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-classification.html"><a href="ch-classification.html#décrire-les-classes"><i class="fa fa-check"></i><b>6.5</b> Décrire les classes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-classification.html"><a href="ch-classification.html#moyennes-par-classe"><i class="fa fa-check"></i><b>6.5.1</b> Moyennes par classe</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-classification.html"><a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée"><i class="fa fa-check"></i><b>6.5.2</b> Les classes retrouvent-elles la structure simulée ?</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-classification.html"><a href="ch-classification.html#acp-puis-cah-la-fonction-hcpc"><i class="fa fa-check"></i><b>6.5.3</b> ACP puis CAH : la fonction <code>HCPC()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-classification.html"><a href="ch-classification.html#léthique-dans-la-science-des-données"><i class="fa fa-check"></i><b>6.6</b> L’éthique dans la science des données</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-classification.html"><a href="ch-classification.html#quelques-cas-marquants"><i class="fa fa-check"></i><b>6.6.1</b> Quelques cas marquants</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-classification.html"><a href="ch-classification.html#enjeux-propres-au-marketing"><i class="fa fa-check"></i><b>6.6.2</b> Enjeux propres au marketing</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-classification.html"><a href="ch-classification.html#sources-de-problèmes-éthiques"><i class="fa fa-check"></i><b>6.6.3</b> Sources de problèmes éthiques</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-classification.html"><a href="ch-classification.html#le-cadre-légal-en-europe"><i class="fa fa-check"></i><b>6.6.4</b> Le cadre légal en Europe</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ch-classification.html"><a href="ch-classification.html#questions-à-se-poser-dans-tout-projet"><i class="fa fa-check"></i><b>6.6.5</b> Questions à se poser dans tout projet</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-classification.html"><a href="ch-classification.html#interfaces-graphiques-avec-r-shiny"><i class="fa fa-check"></i><b>6.7</b> Interfaces graphiques avec R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-classification.html"><a href="ch-classification.html#quest-ce-que-shiny"><i class="fa fa-check"></i><b>6.7.1</b> Qu’est-ce que Shiny ?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-classification.html"><a href="ch-classification.html#structure-dune-application"><i class="fa fa-check"></i><b>6.7.2</b> Structure d’une application</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-classification.html"><a href="ch-classification.html#un-exemple-complet-explorer-la-segmentation-des-clients"><i class="fa fa-check"></i><b>6.7.3</b> Un exemple complet : explorer la segmentation des clients</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-classification.html"><a href="ch-classification.html#la-réactivité"><i class="fa fa-check"></i><b>6.7.4</b> La réactivité</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-classification.html"><a href="ch-classification.html#partager-une-application"><i class="fa fa-check"></i><b>6.7.5</b> Partager une application</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-classification.html"><a href="ch-classification.html#résumé-5"><i class="fa fa-check"></i><b>6.8</b> Résumé</a></li>
+<li class="chapter" data-level="6.9" data-path="ch-classification.html"><a href="ch-classification.html#exercices-5"><i class="fa fa-check"></i><b>6.9</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-projet.html"><a href="ch-projet.html"><i class="fa fa-check"></i><b>7</b> Projet et évaluation des acquis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ch-projet.html"><a href="ch-projet.html#déroulé-dun-projet-le-dslc-en-pratique"><i class="fa fa-check"></i><b>7.1</b> Déroulé d’un projet : le DSLC en pratique</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-projet.html"><a href="ch-projet.html#le-rendu-un-notebook-reproductible"><i class="fa fa-check"></i><b>7.2</b> Le rendu : un notebook reproductible</a></li>
+<li class="chapter" data-level="7.3" data-path="ch-projet.html"><a href="ch-projet.html#grille-dauto-évaluation"><i class="fa fa-check"></i><b>7.3</b> Grille d’auto-évaluation</a></li>
+<li class="chapter" data-level="7.4" data-path="ch-projet.html"><a href="ch-projet.html#réussir-la-soutenance"><i class="fa fa-check"></i><b>7.4</b> Réussir la soutenance</a></li>
+<li class="chapter" data-level="7.5" data-path="ch-projet.html"><a href="ch-projet.html#où-trouver-des-jeux-de-données"><i class="fa fa-check"></i><b>7.5</b> Où trouver des jeux de données</a></li>
+<li class="chapter" data-level="7.6" data-path="ch-projet.html"><a href="ch-projet.html#fiche-de-révision"><i class="fa fa-check"></i><b>7.6</b> Fiche de révision</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="ch-projet.html"><a href="ch-projet.html#le-langage-r-chapitre-2"><i class="fa fa-check"></i><b>7.6.1</b> Le langage R (chapitre 2)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="ch-projet.html"><a href="ch-projet.html#manipulation-chapitre-3"><i class="fa fa-check"></i><b>7.6.2</b> Manipulation (chapitre 3)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="ch-projet.html"><a href="ch-projet.html#graphiques-et-régression-chapitre-4"><i class="fa fa-check"></i><b>7.6.3</b> Graphiques et régression (chapitre 4)</a></li>
+<li class="chapter" data-level="7.6.4" data-path="ch-projet.html"><a href="ch-projet.html#acp-et-arbres-chapitre-5"><i class="fa fa-check"></i><b>7.6.4</b> ACP et arbres (chapitre 5)</a></li>
+<li class="chapter" data-level="7.6.5" data-path="ch-projet.html"><a href="ch-projet.html#classification-chapitre-6"><i class="fa fa-check"></i><b>7.6.5</b> Classification (chapitre 6)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="ch-projet.html"><a href="ch-projet.html#questions-de-révision"><i class="fa fa-check"></i><b>7.7</b> Questions de révision</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science sous R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch-graphiques" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Chapitre 4</span> Représentations graphiques et régression<a href="ch-graphiques.html#ch-graphiques" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Objectifs du chapitre</strong></p>
+<ul>
+<li>Connaître les principes d’un bon graphique et choisir un graphique adapté
+aux données.</li>
+<li>Produire des graphiques avec R de base et, surtout, avec <code>ggplot2</code> :
+<em>geoms</em>, mappages, positions, <em>facets</em>, <em>scales</em>, thèmes.</li>
+<li>Ajuster, interpréter et critiquer une régression linéaire simple et
+multiple, puis une régression logistique.</li>
+</ul>
+<p><em>Support de cours : document <code>Graphiques avec ggplot2.pdf</code>. Les exercices
+sont regroupés en fin de chapitre.</em></p>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="ch-graphiques.html#cb565-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb565-2"><a href="ch-graphiques.html#cb565-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(questionr)   <span class="co"># jeu de données rp2018 (exercices)</span></span>
+<span id="cb565-3"><a href="ch-graphiques.html#cb565-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)        <span class="co"># jeux de données Carseats et OJ</span></span>
+<span id="cb565-4"><a href="ch-graphiques.html#cb565-4" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;R/boutique.R&quot;</span>)</span>
+<span id="cb565-5"><a href="ch-graphiques.html#cb565-5" aria-hidden="true" tabindex="-1"></a>commandes <span class="ot">&lt;-</span> <span class="fu">lire_boutique</span>(<span class="st">&quot;commandes&quot;</span>)</span>
+<span id="cb565-6"><a href="ch-graphiques.html#cb565-6" aria-hidden="true" tabindex="-1"></a>clients   <span class="ot">&lt;-</span> <span class="fu">lire_boutique</span>(<span class="st">&quot;clients&quot;</span>)</span></code></pre></div>
+<div id="pourquoi-visualiser" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> Pourquoi visualiser ?<a href="ch-graphiques.html#pourquoi-visualiser" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>La visualisation est un élément essentiel de l’analyse : elle révèle des
+structures que les résumés numériques cachent. Le <strong>quartet d’Anscombe</strong> (jeu
+<code>anscombe</code>) contient quatre séries <span class="math inline">\((x, y)\)</span> qui ont presque exactement la même
+moyenne, la même variance, la même corrélation et la même droite de
+régression :</p>
+<div class="sourceCode" id="cb566"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb566-1"><a href="ch-graphiques.html#cb566-1" aria-hidden="true" tabindex="-1"></a>anscombe_long <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb566-2"><a href="ch-graphiques.html#cb566-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">serie =</span> <span class="fu">rep</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="at">each =</span> <span class="dv">11</span>),</span>
+<span id="cb566-3"><a href="ch-graphiques.html#cb566-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">x =</span> <span class="fu">c</span>(anscombe<span class="sc">$</span>x1, anscombe<span class="sc">$</span>x2, anscombe<span class="sc">$</span>x3, anscombe<span class="sc">$</span>x4),</span>
+<span id="cb566-4"><a href="ch-graphiques.html#cb566-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">y =</span> <span class="fu">c</span>(anscombe<span class="sc">$</span>y1, anscombe<span class="sc">$</span>y2, anscombe<span class="sc">$</span>y3, anscombe<span class="sc">$</span>y4)</span>
+<span id="cb566-5"><a href="ch-graphiques.html#cb566-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb566-6"><a href="ch-graphiques.html#cb566-6" aria-hidden="true" tabindex="-1"></a>anscombe_long <span class="sc">|&gt;</span></span>
+<span id="cb566-7"><a href="ch-graphiques.html#cb566-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(serie) <span class="sc">|&gt;</span></span>
+<span id="cb566-8"><a href="ch-graphiques.html#cb566-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">moy_x =</span> <span class="fu">mean</span>(x), <span class="at">moy_y =</span> <span class="fu">mean</span>(y), <span class="at">var_y =</span> <span class="fu">var</span>(y), <span class="at">correlation =</span> <span class="fu">cor</span>(x, y))</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 4 × 5
+#&gt;   serie moy_x moy_y var_y correlation
+#&gt;   &lt;int&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;       &lt;dbl&gt;
+#&gt; 1     1     9  7.50  4.13       0.816
+#&gt; 2     2     9  7.50  4.13       0.816
+#&gt; 3     3     9  7.5   4.12       0.816
+#&gt; 4     4     9  7.50  4.12       0.817</code></pre>
+<p>Pourtant, leurs graphiques n’ont rien à voir :</p>
+<div class="sourceCode" id="cb568"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb568-1"><a href="ch-graphiques.html#cb568-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(anscombe_long, <span class="fu">aes</span>(x, y)) <span class="sc">+</span></span>
+<span id="cb568-2"><a href="ch-graphiques.html#cb568-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb568-3"><a href="ch-graphiques.html#cb568-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb568-4"><a href="ch-graphiques.html#cb568-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(serie))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/anscombe-graph-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="retenir">
+<p><strong>Toujours regarder les données</strong> avant (et après) de les modéliser. Explorer
+graphiquement est un processus <strong>itératif</strong> : on commence simple, puis on
+affine en regardant les données sous différents angles.</p>
+</div>
+<div id="principes-dun-bon-graphique" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Principes d’un bon graphique<a href="ch-graphiques.html#principes-dun-bon-graphique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Edward Tufte (<em>The Visual Display of Quantitative Information</em>) propose
+quelques principes :</p>
+<ul>
+<li>montrer les données avant tout ;</li>
+<li>ne pas les déformer (axes tronqués trompeurs, effets 3D) ;</li>
+<li>encourager l’œil à <strong>comparer</strong> ;</li>
+<li>montrer plusieurs niveaux de détail, de la vue d’ensemble à la structure fine.</li>
+</ul>
+<p>Un graphique se décompose en quatre éléments : les <strong>indices visuels</strong>
+(position, longueur, couleur, taille…), le <strong>système de coordonnées</strong>
+(cartésien, polaire, géographique), les <strong>échelles</strong> (linéaire,
+logarithmique, catégorielle, temporelle) et le <strong>contexte</strong> (titre, étiquettes
+d’axes avec unités, source, lignes de référence).</p>
+<p>L’œil compare très bien des <strong>positions</strong> et des <strong>longueurs</strong> sur une échelle
+commune, beaucoup moins bien des angles, des surfaces ou des couleurs. C’est
+pourquoi un diagramme en barres est presque toujours plus lisible qu’un
+diagramme circulaire (« camembert »).</p>
+</div>
+<div id="choisir-un-graphique" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Choisir un graphique<a href="ch-graphiques.html#choisir-un-graphique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="23%" />
+<col width="25%" />
+<col width="25%" />
+<col width="25%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Question</th>
+<th align="left">Variables</th>
+<th align="left">Graphique</th>
+<th align="left"><code>ggplot2</code></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Distribution</td>
+<td align="left">1 quantitative</td>
+<td align="left">histogramme, densité, boîte à moustaches</td>
+<td align="left"><code>geom_histogram()</code>, <code>geom_density()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Répartition</td>
+<td align="left">1 qualitative</td>
+<td align="left">diagramme en barres</td>
+<td align="left"><code>geom_bar()</code>, <code>geom_col()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Relation</td>
+<td align="left">2 quantitatives</td>
+<td align="left">nuage de points</td>
+<td align="left"><code>geom_point()</code></td>
+</tr>
+<tr class="even">
+<td align="left">Comparaison</td>
+<td align="left">quantitative × qualitative</td>
+<td align="left">boîtes à moustaches, violons</td>
+<td align="left"><code>geom_boxplot()</code>, <code>geom_violin()</code></td>
+</tr>
+<tr class="odd">
+<td align="left">Association</td>
+<td align="left">2 qualitatives</td>
+<td align="left">barres empilées ou juxtaposées</td>
+<td align="left"><code>geom_bar(position = ...)</code></td>
+</tr>
+<tr class="even">
+<td align="left">Évolution</td>
+<td align="left">quantitative × temps</td>
+<td align="left">courbe</td>
+<td align="left"><code>geom_line()</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="graphiques-avec-r-de-base" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> Graphiques avec R de base<a href="ch-graphiques.html#graphiques-avec-r-de-base" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Les fonctions graphiques de base, vues au chapitre précédent, sont rapides pour
+explorer :</p>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="ch-graphiques.html#cb569-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))   <span class="co"># grille 2 x 2</span></span>
+<span id="cb569-2"><a href="ch-graphiques.html#cb569-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb569-3"><a href="ch-graphiques.html#cb569-3" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(Carseats<span class="sc">$</span>Sales, <span class="at">breaks =</span> <span class="dv">20</span>, <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb569-4"><a href="ch-graphiques.html#cb569-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Ventes par magasin&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Ventes (milliers d&#39;unités)&quot;</span>)</span>
+<span id="cb569-5"><a href="ch-graphiques.html#cb569-5" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(Sales <span class="sc">~</span> ShelveLoc, <span class="at">data =</span> Carseats,</span>
+<span id="cb569-6"><a href="ch-graphiques.html#cb569-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;Ventes selon l&#39;emplacement&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Emplacement en rayon&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Ventes&quot;</span>)</span>
+<span id="cb569-7"><a href="ch-graphiques.html#cb569-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(Sales <span class="sc">~</span> Price, <span class="at">data =</span> Carseats, <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.6</span>,</span>
+<span id="cb569-8"><a href="ch-graphiques.html#cb569-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">col =</span> <span class="fu">ifelse</span>(Carseats<span class="sc">$</span>US <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>, <span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey40&quot;</span>),</span>
+<span id="cb569-9"><a href="ch-graphiques.html#cb569-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Ventes et prix&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Prix ($)&quot;</span>, <span class="at">ylab =</span> <span class="st">&quot;Ventes&quot;</span>)</span>
+<span id="cb569-10"><a href="ch-graphiques.html#cb569-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="at">legend =</span> <span class="fu">c</span>(<span class="st">&quot;États-Unis&quot;</span>, <span class="st">&quot;Hors États-Unis&quot;</span>),</span>
+<span id="cb569-11"><a href="ch-graphiques.html#cb569-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;red&quot;</span>, <span class="st">&quot;grey40&quot;</span>), <span class="at">pch =</span> <span class="dv">16</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span>
+<span id="cb569-12"><a href="ch-graphiques.html#cb569-12" aria-hidden="true" tabindex="-1"></a><span class="fu">barplot</span>(<span class="fu">table</span>(Carseats<span class="sc">$</span>ShelveLoc), <span class="at">main =</span> <span class="st">&quot;Emplacements&quot;</span>, <span class="at">col =</span> <span class="st">&quot;tomato&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/base-plots-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb570"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb570-1"><a href="ch-graphiques.html#cb570-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))   <span class="co"># rétablir la grille par défaut</span></span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Paramètre</th>
+<th align="left">Rôle</th>
+<th align="left">Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>main</code>, <code>xlab</code>, <code>ylab</code></td>
+<td align="left">titres</td>
+<td align="left"><code>main = "Titre"</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>col</code></td>
+<td align="left">couleur</td>
+<td align="left"><code>col = "steelblue"</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>pch</code></td>
+<td align="left">symbole des points</td>
+<td align="left"><code>pch = 16</code> (disque plein)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>cex</code></td>
+<td align="left">taille relative</td>
+<td align="left"><code>cex = 0.5</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>lty</code>, <code>lwd</code></td>
+<td align="left">type et épaisseur de ligne</td>
+<td align="left"><code>lty = 2</code> (tirets)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>xlim</code>, <code>ylim</code></td>
+<td align="left">bornes des axes</td>
+<td align="left"><code>xlim = c(0, 10)</code></td>
+</tr>
+</tbody>
+</table>
+<p>Les fonctions <code>abline()</code>, <code>lines()</code>, <code>points()</code>, <code>text()</code> et <code>legend()</code>
+<strong>ajoutent</strong> des éléments au graphique courant. Pour enregistrer :
+<code>png("fichier.png")</code>, puis le graphique, puis <code>dev.off()</code>, ou le bouton
+<em>Export</em> de l’onglet <em>Plots</em>.</p>
+</div>
+<div id="graphiques-avec-ggplot2" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> Graphiques avec <code>ggplot2</code><a href="ch-graphiques.html#graphiques-avec-ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>ggplot2</code> repose sur une <strong>grammaire des graphiques</strong> : un graphique est
+construit en <strong>superposant des couches</strong> avec l’opérateur <code>+</code>. Une
+<strong>esthétique</strong> (<em>aesthetic</em>) est une correspondance explicite entre une
+<strong>variable</strong> et un <strong>indice visuel</strong>.</p>
+<table>
+<colgroup>
+<col width="42%" />
+<col width="23%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Composant</th>
+<th align="left">Rôle</th>
+<th align="left">Exemple</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">données</td>
+<td align="left">un tableau (format <em>tidy</em>)</td>
+<td align="left"><code>ggplot(Carseats)</code></td>
+</tr>
+<tr class="even">
+<td align="left">mappages (<code>aes()</code>)</td>
+<td align="left">lien entre variables et attributs graphiques</td>
+<td align="left"><code>aes(x = Price, y = Sales, color = ShelveLoc)</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>geoms</em></td>
+<td align="left">forme géométrique</td>
+<td align="left"><code>geom_point()</code>, <code>geom_boxplot()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><em>facets</em></td>
+<td align="left">petits multiples</td>
+<td align="left"><code>facet_wrap(vars(ShelveLoc))</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><em>scales</em></td>
+<td align="left">réglage des axes, couleurs, tailles</td>
+<td align="left"><code>scale_y_log10()</code></td>
+</tr>
+<tr class="even">
+<td align="left">thème et titres</td>
+<td align="left">apparence générale</td>
+<td align="left"><code>labs()</code>, <code>theme_minimal()</code></td>
+</tr>
+</tbody>
+</table>
+<div id="initialisation-et-premier-geom" class="section level3 hasAnchor" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Initialisation et premier <em>geom</em><a href="ch-graphiques.html#initialisation-et-premier-geom" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un graphique s’initialise avec <code>ggplot()</code> et un tableau de données. On ajoute
+ensuite un <em>geom</em>, auquel on indique les variables à représenter via <code>aes()</code>.
+Les variables s’écrivent sans le nom du tableau (<code>Price</code> et non
+<code>Carseats$Price</code>).</p>
+<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb571-1"><a href="ch-graphiques.html#cb571-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats) <span class="sc">+</span></span>
+<span id="cb571-2"><a href="ch-graphiques.html#cb571-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-premier-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Les attributs <strong>constants</strong> se donnent dans le <em>geom</em>, <strong>hors</strong> de <code>aes()</code> :</p>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="ch-graphiques.html#cb572-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats) <span class="sc">+</span></span>
+<span id="cb572-2"><a href="ch-graphiques.html#cb572-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales), <span class="at">color =</span> <span class="st">&quot;darkgreen&quot;</span>, <span class="at">size =</span> <span class="dv">2</span>, <span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-constants-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="les-principaux-geoms" class="section level3 hasAnchor" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Les principaux <em>geoms</em><a href="ch-graphiques.html#les-principaux-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Histogramme et densité</strong> — la distribution des montants de commande :</p>
+<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb573-1"><a href="ch-graphiques.html#cb573-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb573-2"><a href="ch-graphiques.html#cb573-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="fu">aes</span>(<span class="at">x =</span> montant), <span class="at">binwidth =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;white&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-histo-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="ch-graphiques.html#cb574-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb574-2"><a href="ch-graphiques.html#cb574-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> montant, <span class="at">fill =</span> promo), <span class="at">alpha =</span> <span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-density-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>L’argument <code>binwidth</code> (ou <code>bins</code>) d’un histogramme et <code>bw</code> d’une densité
+règlent le niveau de détail : à tester, car ils peuvent masquer ou inventer des
+structures.</p>
+<p><strong>Boîtes à moustaches et violons</strong> — le panier selon le canal d’acquisition :</p>
+<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb575-1"><a href="ch-graphiques.html#cb575-1" aria-hidden="true" tabindex="-1"></a>commandes_clients <span class="ot">&lt;-</span> <span class="fu">left_join</span>(commandes, clients, <span class="at">by =</span> <span class="st">&quot;client_id&quot;</span>)</span>
+<span id="cb575-2"><a href="ch-graphiques.html#cb575-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb575-3"><a href="ch-graphiques.html#cb575-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes_clients) <span class="sc">+</span></span>
+<span id="cb575-4"><a href="ch-graphiques.html#cb575-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> canal_acquisition, <span class="at">y =</span> montant), <span class="at">fill =</span> <span class="st">&quot;wheat&quot;</span>, <span class="at">varwidth =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-box-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="ch-graphiques.html#cb576-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes_clients) <span class="sc">+</span></span>
+<span id="cb576-2"><a href="ch-graphiques.html#cb576-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> canal_acquisition, <span class="at">y =</span> montant), <span class="at">fill =</span> <span class="st">&quot;lightblue&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-violin-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><code>varwidth = TRUE</code> rend la largeur des boîtes proportionnelle aux effectifs ;
+le violon montre la forme complète de la distribution.</p>
+<p><strong>Barres : <code>geom_bar()</code> et <code>geom_col()</code></strong> — <code>geom_bar()</code> <strong>compte</strong> les lignes
+de chaque modalité ; <code>geom_col()</code> représente des valeurs <strong>déjà calculées</strong>.
+Passer la variable en <code>y</code> donne des barres horizontales, plus lisibles avec des
+étiquettes longues (on peut aussi ajouter <code>coord_flip()</code>).</p>
+<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb577-1"><a href="ch-graphiques.html#cb577-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb577-2"><a href="ch-graphiques.html#cb577-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> categorie))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-bar-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="ch-graphiques.html#cb578-1" aria-hidden="true" tabindex="-1"></a>ca_categorie <span class="ot">&lt;-</span> commandes <span class="sc">|&gt;</span></span>
+<span id="cb578-2"><a href="ch-graphiques.html#cb578-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorie) <span class="sc">|&gt;</span></span>
+<span id="cb578-3"><a href="ch-graphiques.html#cb578-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ca =</span> <span class="fu">sum</span>(montant))</span>
+<span id="cb578-4"><a href="ch-graphiques.html#cb578-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb578-5"><a href="ch-graphiques.html#cb578-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ca_categorie) <span class="sc">+</span></span>
+<span id="cb578-6"><a href="ch-graphiques.html#cb578-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> ca, <span class="at">y =</span> <span class="fu">reorder</span>(categorie, ca)), <span class="at">fill =</span> <span class="st">&quot;darkblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb578-7"><a href="ch-graphiques.html#cb578-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Chiffre d&#39;affaires 2025 (€)&quot;</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-col-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><code>reorder(categorie, ca)</code> trie les barres selon le chiffre d’affaires : un tri
+rend la lecture beaucoup plus rapide.</p>
+<p><strong>Courbes</strong> — l’évolution du chiffre d’affaires mensuel :</p>
+<div class="sourceCode" id="cb579"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb579-1"><a href="ch-graphiques.html#cb579-1" aria-hidden="true" tabindex="-1"></a>ca_mensuel <span class="ot">&lt;-</span> commandes <span class="sc">|&gt;</span></span>
+<span id="cb579-2"><a href="ch-graphiques.html#cb579-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb579-3"><a href="ch-graphiques.html#cb579-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois) <span class="sc">|&gt;</span></span>
+<span id="cb579-4"><a href="ch-graphiques.html#cb579-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ca =</span> <span class="fu">sum</span>(montant))</span>
+<span id="cb579-5"><a href="ch-graphiques.html#cb579-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb579-6"><a href="ch-graphiques.html#cb579-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ca_mensuel, <span class="fu">aes</span>(<span class="at">x =</span> mois, <span class="at">y =</span> ca)) <span class="sc">+</span></span>
+<span id="cb579-7"><a href="ch-graphiques.html#cb579-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb579-8"><a href="ch-graphiques.html#cb579-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-line-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La saisonnalité est nette : les ventes s’envolent en novembre (<em>Black Friday</em>)
+et en décembre (Noël).</p>
+<p><strong>Texte et étiquettes</strong> — <code>geom_text()</code> et <code>geom_label()</code> demandent <code>x</code>, <code>y</code>
+et <code>label</code> :</p>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="ch-graphiques.html#cb580-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ca_categorie, <span class="fu">aes</span>(<span class="at">x =</span> categorie, <span class="at">y =</span> ca)) <span class="sc">+</span></span>
+<span id="cb580-2"><a href="ch-graphiques.html#cb580-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;grey70&quot;</span>) <span class="sc">+</span></span>
+<span id="cb580-3"><a href="ch-graphiques.html#cb580-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">paste</span>(<span class="fu">round</span>(ca <span class="sc">/</span> <span class="dv">1000</span>), <span class="st">&quot;k€&quot;</span>)), <span class="at">vjust =</span> <span class="sc">-</span><span class="fl">0.4</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-text-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>Nombreux points</strong> — quand les points se superposent, <code>geom_bin2d()</code> (ou
+<code>geom_hex()</code>, qui nécessite le package <code>hexbin</code>) colore une grille selon le
+nombre de points :</p>
+<div class="sourceCode" id="cb581"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb581-1"><a href="ch-graphiques.html#cb581-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb581-2"><a href="ch-graphiques.html#cb581-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bin2d</span>(<span class="fu">aes</span>(<span class="at">x =</span> nb_articles, <span class="at">y =</span> montant), <span class="at">bins =</span> <span class="dv">30</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-bin2d-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="mappages" class="section level3 hasAnchor" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Mappages<a href="ch-graphiques.html#mappages" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un <strong>mappage</strong> relie un attribut graphique (position, couleur, taille,
+transparence, forme) à une <strong>variable</strong>. On peut en combiner plusieurs :</p>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="ch-graphiques.html#cb582-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats) <span class="sc">+</span></span>
+<span id="cb582-2"><a href="ch-graphiques.html#cb582-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales, <span class="at">color =</span> ShelveLoc, <span class="at">size =</span> Advertising), <span class="at">alpha =</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-mappages-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Ce graphique montre quatre variables : à prix égal, un magasin où le produit
+est <strong>bien placé en rayon</strong> (<code>Good</code>) vend nettement plus.</p>
+<div class="attention">
+<p><strong><code>aes()</code> ou pas <code>aes()</code> ?</strong> Si l’attribut dépend d’une <strong>variable</strong>, c’est un
+mappage : il va <strong>dans</strong> <code>aes()</code>. S’il est <strong>constant</strong>, il va <strong>hors</strong> de
+<code>aes()</code>. Écrire <code>aes(color = "blue")</code> crée une légende « blue » et une couleur
+imprévue.</p>
+</div>
+</div>
+<div id="positions-des-barres" class="section level3 hasAnchor" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Positions des barres<a href="ch-graphiques.html#positions-des-barres" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Avec un mappage <code>fill</code>, l’argument <code>position</code> de <code>geom_bar()</code> contrôle
+l’agencement des barres :</p>
+<div class="sourceCode" id="cb583"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb583-1"><a href="ch-graphiques.html#cb583-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb583-2"><a href="ch-graphiques.html#cb583-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> categorie, <span class="at">fill =</span> promo))                     <span class="co"># empilées (défaut)</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-position-stack-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="ch-graphiques.html#cb584-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb584-2"><a href="ch-graphiques.html#cb584-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> categorie, <span class="at">fill =</span> promo), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)  <span class="co"># côte à côte</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-position-dodge-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb585"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb585-1"><a href="ch-graphiques.html#cb585-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes) <span class="sc">+</span></span>
+<span id="cb585-2"><a href="ch-graphiques.html#cb585-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">y =</span> categorie, <span class="at">fill =</span> promo), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>) <span class="sc">+</span> <span class="co"># proportions</span></span>
+<span id="cb585-3"><a href="ch-graphiques.html#cb585-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Part des commandes&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-position-fill-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Les promotions sont surtout utilisées en Mode et en Beauté. Pour comparer des
+<strong>proportions</strong> entre groupes de tailles différentes, <code>position = "fill"</code> est
+le bon choix.</p>
+</div>
+<div id="superposer-plusieurs-geoms" class="section level3 hasAnchor" number="4.3.5">
+<h3><span class="header-section-number">4.3.5</span> Superposer plusieurs <em>geoms</em><a href="ch-graphiques.html#superposer-plusieurs-geoms" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On ajoute les couches les unes après les autres. Les mappages déclarés dans
+<code>ggplot()</code> sont <strong>hérités</strong> par tous les <em>geoms</em> :</p>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="ch-graphiques.html#cb586-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x =</span> ShelveLoc, <span class="at">y =</span> Sales)) <span class="sc">+</span></span>
+<span id="cb586-2"><a href="ch-graphiques.html#cb586-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">outlier.shape =</span> <span class="cn">NA</span>) <span class="sc">+</span></span>
+<span id="cb586-3"><a href="ch-graphiques.html#cb586-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-plusieurs-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="ch-graphiques.html#cb587-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales, <span class="at">color =</span> ShelveLoc)) <span class="sc">+</span></span>
+<span id="cb587-2"><a href="ch-graphiques.html#cb587-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb587-3"><a href="ch-graphiques.html#cb587-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">formula =</span> y <span class="sc">~</span> x, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-smooth-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Les trois droites sont presque parallèles : l’effet du prix est à peu près le
+même quel que soit l’emplacement. Nous le vérifierons avec un modèle.</p>
+<p>Chaque <em>geom</em> peut aussi avoir ses <strong>propres données</strong>, par exemple pour
+étiqueter seulement quelques points :</p>
+<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb588-1"><a href="ch-graphiques.html#cb588-1" aria-hidden="true" tabindex="-1"></a>meilleurs <span class="ot">&lt;-</span> Carseats <span class="sc">|&gt;</span></span>
+<span id="cb588-2"><a href="ch-graphiques.html#cb588-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">magasin =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb588-3"><a href="ch-graphiques.html#cb588-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Sales <span class="sc">&gt;</span> <span class="dv">14</span>)</span>
+<span id="cb588-4"><a href="ch-graphiques.html#cb588-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb588-5"><a href="ch-graphiques.html#cb588-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales)) <span class="sc">+</span></span>
+<span id="cb588-6"><a href="ch-graphiques.html#cb588-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb588-7"><a href="ch-graphiques.html#cb588-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label</span>(<span class="at">data =</span> meilleurs, <span class="fu">aes</span>(<span class="at">label =</span> magasin), <span class="at">color =</span> <span class="st">&quot;darkred&quot;</span>, <span class="at">size =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-donnees-multiples-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="faceting" class="section level3 hasAnchor" number="4.3.6">
+<h3><span class="header-section-number">4.3.6</span> <em>Faceting</em><a href="ch-graphiques.html#faceting" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le <em>faceting</em> répète le même graphique pour chaque modalité d’une variable
+qualitative, <strong>avec les mêmes échelles</strong>, ce qui permet la comparaison directe.</p>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="ch-graphiques.html#cb589-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb589-2"><a href="ch-graphiques.html#cb589-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb589-3"><a href="ch-graphiques.html#cb589-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorie, mois) <span class="sc">|&gt;</span></span>
+<span id="cb589-4"><a href="ch-graphiques.html#cb589-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ca =</span> <span class="fu">sum</span>(montant), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb589-5"><a href="ch-graphiques.html#cb589-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> mois, <span class="at">y =</span> ca)) <span class="sc">+</span></span>
+<span id="cb589-6"><a href="ch-graphiques.html#cb589-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb589-7"><a href="ch-graphiques.html#cb589-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="fu">vars</span>(categorie))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-facet-wrap-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><code>facet_grid(rows = vars(a), cols = vars(b))</code> dispose les graphiques selon une
+grille croisant deux variables.</p>
+</div>
+<div id="scales" class="section level3 hasAnchor" number="4.3.7">
+<h3><span class="header-section-number">4.3.7</span> <em>Scales</em><a href="ch-graphiques.html#scales" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les <em>scales</em> contrôlent la façon dont les valeurs sont traduites en attributs
+graphiques, et la légende ou l’axe correspondant. Elles prennent la forme
+<code>scale_&lt;attribut&gt;_&lt;type&gt;()</code>.</p>
+<p><strong>Axes</strong> — titres, limites, format des nombres, échelle logarithmique :</p>
+<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb590-1"><a href="ch-graphiques.html#cb590-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ca_mensuel, <span class="fu">aes</span>(<span class="at">x =</span> mois, <span class="at">y =</span> ca)) <span class="sc">+</span></span>
+<span id="cb590-2"><a href="ch-graphiques.html#cb590-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb590-3"><a href="ch-graphiques.html#cb590-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_date</span>(<span class="st">&quot;Mois&quot;</span>, <span class="at">date_labels =</span> <span class="st">&quot;%m/%Y&quot;</span>, <span class="at">date_breaks =</span> <span class="st">&quot;2 months&quot;</span>) <span class="sc">+</span></span>
+<span id="cb590-4"><a href="ch-graphiques.html#cb590-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Chiffre d&#39;affaires&quot;</span>, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>),</span>
+<span id="cb590-5"><a href="ch-graphiques.html#cb590-5" aria-hidden="true" tabindex="-1"></a>                     <span class="at">labels =</span> scales<span class="sc">::</span><span class="fu">label_number</span>(<span class="at">suffix =</span> <span class="st">&quot; €&quot;</span>, <span class="at">big.mark =</span> <span class="st">&quot; &quot;</span>))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-scales-axes-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Faire partir l’axe des ordonnées de 0 évite d’exagérer visuellement les
+variations, ce qui est essentiel pour des barres. Les montants, très
+asymétriques, se lisent mieux en <strong>échelle logarithmique</strong> :</p>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="ch-graphiques.html#cb591-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(commandes_clients) <span class="sc">+</span></span>
+<span id="cb591-2"><a href="ch-graphiques.html#cb591-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> canal_acquisition, <span class="at">y =</span> montant)) <span class="sc">+</span></span>
+<span id="cb591-3"><a href="ch-graphiques.html#cb591-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>(<span class="st">&quot;Montant (€, échelle log)&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-scales-log-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>Couleurs</strong> — pour une variable quantitative, <code>scale_color_gradient()</code>,
+<code>scale_color_viridis_c()</code> ou <code>scale_color_distiller()</code> ; pour une variable
+qualitative, <code>scale_color_brewer()</code>, <code>scale_color_viridis_d()</code> ou
+<code>scale_color_manual()</code> :</p>
+<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb592-1"><a href="ch-graphiques.html#cb592-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats) <span class="sc">+</span></span>
+<span id="cb592-2"><a href="ch-graphiques.html#cb592-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales, <span class="at">color =</span> Advertising)) <span class="sc">+</span></span>
+<span id="cb592-3"><a href="ch-graphiques.html#cb592-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_c</span>(<span class="st">&quot;Budget pub (k$)&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-scales-couleurs-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="ch-graphiques.html#cb593-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats) <span class="sc">+</span></span>
+<span id="cb593-2"><a href="ch-graphiques.html#cb593-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Sales, <span class="at">color =</span> ShelveLoc)) <span class="sc">+</span></span>
+<span id="cb593-3"><a href="ch-graphiques.html#cb593-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_manual</span>(<span class="st">&quot;Emplacement&quot;</span>,</span>
+<span id="cb593-4"><a href="ch-graphiques.html#cb593-4" aria-hidden="true" tabindex="-1"></a>                     <span class="at">values =</span> <span class="fu">c</span>(<span class="at">Bad =</span> <span class="st">&quot;firebrick&quot;</span>, <span class="at">Medium =</span> <span class="st">&quot;grey60&quot;</span>, <span class="at">Good =</span> <span class="st">&quot;forestgreen&quot;</span>))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-scales-manual-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Les palettes <code>viridis</code> et certaines palettes ColorBrewer restent lisibles pour
+les personnes daltoniennes (<code>RColorBrewer::display.brewer.all()</code> les liste).</p>
+<p><strong>Tailles</strong> — <code>scale_size(range = c(min, max))</code>.</p>
+</div>
+<div id="titres-et-thèmes" class="section level3 hasAnchor" number="4.3.8">
+<h3><span class="header-section-number">4.3.8</span> Titres et thèmes<a href="ch-graphiques.html#titres-et-thèmes" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>labs()</code> définit le titre, le sous-titre, la source et les noms des axes et
+légendes ; les thèmes (<code>theme_minimal()</code>, <code>theme_bw()</code>, <code>theme_classic()</code>…)
+règlent l’apparence générale, et <code>theme()</code> permet de modifier chaque élément.</p>
+<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb594-1"><a href="ch-graphiques.html#cb594-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(ca_mensuel, <span class="fu">aes</span>(<span class="at">x =</span> mois, <span class="at">y =</span> ca <span class="sc">/</span> <span class="dv">1000</span>)) <span class="sc">+</span></span>
+<span id="cb594-2"><a href="ch-graphiques.html#cb594-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb594-3"><a href="ch-graphiques.html#cb594-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Novembre et décembre réalisent plus d&#39;un quart des ventes annuelles&quot;</span>,</span>
+<span id="cb594-4"><a href="ch-graphiques.html#cb594-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">&quot;Chiffre d&#39;affaires mensuel de la boutique en ligne, 2025&quot;</span>,</span>
+<span id="cb594-5"><a href="ch-graphiques.html#cb594-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Chiffre d&#39;affaires (k€)&quot;</span>,</span>
+<span id="cb594-6"><a href="ch-graphiques.html#cb594-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">caption =</span> <span class="st">&quot;Source : données simulées du cours&quot;</span>) <span class="sc">+</span></span>
+<span id="cb594-7"><a href="ch-graphiques.html#cb594-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/gg-final-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="retenir">
+<p><strong>Un graphique de présentation</strong> : un titre qui énonce le <strong>message</strong>, des axes
+avec unités, une source, des couleurs lisibles, aucun effet inutile.
+Enregistrer avec <code>ggsave("figure.png", width = 8, height = 5, dpi = 300)</code>.</p>
+</div>
+<p>Le package <code>esquisse</code> (menu <em>Addins</em> de RStudio, ou <code>esquisse::esquisser()</code>)
+permet de construire un graphique <code>ggplot2</code> à la souris, puis de récupérer le
+code correspondant : pratique pour explorer ou retrouver une syntaxe.</p>
+</div>
+</div>
+<div id="régression-linéaire-simple" class="section level2 hasAnchor" number="4.4">
+<h2><span class="header-section-number">4.4</span> Régression linéaire simple<a href="ch-graphiques.html#régression-linéaire-simple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="le-modèle" class="section level3 hasAnchor" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Le modèle<a href="ch-graphiques.html#le-modèle" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On cherche à expliquer une variable quantitative <span class="math inline">\(Y\)</span> (la <strong>réponse</strong>) par une
+variable quantitative <span class="math inline">\(X\)</span> (le <strong>prédicteur</strong>) :</p>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i, \qquad i = 1, \dots, n\]</span></p>
+<ul>
+<li><span class="math inline">\(\beta_0\)</span> : ordonnée à l’origine ;</li>
+<li><span class="math inline">\(\beta_1\)</span> : pente, c’est-à-dire la variation moyenne de <span class="math inline">\(Y\)</span> quand <span class="math inline">\(X\)</span>
+augmente d’une unité ;</li>
+<li><span class="math inline">\(\varepsilon_i\)</span> : erreur, supposée centrée, de variance constante <span class="math inline">\(\sigma^2\)</span>,
+indépendante d’une observation à l’autre (et gaussienne pour les tests).</li>
+</ul>
+<p>La méthode des <strong>moindres carrés ordinaires</strong> choisit <span class="math inline">\(\hat\beta_0\)</span> et
+<span class="math inline">\(\hat\beta_1\)</span> qui minimisent la somme des carrés des résidus
+<span class="math inline">\(\sum_i (Y_i - \hat\beta_0 - \hat\beta_1 X_i)^2\)</span>. On obtient :</p>
+<p><span class="math display">\[\hat\beta_1 = \frac{\operatorname{cov}(X, Y)}{\operatorname{var}(X)}, \qquad
+\hat\beta_0 = \bar Y - \hat\beta_1 \bar X\]</span></p>
+</div>
+<div id="ajuster-le-modèle-avec-lm" class="section level3 hasAnchor" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Ajuster le modèle avec <code>lm()</code><a href="ch-graphiques.html#ajuster-le-modèle-avec-lm" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Quel est le lien entre le prix pratiqué et les ventes ? La <strong>formule</strong>
+<code>Sales ~ Price</code> se lit « <code>Sales</code> expliqué par <code>Price</code> ». On passe le tableau
+avec l’argument <code>data</code> (plutôt que d’écrire <code>Carseats$Sales ~ Carseats$Price</code>,
+ce qui empêche ensuite d’utiliser <code>predict()</code>).</p>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="ch-graphiques.html#cb595-1" aria-hidden="true" tabindex="-1"></a>modele_1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price, <span class="at">data =</span> Carseats)</span>
+<span id="cb595-2"><a href="ch-graphiques.html#cb595-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modele_1)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Sales ~ Price, data = Carseats)
+#&gt; 
+#&gt; Residuals:
+#&gt;    Min     1Q Median     3Q    Max 
+#&gt; -6.522 -1.844 -0.146  1.650  7.511 
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept) 13.64192    0.63281   21.56   &lt;2e-16 ***
+#&gt; Price       -0.05307    0.00535   -9.91   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 2.53 on 398 degrees of freedom
+#&gt; Multiple R-squared:  0.198,  Adjusted R-squared:  0.196 
+#&gt; F-statistic: 98.2 on 1 and 398 DF,  p-value: &lt;2e-16</code></pre>
+<p><strong>Lire la sortie de <code>summary()</code></strong></p>
+<ul>
+<li><em>Estimate</em> : <span class="math inline">\(\hat\beta_1 \approx\)</span> -0.053 ; chaque
+dollar supplémentaire est associé, en moyenne, à
+53 unités vendues en moins.</li>
+<li><em>Std. Error</em> : précision de l’estimation.</li>
+<li><em>t value</em> et <em>Pr(&gt;|t|)</em> : test de <span class="math inline">\(H_0 : \beta_1 = 0\)</span>. Une p-valeur très
+petite indique que la relation observée serait très improbable si la pente
+réelle était nulle.</li>
+<li><em>Multiple R-squared</em> (<span class="math inline">\(R^2\)</span>) : part de la variance des ventes expliquée par
+le modèle, ici environ 20 % ; le
+prix seul n’explique qu’une petite partie des différences entre magasins.</li>
+<li><em>Residual standard error</em> : estimation de <span class="math inline">\(\sigma\)</span>, l’erreur typique de
+prédiction (en milliers d’unités).</li>
+</ul>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="ch-graphiques.html#cb597-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(modele_1)</span></code></pre></div>
+<pre><code>#&gt; (Intercept)       Price 
+#&gt;    13.64192    -0.05307</code></pre>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="ch-graphiques.html#cb599-1" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(modele_1)        <span class="co"># intervalles de confiance à 95 %</span></span></code></pre></div>
+<pre><code>#&gt;               2.5 %   97.5 %
+#&gt; (Intercept) 12.3978 14.88599
+#&gt; Price       -0.0636 -0.04255</code></pre>
+</div>
+<div id="prédire" class="section level3 hasAnchor" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Prédire<a href="ch-graphiques.html#prédire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="ch-graphiques.html#cb601-1" aria-hidden="true" tabindex="-1"></a>scenarios <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">Price =</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">120</span>, <span class="dv">140</span>))</span>
+<span id="cb601-2"><a href="ch-graphiques.html#cb601-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modele_1, <span class="at">newdata =</span> scenarios, <span class="at">interval =</span> <span class="st">&quot;confidence&quot;</span>)   <span class="co"># ventes moyennes</span></span></code></pre></div>
+<pre><code>#&gt;     fit   lwr   upr
+#&gt; 1 8.335 8.035 8.634
+#&gt; 2 7.273 7.020 7.526
+#&gt; 3 6.212 5.855 6.568</code></pre>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="ch-graphiques.html#cb603-1" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modele_1, <span class="at">newdata =</span> scenarios, <span class="at">interval =</span> <span class="st">&quot;prediction&quot;</span>)   <span class="co"># pour un magasin</span></span></code></pre></div>
+<pre><code>#&gt;     fit   lwr   upr
+#&gt; 1 8.335 3.347 13.32
+#&gt; 2 7.273 2.288 12.26
+#&gt; 3 6.212 1.221 11.20</code></pre>
+<p>L’intervalle de <strong>prédiction</strong> (pour un magasin) est bien plus large que
+l’intervalle de <strong>confiance</strong> (pour la moyenne des magasins) : il inclut la
+variabilité d’un magasin à l’autre.</p>
+</div>
+<div id="vérifier-les-hypothèses-les-résidus" class="section level3 hasAnchor" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Vérifier les hypothèses : les résidus<a href="ch-graphiques.html#vérifier-les-hypothèses-les-résidus" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="ch-graphiques.html#cb605-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">2</span>))</span>
+<span id="cb605-2"><a href="ch-graphiques.html#cb605-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(modele_1)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/lm-diagnostic-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb606"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb606-1"><a href="ch-graphiques.html#cb606-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">1</span>))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="24%" />
+<col width="40%" />
+<col width="35%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Graphique</th>
+<th align="left">Ce qu’on vérifie</th>
+<th align="left">Signe d’alerte</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><em>Residuals vs Fitted</em></td>
+<td align="left">linéarité</td>
+<td align="left">une courbure</td>
+</tr>
+<tr class="even">
+<td align="left"><em>Q-Q Residuals</em></td>
+<td align="left">normalité des résidus</td>
+<td align="left">points loin de la diagonale</td>
+</tr>
+<tr class="odd">
+<td align="left"><em>Scale-Location</em></td>
+<td align="left">variance constante</td>
+<td align="left">un entonnoir</td>
+</tr>
+<tr class="even">
+<td align="left"><em>Residuals vs Leverage</em></td>
+<td align="left">points influents</td>
+<td align="left">points au-delà des courbes de Cook</td>
+</tr>
+</tbody>
+</table>
+<div class="attention">
+<p><strong>Corrélation n’est pas causalité.</strong> Ces données sont <strong>observationnelles</strong> :
+les magasins n’ont pas reçu leur prix au hasard. Un magasin peut vendre cher
+<em>parce que</em> sa clientèle est aisée, ou parce que le concurrent est cher aussi.
+Pour mesurer l’effet causal d’un prix, l’idéal est une <strong>expérience</strong>
+(test A/B de prix). À défaut, il faut au moins tenir compte des autres
+facteurs : c’est le rôle de la régression multiple.</p>
+</div>
+</div>
+</div>
+<div id="régression-linéaire-multiple" class="section level2 hasAnchor" number="4.5">
+<h2><span class="header-section-number">4.5</span> Régression linéaire multiple<a href="ch-graphiques.html#régression-linéaire-multiple" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="le-modèle-1" class="section level3 hasAnchor" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Le modèle<a href="ch-graphiques.html#le-modèle-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[Y_i = \beta_0 + \beta_1 X_{i1} + \dots + \beta_p X_{ip} + \varepsilon_i\]</span></p>
+<p>Chaque <span class="math inline">\(\beta_j\)</span> s’interprète <strong>toutes les autres variables étant fixées</strong>
+(<em>ceteris paribus</em>).</p>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="ch-graphiques.html#cb607-1" aria-hidden="true" tabindex="-1"></a>modele_2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> ShelveLoc <span class="sc">+</span> Age <span class="sc">+</span> Income,</span>
+<span id="cb607-2"><a href="ch-graphiques.html#cb607-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Carseats)</span>
+<span id="cb607-3"><a href="ch-graphiques.html#cb607-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modele_2)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; lm(formula = Sales ~ Price + CompPrice + Advertising + ShelveLoc + 
+#&gt;     Age + Income, data = Carseats)
+#&gt; 
+#&gt; Residuals:
+#&gt;    Min     1Q Median     3Q    Max 
+#&gt; -2.773 -0.695  0.028  0.673  3.329 
+#&gt; 
+#&gt; Coefficients:
+#&gt;                 Estimate Std. Error t value Pr(&gt;|t|)    
+#&gt; (Intercept)      5.47523    0.50501   10.84   &lt;2e-16 ***
+#&gt; Price           -0.09532    0.00267  -35.70   &lt;2e-16 ***
+#&gt; CompPrice        0.09257    0.00412   22.45   &lt;2e-16 ***
+#&gt; Advertising      0.11590    0.00772   15.01   &lt;2e-16 ***
+#&gt; ShelveLocGood    4.83567    0.15250   31.71   &lt;2e-16 ***
+#&gt; ShelveLocMedium  1.95199    0.12538   15.57   &lt;2e-16 ***
+#&gt; Age             -0.04613    0.00318  -14.52   &lt;2e-16 ***
+#&gt; Income           0.01578    0.00184    8.59   &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; Residual standard error: 1.02 on 392 degrees of freedom
+#&gt; Multiple R-squared:  0.872,  Adjusted R-squared:  0.87 
+#&gt; F-statistic:  381 on 7 and 392 DF,  p-value: &lt;2e-16</code></pre>
+<p><strong>Interprétation marketing</strong></p>
+<ul>
+<li><code>Price</code> : à prix du concurrent et autres facteurs égaux, chaque dollar de plus
+fait perdre environ 95 unités. L’effet
+est presque <strong>deux fois plus fort</strong> que dans le modèle simple : dans les
+données, les magasins chers sont souvent face à des concurrents chers
+(<code>CompPrice</code>), ce qui masquait une partie de l’effet du prix. Oublier une
+variable importante <strong>biaise</strong> les coefficients des autres.</li>
+<li><code>CompPrice</code> : quand le concurrent augmente son prix d’un dollar, nos ventes
+augmentent d’environ 93 unités.</li>
+<li><code>Advertising</code> : 1 000 $ de publicité locale en plus sont associés à
+environ 116 unités vendues en
+plus. Si chaque unité rapporte une marge de 5 $, la publicité ne serait pas
+rentable à la marge (116 × 5 $
+&lt; 1 000 $) : un calcul de <strong>retour sur investissement</strong> simple, à confirmer
+par une expérience.</li>
+<li><code>ShelveLoc</code> (variable qualitative) : R crée des <strong>indicatrices</strong> par rapport
+à la modalité de <strong>référence</strong> <code>Bad</code>. Un bon emplacement en rayon est associé
+à 4.8 milliers d’unités de plus
+qu’un mauvais. Pour changer de référence : <code>relevel()</code>.</li>
+</ul>
+<p>Le <span class="math inline">\(R^2\)</span> passe de 0.2 à
+0.87.</p>
+</div>
+<div id="comparer-des-modèles" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Comparer des modèles<a href="ch-graphiques.html#comparer-des-modèles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Le <span class="math inline">\(R^2\)</span> augmente <strong>toujours</strong> quand on ajoute une variable : il ne permet
+pas de comparer des modèles de tailles différentes. On utilise le
+<strong><span class="math inline">\(R^2\)</span> ajusté</strong>, l’<strong>AIC</strong> (plus petit = meilleur) ou, mieux, l’erreur de
+prédiction sur un jeu de <strong>validation</strong>.</li>
+<li>Deux modèles emboîtés se comparent avec un test de Fisher (<code>anova()</code>).</li>
+</ul>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="ch-graphiques.html#cb609-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modele_1, modele_2)</span></code></pre></div>
+<pre><code>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Model 1: Sales ~ Price
+#&gt; Model 2: Sales ~ Price + CompPrice + Advertising + ShelveLoc + Age + Income
+#&gt;   Res.Df  RSS Df Sum of Sq   F Pr(&gt;F)    
+#&gt; 1    398 2552                            
+#&gt; 2    392  407  6      2145 344 &lt;2e-16 ***
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="ch-graphiques.html#cb611-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(modele_1, modele_2)</span></code></pre></div>
+<pre><code>#&gt;          df  AIC
+#&gt; modele_1  3 1882
+#&gt; modele_2  9 1160</code></pre>
+</div>
+<div id="interactions" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Interactions<a href="ch-graphiques.html#interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>L’effet du prix dépend-il de l’emplacement en rayon ? Le terme
+<code>Price:ShelveLoc</code> (ou <code>Price * ShelveLoc</code>, qui inclut aussi les effets
+principaux) laisse la pente varier selon l’emplacement :</p>
+<div class="sourceCode" id="cb613"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb613-1"><a href="ch-graphiques.html#cb613-1" aria-hidden="true" tabindex="-1"></a>modele_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> ShelveLoc <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> Age <span class="sc">+</span> Income,</span>
+<span id="cb613-2"><a href="ch-graphiques.html#cb613-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Carseats)</span>
+<span id="cb613-3"><a href="ch-graphiques.html#cb613-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modele_2, modele_3)</span></code></pre></div>
+<pre><code>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Model 1: Sales ~ Price + CompPrice + Advertising + ShelveLoc + Age + Income
+#&gt; Model 2: Sales ~ Price * ShelveLoc + CompPrice + Advertising + Age + Income
+#&gt;   Res.Df RSS Df Sum of Sq    F Pr(&gt;F)
+#&gt; 1    392 407                         
+#&gt; 2    390 407  2     0.869 0.42   0.66</code></pre>
+<p>L’interaction n’est pas significative : l’effet du prix est le même quel que
+soit l’emplacement, ce que suggéraient les droites parallèles du graphique.</p>
+</div>
+<div id="évaluer-la-prédictibilité-cadre-pcs" class="section level3 hasAnchor" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Évaluer la prédictibilité (cadre PCS)<a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On mesure la qualité prédictive sur des données <strong>non utilisées</strong> pour
+l’ajustement, et on la compare à une <strong>référence</strong> naïve (prédire la moyenne).</p>
+<div class="sourceCode" id="cb615"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb615-1"><a href="ch-graphiques.html#cb615-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb615-2"><a href="ch-graphiques.html#cb615-2" aria-hidden="true" tabindex="-1"></a>indices_train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Carseats), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Carseats)))</span>
+<span id="cb615-3"><a href="ch-graphiques.html#cb615-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> Carseats[indices_train, ]</span>
+<span id="cb615-4"><a href="ch-graphiques.html#cb615-4" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> Carseats[<span class="sc">-</span>indices_train, ]</span>
+<span id="cb615-5"><a href="ch-graphiques.html#cb615-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb615-6"><a href="ch-graphiques.html#cb615-6" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(observe, predit) <span class="fu">sqrt</span>(<span class="fu">mean</span>((observe <span class="sc">-</span> predit)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb615-7"><a href="ch-graphiques.html#cb615-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb615-8"><a href="ch-graphiques.html#cb615-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price, <span class="at">data =</span> train)</span>
+<span id="cb615-9"><a href="ch-graphiques.html#cb615-9" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> ShelveLoc <span class="sc">+</span> Age <span class="sc">+</span> Income, <span class="at">data =</span> train)</span>
+<span id="cb615-10"><a href="ch-graphiques.html#cb615-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">reference =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">mean</span>(train<span class="sc">$</span>Sales)),</span>
+<span id="cb615-11"><a href="ch-graphiques.html#cb615-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">simple    =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">predict</span>(m1, test)),</span>
+<span id="cb615-12"><a href="ch-graphiques.html#cb615-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">multiple  =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">predict</span>(m2, test)))</span></code></pre></div>
+<pre><code>#&gt; reference    simple  multiple 
+#&gt;     2.971     2.638     1.059</code></pre>
+<p>La racine de l’erreur quadratique moyenne (RMSE) est en milliers d’unités. Le
+modèle multiple divise l’erreur par plus de deux. Changez la graine : le
+classement des modèles reste-t-il le même ? C’est une vérification de
+<strong>stabilité</strong>.</p>
+</div>
+</div>
+<div id="régression-logistique" class="section level2 hasAnchor" number="4.6">
+<h2><span class="header-section-number">4.6</span> Régression logistique<a href="ch-graphiques.html#régression-logistique" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="quand-la-réponse-est-binaire" class="section level3 hasAnchor" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Quand la réponse est binaire<a href="ch-graphiques.html#quand-la-réponse-est-binaire" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pour prédire une variable <strong>binaire</strong> (achète / n’achète pas, résilie / reste),
+la régression linéaire ne convient pas : elle peut prédire des valeurs hors de
+<span class="math inline">\([0, 1]\)</span>. La régression logistique modélise la <strong>probabilité</strong>
+<span class="math inline">\(p = P(Y = 1 \mid X)\)</span> via la fonction logit :</p>
+<p><span class="math display">\[\log \frac{p}{1 - p} = \beta_0 + \beta_1 X_1 + \dots + \beta_p X_p
+\quad \Longleftrightarrow \quad
+p = \frac{1}{1 + e^{-(\beta_0 + \beta_1 X_1 + \dots)}}\]</span></p>
+<p>Le rapport <span class="math inline">\(p / (1 - p)\)</span> est la <strong>cote</strong> (<em>odds</em>). Les coefficients sont
+estimés par <strong>maximum de vraisemblance</strong> avec <code>glm(..., family = binomial)</code>.</p>
+</div>
+<div id="exemple-choix-de-marque" class="section level3 hasAnchor" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Exemple : choix de marque<a href="ch-graphiques.html#exemple-choix-de-marque" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le jeu <code>OJ</code> (package <code>ISLR</code>) décrit 1 070 achats <strong>réels</strong> de jus d’orange
+dans cinq magasins américains, issus de données de caisse utilisées dans
+l’ouvrage <em>Business Analysis Using Regression</em> (Foster, Stine et Waterman,
+1998). À chaque achat, le client a choisi entre deux marques, Citrus Hill
+(<code>CH</code>) et Minute Maid (<code>MM</code>). Qu’est-ce qui fait choisir Minute Maid ? Ces
+données sont réutilisées au chapitre <a href="ch-acp-arbres.html#ch-acp-arbres">5</a>.</p>
+<table>
+<colgroup>
+<col width="43%" />
+<col width="56%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Variable</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Purchase</code></td>
+<td align="left">marque achetée : <code>CH</code> ou <code>MM</code> (<strong>la cible</strong>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>WeekofPurchase</code></td>
+<td align="left">semaine de l’achat (numéro de semaine)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>StoreID</code>, <code>STORE</code>, <code>Store7</code></td>
+<td align="left">magasin de l’achat (identifiant ; codage alternatif ; magasin n° 7 ou non)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>PriceCH</code>, <code>PriceMM</code></td>
+<td align="left">prix de référence de chaque marque ($)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>DiscCH</code>, <code>DiscMM</code></td>
+<td align="left">remise appliquée à chaque marque ($)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>SalePriceCH</code>, <code>SalePriceMM</code></td>
+<td align="left">prix de vente, après remise ($)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>PctDiscCH</code>, <code>PctDiscMM</code></td>
+<td align="left">remise en pourcentage du prix de référence</td>
+</tr>
+<tr class="even">
+<td align="left"><code>PriceDiff</code></td>
+<td align="left">prix de vente de MM moins prix de vente de CH ($)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ListPriceDiff</code></td>
+<td align="left">prix de référence de MM moins prix de référence de CH ($)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>SpecialCH</code>, <code>SpecialMM</code></td>
+<td align="left">mise en avant spéciale de la marque en magasin (1 = oui)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>LoyalCH</code></td>
+<td align="left">fidélité du client à CH, entre 0 et 1, calculée sur ses achats passés</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb617"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb617-1"><a href="ch-graphiques.html#cb617-1" aria-hidden="true" tabindex="-1"></a>oj <span class="ot">&lt;-</span> OJ <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">achat_mm =</span> <span class="fu">as.integer</span>(Purchase <span class="sc">==</span> <span class="st">&quot;MM&quot;</span>))</span>
+<span id="cb617-2"><a href="ch-graphiques.html#cb617-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(oj<span class="sc">$</span>achat_mm)</span></code></pre></div>
+<pre><code>#&gt; [1] 0.3897</code></pre>
+<div class="sourceCode" id="cb619"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb619-1"><a href="ch-graphiques.html#cb619-1" aria-hidden="true" tabindex="-1"></a>modele_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(achat_mm <span class="sc">~</span> PriceDiff <span class="sc">+</span> LoyalCH <span class="sc">+</span> SpecialMM <span class="sc">+</span> SpecialCH,</span>
+<span id="cb619-2"><a href="ch-graphiques.html#cb619-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> oj, <span class="at">family =</span> binomial)</span>
+<span id="cb619-3"><a href="ch-graphiques.html#cb619-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modele_log)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt; glm(formula = achat_mm ~ PriceDiff + LoyalCH + SpecialMM + SpecialCH, 
+#&gt;     family = binomial, data = oj)
+#&gt; 
+#&gt; Coefficients:
+#&gt;             Estimate Std. Error z value Pr(&gt;|z|)    
+#&gt; (Intercept)    3.241      0.237   13.66  &lt; 2e-16 ***
+#&gt; PriceDiff     -2.771      0.376   -7.37  1.7e-13 ***
+#&gt; LoyalCH       -6.354      0.386  -16.44  &lt; 2e-16 ***
+#&gt; SpecialMM      0.190      0.248    0.77     0.44    
+#&gt; SpecialCH     -0.394      0.261   -1.51     0.13    
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+#&gt; 
+#&gt; (Dispersion parameter for binomial family taken to be 1)
+#&gt; 
+#&gt;     Null deviance: 1430.85  on 1069  degrees of freedom
+#&gt; Residual deviance:  836.88  on 1065  degrees of freedom
+#&gt; AIC: 846.9
+#&gt; 
+#&gt; Number of Fisher Scoring iterations: 5</code></pre>
+<p>Les coefficients sont sur l’échelle du <strong>log de la cote</strong>. Leur exponentielle
+est un <strong>rapport de cotes</strong> (<em>odds ratio</em>, OR) : OR &gt; 1 augmente la cote
+d’acheter MM, OR &lt; 1 la diminue.</p>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="ch-graphiques.html#cb621-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(modele_log), <span class="fu">confint.default</span>(modele_log))), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt;                 OR  2.5 % 97.5 %
+#&gt; (Intercept) 25.548 16.050 40.668
+#&gt; PriceDiff    0.063  0.030  0.131
+#&gt; LoyalCH      0.002  0.001  0.004
+#&gt; SpecialMM    1.209  0.744  1.965
+#&gt; SpecialCH    0.674  0.405  1.124</code></pre>
+<ul>
+<li><code>PriceDiff</code> : quand MM devient plus cher que CH de 10 centimes, la cote
+d’acheter MM est multipliée par
+<span class="math inline">\(e^{0{,}1 \times \hat\beta} \approx\)</span> 0.76,
+soit une baisse d’environ
+24 %.</li>
+<li><code>LoyalCH</code> : la fidélité passée à CH est de loin le facteur le plus fort. En
+marketing, le comportement passé est souvent le meilleur prédicteur du
+comportement futur.</li>
+<li>Les mises en avant en magasin n’ont pas d’effet significatif ici.</li>
+</ul>
+</div>
+<div id="prédire-des-probabilités" class="section level3 hasAnchor" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Prédire des probabilités<a href="ch-graphiques.html#prédire-des-probabilités" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb623"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb623-1"><a href="ch-graphiques.html#cb623-1" aria-hidden="true" tabindex="-1"></a>nouveaux <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">PriceDiff =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.3</span>), <span class="at">LoyalCH =</span> <span class="fl">0.5</span>, <span class="at">SpecialMM =</span> <span class="dv">0</span>, <span class="at">SpecialCH =</span> <span class="dv">0</span>)</span>
+<span id="cb623-2"><a href="ch-graphiques.html#cb623-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modele_log, <span class="at">newdata =</span> nouveaux, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt;      1      2 
+#&gt; 0.6498 0.3170</code></pre>
+<p>Pour un client sans préférence (<code>LoyalCH = 0,5</code>), la probabilité d’acheter MM
+passe d’environ 65 % quand MM est 20 centimes moins cher à environ 32 % quand
+il est 30 centimes plus cher : une mesure de la <strong>sensibilité au prix</strong>.</p>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="ch-graphiques.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(oj, <span class="fu">aes</span>(<span class="at">x =</span> LoyalCH, <span class="at">y =</span> achat_mm)) <span class="sc">+</span></span>
+<span id="cb625-2"><a href="ch-graphiques.html#cb625-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb625-3"><a href="ch-graphiques.html#cb625-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> binomial), <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb625-4"><a href="ch-graphiques.html#cb625-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Fidélité à Citrus Hill&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Achat de Minute Maid (0/1)&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/glm-courbe-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Transformer les probabilités en décisions (avec un <strong>seuil</strong>) et évaluer un
+classifieur (matrice de confusion, courbe ROC) est l’objet du chapitre
+<a href="ch-acp-arbres.html#ch-acp-arbres">5</a>.</p>
+</div>
+</div>
+<div id="résumé-3" class="section level2 hasAnchor" number="4.7">
+<h2><span class="header-section-number">4.7</span> Résumé<a href="ch-graphiques.html#résumé-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="retenir">
+<ul>
+<li>Visualiser avant de modéliser (quartet d’Anscombe) ; un graphique a un
+message, des axes avec unités, une source.</li>
+<li>R de base : <code>plot()</code>, <code>hist()</code>, <code>boxplot()</code>, <code>barplot()</code> ; paramètres <code>col</code>,
+<code>pch</code>, <code>cex</code>, <code>main</code>, <code>xlab</code>… ; <code>par(mfrow = ...)</code>.</li>
+<li><code>ggplot2</code> : <code>ggplot(données) + geom_*(aes(...))</code> ; mappages <strong>dans</strong>
+<code>aes()</code>, constantes <strong>hors</strong> de <code>aes()</code> ; <code>position</code> des barres ;
+<code>facet_wrap(vars())</code> ; <code>scale_*()</code> ; <code>labs()</code>, <code>theme_*()</code> ; <code>ggsave()</code>.</li>
+<li>Régression linéaire : <code>lm(y ~ x1 + x2, data)</code>, <code>summary()</code>, <code>coef()</code>,
+<code>confint()</code>, <code>predict()</code>, diagnostics avec <code>plot(modele)</code>.</li>
+<li>Interpréter chaque coefficient « toutes choses égales par ailleurs » ;
+oublier une variable importante biaise les autres ; association <span class="math inline">\(\neq\)</span> causalité.</li>
+<li>Comparer les modèles sur des données de <strong>validation</strong> (RMSE), face à une
+référence naïve.</li>
+<li>Régression logistique : <code>glm(y ~ ..., family = binomial)</code> ; <code>exp(coef())</code>
+donne les rapports de cotes ; <code>predict(type = "response")</code> les probabilités.</li>
+</ul>
+</div>
+</div>
+<div id="exercices-3" class="section level2 hasAnchor" number="4.8">
+<h2><span class="header-section-number">4.8</span> Exercices<a href="ch-graphiques.html#exercices-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="exercice">
+<p><strong>Exercice 4.1 — <code>ggplot2</code> sur <code>rp2018</code>.</strong> On utilise le jeu <code>rp2018</code>
+(package <code>questionr</code>), qui contient des résultats du recensement de 2018 pour
+les communes de plus de 2 000 habitants, restreint à cinq départements :</p>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="ch-graphiques.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(rp2018)</span>
+<span id="cb626-2"><a href="ch-graphiques.html#cb626-2" aria-hidden="true" tabindex="-1"></a>rp <span class="ot">&lt;-</span> <span class="fu">filter</span>(rp2018, departement <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Oise&quot;</span>, <span class="st">&quot;Rhône&quot;</span>, <span class="st">&quot;Hauts-de-Seine&quot;</span>,</span>
+<span id="cb626-3"><a href="ch-graphiques.html#cb626-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&quot;Lozère&quot;</span>, <span class="st">&quot;Bouches-du-Rhône&quot;</span>))</span></code></pre></div>
+<p>Variables utiles : <code>commune</code> (nom), <code>departement</code>, <code>pop_tot</code> (population
+totale), <code>pop_cl</code> (taille de la commune en classes), et des pourcentages :
+<code>dipl_aucun</code> (sans diplôme), <code>dipl_sup</code> (diplômés du supérieur), <code>ouvr</code>
+(ouvriers), <code>cadres</code>, <code>chom</code> (chômeurs), <code>proprio</code> (propriétaires).</p>
+<ol style="list-style-type: decimal">
+<li>Faire un nuage de points croisant le pourcentage de sans diplôme
+(<code>dipl_aucun</code>) et le pourcentage d’ouvriers (<code>ouvr</code>).</li>
+<li>Refaire ce nuage avec des points rouges de transparence 0,2.</li>
+<li>Représenter la répartition du pourcentage de propriétaires (<code>proprio</code>)
+selon la taille de la commune (<code>pop_cl</code>) sous forme de boîtes à moustaches.</li>
+<li>Représenter le nombre de communes selon leur taille (<code>pop_cl</code>) sous forme de
+diagramme en bâtons.</li>
+<li>Faire le nuage de points croisant le pourcentage de sans diplôme et le
+pourcentage d’ouvriers, en faisant varier la couleur selon le département.</li>
+<li>Sur le même graphique, faire varier la taille des points selon la
+population totale (<code>pop_tot</code>).</li>
+<li>Toujours sur le même graphique, rendre les points transparents (opacité
+0,5).</li>
+<li>Représenter la répartition du pourcentage de propriétaires selon la taille
+de la commune sous forme de boîtes à moustaches, en faisant varier la
+couleur de remplissage (<code>fill</code>) selon le département.</li>
+<li>Représenter le nombre de communes selon leur taille sous forme de diagramme
+en bâtons empilés, avec une couleur différente par département.</li>
+<li>Modifier le paramètre <code>position</code> pour afficher les barres les unes à côté
+des autres.</li>
+<li>Modifier à nouveau <code>position</code> pour représenter, pour chaque taille de
+commune, les proportions de communes de chaque département.</li>
+<li>Faire un nuage de points du pourcentage de cadres (<code>cadres</code>, en abscisse) et
+du pourcentage de diplômés du supérieur (<code>dipl_sup</code>, en ordonnée), avec un
+graphique par département grâce à <code>facet_grid()</code>.</li>
+<li>Sur le même graphique, faire varier la taille des points selon la
+population totale et rendre les points transparents.</li>
+<li>Faire le nuage de points croisant le pourcentage de chômeurs (<code>chom</code>) et le
+pourcentage de sans diplôme, et y ajouter le nom des communes (<code>commune</code>),
+en rouge et en taille 2,5.</li>
+<li>Dans le graphique précédent, n’afficher que le nom des communes ayant plus
+de 15 % de chômeurs.</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="ch-graphiques.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr))                         <span class="co"># 1</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="ch-graphiques.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>)  <span class="co"># 2</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="ch-graphiques.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">y =</span> proprio))                        <span class="co"># 3</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-3.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="ch-graphiques.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl))                                         <span class="co"># 4</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-4.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="ch-graphiques.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement))    <span class="co"># 5</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-5.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="ch-graphiques.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement,     <span class="co"># 6</span></span>
+<span id="cb632-2"><a href="ch-graphiques.html#cb632-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> pop_tot))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-6.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="ch-graphiques.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement,     <span class="co"># 7</span></span>
+<span id="cb633-2"><a href="ch-graphiques.html#cb633-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> pop_tot), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-7.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="ch-graphiques.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">y =</span> proprio, <span class="at">fill =</span> departement))    <span class="co"># 8</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-8.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="ch-graphiques.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement))                     <span class="co"># 9</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-9.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="ch-graphiques.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="co"># 10</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-10.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="ch-graphiques.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)  <span class="co"># 11</span></span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-11.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="ch-graphiques.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span>                                                                   <span class="co"># 12</span></span>
+<span id="cb638-2"><a href="ch-graphiques.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cadres, <span class="at">y =</span> dipl_sup)) <span class="sc">+</span></span>
+<span id="cb638-3"><a href="ch-graphiques.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(departement))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-facettes-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="ch-graphiques.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span>                                                                   <span class="co"># 13</span></span>
+<span id="cb639-2"><a href="ch-graphiques.html#cb639-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cadres, <span class="at">y =</span> dipl_sup, <span class="at">size =</span> pop_tot), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb639-3"><a href="ch-graphiques.html#cb639-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(departement))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-facettes-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="ch-graphiques.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp, <span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> chom)) <span class="sc">+</span>                                    <span class="co"># 14</span></span>
+<span id="cb640-2"><a href="ch-graphiques.html#cb640-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb640-3"><a href="ch-graphiques.html#cb640-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> commune), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-texte-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="ch-graphiques.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp, <span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> chom)) <span class="sc">+</span>                                    <span class="co"># 15</span></span>
+<span id="cb641-2"><a href="ch-graphiques.html#cb641-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb641-3"><a href="ch-graphiques.html#cb641-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">filter</span>(rp, chom <span class="sc">&gt;</span> <span class="dv">15</span>), <span class="fu">aes</span>(<span class="at">label =</span> commune),</span>
+<span id="cb641-4"><a href="ch-graphiques.html#cb641-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-texte-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Au graphique 14, les étiquettes se superposent et deviennent illisibles :
+c’est pourquoi on n’affiche, en général, que les noms des points remarquables
+(graphique 15).</p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 4.2 — Tableau de bord de la boutique.</strong> Avec les tables de la
+boutique, produire :</p>
+<ol style="list-style-type: decimal">
+<li>le chiffre d’affaires hebdomadaire de l’année (<code>floor_date(date, "week")</code>) ;</li>
+<li>le panier moyen par catégorie et par statut promo, en barres côte à côte ;</li>
+<li>la part des commandes en promotion par mois, en courbe ;</li>
+<li>un graphique au choix, soigné (titre-message, axes, source), prêt à être
+présenté à la direction.</li>
+</ol>
+</div>
+<details><summary>Solution (questions 1 à 3)</summary>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="ch-graphiques.html#cb642-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb642-2"><a href="ch-graphiques.html#cb642-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">semaine =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;week&quot;</span>, <span class="at">week_start =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb642-3"><a href="ch-graphiques.html#cb642-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(semaine) <span class="sc">|&gt;</span></span>
+<span id="cb642-4"><a href="ch-graphiques.html#cb642-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ca =</span> <span class="fu">sum</span>(montant)) <span class="sc">|&gt;</span></span>
+<span id="cb642-5"><a href="ch-graphiques.html#cb642-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(semaine, ca)) <span class="sc">+</span></span>
+<span id="cb642-6"><a href="ch-graphiques.html#cb642-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="ch-graphiques.html#cb643-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb643-2"><a href="ch-graphiques.html#cb643-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorie, promo) <span class="sc">|&gt;</span></span>
+<span id="cb643-3"><a href="ch-graphiques.html#cb643-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">panier_moyen =</span> <span class="fu">mean</span>(montant), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb643-4"><a href="ch-graphiques.html#cb643-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categorie, <span class="at">y =</span> panier_moyen, <span class="at">fill =</span> promo)) <span class="sc">+</span></span>
+<span id="cb643-5"><a href="ch-graphiques.html#cb643-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-2-2.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="ch-graphiques.html#cb644-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb644-2"><a href="ch-graphiques.html#cb644-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb644-3"><a href="ch-graphiques.html#cb644-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois) <span class="sc">|&gt;</span></span>
+<span id="cb644-4"><a href="ch-graphiques.html#cb644-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">part_promo =</span> <span class="fu">mean</span>(promo)) <span class="sc">|&gt;</span></span>
+<span id="cb644-5"><a href="ch-graphiques.html#cb644-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mois, part_promo)) <span class="sc">+</span></span>
+<span id="cb644-6"><a href="ch-graphiques.html#cb644-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb644-7"><a href="ch-graphiques.html#cb644-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-2-3.png" width="80%" style="display: block; margin: auto;" /></p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 4.3 — Régression sur <code>Carseats</code>.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Ajuster <code>Sales ~ Advertising</code> puis ajouter <code>Price</code>, <code>CompPrice</code> et
+<code>ShelveLoc</code>. Comment évolue le coefficient de <code>Advertising</code> ?</li>
+<li>Prédire les ventes d’un magasin avec <code>Price = 110</code>, <code>CompPrice = 125</code>,
+<code>ShelveLoc = "Medium"</code> et un budget publicitaire de 0, 10 puis 20 k$.</li>
+<li>Les magasins hors des États-Unis (<code>US = "No"</code>) ont-ils un budget
+publicitaire différent ? Utiliser un graphique et un test.</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="ch-graphiques.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising, <span class="at">data =</span> Carseats))</span></code></pre></div>
+<pre><code>#&gt; (Intercept) Advertising 
+#&gt;      6.7370      0.1144</code></pre>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="ch-graphiques.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising <span class="sc">+</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> ShelveLoc, <span class="at">data =</span> Carseats))</span></code></pre></div>
+<pre><code>#&gt;     (Intercept)     Advertising           Price       CompPrice   ShelveLocGood 
+#&gt;         3.84443         0.12028        -0.09359         0.09374         4.72932 
+#&gt; ShelveLocMedium 
+#&gt;         1.77276</code></pre>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="ch-graphiques.html#cb649-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising <span class="sc">+</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> ShelveLoc, <span class="at">data =</span> Carseats)</span>
+<span id="cb649-2"><a href="ch-graphiques.html#cb649-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Advertising =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">Price =</span> <span class="dv">110</span>,</span>
+<span id="cb649-3"><a href="ch-graphiques.html#cb649-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">CompPrice =</span> <span class="dv">125</span>, <span class="at">ShelveLoc =</span> <span class="st">&quot;Medium&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt;     1     2     3 
+#&gt; 7.040 8.243 9.446</code></pre>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="ch-graphiques.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x =</span> US, <span class="at">y =</span> Advertising)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-3-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="ch-graphiques.html#cb652-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Advertising <span class="sc">~</span> US, <span class="at">data =</span> Carseats)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Wilcoxon rank sum test with continuity correction
+#&gt; 
+#&gt; data:  Advertising by US
+#&gt; W = 2085, p-value &lt;2e-16
+#&gt; alternative hypothesis: true location shift is not equal to 0</code></pre>
+<p>Hors des États-Unis, la grande majorité des magasins (125 sur 142) n’a aucun
+budget publicitaire.</p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 4.4 — Poids de naissance.</strong> Avec <code>phbirths</code>
+(<code>datasets/phbirths.dat</code>), modéliser le poids de naissance (<code>grams</code>) en
+fonction de la durée de gestation, puis ajouter le tabagisme de la mère
+(<code>smoke</code>). Interpréter le coefficient de <code>smoke</code>, puis ajuster une régression
+logistique du faible poids (moins de 2 500 g).</p>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="ch-graphiques.html#cb654-1" aria-hidden="true" tabindex="-1"></a>phbirths <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;../datasets/phbirths.dat&quot;</span>)</span>
+<span id="cb654-2"><a href="ch-graphiques.html#cb654-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(grams <span class="sc">~</span> gestate <span class="sc">+</span> smoke, <span class="at">data =</span> phbirths))</span></code></pre></div>
+<pre><code>#&gt; (Intercept)     gestate   smokeTRUE 
+#&gt;     -3027.0       162.0      -190.6</code></pre>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="ch-graphiques.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(<span class="fu">I</span>(grams <span class="sc">&lt;</span> <span class="dv">2500</span>) <span class="sc">~</span> gestate <span class="sc">+</span> smoke, <span class="at">data =</span> phbirths, <span class="at">family =</span> binomial) <span class="sc">|&gt;</span></span>
+<span id="cb656-2"><a href="ch-graphiques.html#cb656-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">exp</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt; (Intercept)     gestate   smokeTRUE 
+#&gt;   1.061e+12   4.490e-01   2.349e+00</code></pre>
+<p>À durée de gestation égale, les bébés de mères fumeuses pèsent environ 190 g
+de moins en moyenne.</p>
+</details>
+<p><strong>Pour aller plus loin</strong></p>
+<ul>
+<li>J. Barnier, <em>Introduction à R et au tidyverse</em>, chapitre « Visualiser avec
+ggplot2 ».</li>
+<li>H. Wickham, <em>ggplot2: Elegant Graphics for Data Analysis</em>, 3e éd.
+(<a href="https://ggplot2-book.org">ggplot2-book.org</a>).</li>
+<li>G. James et al., <em>An Introduction to Statistical Learning</em>, chapitres 3
+(régression linéaire) et 4 (classification), en accès libre ; les jeux
+<code>Carseats</code> et <code>OJ</code> en sont issus.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-manipulation.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch-acp-arbres.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["notes-de-cours-data-science-sous-R.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

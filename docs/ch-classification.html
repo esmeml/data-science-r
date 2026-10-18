@@ -1,0 +1,1352 @@
+<!DOCTYPE html>
+<html lang="fr" xml:lang="fr">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 6 Classification automatique, éthique et R Shiny | Data Science sous R</title>
+  <meta name="description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 6 Classification automatique, éthique et R Shiny | Data Science sous R" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 6 Classification automatique, éthique et R Shiny | Data Science sous R" />
+  
+  <meta name="twitter:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
+  
+
+<meta name="author" content="ESME — 2026-2027" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="ch-acp-arbres.html"/>
+<link rel="next" href="ch-projet.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">Data Science sous R</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Avant-propos</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#objectifs-du-module"><i class="fa fa-check"></i>Objectifs du module</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#comment-utiliser-ces-notes"><i class="fa fa-check"></i>Comment utiliser ces notes</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#versions-web-et-pdf"><i class="fa fa-check"></i>Versions web et PDF</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#logiciels-et-packages"><i class="fa fa-check"></i>Logiciels et packages</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#les-données-du-cours"><i class="fa fa-check"></i>Les données du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#bibliographie"><i class="fa fa-check"></i>Bibliographie</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="ch-science.html"><a href="ch-science.html"><i class="fa fa-check"></i><b>1</b> Introduction à la science des données</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="ch-science.html"><a href="ch-science.html#quest-ce-que-la-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que la science des données ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="ch-science.html"><a href="ch-science.html#une-pratique-ancienne-un-nom-récent"><i class="fa fa-check"></i><b>1.1.1</b> Une pratique ancienne, un nom récent</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ch-science.html"><a href="ch-science.html#définition"><i class="fa fa-check"></i><b>1.1.2</b> Définition</a></li>
+<li class="chapter" data-level="1.1.3" data-path="ch-science.html"><a href="ch-science.html#quatre-grands-types-danalyse"><i class="fa fa-check"></i><b>1.1.3</b> Quatre grands types d’analyse</a></li>
+<li class="chapter" data-level="1.1.4" data-path="ch-science.html"><a href="ch-science.html#la-science-des-données-en-marketing"><i class="fa fa-check"></i><b>1.1.4</b> La science des données en marketing</a></li>
+<li class="chapter" data-level="1.1.5" data-path="ch-science.html"><a href="ch-science.html#les-projets-réels-sont-exigeants"><i class="fa fa-check"></i><b>1.1.5</b> Les projets réels sont exigeants</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="ch-science.html"><a href="ch-science.html#science-des-données-véridique"><i class="fa fa-check"></i><b>1.2</b> Science des données véridique</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="ch-science.html"><a href="ch-science.html#les-trois-mondes"><i class="fa fa-check"></i><b>1.2.1</b> Les trois mondes</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch-science.html"><a href="ch-science.html#pensée-critique-les-bonnes-questions-à-se-poser"><i class="fa fa-check"></i><b>1.2.2</b> Pensée critique : les bonnes questions à se poser</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch-science.html"><a href="ch-science.html#se-méfier-des-biais"><i class="fa fa-check"></i><b>1.2.3</b> Se méfier des biais</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ch-science.html"><a href="ch-science.html#étude-de-cas-les-feux-de-brousse-australiens-20192020"><i class="fa fa-check"></i><b>1.2.4</b> Étude de cas : les feux de brousse australiens (2019–2020)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="ch-science.html"><a href="ch-science.html#le-cadre-pcs-prédictibilité-calculabilité-stabilité"><i class="fa fa-check"></i><b>1.3</b> Le cadre PCS : prédictibilité, calculabilité, stabilité</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="ch-science.html"><a href="ch-science.html#prédictibilité"><i class="fa fa-check"></i><b>1.3.1</b> Prédictibilité</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch-science.html"><a href="ch-science.html#calculabilité"><i class="fa fa-check"></i><b>1.3.2</b> Calculabilité</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ch-science.html"><a href="ch-science.html#stabilité"><i class="fa fa-check"></i><b>1.3.3</b> Stabilité</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="ch-science.html"><a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-données"><i class="fa fa-check"></i><b>1.4</b> Le cycle de vie d’un projet de science des données</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="ch-science.html"><a href="ch-science.html#le-dslc"><i class="fa fa-check"></i><b>1.4.1</b> Le DSLC</a></li>
+<li class="chapter" data-level="1.4.2" data-path="ch-science.html"><a href="ch-science.html#crisp-dm"><i class="fa fa-check"></i><b>1.4.2</b> CRISP-DM</a></li>
+<li class="chapter" data-level="1.4.3" data-path="ch-science.html"><a href="ch-science.html#gouvernance-des-données"><i class="fa fa-check"></i><b>1.4.3</b> Gouvernance des données</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="ch-science.html"><a href="ch-science.html#résumé"><i class="fa fa-check"></i><b>1.5</b> Résumé</a></li>
+<li class="chapter" data-level="1.6" data-path="ch-science.html"><a href="ch-science.html#exercices"><i class="fa fa-check"></i><b>1.6</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="ch-langage-r.html"><a href="ch-langage-r.html"><i class="fa fa-check"></i><b>2</b> Introduction au langage R</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-un-peu-dhistoire"><i class="fa fa-check"></i><b>2.1</b> R : un peu d’histoire</a></li>
+<li class="chapter" data-level="2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#introduction-à-rstudio"><i class="fa fa-check"></i><b>2.2</b> Introduction à RStudio</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-et-rstudio-le-moteur-et-le-tableau-de-bord"><i class="fa fa-check"></i><b>2.2.1</b> R et RStudio : le moteur et le tableau de bord</a></li>
+<li class="chapter" data-level="2.2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-quatre-panneaux"><i class="fa fa-check"></i><b>2.2.2</b> Les quatre panneaux</a></li>
+<li class="chapter" data-level="2.2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#console-ou-script"><i class="fa fa-check"></i><b>2.2.3</b> Console ou script ?</a></li>
+<li class="chapter" data-level="2.2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-projets-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Les projets RStudio</a></li>
+<li class="chapter" data-level="2.2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-notebooks-r-markdown-et-quarto"><i class="fa fa-check"></i><b>2.2.5</b> Les notebooks : R Markdown et Quarto</a></li>
+<li class="chapter" data-level="2.2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#longlet-environnement"><i class="fa fa-check"></i><b>2.2.6</b> L’onglet Environnement</a></li>
+<li class="chapter" data-level="2.2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-du-code-efficacement"><i class="fa fa-check"></i><b>2.2.7</b> Écrire du code efficacement</a></li>
+<li class="chapter" data-level="2.2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#réglages-recommandés"><i class="fa fa-check"></i><b>2.2.8</b> Réglages recommandés</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#premiers-pas-r-comme-calculatrice"><i class="fa fa-check"></i><b>2.3</b> Premiers pas : R comme calculatrice</a></li>
+<li class="chapter" data-level="2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#variables-et-assignation"><i class="fa fa-check"></i><b>2.4</b> Variables et assignation</a></li>
+<li class="chapter" data-level="2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#types-de-données"><i class="fa fa-check"></i><b>2.5</b> Types de données</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-types-de-base"><i class="fa fa-check"></i><b>2.5.1</b> Les types de base</a></li>
+<li class="chapter" data-level="2.5.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#conversions"><i class="fa fa-check"></i><b>2.5.2</b> Conversions</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#valeurs-spéciales"><i class="fa fa-check"></i><b>2.5.3</b> Valeurs spéciales</a></li>
+</ul></li>
+<li class="chapter" data-level="2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-de-données"><i class="fa fa-check"></i><b>2.6</b> Structures de données</a>
+<ul>
+<li class="chapter" data-level="2.6.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs"><i class="fa fa-check"></i><b>2.6.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.6.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#facteurs"><i class="fa fa-check"></i><b>2.6.2</b> Facteurs</a></li>
+<li class="chapter" data-level="2.6.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-tableaux"><i class="fa fa-check"></i><b>2.6.3</b> Matrices et tableaux</a></li>
+<li class="chapter" data-level="2.6.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes"><i class="fa fa-check"></i><b>2.6.4</b> Listes</a></li>
+<li class="chapter" data-level="2.6.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#data-frames"><i class="fa fa-check"></i><b>2.6.5</b> Data frames</a></li>
+</ul></li>
+<li class="chapter" data-level="2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs"><i class="fa fa-check"></i><b>2.7</b> Opérateurs</a>
+<ul>
+<li class="chapter" data-level="2.7.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-arithmétiques"><i class="fa fa-check"></i><b>2.7.1</b> Opérateurs arithmétiques</a></li>
+<li class="chapter" data-level="2.7.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-de-comparaison"><i class="fa fa-check"></i><b>2.7.2</b> Opérateurs de comparaison</a></li>
+<li class="chapter" data-level="2.7.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-logiques"><i class="fa fa-check"></i><b>2.7.3</b> Opérateurs logiques</a></li>
+</ul></li>
+<li class="chapter" data-level="2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#accéder-aux-éléments-et-les-modifier"><i class="fa fa-check"></i><b>2.8</b> Accéder aux éléments et les modifier</a>
+<ul>
+<li class="chapter" data-level="2.8.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs-1"><i class="fa fa-check"></i><b>2.8.1</b> Vecteurs</a></li>
+<li class="chapter" data-level="2.8.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-data-frames-ligne-colonne"><i class="fa fa-check"></i><b>2.8.2</b> Matrices et data frames : <code>[ligne, colonne]</code></a></li>
+<li class="chapter" data-level="2.8.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes-contre"><i class="fa fa-check"></i><b>2.8.3</b> Listes : <code>[ ]</code> contre <code>[[ ]]</code></a></li>
+</ul></li>
+<li class="chapter" data-level="2.9" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-algorithmiques"><i class="fa fa-check"></i><b>2.9</b> Structures algorithmiques</a>
+<ul>
+<li class="chapter" data-level="2.9.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#branchements-conditionnels-if-else"><i class="fa fa-check"></i><b>2.9.1</b> Branchements conditionnels : <code>if</code>, <code>else</code></a></li>
+<li class="chapter" data-level="2.9.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-for"><i class="fa fa-check"></i><b>2.9.2</b> Boucles <code>for</code></a></li>
+<li class="chapter" data-level="2.9.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucles-while-et-repeat"><i class="fa fa-check"></i><b>2.9.3</b> Boucles <code>while</code> et <code>repeat</code></a></li>
+<li class="chapter" data-level="2.9.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#boucle-ou-vectorisation"><i class="fa fa-check"></i><b>2.9.4</b> Boucle ou vectorisation ?</a></li>
+</ul></li>
+<li class="chapter" data-level="2.10" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-programmation-modulaire"><i class="fa fa-check"></i><b>2.10</b> Fonctions et programmation modulaire</a>
+<ul>
+<li class="chapter" data-level="2.10.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-une-fonction"><i class="fa fa-check"></i><b>2.10.1</b> Écrire une fonction</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-procédures"><i class="fa fa-check"></i><b>2.10.2</b> Fonctions et procédures</a></li>
+<li class="chapter" data-level="2.10.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#appliquer-une-fonction-à-chaque-élément"><i class="fa fa-check"></i><b>2.10.3</b> Appliquer une fonction à chaque élément</a></li>
+<li class="chapter" data-level="2.10.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#découper-un-programme-en-modules"><i class="fa fa-check"></i><b>2.10.4</b> Découper un programme en modules</a></li>
+</ul></li>
+<li class="chapter" data-level="2.11" data-path="ch-langage-r.html"><a href="ch-langage-r.html#packages-et-aide"><i class="fa fa-check"></i><b>2.11</b> Packages et aide</a>
+<ul>
+<li class="chapter" data-level="2.11.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#installer-et-charger-un-package"><i class="fa fa-check"></i><b>2.11.1</b> Installer et charger un package</a></li>
+<li class="chapter" data-level="2.11.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#trouver-de-laide"><i class="fa fa-check"></i><b>2.11.2</b> Trouver de l’aide</a></li>
+</ul></li>
+<li class="chapter" data-level="2.12" data-path="ch-langage-r.html"><a href="ch-langage-r.html#résumé-1"><i class="fa fa-check"></i><b>2.12</b> Résumé</a></li>
+<li class="chapter" data-level="2.13" data-path="ch-langage-r.html"><a href="ch-langage-r.html#exercices-1"><i class="fa fa-check"></i><b>2.13</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="ch-manipulation.html"><a href="ch-manipulation.html"><i class="fa fa-check"></i><b>3</b> Manipulation de données avec R</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#les-données-de-ce-chapitre"><i class="fa fa-check"></i><b>3.1</b> Les données de ce chapitre</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#la-boutique-en-ligne-données-simulées"><i class="fa fa-check"></i><b>3.1.1</b> La boutique en ligne (données simulées)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>3.2</b> Importer et exporter des données</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#le-répertoire-de-travail"><i class="fa fa-check"></i><b>3.2.1</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="3.2.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#lire-un-fichier-csv"><i class="fa fa-check"></i><b>3.2.2</b> Lire un fichier CSV</a></li>
+<li class="chapter" data-level="3.2.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#autres-formats"><i class="fa fa-check"></i><b>3.2.3</b> Autres formats</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#écrire-des-données"><i class="fa fa-check"></i><b>3.2.4</b> Écrire des données</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-intégrées-aux-packages"><i class="fa fa-check"></i><b>3.2.5</b> Données intégrées aux packages</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#structure-dun-tableau-de-données"><i class="fa fa-check"></i><b>3.3</b> Structure d’un tableau de données</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-univariée"><i class="fa fa-check"></i><b>3.4</b> Analyse univariée</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Variable quantitative</a></li>
+<li class="chapter" data-level="3.4.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-qualitative"><i class="fa fa-check"></i><b>3.4.2</b> Variable qualitative</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-bivariée"><i class="fa fa-check"></i><b>3.5</b> Analyse bivariée</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-qualitatives-un-test-ab"><i class="fa fa-check"></i><b>3.5.1</b> Deux variables qualitatives : un test A/B</a></li>
+<li class="chapter" data-level="3.5.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#une-variable-quantitative-et-une-qualitative"><i class="fa fa-check"></i><b>3.5.2</b> Une variable quantitative et une qualitative</a></li>
+<li class="chapter" data-level="3.5.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>3.5.3</b> Deux variables quantitatives</a></li>
+</ul></li>
+<li class="chapter" data-level="3.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#manipuler-des-données-avec-dplyr"><i class="fa fa-check"></i><b>3.6</b> Manipuler des données avec <code>dplyr</code></a>
+<ul>
+<li class="chapter" data-level="3.6.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#filtrer-les-lignes"><i class="fa fa-check"></i><b>3.6.1</b> Filtrer les lignes</a></li>
+<li class="chapter" data-level="3.6.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#trier"><i class="fa fa-check"></i><b>3.6.2</b> Trier</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#sélectionner-renommer-et-réordonner-des-colonnes"><i class="fa fa-check"></i><b>3.6.3</b> Sélectionner, renommer et réordonner des colonnes</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#créer-des-variables"><i class="fa fa-check"></i><b>3.6.4</b> Créer des variables</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#enchaîner-les-opérations-le-pipe"><i class="fa fa-check"></i><b>3.6.5</b> Enchaîner les opérations : le <em>pipe</em></a></li>
+<li class="chapter" data-level="3.6.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumer-par-groupe"><i class="fa fa-check"></i><b>3.6.6</b> Résumer par groupe</a></li>
+<li class="chapter" data-level="3.6.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exemple-marketing-les-indicateurs-rfm"><i class="fa fa-check"></i><b>3.6.7</b> Exemple marketing : les indicateurs RFM</a></li>
+<li class="chapter" data-level="3.6.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#décaler-des-valeurs-lag-et-lead"><i class="fa fa-check"></i><b>3.6.8</b> Décaler des valeurs : <code>lag()</code> et <code>lead()</code></a></li>
+<li class="chapter" data-level="3.6.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#concaténer-des-tables"><i class="fa fa-check"></i><b>3.6.9</b> Concaténer des tables</a></li>
+<li class="chapter" data-level="3.6.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#joindre-des-tables"><i class="fa fa-check"></i><b>3.6.10</b> Joindre des tables</a></li>
+</ul></li>
+<li class="chapter" data-level="3.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-rangées-tidy-data"><i class="fa fa-check"></i><b>3.7</b> Données rangées (<em>tidy data</em>)</a></li>
+<li class="chapter" data-level="3.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#valeurs-manquantes"><i class="fa fa-check"></i><b>3.8</b> Valeurs manquantes</a></li>
+<li class="chapter" data-level="3.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#générer-des-données"><i class="fa fa-check"></i><b>3.9</b> Générer des données</a>
+<ul>
+<li class="chapter" data-level="3.9.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#séquences-régulières"><i class="fa fa-check"></i><b>3.9.1</b> Séquences régulières</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#tirages-aléatoires"><i class="fa fa-check"></i><b>3.9.2</b> Tirages aléatoires</a></li>
+</ul></li>
+<li class="chapter" data-level="3.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumé-2"><i class="fa fa-check"></i><b>3.10</b> Résumé</a></li>
+<li class="chapter" data-level="3.11" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exercices-2"><i class="fa fa-check"></i><b>3.11</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="ch-graphiques.html"><a href="ch-graphiques.html"><i class="fa fa-check"></i><b>4</b> Représentations graphiques et régression</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#pourquoi-visualiser"><i class="fa fa-check"></i><b>4.1</b> Pourquoi visualiser ?</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#principes-dun-bon-graphique"><i class="fa fa-check"></i><b>4.1.1</b> Principes d’un bon graphique</a></li>
+<li class="chapter" data-level="4.1.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#choisir-un-graphique"><i class="fa fa-check"></i><b>4.1.2</b> Choisir un graphique</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-r-de-base"><i class="fa fa-check"></i><b>4.2</b> Graphiques avec R de base</a></li>
+<li class="chapter" data-level="4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#graphiques-avec-ggplot2"><i class="fa fa-check"></i><b>4.3</b> Graphiques avec <code>ggplot2</code></a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#initialisation-et-premier-geom"><i class="fa fa-check"></i><b>4.3.1</b> Initialisation et premier <em>geom</em></a></li>
+<li class="chapter" data-level="4.3.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#les-principaux-geoms"><i class="fa fa-check"></i><b>4.3.2</b> Les principaux <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#mappages"><i class="fa fa-check"></i><b>4.3.3</b> Mappages</a></li>
+<li class="chapter" data-level="4.3.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#positions-des-barres"><i class="fa fa-check"></i><b>4.3.4</b> Positions des barres</a></li>
+<li class="chapter" data-level="4.3.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#superposer-plusieurs-geoms"><i class="fa fa-check"></i><b>4.3.5</b> Superposer plusieurs <em>geoms</em></a></li>
+<li class="chapter" data-level="4.3.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#faceting"><i class="fa fa-check"></i><b>4.3.6</b> <em>Faceting</em></a></li>
+<li class="chapter" data-level="4.3.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#scales"><i class="fa fa-check"></i><b>4.3.7</b> <em>Scales</em></a></li>
+<li class="chapter" data-level="4.3.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#titres-et-thèmes"><i class="fa fa-check"></i><b>4.3.8</b> Titres et thèmes</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>4.4</b> Régression linéaire simple</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle"><i class="fa fa-check"></i><b>4.4.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#ajuster-le-modèle-avec-lm"><i class="fa fa-check"></i><b>4.4.2</b> Ajuster le modèle avec <code>lm()</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire"><i class="fa fa-check"></i><b>4.4.3</b> Prédire</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#vérifier-les-hypothèses-les-résidus"><i class="fa fa-check"></i><b>4.4.4</b> Vérifier les hypothèses : les résidus</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#quand-la-réponse-est-binaire"><i class="fa fa-check"></i><b>4.6.1</b> Quand la réponse est binaire</a></li>
+<li class="chapter" data-level="4.6.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exemple-choix-de-marque"><i class="fa fa-check"></i><b>4.6.2</b> Exemple : choix de marque</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire-des-probabilités"><i class="fa fa-check"></i><b>4.6.3</b> Prédire des probabilités</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#résumé-3"><i class="fa fa-check"></i><b>4.7</b> Résumé</a></li>
+<li class="chapter" data-level="4.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exercices-3"><i class="fa fa-check"></i><b>4.8</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html"><i class="fa fa-check"></i><b>5</b> Analyse en composantes principales et arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#analyse-en-composantes-principales-acp"><i class="fa fa-check"></i><b>5.1</b> Analyse en composantes principales (ACP)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#le-problème"><i class="fa fa-check"></i><b>5.1.1</b> Le problème</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe-mathématique"><i class="fa fa-check"></i><b>5.1.2</b> Principe mathématique</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-1-le-décathlon"><i class="fa fa-check"></i><b>5.1.3</b> Exemple 1 : le décathlon</a></li>
+<li class="chapter" data-level="5.1.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-2-le-comportement-des-clients-de-la-boutique"><i class="fa fa-check"></i><b>5.1.4</b> Exemple 2 : le comportement des clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#arbres-de-décision"><i class="fa fa-check"></i><b>5.2</b> Arbres de décision</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#les-données-le-choix-dune-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.2.2</b> Les données : le choix d’une marque de jus d’orange</a></li>
+<li class="chapter" data-level="5.2.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#construire-larbre"><i class="fa fa-check"></i><b>5.2.3</b> Construire l’arbre</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#élaguer-larbre"><i class="fa fa-check"></i><b>5.2.4</b> Élaguer l’arbre</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#prédire-1"><i class="fa fa-check"></i><b>5.2.5</b> Prédire</a></li>
+<li class="chapter" data-level="5.2.6" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#matrice-de-confusion"><i class="fa fa-check"></i><b>5.2.6</b> Matrice de confusion</a></li>
+<li class="chapter" data-level="5.2.7" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#courbe-roc-et-auc"><i class="fa fa-check"></i><b>5.2.7</b> Courbe ROC et AUC</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#résumé-4"><i class="fa fa-check"></i><b>5.3</b> Résumé</a></li>
+<li class="chapter" data-level="5.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exercices-4"><i class="fa fa-check"></i><b>5.4</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="ch-classification.html"><a href="ch-classification.html"><i class="fa fa-check"></i><b>6</b> Classification automatique, éthique et R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="ch-classification.html"><a href="ch-classification.html#classification-non-supervisée"><i class="fa fa-check"></i><b>6.1</b> Classification non supervisée</a>
+<ul>
+<li class="chapter" data-level="6.1.1" data-path="ch-classification.html"><a href="ch-classification.html#supervisé-ou-non-supervisé"><i class="fa fa-check"></i><b>6.1.1</b> Supervisé ou non supervisé ?</a></li>
+<li class="chapter" data-level="6.1.2" data-path="ch-classification.html"><a href="ch-classification.html#distances-et-standardisation"><i class="fa fa-check"></i><b>6.1.2</b> Distances et standardisation</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch-classification.html"><a href="ch-classification.html#les-données-les-clients-de-la-boutique"><i class="fa fa-check"></i><b>6.1.3</b> Les données : les clients de la boutique</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="ch-classification.html"><a href="ch-classification.html#les-k-moyennes-k-means"><i class="fa fa-check"></i><b>6.2</b> Les k-moyennes (<em>k-means</em>)</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme"><i class="fa fa-check"></i><b>6.2.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-classification.html"><a href="ch-classification.html#décomposition-de-linertie"><i class="fa fa-check"></i><b>6.2.2</b> Décomposition de l’inertie</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="ch-classification.html"><a href="ch-classification.html#classification-ascendante-hiérarchique-cah"><i class="fa fa-check"></i><b>6.3</b> Classification ascendante hiérarchique (CAH)</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme-1"><i class="fa fa-check"></i><b>6.3.1</b> Algorithme</a></li>
+<li class="chapter" data-level="6.3.2" data-path="ch-classification.html"><a href="ch-classification.html#k-moyennes-ou-cah"><i class="fa fa-check"></i><b>6.3.2</b> k-moyennes ou CAH ?</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="ch-classification.html"><a href="ch-classification.html#choisir-le-nombre-de-classes"><i class="fa fa-check"></i><b>6.4</b> Choisir le nombre de classes</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="ch-classification.html"><a href="ch-classification.html#méthode-du-coude"><i class="fa fa-check"></i><b>6.4.1</b> Méthode du coude</a></li>
+<li class="chapter" data-level="6.4.2" data-path="ch-classification.html"><a href="ch-classification.html#indice-de-silhouette"><i class="fa fa-check"></i><b>6.4.2</b> Indice de silhouette</a></li>
+<li class="chapter" data-level="6.4.3" data-path="ch-classification.html"><a href="ch-classification.html#le-saut-dinertie-du-dendrogramme"><i class="fa fa-check"></i><b>6.4.3</b> Le saut d’inertie du dendrogramme</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="ch-classification.html"><a href="ch-classification.html#décrire-les-classes"><i class="fa fa-check"></i><b>6.5</b> Décrire les classes</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="ch-classification.html"><a href="ch-classification.html#moyennes-par-classe"><i class="fa fa-check"></i><b>6.5.1</b> Moyennes par classe</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-classification.html"><a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée"><i class="fa fa-check"></i><b>6.5.2</b> Les classes retrouvent-elles la structure simulée ?</a></li>
+<li class="chapter" data-level="6.5.3" data-path="ch-classification.html"><a href="ch-classification.html#acp-puis-cah-la-fonction-hcpc"><i class="fa fa-check"></i><b>6.5.3</b> ACP puis CAH : la fonction <code>HCPC()</code></a></li>
+</ul></li>
+<li class="chapter" data-level="6.6" data-path="ch-classification.html"><a href="ch-classification.html#léthique-dans-la-science-des-données"><i class="fa fa-check"></i><b>6.6</b> L’éthique dans la science des données</a>
+<ul>
+<li class="chapter" data-level="6.6.1" data-path="ch-classification.html"><a href="ch-classification.html#quelques-cas-marquants"><i class="fa fa-check"></i><b>6.6.1</b> Quelques cas marquants</a></li>
+<li class="chapter" data-level="6.6.2" data-path="ch-classification.html"><a href="ch-classification.html#enjeux-propres-au-marketing"><i class="fa fa-check"></i><b>6.6.2</b> Enjeux propres au marketing</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-classification.html"><a href="ch-classification.html#sources-de-problèmes-éthiques"><i class="fa fa-check"></i><b>6.6.3</b> Sources de problèmes éthiques</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-classification.html"><a href="ch-classification.html#le-cadre-légal-en-europe"><i class="fa fa-check"></i><b>6.6.4</b> Le cadre légal en Europe</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ch-classification.html"><a href="ch-classification.html#questions-à-se-poser-dans-tout-projet"><i class="fa fa-check"></i><b>6.6.5</b> Questions à se poser dans tout projet</a></li>
+</ul></li>
+<li class="chapter" data-level="6.7" data-path="ch-classification.html"><a href="ch-classification.html#interfaces-graphiques-avec-r-shiny"><i class="fa fa-check"></i><b>6.7</b> Interfaces graphiques avec R Shiny</a>
+<ul>
+<li class="chapter" data-level="6.7.1" data-path="ch-classification.html"><a href="ch-classification.html#quest-ce-que-shiny"><i class="fa fa-check"></i><b>6.7.1</b> Qu’est-ce que Shiny ?</a></li>
+<li class="chapter" data-level="6.7.2" data-path="ch-classification.html"><a href="ch-classification.html#structure-dune-application"><i class="fa fa-check"></i><b>6.7.2</b> Structure d’une application</a></li>
+<li class="chapter" data-level="6.7.3" data-path="ch-classification.html"><a href="ch-classification.html#un-exemple-complet-explorer-la-segmentation-des-clients"><i class="fa fa-check"></i><b>6.7.3</b> Un exemple complet : explorer la segmentation des clients</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-classification.html"><a href="ch-classification.html#la-réactivité"><i class="fa fa-check"></i><b>6.7.4</b> La réactivité</a></li>
+<li class="chapter" data-level="6.7.5" data-path="ch-classification.html"><a href="ch-classification.html#partager-une-application"><i class="fa fa-check"></i><b>6.7.5</b> Partager une application</a></li>
+</ul></li>
+<li class="chapter" data-level="6.8" data-path="ch-classification.html"><a href="ch-classification.html#résumé-5"><i class="fa fa-check"></i><b>6.8</b> Résumé</a></li>
+<li class="chapter" data-level="6.9" data-path="ch-classification.html"><a href="ch-classification.html#exercices-5"><i class="fa fa-check"></i><b>6.9</b> Exercices</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="ch-projet.html"><a href="ch-projet.html"><i class="fa fa-check"></i><b>7</b> Projet et évaluation des acquis</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="ch-projet.html"><a href="ch-projet.html#déroulé-dun-projet-le-dslc-en-pratique"><i class="fa fa-check"></i><b>7.1</b> Déroulé d’un projet : le DSLC en pratique</a></li>
+<li class="chapter" data-level="7.2" data-path="ch-projet.html"><a href="ch-projet.html#le-rendu-un-notebook-reproductible"><i class="fa fa-check"></i><b>7.2</b> Le rendu : un notebook reproductible</a></li>
+<li class="chapter" data-level="7.3" data-path="ch-projet.html"><a href="ch-projet.html#grille-dauto-évaluation"><i class="fa fa-check"></i><b>7.3</b> Grille d’auto-évaluation</a></li>
+<li class="chapter" data-level="7.4" data-path="ch-projet.html"><a href="ch-projet.html#réussir-la-soutenance"><i class="fa fa-check"></i><b>7.4</b> Réussir la soutenance</a></li>
+<li class="chapter" data-level="7.5" data-path="ch-projet.html"><a href="ch-projet.html#où-trouver-des-jeux-de-données"><i class="fa fa-check"></i><b>7.5</b> Où trouver des jeux de données</a></li>
+<li class="chapter" data-level="7.6" data-path="ch-projet.html"><a href="ch-projet.html#fiche-de-révision"><i class="fa fa-check"></i><b>7.6</b> Fiche de révision</a>
+<ul>
+<li class="chapter" data-level="7.6.1" data-path="ch-projet.html"><a href="ch-projet.html#le-langage-r-chapitre-2"><i class="fa fa-check"></i><b>7.6.1</b> Le langage R (chapitre 2)</a></li>
+<li class="chapter" data-level="7.6.2" data-path="ch-projet.html"><a href="ch-projet.html#manipulation-chapitre-3"><i class="fa fa-check"></i><b>7.6.2</b> Manipulation (chapitre 3)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="ch-projet.html"><a href="ch-projet.html#graphiques-et-régression-chapitre-4"><i class="fa fa-check"></i><b>7.6.3</b> Graphiques et régression (chapitre 4)</a></li>
+<li class="chapter" data-level="7.6.4" data-path="ch-projet.html"><a href="ch-projet.html#acp-et-arbres-chapitre-5"><i class="fa fa-check"></i><b>7.6.4</b> ACP et arbres (chapitre 5)</a></li>
+<li class="chapter" data-level="7.6.5" data-path="ch-projet.html"><a href="ch-projet.html#classification-chapitre-6"><i class="fa fa-check"></i><b>7.6.5</b> Classification (chapitre 6)</a></li>
+</ul></li>
+<li class="chapter" data-level="7.7" data-path="ch-projet.html"><a href="ch-projet.html#questions-de-révision"><i class="fa fa-check"></i><b>7.7</b> Questions de révision</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Data Science sous R</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="ch-classification" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">Chapitre 6</span> Classification automatique, éthique et R Shiny<a href="ch-classification.html#ch-classification" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Objectifs du chapitre</strong></p>
+<ul>
+<li>Distinguer apprentissage supervisé et non supervisé.</li>
+<li>Segmenter des clients avec les k-moyennes et la classification ascendante
+hiérarchique (CAH).</li>
+<li>Choisir un nombre de classes, décrire et nommer les classes obtenues.</li>
+<li>Identifier les enjeux éthiques et légaux d’un projet de science des données,
+en particulier en marketing.</li>
+<li>Comprendre la structure d’une application web R Shiny.</li>
+</ul>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="ch-classification.html#cb724-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb724-2"><a href="ch-classification.html#cb724-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)</span>
+<span id="cb724-3"><a href="ch-classification.html#cb724-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)</span>
+<span id="cb724-4"><a href="ch-classification.html#cb724-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster)     <span class="co"># silhouette</span></span>
+<span id="cb724-5"><a href="ch-classification.html#cb724-5" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;R/boutique.R&quot;</span>)</span></code></pre></div>
+<div id="classification-non-supervisée" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> Classification non supervisée<a href="ch-classification.html#classification-non-supervisée" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="supervisé-ou-non-supervisé" class="section level3 hasAnchor" number="6.1.1">
+<h3><span class="header-section-number">6.1.1</span> Supervisé ou non supervisé ?<a href="ch-classification.html#supervisé-ou-non-supervisé" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Supervisé</strong> (chapitres <a href="ch-graphiques.html#ch-graphiques">4</a> et <a href="ch-acp-arbres.html#ch-acp-arbres">5</a>) : on
+connaît la variable à prédire (la marque achetée) et on apprend à la prédire.</li>
+<li><strong>Non supervisé</strong> : il n’y a pas de variable cible. On cherche une
+<strong>structure</strong> dans les données. La <strong>classification automatique</strong>
+(<em>clustering</em>) forme des groupes d’individus tels que les individus d’un même
+groupe se ressemblent et que les groupes soient différents entre eux.</li>
+</ul>
+<p>En marketing, c’est la <strong>segmentation</strong> de clientèle : regrouper les clients
+selon leurs comportements pour adapter les offres, les messages et les canaux
+à chaque segment. Attention au vocabulaire : en français, « classification »
+désigne souvent ce regroupement non supervisé, alors qu’en anglais
+<em>classification</em> désigne la prédiction supervisée d’une classe.</p>
+</div>
+<div id="distances-et-standardisation" class="section level3 hasAnchor" number="6.1.2">
+<h3><span class="header-section-number">6.1.2</span> Distances et standardisation<a href="ch-classification.html#distances-et-standardisation" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Regrouper des individus « qui se ressemblent » suppose de mesurer leur
+<strong>distance</strong>. La plus utilisée est la distance <strong>euclidienne</strong> :</p>
+<p><span class="math display">\[d(x_i, x_{i&#39;}) = \sqrt{\sum_{j=1}^p (x_{ij} - x_{i&#39;j})^2}\]</span></p>
+<div class="attention">
+<p>Avec la distance euclidienne, une variable de grande variance (un montant en
+euros, de 16 à 1 800) écrase une variable de petite variance (une part de
+commandes en promotion, entre 0 et 1). Il faut presque toujours
+<strong>centrer-réduire</strong> les variables avant de calculer des distances : <code>scale()</code>.</p>
+</div>
+</div>
+<div id="les-données-les-clients-de-la-boutique" class="section level3 hasAnchor" number="6.1.3">
+<h3><span class="header-section-number">6.1.3</span> Les données : les clients de la boutique<a href="ch-classification.html#les-données-les-clients-de-la-boutique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On reprend les indicateurs de comportement des clients actifs en 2025
+(chapitres <a href="ch-manipulation.html#ch-manipulation">3</a> et <a href="ch-acp-arbres.html#ch-acp-arbres">5</a>) :</p>
+<div class="sourceCode" id="cb725"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb725-1"><a href="ch-classification.html#cb725-1" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="ot">&lt;-</span> <span class="fu">indicateurs_clients</span>(<span class="fu">lire_boutique</span>(<span class="st">&quot;commandes&quot;</span>), <span class="fu">lire_boutique</span>(<span class="st">&quot;clients&quot;</span>))</span>
+<span id="cb725-2"><a href="ch-classification.html#cb725-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb725-3"><a href="ch-classification.html#cb725-3" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;recence&quot;</span>, <span class="st">&quot;frequence&quot;</span>, <span class="st">&quot;montant_total&quot;</span>, <span class="st">&quot;panier_moyen&quot;</span>,</span>
+<span id="cb725-4"><a href="ch-classification.html#cb725-4" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;part_promo&quot;</span>, <span class="st">&quot;nb_categories&quot;</span>, <span class="st">&quot;articles_par_commande&quot;</span>, <span class="st">&quot;anciennete&quot;</span>)</span>
+<span id="cb725-5"><a href="ch-classification.html#cb725-5" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">scale</span>(indicateurs[, variables])     <span class="co"># centrer-réduire</span></span>
+<span id="cb725-6"><a href="ch-classification.html#cb725-6" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(x) <span class="ot">&lt;-</span> indicateurs<span class="sc">$</span>client_id</span>
+<span id="cb725-7"><a href="ch-classification.html#cb725-7" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(x)</span></code></pre></div>
+<pre><code>#&gt; [1] 1741    8</code></pre>
+<p>Les données ont été simulées avec quatre segments de clients « cachés ». Nous
+allons voir si les méthodes de classification les retrouvent, et ce qu’elles
+nous disent pour les nommer.</p>
+</div>
+</div>
+<div id="les-k-moyennes-k-means" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> Les k-moyennes (<em>k-means</em>)<a href="ch-classification.html#les-k-moyennes-k-means" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="algorithme" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> Algorithme<a href="ch-classification.html#algorithme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On fixe le nombre de classes <span class="math inline">\(k\)</span> à l’avance.</p>
+<ol style="list-style-type: decimal">
+<li>Choisir <span class="math inline">\(k\)</span> centres initiaux au hasard.</li>
+<li><strong>Affecter</strong> chaque individu au centre le plus proche.</li>
+<li><strong>Recalculer</strong> chaque centre comme la moyenne des individus de sa classe.</li>
+<li>Répéter les étapes 2 et 3 jusqu’à ce que les affectations ne changent plus.</li>
+</ol>
+<p>L’algorithme diminue à chaque étape l’<strong>inertie intra-classe</strong> (somme des
+carrés des distances des individus au centre de leur classe). Il converge vers
+un <strong>minimum local</strong> qui dépend des centres initiaux : on le lance plusieurs
+fois (argument <code>nstart</code>) et on garde la meilleure solution.</p>
+</div>
+<div id="décomposition-de-linertie" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> Décomposition de l’inertie<a href="ch-classification.html#décomposition-de-linertie" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><span class="math display">\[\underbrace{I_{\text{totale}}}_{\text{totss}} =
+\underbrace{I_{\text{intra}}}_{\text{tot.withinss}} +
+\underbrace{I_{\text{inter}}}_{\text{betweenss}}\]</span></p>
+<p>Une bonne partition a une inertie intra-classe faible (classes homogènes) et
+une inertie inter-classe forte (classes bien séparées). Le rapport
+<span class="math inline">\(I_{\text{inter}} / I_{\text{totale}}\)</span> (un « <span class="math inline">\(R^2\)</span> » de la partition) mesure la
+part de l’information conservée par la partition.</p>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="ch-classification.html#cb727-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb727-2"><a href="ch-classification.html#cb727-2" aria-hidden="true" tabindex="-1"></a>km <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(x, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb727-3"><a href="ch-classification.html#cb727-3" aria-hidden="true" tabindex="-1"></a>km<span class="sc">$</span>size                                   <span class="co"># effectif de chaque classe</span></span></code></pre></div>
+<pre><code>#&gt; [1] 370 596 423 352</code></pre>
+<div class="sourceCode" id="cb729"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb729-1"><a href="ch-classification.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(km<span class="sc">$</span>centers, <span class="dv">2</span>)                      <span class="co"># centres (sur données réduites)</span></span></code></pre></div>
+<pre><code>#&gt;   recence frequence montant_total panier_moyen part_promo nb_categories
+#&gt; 1   -0.60      1.42          1.75         1.27      -0.77          1.10
+#&gt; 2   -0.39      0.16         -0.33        -0.82       0.86          0.32
+#&gt; 3    1.31     -0.88         -0.60         0.24      -0.45         -0.90
+#&gt; 4   -0.29     -0.71         -0.56        -0.22      -0.10         -0.62
+#&gt;   articles_par_commande anciennete
+#&gt; 1                 -0.45       0.26
+#&gt; 2                  0.87       0.28
+#&gt; 3                 -0.46       0.40
+#&gt; 4                 -0.45      -1.23</code></pre>
+<div class="sourceCode" id="cb731"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb731-1"><a href="ch-classification.html#cb731-1" aria-hidden="true" tabindex="-1"></a>km<span class="sc">$</span>betweenss <span class="sc">/</span> km<span class="sc">$</span>totss                   <span class="co"># part d&#39;inertie expliquée</span></span></code></pre></div>
+<pre><code>#&gt; [1] 0.5633</code></pre>
+<div class="sourceCode" id="cb733"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb733-1"><a href="ch-classification.html#cb733-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(km, <span class="at">data =</span> x, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/kmeans-plot-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><code>fviz_cluster()</code> représente les classes sur le premier plan d’une ACP : c’est
+une façon naturelle de visualiser une partition en plus de deux dimensions.</p>
+</div>
+</div>
+<div id="classification-ascendante-hiérarchique-cah" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> Classification ascendante hiérarchique (CAH)<a href="ch-classification.html#classification-ascendante-hiérarchique-cah" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="algorithme-1" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> Algorithme<a href="ch-classification.html#algorithme-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ol style="list-style-type: decimal">
+<li>Au départ, chaque individu forme une classe.</li>
+<li>On <strong>fusionne</strong> les deux classes les plus proches.</li>
+<li>On recommence jusqu’à n’avoir plus qu’une seule classe.</li>
+</ol>
+<p>On obtient une hiérarchie de partitions emboîtées, représentée par un
+<strong>dendrogramme</strong>. Il n’est pas nécessaire de fixer <span class="math inline">\(k\)</span> à l’avance : on
+« coupe » l’arbre après coup.</p>
+<p>La <strong>distance entre deux classes</strong> (critère d’agrégation) se définit de
+plusieurs façons :</p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="60%" />
+<col width="17%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Critère</th>
+<th align="left">Distance entre classes</th>
+<th align="left">Effet</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">lien simple (<code>single</code>)</td>
+<td align="left">plus petite distance entre deux individus</td>
+<td align="left">classes allongées, effet de chaîne</td>
+</tr>
+<tr class="even">
+<td align="left">lien complet (<code>complete</code>)</td>
+<td align="left">plus grande distance</td>
+<td align="left">classes compactes</td>
+</tr>
+<tr class="odd">
+<td align="left">lien moyen (<code>average</code>)</td>
+<td align="left">distance moyenne</td>
+<td align="left">compromis</td>
+</tr>
+<tr class="even">
+<td align="left"><strong>Ward</strong> (<code>ward.D2</code>)</td>
+<td align="left">augmentation de l’inertie intra-classe due à la fusion</td>
+<td align="left">classes compactes, de tailles proches ; <strong>le plus utilisé</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Le critère de Ward est cohérent avec les k-moyennes : tous deux minimisent
+l’inertie intra-classe.</p>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="ch-classification.html#cb734-1" aria-hidden="true" tabindex="-1"></a>distances <span class="ot">&lt;-</span> <span class="fu">dist</span>(x, <span class="at">method =</span> <span class="st">&quot;euclidean&quot;</span>)</span>
+<span id="cb734-2"><a href="ch-classification.html#cb734-2" aria-hidden="true" tabindex="-1"></a>cah <span class="ot">&lt;-</span> <span class="fu">hclust</span>(distances, <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb734-3"><a href="ch-classification.html#cb734-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cah, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">&quot;Dendrogramme (Ward)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;&quot;</span>, <span class="at">sub =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb734-4"><a href="ch-classification.html#cb734-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rect.hclust</span>(cah, <span class="at">k =</span> <span class="dv">4</span>, <span class="at">border =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">5</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/cah-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><strong>Lecture</strong> : la <strong>hauteur</strong> d’une fusion mesure la perte d’homogénéité
+qu’elle provoque. Un grand saut de hauteur indique qu’on fusionne des classes
+très différentes : c’est un bon endroit pour couper. Avec 1 741 clients, les
+feuilles sont illisibles ; seule la partie haute de l’arbre compte.</p>
+<div class="sourceCode" id="cb735"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb735-1"><a href="ch-classification.html#cb735-1" aria-hidden="true" tabindex="-1"></a>classes_cah <span class="ot">&lt;-</span> <span class="fu">cutree</span>(cah, <span class="at">k =</span> <span class="dv">4</span>)</span>
+<span id="cb735-2"><a href="ch-classification.html#cb735-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(classes_cah)</span></code></pre></div>
+<pre><code>#&gt; classes_cah
+#&gt;   1   2   3   4 
+#&gt; 379 504 517 341</code></pre>
+<div class="sourceCode" id="cb737"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb737-1"><a href="ch-classification.html#cb737-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">cah =</span> classes_cah, <span class="at">kmeans =</span> km<span class="sc">$</span>cluster)   <span class="co"># comparaison des deux partitions</span></span></code></pre></div>
+<pre><code>#&gt;    kmeans
+#&gt; cah   1   2   3   4
+#&gt;   1 368   2   2   7
+#&gt;   2   0 500   0   4
+#&gt;   3   2  49 407  59
+#&gt;   4   0  45  14 282</code></pre>
+<p>Les numéros de classes sont arbitraires ; ce qui compte est de savoir si les
+<strong>mêmes individus</strong> sont regroupés ensemble. Les deux méthodes donnent ici des
+partitions proches : c’est un premier signe de <strong>stabilité</strong>.</p>
+</div>
+<div id="k-moyennes-ou-cah" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> k-moyennes ou CAH ?<a href="ch-classification.html#k-moyennes-ou-cah" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">k-moyennes</th>
+<th align="left">CAH</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Nombre de classes</td>
+<td align="left">fixé à l’avance</td>
+<td align="left">choisi après coup, sur le dendrogramme</td>
+</tr>
+<tr class="even">
+<td align="left">Taille des données</td>
+<td align="left">grandes tailles possibles (millions de clients)</td>
+<td align="left">coûteuse au-delà de quelques dizaines de milliers d’individus (matrice des distances)</td>
+</tr>
+<tr class="odd">
+<td align="left">Résultat</td>
+<td align="left">dépend de l’initialisation</td>
+<td align="left">déterministe</td>
+</tr>
+<tr class="even">
+<td align="left">Usage combiné</td>
+<td align="left">consolider une CAH</td>
+<td align="left">choisir <span class="math inline">\(k\)</span> et initialiser les k-moyennes</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="choisir-le-nombre-de-classes" class="section level2 hasAnchor" number="6.4">
+<h2><span class="header-section-number">6.4</span> Choisir le nombre de classes<a href="ch-classification.html#choisir-le-nombre-de-classes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Aucun critère n’est parfait : on en combine plusieurs, puis on vérifie que les
+classes sont <strong>interprétables</strong> et <strong>utiles</strong> pour la question posée. Une
+équipe marketing peut gérer quatre ou cinq segments, rarement quinze.</p>
+<div id="méthode-du-coude" class="section level3 hasAnchor" number="6.4.1">
+<h3><span class="header-section-number">6.4.1</span> Méthode du coude<a href="ch-classification.html#méthode-du-coude" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On trace l’inertie intra-classe en fonction de <span class="math inline">\(k\)</span>. Elle diminue toujours ; on
+cherche le <span class="math inline">\(k\)</span> à partir duquel le gain devient faible.</p>
+<div class="sourceCode" id="cb739"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb739-1"><a href="ch-classification.html#cb739-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_nbclust</span>(x, kmeans, <span class="at">method =</span> <span class="st">&quot;wss&quot;</span>, <span class="at">nstart =</span> <span class="dv">25</span>, <span class="at">k.max =</span> <span class="dv">8</span>) <span class="sc">+</span></span>
+<span id="cb739-2"><a href="ch-classification.html#cb739-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Méthode du coude&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/coude-1.png" width="80%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="indice-de-silhouette" class="section level3 hasAnchor" number="6.4.2">
+<h3><span class="header-section-number">6.4.2</span> Indice de silhouette<a href="ch-classification.html#indice-de-silhouette" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Pour chaque individu <span class="math inline">\(i\)</span>, on compare <span class="math inline">\(a(i)\)</span>, sa distance moyenne aux individus
+de sa classe, à <span class="math inline">\(b(i)\)</span>, sa distance moyenne aux individus de la classe voisine
+la plus proche :</p>
+<p><span class="math display">\[s(i) = \frac{b(i) - a(i)}{\max(a(i), b(i))} \in [-1, 1]\]</span></p>
+<p>Une valeur proche de 1 : l’individu est bien classé ; proche de 0 : il est
+entre deux classes ; négative : il est probablement mal classé. On cherche un
+<span class="math inline">\(k\)</span> qui donne une <strong>silhouette moyenne</strong> élevée.</p>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="ch-classification.html#cb740-1" aria-hidden="true" tabindex="-1"></a>silhouette_moyenne <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>, <span class="cf">function</span>(k) {</span>
+<span id="cb740-2"><a href="ch-classification.html#cb740-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb740-3"><a href="ch-classification.html#cb740-3" aria-hidden="true" tabindex="-1"></a>  classes <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(x, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">25</span>)<span class="sc">$</span>cluster</span>
+<span id="cb740-4"><a href="ch-classification.html#cb740-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">silhouette</span>(classes, distances)[, <span class="st">&quot;sil_width&quot;</span>])</span>
+<span id="cb740-5"><a href="ch-classification.html#cb740-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb740-6"><a href="ch-classification.html#cb740-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">setNames</span>(silhouette_moyenne, <span class="dv">2</span><span class="sc">:</span><span class="dv">7</span>), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt;     2     3     4     5     6     7 
+#&gt; 0.333 0.310 0.303 0.296 0.298 0.250</code></pre>
+</div>
+<div id="le-saut-dinertie-du-dendrogramme" class="section level3 hasAnchor" number="6.4.3">
+<h3><span class="header-section-number">6.4.3</span> Le saut d’inertie du dendrogramme<a href="ch-classification.html#le-saut-dinertie-du-dendrogramme" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="ch-classification.html#cb742-1" aria-hidden="true" tabindex="-1"></a>hauteurs <span class="ot">&lt;-</span> <span class="fu">sort</span>(cah<span class="sc">$</span>height, <span class="at">decreasing =</span> <span class="cn">TRUE</span>)[<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>]</span>
+<span id="cb742-2"><a href="ch-classification.html#cb742-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span> <span class="sc">+</span> <span class="dv">1</span>, hauteurs, <span class="at">type =</span> <span class="st">&quot;b&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Nombre de classes après la coupure&quot;</span>,</span>
+<span id="cb742-3"><a href="ch-classification.html#cb742-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Hauteur de fusion&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Hauteurs des dernières fusions&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/hauteurs-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>On coupe juste avant un grand saut de hauteur.</p>
+<p><strong>Bilan.</strong> Les critères ne sont pas d’accord : la silhouette moyenne est un peu
+plus élevée pour <span class="math inline">\(k = 2\)</span>, mais les écarts entre <span class="math inline">\(k = 2, 3, 4\)</span> sont faibles ; le
+coude et les hauteurs du dendrogramme suggèrent 3 ou 4 classes. Une partition
+en deux classes (« bons clients » / « autres ») serait trop grossière pour
+adapter les actions marketing. On retient <span class="math inline">\(k = 4\)</span>, à condition que les classes
+soient interprétables, ce que l’on vérifie maintenant.</p>
+</div>
+</div>
+<div id="décrire-les-classes" class="section level2 hasAnchor" number="6.5">
+<h2><span class="header-section-number">6.5</span> Décrire les classes<a href="ch-classification.html#décrire-les-classes" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Une classification n’est utile que si l’on sait <strong>décrire</strong> et <strong>nommer</strong> ses
+classes.</p>
+<div id="moyennes-par-classe" class="section level3 hasAnchor" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> Moyennes par classe<a href="ch-classification.html#moyennes-par-classe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb743"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb743-1"><a href="ch-classification.html#cb743-1" aria-hidden="true" tabindex="-1"></a>profils <span class="ot">&lt;-</span> indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb743-2"><a href="ch-classification.html#cb743-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classe =</span> <span class="fu">factor</span>(km<span class="sc">$</span>cluster)) <span class="sc">|&gt;</span></span>
+<span id="cb743-3"><a href="ch-classification.html#cb743-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(classe) <span class="sc">|&gt;</span></span>
+<span id="cb743-4"><a href="ch-classification.html#cb743-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">effectif =</span> <span class="fu">n</span>(),</span>
+<span id="cb743-5"><a href="ch-classification.html#cb743-5" aria-hidden="true" tabindex="-1"></a>            <span class="fu">across</span>(<span class="fu">all_of</span>(variables), \(v) <span class="fu">round</span>(<span class="fu">mean</span>(v), <span class="dv">2</span>)))</span>
+<span id="cb743-6"><a href="ch-classification.html#cb743-6" aria-hidden="true" tabindex="-1"></a>profils</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 4 × 10
+#&gt;   classe effectif recence frequence montant_total panier_moyen part_promo
+#&gt;   &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;        &lt;dbl&gt;      &lt;dbl&gt;
+#&gt; 1 1           370    16.6     11.3          1034.         91.8       0.15
+#&gt; 2 2           596    35.5      6.13          224.         36.8       0.74
+#&gt; 3 3           423   182.       1.83          118.         64.8       0.26
+#&gt; 4 4           352    43.6      2.53          135.         52.6       0.39
+#&gt; # ℹ 3 more variables: nb_categories &lt;dbl&gt;, articles_par_commande &lt;dbl&gt;,
+#&gt; #   anciennete &lt;dbl&gt;</code></pre>
+<p>On compare chaque classe à la moyenne générale pour la nommer. Par exemple :</p>
+<table style="width:100%;">
+<colgroup>
+<col width="34%" />
+<col width="28%" />
+<col width="36%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Profil observé</th>
+<th align="left">Nom proposé</th>
+<th align="left">Action possible</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">commandes très fréquentes, gros montants, peu de promotions</td>
+<td align="left"><strong>Fidèles premium</strong></td>
+<td align="left">programme de fidélité, avant-premières</td>
+</tr>
+<tr class="even">
+<td align="left">beaucoup d’articles, petits paniers, forte part de promotions</td>
+<td align="left"><strong>Chasseurs de promos</strong></td>
+<td align="left">ventes privées, mais attention à la marge</td>
+</tr>
+<tr class="odd">
+<td align="left">dernière commande lointaine, une ou deux commandes</td>
+<td align="left"><strong>Occasionnels endormis</strong></td>
+<td align="left">campagne de réactivation</td>
+</tr>
+<tr class="even">
+<td align="left">inscrits récemment, quelques commandes</td>
+<td align="left"><strong>Nouveaux clients</strong></td>
+<td align="left">parcours d’accueil, deuxième commande</td>
+</tr>
+</tbody>
+</table>
+<p>(Les numéros de classes dépendent de l’initialisation : associez chaque nom au
+bon numéro en lisant le tableau des profils.)</p>
+<p>Les variables <strong>qui n’ont pas servi</strong> à construire les classes aident aussi à
+les décrire, comme les variables illustratives d’une ACP :</p>
+<div class="sourceCode" id="cb745"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb745-1"><a href="ch-classification.html#cb745-1" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb745-2"><a href="ch-classification.html#cb745-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classe =</span> <span class="fu">factor</span>(km<span class="sc">$</span>cluster)) <span class="sc">|&gt;</span></span>
+<span id="cb745-3"><a href="ch-classification.html#cb745-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(classe) <span class="sc">|&gt;</span></span>
+<span id="cb745-4"><a href="ch-classification.html#cb745-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">age_moyen =</span> <span class="fu">round</span>(<span class="fu">mean</span>(age, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)),</span>
+<span id="cb745-5"><a href="ch-classification.html#cb745-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">part_newsletter =</span> <span class="fu">round</span>(<span class="fu">mean</span>(newsletter <span class="sc">==</span> <span class="st">&quot;Oui&quot;</span>), <span class="dv">2</span>),</span>
+<span id="cb745-6"><a href="ch-classification.html#cb745-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">canal_principal =</span> <span class="fu">names</span>(<span class="fu">which.max</span>(<span class="fu">table</span>(canal_acquisition))))</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 4 × 4
+#&gt;   classe age_moyen part_newsletter canal_principal    
+#&gt;   &lt;fct&gt;      &lt;dbl&gt;           &lt;dbl&gt; &lt;chr&gt;              
+#&gt; 1 1             46            0.69 Direct             
+#&gt; 2 2             32            0.57 Réseaux sociaux    
+#&gt; 3 3             41            0.31 Moteur de recherche
+#&gt; 4 4             33            0.38 Réseaux sociaux</code></pre>
+</div>
+<div id="les-classes-retrouvent-elles-la-structure-simulée" class="section level3 hasAnchor" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> Les classes retrouvent-elles la structure simulée ?<a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Les données étant simulées, on connaît les vrais segments : le script
+<code>datasets/generer-boutique.R</code> les tire avec <code>set.seed(2026)</code> comme première
+instruction aléatoire. On peut donc les reconstituer et les comparer aux
+classes obtenues.</p>
+<div class="sourceCode" id="cb747"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb747-1"><a href="ch-classification.html#cb747-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb747-2"><a href="ch-classification.html#cb747-2" aria-hidden="true" tabindex="-1"></a>segment_simule <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Fidèles&quot;</span>, <span class="st">&quot;Chasseurs de promos&quot;</span>, <span class="st">&quot;Occasionnels&quot;</span>, <span class="st">&quot;Nouveaux&quot;</span>),</span>
+<span id="cb747-3"><a href="ch-classification.html#cb747-3" aria-hidden="true" tabindex="-1"></a>                         <span class="dv">2000</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.20</span>, <span class="fl">0.30</span>, <span class="fl">0.35</span>, <span class="fl">0.15</span>))</span>
+<span id="cb747-4"><a href="ch-classification.html#cb747-4" aria-hidden="true" tabindex="-1"></a>verite <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">client_id =</span> <span class="fu">sprintf</span>(<span class="st">&quot;C%04d&quot;</span>, <span class="dv">1</span><span class="sc">:</span><span class="dv">2000</span>), segment_simule)</span>
+<span id="cb747-5"><a href="ch-classification.html#cb747-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb747-6"><a href="ch-classification.html#cb747-6" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb747-7"><a href="ch-classification.html#cb747-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classe =</span> km<span class="sc">$</span>cluster) <span class="sc">|&gt;</span></span>
+<span id="cb747-8"><a href="ch-classification.html#cb747-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">left_join</span>(verite, <span class="at">by =</span> <span class="st">&quot;client_id&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb747-9"><a href="ch-classification.html#cb747-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(classe, segment_simule) <span class="sc">|&gt;</span></span>
+<span id="cb747-10"><a href="ch-classification.html#cb747-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> segment_simule, <span class="at">values_from =</span> n, <span class="at">values_fill =</span> <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 4 × 5
+#&gt;   classe Fidèles Occasionnels `Chasseurs de promos` Nouveaux
+#&gt;    &lt;int&gt;   &lt;int&gt;        &lt;int&gt;                 &lt;int&gt;    &lt;int&gt;
+#&gt; 1      1     369            1                     0        0
+#&gt; 2      2       2           33                   561        0
+#&gt; 3      3       4          402                    15        2
+#&gt; 4      4       8          106                    23      215</code></pre>
+<p>Chaque classe correspond majoritairement à un segment simulé. Les erreurs se
+concentrent entre « Occasionnels » et « Nouveaux », qui ont peu de commandes
+dans les deux cas. Sur des données réelles, on ne connaît <strong>jamais</strong> cette
+vérité : c’est pourquoi on vérifie la stabilité et l’interprétabilité des
+classes.</p>
+</div>
+<div id="acp-puis-cah-la-fonction-hcpc" class="section level3 hasAnchor" number="6.5.3">
+<h3><span class="header-section-number">6.5.3</span> ACP puis CAH : la fonction <code>HCPC()</code><a href="ch-classification.html#acp-puis-cah-la-fonction-hcpc" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>FactoMineR</code> enchaîne naturellement une ACP, une CAH (Ward) sur les
+coordonnées factorielles, puis une consolidation par k-moyennes. Elle propose
+un nombre de classes (selon le saut d’inertie) et <strong>décrit automatiquement</strong>
+les classes.</p>
+<div class="sourceCode" id="cb749"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb749-1"><a href="ch-classification.html#cb749-1" aria-hidden="true" tabindex="-1"></a>acp <span class="ot">&lt;-</span> <span class="fu">PCA</span>(<span class="fu">as.data.frame</span>(indicateurs[, variables]), <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb749-2"><a href="ch-classification.html#cb749-2" aria-hidden="true" tabindex="-1"></a>res_hcpc <span class="ot">&lt;-</span> <span class="fu">HCPC</span>(acp, <span class="at">nb.clust =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)   <span class="co"># -1 : coupure automatique</span></span>
+<span id="cb749-3"><a href="ch-classification.html#cb749-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(res_hcpc<span class="sc">$</span>data.clust<span class="sc">$</span>clust)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;   1   2   3 
+#&gt; 718 652 371</code></pre>
+<p>La coupure automatique propose ici <strong>trois</strong> classes : elle fusionne les
+nouveaux clients et les occasionnels. Rien n’empêche d’imposer le nombre de
+classes retenu pour des raisons métier :</p>
+<div class="sourceCode" id="cb751"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb751-1"><a href="ch-classification.html#cb751-1" aria-hidden="true" tabindex="-1"></a>res_hcpc <span class="ot">&lt;-</span> <span class="fu">HCPC</span>(acp, <span class="at">nb.clust =</span> <span class="dv">4</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb751-2"><a href="ch-classification.html#cb751-2" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_cluster</span>(res_hcpc, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">ggtheme =</span> <span class="fu">theme_minimal</span>())</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/hcpc-4-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="ch-classification.html#cb752-1" aria-hidden="true" tabindex="-1"></a>res_hcpc<span class="sc">$</span>desc.var<span class="sc">$</span>quanti<span class="sc">$</span><span class="st">`</span><span class="at">1</span><span class="st">`</span>      <span class="co"># variables qui caractérisent la classe 1</span></span></code></pre></div>
+<pre><code>#&gt;                        v.test Mean in category Overall mean sd in category
+#&gt; recence                30.830         181.1247      68.7898        98.3288
+#&gt; anciennete              9.460           3.2304       2.6916         1.1062
+#&gt; panier_moyen            6.003          65.1346      58.4648        24.2732
+#&gt; part_promo            -10.671           0.2625       0.4254         0.3557
+#&gt; articles_par_commande -10.916           1.9645       2.3432         0.7968
+#&gt; montant_total         -14.208         118.8460     352.5338        70.2266
+#&gt; frequence             -20.791           1.8353       5.4612         0.9107
+#&gt; nb_categories         -21.400           1.6118       2.7501         0.6910
+#&gt;                       Overall sd    p.value
+#&gt; recence                  86.3748 1.049e-208
+#&gt; anciennete                1.3501  3.092e-21
+#&gt; panier_moyen             26.3397  1.942e-09
+#&gt; part_promo                0.3619  1.388e-26
+#&gt; articles_par_commande     0.8224  9.680e-28
+#&gt; montant_total           389.8943  8.182e-46
+#&gt; frequence                 4.1342  5.256e-96
+#&gt; nb_categories             1.2610 1.328e-101</code></pre>
+<p>Pour chaque classe, la sortie compare la moyenne de la classe
+(<em>Mean in category</em>) à la moyenne générale (<em>Overall mean</em>) et teste l’écart
+(<em>v.test</em> : au-delà de 2 en valeur absolue, l’écart est significatif). La
+fonction <code>catdes()</code> fait la même chose pour n’importe quelle variable
+qualitative. <code>res_hcpc$desc.ind$para</code> donne les <strong>parangons</strong> : les clients les
+plus proches du centre de chaque classe, utiles pour présenter chaque segment
+par un exemple concret (un « persona »).</p>
+<div class="retenir">
+<p><strong>Démarche d’une segmentation</strong></p>
+<ol style="list-style-type: decimal">
+<li>Choisir les variables (comportement d’achat, pas de variables sensibles) et
+les standardiser.</li>
+<li>Choisir une distance (euclidienne en général).</li>
+<li>CAH (Ward) pour explorer et choisir <span class="math inline">\(k\)</span> ; k-moyennes pour consolider.</li>
+<li>Choisir <span class="math inline">\(k\)</span> : coude, silhouette, saut d’inertie, <strong>interprétabilité</strong> et
+<strong>utilité métier</strong>.</li>
+<li>Décrire chaque classe (moyennes, <code>catdes()</code>, parangons) et la nommer.</li>
+<li>Vérifier la <strong>stabilité</strong> : obtient-on les mêmes classes avec une autre
+graine, un autre sous-échantillon, une autre méthode ?</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="léthique-dans-la-science-des-données" class="section level2 hasAnchor" number="6.6">
+<h2><span class="header-section-number">6.6</span> L’éthique dans la science des données<a href="ch-classification.html#léthique-dans-la-science-des-données" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Les données décrivent souvent des <strong>personnes</strong>. Les décisions prises à partir
+de modèles (crédit, recrutement, prix, publicité, santé, justice) ont des
+conséquences réelles sur leur vie. Un modèle techniquement excellent peut être
+inacceptable.</p>
+<div id="quelques-cas-marquants" class="section level3 hasAnchor" number="6.6.1">
+<h3><span class="header-section-number">6.6.1</span> Quelques cas marquants<a href="ch-classification.html#quelques-cas-marquants" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>COMPAS</strong> (États-Unis, 2016) : un logiciel d’évaluation du risque de
+récidive utilisé par des tribunaux. Une enquête de ProPublica a montré que les
+prévenus noirs non récidivistes étaient presque deux fois plus souvent classés
+« à haut risque » que les prévenus blancs non récidivistes. Le débat qui a
+suivi a montré que plusieurs définitions mathématiques de l’équité ne peuvent
+pas être satisfaites en même temps.</li>
+<li><strong>Outil de recrutement d’Amazon</strong> (abandonné en 2018) : entraîné sur dix ans
+de CV majoritairement masculins, il pénalisait les CV contenant le mot
+« women’s ». Les données historiques reproduisaient une discrimination passée.</li>
+<li><strong>Cambridge Analytica</strong> (2018) : les données de dizaines de millions de
+profils Facebook ont été collectées sans consentement éclairé et utilisées
+pour du ciblage politique. Cet exemple concerne directement le marketing
+numérique.</li>
+</ul>
+</div>
+<div id="enjeux-propres-au-marketing" class="section level3 hasAnchor" number="6.6.2">
+<h3><span class="header-section-number">6.6.2</span> Enjeux propres au marketing<a href="ch-classification.html#enjeux-propres-au-marketing" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><strong>Ciblage et discrimination</strong> : une segmentation fondée sur le code postal
+peut servir d’<strong>indicateur indirect</strong> (<em>proxy</em>) de l’origine ou du revenu,
+et exclure certains quartiers d’une offre ou d’une publicité.</li>
+<li><strong>Prix personnalisés</strong> : faire payer plus cher les clients jugés « peu
+sensibles au prix » pose des questions de loyauté envers le consommateur.</li>
+<li><strong>Exploitation des vulnérabilités</strong> : cibler des personnes endettées avec des
+offres de crédit, ou des joueurs compulsifs avec des paris.</li>
+<li><strong>Interfaces trompeuses</strong> (<em>dark patterns</em>) : rendre le refus des cookies ou
+la résiliation d’un abonnement délibérément difficiles.</li>
+<li><strong>Données sensibles</strong> : santé, opinions, orientation sexuelle… peuvent être
+<strong>inférées</strong> à partir d’achats apparemment anodins ; le RGPD encadre très
+strictement leur traitement.</li>
+</ul>
+</div>
+<div id="sources-de-problèmes-éthiques" class="section level3 hasAnchor" number="6.6.3">
+<h3><span class="header-section-number">6.6.3</span> Sources de problèmes éthiques<a href="ch-classification.html#sources-de-problèmes-éthiques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<table>
+<colgroup>
+<col width="46%" />
+<col width="53%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Étape</th>
+<th align="left">Risque</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Formulation</td>
+<td align="left">la question elle-même est discriminatoire ou intrusive</td>
+</tr>
+<tr class="even">
+<td align="left">Collecte</td>
+<td align="left">absence de consentement ; données non représentatives (biais de sélection)</td>
+</tr>
+<tr class="odd">
+<td align="left">Préparation</td>
+<td align="left">variables qui servent de <strong>proxy</strong> à un attribut protégé (code postal <span class="math inline">\(\leftrightarrow\)</span> origine)</td>
+</tr>
+<tr class="even">
+<td align="left">Modélisation</td>
+<td align="left">modèle qui reproduit ou amplifie les biais historiques ; opacité</td>
+</tr>
+<tr class="odd">
+<td align="left">Évaluation</td>
+<td align="left">performance mesurée globalement mais très inégale selon les groupes</td>
+</tr>
+<tr class="even">
+<td align="left">Communication</td>
+<td align="left">résultats présentés comme plus certains qu’ils ne le sont</td>
+</tr>
+<tr class="odd">
+<td align="left">Déploiement</td>
+<td align="left">boucle de rétroaction : les décisions du modèle modifient les données futures</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="le-cadre-légal-en-europe" class="section level3 hasAnchor" number="6.6.4">
+<h3><span class="header-section-number">6.6.4</span> Le cadre légal en Europe<a href="ch-classification.html#le-cadre-légal-en-europe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Le <strong>RGPD</strong> (Règlement général sur la protection des données, 2018)
+s’applique à toute donnée permettant d’identifier une personne, directement
+ou indirectement. Principes clés : <strong>base légale</strong> du traitement (dont le
+consentement), <strong>limitation des finalités</strong>, <strong>minimisation</strong> des données,
+durée de conservation limitée, droits d’accès, de rectification et
+d’effacement, encadrement des décisions entièrement automatisées. Toute
+personne peut <strong>s’opposer</strong> à tout moment à l’utilisation de ses données à
+des fins de prospection commerciale, y compris au profilage lié à cette
+prospection. En France, la <strong>CNIL</strong> veille à son application ; elle a
+notamment sanctionné à plusieurs reprises des entreprises pour le dépôt de
+cookies publicitaires sans consentement valable.</li>
+<li>L’<strong>AI Act</strong> européen (règlement sur l’intelligence artificielle, adopté en
+2024 et appliqué progressivement) classe les systèmes d’IA par niveau de
+risque et impose des obligations renforcées aux systèmes « à haut risque »
+(recrutement, crédit, éducation…). Il interdit certaines pratiques, comme les
+techniques de manipulation qui exploitent les vulnérabilités des personnes.</li>
+</ul>
+<div class="attention">
+<p><strong>Pseudonymiser n’est pas anonymiser.</strong> Remplacer un nom par un identifiant
+(comme <code>C0042</code> dans la boutique) laisse les données personnelles : en croisant
+âge, code postal et historique d’achats, on peut souvent réidentifier une
+personne. Des données pseudonymisées restent soumises au RGPD.</p>
+</div>
+</div>
+<div id="questions-à-se-poser-dans-tout-projet" class="section level3 hasAnchor" number="6.6.5">
+<h3><span class="header-section-number">6.6.5</span> Questions à se poser dans tout projet<a href="ch-classification.html#questions-à-se-poser-dans-tout-projet" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Ai-je le droit d’utiliser ces données pour <strong>cette</strong> finalité ? Les clients
+ont-ils été informés ?</li>
+<li>Ai-je besoin de <strong>toutes</strong> ces variables (minimisation) ?</li>
+<li>Mes données représentent-elles toutes les populations concernées par la
+décision ?</li>
+<li>Mon modèle a-t-il des performances comparables selon les groupes (sexe, âge,
+origine…) ?</li>
+<li>Puis-je <strong>expliquer</strong> une décision à la personne concernée ?</li>
+<li>Qui est responsable si le modèle se trompe ? Une personne peut-elle
+contester la décision ?</li>
+</ul>
+<p>Le cadre PCS du chapitre <a href="ch-science.html#ch-science">1</a> y contribue : un résultat instable
+ou non prédictible ne devrait pas servir à prendre des décisions sur des
+personnes.</p>
+</div>
+</div>
+<div id="interfaces-graphiques-avec-r-shiny" class="section level2 hasAnchor" number="6.7">
+<h2><span class="header-section-number">6.7</span> Interfaces graphiques avec R Shiny<a href="ch-classification.html#interfaces-graphiques-avec-r-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="quest-ce-que-shiny" class="section level3 hasAnchor" number="6.7.1">
+<h3><span class="header-section-number">6.7.1</span> Qu’est-ce que Shiny ?<a href="ch-classification.html#quest-ce-que-shiny" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Shiny</strong> est un package R qui permet de créer des <strong>applications web
+interactives</strong> sans écrire de HTML ni de JavaScript : tableaux de bord,
+outils d’exploration de données, démonstrations de modèles. L’utilisateur
+modifie des paramètres (curseurs, menus) et les résultats se mettent à jour
+automatiquement. C’est un moyen efficace de mettre une analyse entre les mains
+d’une équipe marketing, sans qu’elle ait à écrire de code.</p>
+</div>
+<div id="structure-dune-application" class="section level3 hasAnchor" number="6.7.2">
+<h3><span class="header-section-number">6.7.2</span> Structure d’une application<a href="ch-classification.html#structure-dune-application" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Une application Shiny comporte deux parties :</p>
+<ul>
+<li>l’<strong>interface</strong> (<code>ui</code>) : la mise en page, les <strong>entrées</strong> (<em>inputs</em>) et
+l’emplacement des <strong>sorties</strong> (<em>outputs</em>) ;</li>
+<li>le <strong>serveur</strong> (<code>server</code>) : une fonction qui calcule les sorties à partir des
+entrées.</li>
+</ul>
+<table>
+<thead>
+<tr class="header">
+<th align="left">Entrées (<code>ui</code>)</th>
+<th align="left">Sorties (<code>ui</code>)</th>
+<th align="left">Rendu (<code>server</code>)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>sliderInput()</code></td>
+<td align="left"><code>plotOutput()</code></td>
+<td align="left"><code>renderPlot()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>selectInput()</code></td>
+<td align="left"><code>tableOutput()</code></td>
+<td align="left"><code>renderTable()</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>numericInput()</code></td>
+<td align="left"><code>textOutput()</code></td>
+<td align="left"><code>renderText()</code></td>
+</tr>
+<tr class="even">
+<td align="left"><code>checkboxInput()</code></td>
+<td align="left"><code>verbatimTextOutput()</code></td>
+<td align="left"><code>renderPrint()</code></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>fileInput()</code></td>
+<td align="left"><code>DT::DTOutput()</code></td>
+<td align="left"><code>DT::renderDT()</code></td>
+</tr>
+</tbody>
+</table>
+<p>Chaque entrée a un identifiant (<code>inputId</code>) que le serveur lit avec
+<code>input$identifiant</code> ; chaque sortie a un identifiant que le serveur remplit
+avec <code>output$identifiant &lt;- render...()</code>.</p>
+</div>
+<div id="un-exemple-complet-explorer-la-segmentation-des-clients" class="section level3 hasAnchor" number="6.7.3">
+<h3><span class="header-section-number">6.7.3</span> Un exemple complet : explorer la segmentation des clients<a href="ch-classification.html#un-exemple-complet-explorer-la-segmentation-des-clients" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Enregistrez le code suivant dans un fichier <code>app.R</code> placé dans le dossier
+<code>06-notes</code>, puis cliquez sur <em>Run App</em> dans RStudio (ou exécutez
+<code>shiny::runApp("app.R")</code>).</p>
+<div class="sourceCode" id="cb754"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb754-1"><a href="ch-classification.html#cb754-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(shiny)</span>
+<span id="cb754-2"><a href="ch-classification.html#cb754-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb754-3"><a href="ch-classification.html#cb754-3" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;R/boutique.R&quot;</span>)</span>
+<span id="cb754-4"><a href="ch-classification.html#cb754-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb754-5"><a href="ch-classification.html#cb754-5" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="ot">&lt;-</span> <span class="fu">indicateurs_clients</span>(<span class="fu">lire_boutique</span>(<span class="st">&quot;commandes&quot;</span>), <span class="fu">lire_boutique</span>(<span class="st">&quot;clients&quot;</span>))</span>
+<span id="cb754-6"><a href="ch-classification.html#cb754-6" aria-hidden="true" tabindex="-1"></a>variables <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;recence&quot;</span>, <span class="st">&quot;frequence&quot;</span>, <span class="st">&quot;montant_total&quot;</span>, <span class="st">&quot;panier_moyen&quot;</span>,</span>
+<span id="cb754-7"><a href="ch-classification.html#cb754-7" aria-hidden="true" tabindex="-1"></a>               <span class="st">&quot;part_promo&quot;</span>, <span class="st">&quot;nb_categories&quot;</span>, <span class="st">&quot;articles_par_commande&quot;</span>, <span class="st">&quot;anciennete&quot;</span>)</span>
+<span id="cb754-8"><a href="ch-classification.html#cb754-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb754-9"><a href="ch-classification.html#cb754-9" aria-hidden="true" tabindex="-1"></a>ui <span class="ot">&lt;-</span> <span class="fu">fluidPage</span>(</span>
+<span id="cb754-10"><a href="ch-classification.html#cb754-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">titlePanel</span>(<span class="st">&quot;Segmentation des clients de la boutique&quot;</span>),</span>
+<span id="cb754-11"><a href="ch-classification.html#cb754-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sidebarLayout</span>(</span>
+<span id="cb754-12"><a href="ch-classification.html#cb754-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sidebarPanel</span>(</span>
+<span id="cb754-13"><a href="ch-classification.html#cb754-13" aria-hidden="true" tabindex="-1"></a>      <span class="fu">sliderInput</span>(<span class="st">&quot;k&quot;</span>, <span class="st">&quot;Nombre de segments&quot;</span>, <span class="at">min =</span> <span class="dv">2</span>, <span class="at">max =</span> <span class="dv">8</span>, <span class="at">value =</span> <span class="dv">4</span>),</span>
+<span id="cb754-14"><a href="ch-classification.html#cb754-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">checkboxGroupInput</span>(<span class="st">&quot;vars&quot;</span>, <span class="st">&quot;Variables de segmentation&quot;</span>, <span class="at">choices =</span> variables,</span>
+<span id="cb754-15"><a href="ch-classification.html#cb754-15" aria-hidden="true" tabindex="-1"></a>                         <span class="at">selected =</span> variables),</span>
+<span id="cb754-16"><a href="ch-classification.html#cb754-16" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;var_x&quot;</span>, <span class="st">&quot;Abscisse&quot;</span>, variables, <span class="at">selected =</span> <span class="st">&quot;frequence&quot;</span>),</span>
+<span id="cb754-17"><a href="ch-classification.html#cb754-17" aria-hidden="true" tabindex="-1"></a>      <span class="fu">selectInput</span>(<span class="st">&quot;var_y&quot;</span>, <span class="st">&quot;Ordonnée&quot;</span>, variables, <span class="at">selected =</span> <span class="st">&quot;part_promo&quot;</span>)</span>
+<span id="cb754-18"><a href="ch-classification.html#cb754-18" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb754-19"><a href="ch-classification.html#cb754-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mainPanel</span>(</span>
+<span id="cb754-20"><a href="ch-classification.html#cb754-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">plotOutput</span>(<span class="st">&quot;nuage&quot;</span>),</span>
+<span id="cb754-21"><a href="ch-classification.html#cb754-21" aria-hidden="true" tabindex="-1"></a>      <span class="fu">tableOutput</span>(<span class="st">&quot;profils&quot;</span>)</span>
+<span id="cb754-22"><a href="ch-classification.html#cb754-22" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb754-23"><a href="ch-classification.html#cb754-23" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb754-24"><a href="ch-classification.html#cb754-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb754-25"><a href="ch-classification.html#cb754-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb754-26"><a href="ch-classification.html#cb754-26" aria-hidden="true" tabindex="-1"></a>server <span class="ot">&lt;-</span> <span class="cf">function</span>(input, output) {</span>
+<span id="cb754-27"><a href="ch-classification.html#cb754-27" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Expression réactive : recalculée seulement quand k ou les variables changent</span></span>
+<span id="cb754-28"><a href="ch-classification.html#cb754-28" aria-hidden="true" tabindex="-1"></a>  segments <span class="ot">&lt;-</span> <span class="fu">reactive</span>({</span>
+<span id="cb754-29"><a href="ch-classification.html#cb754-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">req</span>(<span class="fu">length</span>(input<span class="sc">$</span>vars) <span class="sc">&gt;=</span> <span class="dv">2</span>)</span>
+<span id="cb754-30"><a href="ch-classification.html#cb754-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb754-31"><a href="ch-classification.html#cb754-31" aria-hidden="true" tabindex="-1"></a>    <span class="fu">kmeans</span>(<span class="fu">scale</span>(indicateurs[, input<span class="sc">$</span>vars]), <span class="at">centers =</span> input<span class="sc">$</span>k, <span class="at">nstart =</span> <span class="dv">20</span>)<span class="sc">$</span>cluster</span>
+<span id="cb754-32"><a href="ch-classification.html#cb754-32" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb754-33"><a href="ch-classification.html#cb754-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb754-34"><a href="ch-classification.html#cb754-34" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>nuage <span class="ot">&lt;-</span> <span class="fu">renderPlot</span>({</span>
+<span id="cb754-35"><a href="ch-classification.html#cb754-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(indicateurs, <span class="fu">aes</span>(.data[[input<span class="sc">$</span>var_x]], .data[[input<span class="sc">$</span>var_y]],</span>
+<span id="cb754-36"><a href="ch-classification.html#cb754-36" aria-hidden="true" tabindex="-1"></a>                            <span class="at">color =</span> <span class="fu">factor</span>(<span class="fu">segments</span>()))) <span class="sc">+</span></span>
+<span id="cb754-37"><a href="ch-classification.html#cb754-37" aria-hidden="true" tabindex="-1"></a>      <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb754-38"><a href="ch-classification.html#cb754-38" aria-hidden="true" tabindex="-1"></a>      <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">&quot;Segment&quot;</span>) <span class="sc">+</span></span>
+<span id="cb754-39"><a href="ch-classification.html#cb754-39" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme_minimal</span>()</span>
+<span id="cb754-40"><a href="ch-classification.html#cb754-40" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb754-41"><a href="ch-classification.html#cb754-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb754-42"><a href="ch-classification.html#cb754-42" aria-hidden="true" tabindex="-1"></a>  output<span class="sc">$</span>profils <span class="ot">&lt;-</span> <span class="fu">renderTable</span>({</span>
+<span id="cb754-43"><a href="ch-classification.html#cb754-43" aria-hidden="true" tabindex="-1"></a>    indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb754-44"><a href="ch-classification.html#cb754-44" aria-hidden="true" tabindex="-1"></a>      <span class="fu">mutate</span>(<span class="at">segment =</span> <span class="fu">segments</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb754-45"><a href="ch-classification.html#cb754-45" aria-hidden="true" tabindex="-1"></a>      <span class="fu">group_by</span>(segment) <span class="sc">|&gt;</span></span>
+<span id="cb754-46"><a href="ch-classification.html#cb754-46" aria-hidden="true" tabindex="-1"></a>      <span class="fu">summarise</span>(<span class="at">clients =</span> <span class="fu">n</span>(), <span class="fu">across</span>(<span class="fu">all_of</span>(variables), mean))</span>
+<span id="cb754-47"><a href="ch-classification.html#cb754-47" aria-hidden="true" tabindex="-1"></a>  })</span>
+<span id="cb754-48"><a href="ch-classification.html#cb754-48" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb754-49"><a href="ch-classification.html#cb754-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb754-50"><a href="ch-classification.html#cb754-50" aria-hidden="true" tabindex="-1"></a><span class="fu">shinyApp</span>(<span class="at">ui =</span> ui, <span class="at">server =</span> server)</span></code></pre></div>
+</div>
+<div id="la-réactivité" class="section level3 hasAnchor" number="6.7.4">
+<h3><span class="header-section-number">6.7.4</span> La réactivité<a href="ch-classification.html#la-réactivité" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Shiny recalcule une sortie <strong>seulement</strong> quand une entrée dont elle dépend
+change. Une expression <code>reactive()</code> sert à calculer une seule fois un résultat
+partagé par plusieurs sorties : ici, la segmentation est utilisée par le
+graphique et par le tableau, mais n’est recalculée que lorsque <code>k</code> ou les
+variables changent, pas lorsqu’on change d’axe sur le graphique. <code>req()</code>
+interrompt le calcul tant qu’une condition n’est pas remplie (au moins deux
+variables cochées).</p>
+</div>
+<div id="partager-une-application" class="section level3 hasAnchor" number="6.7.5">
+<h3><span class="header-section-number">6.7.5</span> Partager une application<a href="ch-classification.html#partager-une-application" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>en local : <code>shiny::runApp()</code> ;</li>
+<li>en ligne : <a href="https://www.shinyapps.io">shinyapps.io</a> (offre gratuite limitée)
+via le package <code>rsconnect</code>, ou un serveur Shiny Server / Posit Connect de
+l’entreprise. Attention : publier une application qui contient des données
+clients revient à les diffuser.</li>
+</ul>
+<p>Pour aller plus loin, la galerie <a href="https://shiny.posit.co/r/gallery/">shiny.posit.co/r/gallery</a>
+et le livre <em>Mastering Shiny</em> de H. Wickham (<a href="https://mastering-shiny.org">mastering-shiny.org</a>)
+présentent de nombreux exemples.</p>
+</div>
+</div>
+<div id="résumé-5" class="section level2 hasAnchor" number="6.8">
+<h2><span class="header-section-number">6.8</span> Résumé<a href="ch-classification.html#résumé-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="retenir">
+<ul>
+<li>Classification <strong>non supervisée</strong> : former des groupes homogènes sans variable
+cible ; en marketing, c’est la <strong>segmentation</strong> ; <strong>standardiser</strong> avant de
+calculer des distances.</li>
+<li><strong>k-moyennes</strong> : <code>kmeans(x, centers = k, nstart = 25)</code> ; minimise l’inertie
+intra-classe ; dépend de l’initialisation.</li>
+<li><strong>CAH</strong> : <code>hclust(dist(x), method = "ward.D2")</code>, dendrogramme, <code>cutree()</code>.</li>
+<li>Choisir <span class="math inline">\(k\)</span> : coude, silhouette, saut d’inertie, interprétabilité et utilité
+métier.</li>
+<li>Décrire les classes : moyennes par classe, variables illustratives,
+<code>HCPC()</code>, <code>catdes()</code>, parangons ; les <strong>nommer</strong>.</li>
+<li><strong>Éthique</strong> : consentement, minimisation, <em>proxies</em>, équité entre groupes,
+explicabilité ; RGPD (dont le droit d’opposition à la prospection) et AI Act.</li>
+<li><strong>Shiny</strong> : <code>ui</code> (entrées, emplacements des sorties) + <code>server</code>
+(<code>render*()</code>) ; <code>reactive()</code> pour les calculs partagés.</li>
+</ul>
+</div>
+</div>
+<div id="exercices-5" class="section level2 hasAnchor" number="6.9">
+<h2><span class="header-section-number">6.9</span> Exercices<a href="ch-classification.html#exercices-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="exercice">
+<p><strong>Exercice 6.1 — Segmentation RFM simplifiée.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Segmenter les clients avec les seules variables <code>recence</code>, <code>frequence</code> et
+<code>montant_total</code>, après les avoir passées au logarithme (<code>log1p()</code>) puis
+standardisées.</li>
+<li>Comparer, pour <span class="math inline">\(k = 3\)</span> à <span class="math inline">\(6\)</span>, la silhouette moyenne.</li>
+<li>Décrire et nommer les classes obtenues pour le <span class="math inline">\(k\)</span> retenu.</li>
+<li>Comparer cette segmentation à celle du cours (tableau croisé). Les classes
+sont-elles stables quand on change les variables ?</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb755"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb755-1"><a href="ch-classification.html#cb755-1" aria-hidden="true" tabindex="-1"></a>x_rfm <span class="ot">&lt;-</span> indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb755-2"><a href="ch-classification.html#cb755-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">transmute</span>(<span class="at">recence =</span> <span class="fu">log1p</span>(recence), <span class="at">frequence =</span> <span class="fu">log1p</span>(frequence),</span>
+<span id="cb755-3"><a href="ch-classification.html#cb755-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">montant_total =</span> <span class="fu">log1p</span>(montant_total)) <span class="sc">|&gt;</span></span>
+<span id="cb755-4"><a href="ch-classification.html#cb755-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale</span>()</span>
+<span id="cb755-5"><a href="ch-classification.html#cb755-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb755-6"><a href="ch-classification.html#cb755-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(<span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>, <span class="cf">function</span>(k) {</span>
+<span id="cb755-7"><a href="ch-classification.html#cb755-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb755-8"><a href="ch-classification.html#cb755-8" aria-hidden="true" tabindex="-1"></a>  cl <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(x_rfm, <span class="at">centers =</span> k, <span class="at">nstart =</span> <span class="dv">25</span>)<span class="sc">$</span>cluster</span>
+<span id="cb755-9"><a href="ch-classification.html#cb755-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mean</span>(<span class="fu">silhouette</span>(cl, <span class="fu">dist</span>(x_rfm))[, <span class="st">&quot;sil_width&quot;</span>])</span>
+<span id="cb755-10"><a href="ch-classification.html#cb755-10" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div>
+<pre><code>#&gt; [1] 0.3761 0.3347 0.3502 0.3508</code></pre>
+<div class="sourceCode" id="cb757"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb757-1"><a href="ch-classification.html#cb757-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb757-2"><a href="ch-classification.html#cb757-2" aria-hidden="true" tabindex="-1"></a>km_rfm <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(x_rfm, <span class="at">centers =</span> <span class="dv">4</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb757-3"><a href="ch-classification.html#cb757-3" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb757-4"><a href="ch-classification.html#cb757-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">classe_rfm =</span> km_rfm<span class="sc">$</span>cluster) <span class="sc">|&gt;</span></span>
+<span id="cb757-5"><a href="ch-classification.html#cb757-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(classe_rfm) <span class="sc">|&gt;</span></span>
+<span id="cb757-6"><a href="ch-classification.html#cb757-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">n =</span> <span class="fu">n</span>(), <span class="at">recence =</span> <span class="fu">median</span>(recence), <span class="at">frequence =</span> <span class="fu">median</span>(frequence),</span>
+<span id="cb757-7"><a href="ch-classification.html#cb757-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">montant =</span> <span class="fu">median</span>(montant_total))</span></code></pre></div>
+<pre><code>#&gt; # A tibble: 4 × 5
+#&gt;   classe_rfm     n recence frequence montant
+#&gt;        &lt;int&gt; &lt;int&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+#&gt; 1          1   514    13           6   228. 
+#&gt; 2          2   359   127           1    56.5
+#&gt; 3          3   390    11.5        11  1019. 
+#&gt; 4          4   478    79.5         3   151.</code></pre>
+<div class="sourceCode" id="cb759"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb759-1"><a href="ch-classification.html#cb759-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">rfm =</span> km_rfm<span class="sc">$</span>cluster, <span class="at">cours =</span> km<span class="sc">$</span>cluster)</span></code></pre></div>
+<pre><code>#&gt;    cours
+#&gt; rfm   1   2   3   4
+#&gt;   1  12 388  13 101
+#&gt;   2   0  27 211 121
+#&gt;   3 354  35   0   1
+#&gt;   4   4 146 199 129</code></pre>
+<p>La segmentation RFM retrouve bien les clients à forte valeur, mais distingue
+moins bien les comportements promotionnels, absents de ses variables : le
+<strong>choix des variables</strong> détermine les segments que l’on peut trouver.</p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 6.2 — Classification de <code>iris</code>.</strong> On oublie la variable <code>Species</code>.</p>
+<ol style="list-style-type: decimal">
+<li>Réaliser une CAH (Ward) sur les quatre mesures standardisées et tracer le
+dendrogramme. Combien de classes suggère-t-il ?</li>
+<li>Réaliser une partition en 3 classes avec les k-moyennes et la croiser avec
+<code>Species</code>. Quelles espèces sont confondues ?</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb761"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb761-1"><a href="ch-classification.html#cb761-1" aria-hidden="true" tabindex="-1"></a>x_iris <span class="ot">&lt;-</span> <span class="fu">scale</span>(iris[, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>])</span>
+<span id="cb761-2"><a href="ch-classification.html#cb761-2" aria-hidden="true" tabindex="-1"></a>cah_iris <span class="ot">&lt;-</span> <span class="fu">hclust</span>(<span class="fu">dist</span>(x_iris), <span class="at">method =</span> <span class="st">&quot;ward.D2&quot;</span>)</span>
+<span id="cb761-3"><a href="ch-classification.html#cb761-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cah_iris, <span class="at">labels =</span> <span class="cn">FALSE</span>, <span class="at">hang =</span> <span class="sc">-</span><span class="dv">1</span>, <span class="at">main =</span> <span class="st">&quot;CAH sur iris&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex6-2-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb762"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb762-1"><a href="ch-classification.html#cb762-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb762-2"><a href="ch-classification.html#cb762-2" aria-hidden="true" tabindex="-1"></a>km_iris <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(x_iris, <span class="at">centers =</span> <span class="dv">3</span>, <span class="at">nstart =</span> <span class="dv">25</span>)</span>
+<span id="cb762-3"><a href="ch-classification.html#cb762-3" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">classe =</span> km_iris<span class="sc">$</span>cluster, <span class="at">espece =</span> iris<span class="sc">$</span>Species)</span></code></pre></div>
+<pre><code>#&gt;       espece
+#&gt; classe setosa versicolor virginica
+#&gt;      1      0         39        14
+#&gt;      2      0         11        36
+#&gt;      3     50          0         0</code></pre>
+<p><em>setosa</em> est parfaitement isolée ; <em>versicolor</em> et <em>virginica</em> se recouvrent en
+partie.</p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 6.3 — Éthique.</strong> Une enseigne veut utiliser la segmentation de ses
+clients, leur code postal et leur âge pour proposer des <strong>prix personnalisés</strong>
+sur son site.</p>
+<ol style="list-style-type: decimal">
+<li>Quels risques éthiques et légaux identifiez-vous ?</li>
+<li>Quelles questions poseriez-vous avant de commencer ?</li>
+<li>Quelles précautions techniques et organisationnelles proposeriez-vous ?</li>
+</ol>
+</div>
+<div class="exercice">
+<p><strong>Exercice 6.4 — Shiny.</strong> Modifier l’application d’exemple pour :</p>
+<ol style="list-style-type: decimal">
+<li>afficher la silhouette moyenne de la partition ;</li>
+<li>ajouter un bouton de téléchargement de la liste des clients d’un segment
+choisi (<code>downloadButton()</code> et <code>downloadHandler()</code>) ;</li>
+<li>ajouter un onglet (<code>tabsetPanel()</code>) montrant le chiffre d’affaires mensuel
+par segment.</li>
+</ol>
+</div>
+<p><strong>Pour aller plus loin</strong></p>
+<ul>
+<li>F. Husson, S. Lê et J. Pagès, <em>Analyse de données avec R</em>, chapitre
+« Classification ».</li>
+<li>C. O’Neil, <em>Algorithmes : la bombe à retardement</em>, Les Arènes, 2018
+(traduction de <em>Weapons of Math Destruction</em>).</li>
+<li>CNIL, recommandations sur la prospection commerciale et les cookies :
+<a href="https://www.cnil.fr">cnil.fr</a>.</li>
+<li>H. Wickham, <em>Mastering Shiny</em>, O’Reilly, 2021.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="ch-acp-arbres.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ch-projet.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": null,
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": ["notes-de-cours-data-science-sous-R.pdf"],
+  "search": {
+    "engine": "fuse",
+    "options": null
+  },
+  "toc": {
+    "collapse": "section"
+  },
+  "info": false
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>
