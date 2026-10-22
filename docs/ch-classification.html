@@ -799,9 +799,9 @@ les décrire, comme les variables illustratives d’une ACP :</p>
 </div>
 <div id="les-classes-retrouvent-elles-la-structure-simulée" class="section level3 hasAnchor" number="6.5.2">
 <h3><span class="header-section-number">6.5.2</span> Les classes retrouvent-elles la structure simulée ?<a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<p>Les données étant simulées, on connaît les vrais segments : le script
-<code>datasets/generer-boutique.R</code> les tire avec <code>set.seed(2026)</code> comme première
-instruction aléatoire. On peut donc les reconstituer et les comparer aux
+<p>Les données étant simulées, on connaît les vrais segments : lors de la
+simulation, ils ont été tirés au hasard juste après <code>set.seed(2026)</code>, avec les
+proportions ci-dessous. On peut donc les reconstituer et les comparer aux
 classes obtenues.</p>
 <div class="sourceCode" id="cb777"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb777-1"><a href="ch-classification.html#cb777-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
 <span id="cb777-2"><a href="ch-classification.html#cb777-2" aria-hidden="true" tabindex="-1"></a>segment_simule <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Fidèles&quot;</span>, <span class="st">&quot;Chasseurs de promos&quot;</span>, <span class="st">&quot;Occasionnels&quot;</span>, <span class="st">&quot;Nouveaux&quot;</span>),</span>
