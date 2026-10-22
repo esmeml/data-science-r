@@ -149,6 +149,17 @@ construire-larbre
 prédire-1
 matrice-de-confusion
 courbe-roc-et-auc
+forêts-aléatoires
+pourquoi-aller-au-delà-dun-arbre
+rappels-théoriques
+le-bagging
+lidée-de-la-forêt-aléatoire-décorréler-les-arbres
+classification-et-régression
+lerreur-out-of-bag
+importance-des-variables
+paramètres-à-régler
+classification-le-choix-de-la-marque-de-jus-dorange
+régression-les-ventes-de-sièges-auto
 résumé-4
 exercices-4
 ch-classification
@@ -194,6 +205,6 @@ fiche-de-révision
 le-langage-r-chapitre-2
 manipulation-chapitre-3
 graphiques-et-régression-chapitre-4
-acp-et-arbres-chapitre-5
+acp-arbres-et-forêts-aléatoires-chapitre-5
 classification-chapitre-6
 questions-de-révision

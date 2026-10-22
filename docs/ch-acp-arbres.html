@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 5 Analyse en composantes principales et arbres de décision | Data Science sous R</title>
+  <title>Chapitre 5 Analyse en composantes principales, arbres de décision et forêts aléatoires | Data Science sous R</title>
   <meta name="description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
   <meta name="generator" content="bookdown 0.45 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 5 Analyse en composantes principales et arbres de décision | Data Science sous R" />
+  <meta property="og:title" content="Chapitre 5 Analyse en composantes principales, arbres de décision et forêts aléatoires | Data Science sous R" />
   <meta property="og:type" content="book" />
   
   <meta property="og:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 5 Analyse en composantes principales et arbres de décision | Data Science sous R" />
+  <meta name="twitter:title" content="Chapitre 5 Analyse en composantes principales, arbres de décision et forêts aléatoires | Data Science sous R" />
   
   <meta name="twitter:description" content="Notes de cours du module Data Science sous R (ESME, Ingé3)." />
   
@@ -55,7 +55,7 @@
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -65,7 +65,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -144,45 +144,45 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#objectifs-du-module"><i class="fa fa-check"></i>Objectifs du module</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#comment-utiliser-ces-notes"><i class="fa fa-check"></i>Comment utiliser ces notes</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#logiciels-et-packages"><i class="fa fa-check"></i>Logiciels et packages</a></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#les-donn%C3%A9es-du-cours"><i class="fa fa-check"></i>Les données du cours</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#les-données-du-cours"><i class="fa fa-check"></i>Les données du cours</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#bibliographie"><i class="fa fa-check"></i>Bibliographie</a></li>
 </ul></li>
 <li class="chapter" data-level="1" data-path="ch-science.html"><a href="ch-science.html"><i class="fa fa-check"></i><b>1</b> Introduction à la science des données</a>
 <ul>
-<li class="chapter" data-level="1.1" data-path="ch-science.html"><a href="ch-science.html#quest-ce-que-la-science-des-donn%C3%A9es"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que la science des données ?</a>
+<li class="chapter" data-level="1.1" data-path="ch-science.html"><a href="ch-science.html#quest-ce-que-la-science-des-données"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce que la science des données ?</a>
 <ul>
-<li class="chapter" data-level="1.1.1" data-path="ch-science.html"><a href="ch-science.html#une-pratique-ancienne-un-nom-r%C3%A9cent"><i class="fa fa-check"></i><b>1.1.1</b> Une pratique ancienne, un nom récent</a></li>
-<li class="chapter" data-level="1.1.2" data-path="ch-science.html"><a href="ch-science.html#d%C3%A9finition"><i class="fa fa-check"></i><b>1.1.2</b> Définition</a></li>
+<li class="chapter" data-level="1.1.1" data-path="ch-science.html"><a href="ch-science.html#une-pratique-ancienne-un-nom-récent"><i class="fa fa-check"></i><b>1.1.1</b> Une pratique ancienne, un nom récent</a></li>
+<li class="chapter" data-level="1.1.2" data-path="ch-science.html"><a href="ch-science.html#définition"><i class="fa fa-check"></i><b>1.1.2</b> Définition</a></li>
 <li class="chapter" data-level="1.1.3" data-path="ch-science.html"><a href="ch-science.html#quatre-grands-types-danalyse"><i class="fa fa-check"></i><b>1.1.3</b> Quatre grands types d’analyse</a></li>
-<li class="chapter" data-level="1.1.4" data-path="ch-science.html"><a href="ch-science.html#la-science-des-donn%C3%A9es-en-marketing"><i class="fa fa-check"></i><b>1.1.4</b> La science des données en marketing</a></li>
-<li class="chapter" data-level="1.1.5" data-path="ch-science.html"><a href="ch-science.html#les-projets-r%C3%A9els-sont-exigeants"><i class="fa fa-check"></i><b>1.1.5</b> Les projets réels sont exigeants</a></li>
+<li class="chapter" data-level="1.1.4" data-path="ch-science.html"><a href="ch-science.html#la-science-des-données-en-marketing"><i class="fa fa-check"></i><b>1.1.4</b> La science des données en marketing</a></li>
+<li class="chapter" data-level="1.1.5" data-path="ch-science.html"><a href="ch-science.html#les-projets-réels-sont-exigeants"><i class="fa fa-check"></i><b>1.1.5</b> Les projets réels sont exigeants</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="ch-science.html"><a href="ch-science.html#science-des-donn%C3%A9es-v%C3%A9ridique"><i class="fa fa-check"></i><b>1.2</b> Science des données véridique</a>
+<li class="chapter" data-level="1.2" data-path="ch-science.html"><a href="ch-science.html#science-des-données-véridique"><i class="fa fa-check"></i><b>1.2</b> Science des données véridique</a>
 <ul>
 <li class="chapter" data-level="1.2.1" data-path="ch-science.html"><a href="ch-science.html#les-trois-mondes"><i class="fa fa-check"></i><b>1.2.1</b> Les trois mondes</a></li>
-<li class="chapter" data-level="1.2.2" data-path="ch-science.html"><a href="ch-science.html#pens%C3%A9e-critique-les-bonnes-questions-%C3%A0-se-poser"><i class="fa fa-check"></i><b>1.2.2</b> Pensée critique : les bonnes questions à se poser</a></li>
-<li class="chapter" data-level="1.2.3" data-path="ch-science.html"><a href="ch-science.html#se-m%C3%A9fier-des-biais"><i class="fa fa-check"></i><b>1.2.3</b> Se méfier des biais</a></li>
-<li class="chapter" data-level="1.2.4" data-path="ch-science.html"><a href="ch-science.html#%C3%A9tude-de-cas-les-feux-de-brousse-australiens-20192020"><i class="fa fa-check"></i><b>1.2.4</b> Étude de cas : les feux de brousse australiens (2019–2020)</a></li>
+<li class="chapter" data-level="1.2.2" data-path="ch-science.html"><a href="ch-science.html#pensée-critique-les-bonnes-questions-à-se-poser"><i class="fa fa-check"></i><b>1.2.2</b> Pensée critique : les bonnes questions à se poser</a></li>
+<li class="chapter" data-level="1.2.3" data-path="ch-science.html"><a href="ch-science.html#se-méfier-des-biais"><i class="fa fa-check"></i><b>1.2.3</b> Se méfier des biais</a></li>
+<li class="chapter" data-level="1.2.4" data-path="ch-science.html"><a href="ch-science.html#étude-de-cas-les-feux-de-brousse-australiens-20192020"><i class="fa fa-check"></i><b>1.2.4</b> Étude de cas : les feux de brousse australiens (2019–2020)</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="ch-science.html"><a href="ch-science.html#le-cadre-pcs-pr%C3%A9dictibilit%C3%A9-calculabilit%C3%A9-stabilit%C3%A9"><i class="fa fa-check"></i><b>1.3</b> Le cadre PCS : prédictibilité, calculabilité, stabilité</a>
+<li class="chapter" data-level="1.3" data-path="ch-science.html"><a href="ch-science.html#le-cadre-pcs-prédictibilité-calculabilité-stabilité"><i class="fa fa-check"></i><b>1.3</b> Le cadre PCS : prédictibilité, calculabilité, stabilité</a>
 <ul>
-<li class="chapter" data-level="1.3.1" data-path="ch-science.html"><a href="ch-science.html#pr%C3%A9dictibilit%C3%A9"><i class="fa fa-check"></i><b>1.3.1</b> Prédictibilité</a></li>
-<li class="chapter" data-level="1.3.2" data-path="ch-science.html"><a href="ch-science.html#calculabilit%C3%A9"><i class="fa fa-check"></i><b>1.3.2</b> Calculabilité</a></li>
-<li class="chapter" data-level="1.3.3" data-path="ch-science.html"><a href="ch-science.html#stabilit%C3%A9"><i class="fa fa-check"></i><b>1.3.3</b> Stabilité</a></li>
+<li class="chapter" data-level="1.3.1" data-path="ch-science.html"><a href="ch-science.html#prédictibilité"><i class="fa fa-check"></i><b>1.3.1</b> Prédictibilité</a></li>
+<li class="chapter" data-level="1.3.2" data-path="ch-science.html"><a href="ch-science.html#calculabilité"><i class="fa fa-check"></i><b>1.3.2</b> Calculabilité</a></li>
+<li class="chapter" data-level="1.3.3" data-path="ch-science.html"><a href="ch-science.html#stabilité"><i class="fa fa-check"></i><b>1.3.3</b> Stabilité</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="ch-science.html"><a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-donn%C3%A9es"><i class="fa fa-check"></i><b>1.4</b> Le cycle de vie d’un projet de science des données</a>
+<li class="chapter" data-level="1.4" data-path="ch-science.html"><a href="ch-science.html#le-cycle-de-vie-dun-projet-de-science-des-données"><i class="fa fa-check"></i><b>1.4</b> Le cycle de vie d’un projet de science des données</a>
 <ul>
 <li class="chapter" data-level="1.4.1" data-path="ch-science.html"><a href="ch-science.html#le-dslc"><i class="fa fa-check"></i><b>1.4.1</b> Le DSLC</a></li>
 <li class="chapter" data-level="1.4.2" data-path="ch-science.html"><a href="ch-science.html#crisp-dm"><i class="fa fa-check"></i><b>1.4.2</b> CRISP-DM</a></li>
-<li class="chapter" data-level="1.4.3" data-path="ch-science.html"><a href="ch-science.html#gouvernance-des-donn%C3%A9es"><i class="fa fa-check"></i><b>1.4.3</b> Gouvernance des données</a></li>
+<li class="chapter" data-level="1.4.3" data-path="ch-science.html"><a href="ch-science.html#gouvernance-des-données"><i class="fa fa-check"></i><b>1.4.3</b> Gouvernance des données</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="ch-science.html"><a href="ch-science.html#r%C3%A9sum%C3%A9"><i class="fa fa-check"></i><b>1.5</b> Résumé</a></li>
+<li class="chapter" data-level="1.5" data-path="ch-science.html"><a href="ch-science.html#résumé"><i class="fa fa-check"></i><b>1.5</b> Résumé</a></li>
 <li class="chapter" data-level="1.6" data-path="ch-science.html"><a href="ch-science.html#exercices"><i class="fa fa-check"></i><b>1.6</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="ch-langage-r.html"><a href="ch-langage-r.html"><i class="fa fa-check"></i><b>2</b> Introduction au langage R</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-un-peu-dhistoire"><i class="fa fa-check"></i><b>2.1</b> R : un peu d’histoire</a></li>
-<li class="chapter" data-level="2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#introduction-%C3%A0-rstudio"><i class="fa fa-check"></i><b>2.2</b> Introduction à RStudio</a>
+<li class="chapter" data-level="2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#introduction-à-rstudio"><i class="fa fa-check"></i><b>2.2</b> Introduction à RStudio</a>
 <ul>
 <li class="chapter" data-level="2.2.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r-et-rstudio-le-moteur-et-le-tableau-de-bord"><i class="fa fa-check"></i><b>2.2.1</b> R et RStudio : le moteur et le tableau de bord</a></li>
 <li class="chapter" data-level="2.2.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-quatre-panneaux"><i class="fa fa-check"></i><b>2.2.2</b> Les quatre panneaux</a></li>
@@ -190,18 +190,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-projets-rstudio"><i class="fa fa-check"></i><b>2.2.4</b> Les projets RStudio</a></li>
 <li class="chapter" data-level="2.2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-notebooks-r-markdown-et-quarto"><i class="fa fa-check"></i><b>2.2.5</b> Les notebooks : R Markdown et Quarto</a></li>
 <li class="chapter" data-level="2.2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#longlet-environnement"><i class="fa fa-check"></i><b>2.2.6</b> L’onglet Environnement</a></li>
-<li class="chapter" data-level="2.2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#%C3%A9crire-du-code-efficacement"><i class="fa fa-check"></i><b>2.2.7</b> Écrire du code efficacement</a></li>
-<li class="chapter" data-level="2.2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r%C3%A9glages-recommand%C3%A9s"><i class="fa fa-check"></i><b>2.2.8</b> Réglages recommandés</a></li>
+<li class="chapter" data-level="2.2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-du-code-efficacement"><i class="fa fa-check"></i><b>2.2.7</b> Écrire du code efficacement</a></li>
+<li class="chapter" data-level="2.2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#réglages-recommandés"><i class="fa fa-check"></i><b>2.2.8</b> Réglages recommandés</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#premiers-pas-r-comme-calculatrice"><i class="fa fa-check"></i><b>2.3</b> Premiers pas : R comme calculatrice</a></li>
 <li class="chapter" data-level="2.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#variables-et-assignation"><i class="fa fa-check"></i><b>2.4</b> Variables et assignation</a></li>
-<li class="chapter" data-level="2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#types-de-donn%C3%A9es"><i class="fa fa-check"></i><b>2.5</b> Types de données</a>
+<li class="chapter" data-level="2.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#types-de-données"><i class="fa fa-check"></i><b>2.5</b> Types de données</a>
 <ul>
 <li class="chapter" data-level="2.5.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#les-types-de-base"><i class="fa fa-check"></i><b>2.5.1</b> Les types de base</a></li>
 <li class="chapter" data-level="2.5.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#conversions"><i class="fa fa-check"></i><b>2.5.2</b> Conversions</a></li>
-<li class="chapter" data-level="2.5.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#valeurs-sp%C3%A9ciales"><i class="fa fa-check"></i><b>2.5.3</b> Valeurs spéciales</a></li>
+<li class="chapter" data-level="2.5.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#valeurs-spéciales"><i class="fa fa-check"></i><b>2.5.3</b> Valeurs spéciales</a></li>
 </ul></li>
-<li class="chapter" data-level="2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-de-donn%C3%A9es"><i class="fa fa-check"></i><b>2.6</b> Structures de données</a>
+<li class="chapter" data-level="2.6" data-path="ch-langage-r.html"><a href="ch-langage-r.html#structures-de-données"><i class="fa fa-check"></i><b>2.6</b> Structures de données</a>
 <ul>
 <li class="chapter" data-level="2.6.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs"><i class="fa fa-check"></i><b>2.6.1</b> Vecteurs</a></li>
 <li class="chapter" data-level="2.6.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#facteurs"><i class="fa fa-check"></i><b>2.6.2</b> Facteurs</a></li>
@@ -209,13 +209,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.6.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#listes"><i class="fa fa-check"></i><b>2.6.4</b> Listes</a></li>
 <li class="chapter" data-level="2.6.5" data-path="ch-langage-r.html"><a href="ch-langage-r.html#data-frames"><i class="fa fa-check"></i><b>2.6.5</b> Data frames</a></li>
 </ul></li>
-<li class="chapter" data-level="2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#op%C3%A9rateurs"><i class="fa fa-check"></i><b>2.7</b> Opérateurs</a>
+<li class="chapter" data-level="2.7" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs"><i class="fa fa-check"></i><b>2.7</b> Opérateurs</a>
 <ul>
-<li class="chapter" data-level="2.7.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#op%C3%A9rateurs-arithm%C3%A9tiques"><i class="fa fa-check"></i><b>2.7.1</b> Opérateurs arithmétiques</a></li>
-<li class="chapter" data-level="2.7.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#op%C3%A9rateurs-de-comparaison"><i class="fa fa-check"></i><b>2.7.2</b> Opérateurs de comparaison</a></li>
-<li class="chapter" data-level="2.7.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#op%C3%A9rateurs-logiques"><i class="fa fa-check"></i><b>2.7.3</b> Opérateurs logiques</a></li>
+<li class="chapter" data-level="2.7.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-arithmétiques"><i class="fa fa-check"></i><b>2.7.1</b> Opérateurs arithmétiques</a></li>
+<li class="chapter" data-level="2.7.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-de-comparaison"><i class="fa fa-check"></i><b>2.7.2</b> Opérateurs de comparaison</a></li>
+<li class="chapter" data-level="2.7.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#opérateurs-logiques"><i class="fa fa-check"></i><b>2.7.3</b> Opérateurs logiques</a></li>
 </ul></li>
-<li class="chapter" data-level="2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#acc%C3%A9der-aux-%C3%A9l%C3%A9ments-et-les-modifier"><i class="fa fa-check"></i><b>2.8</b> Accéder aux éléments et les modifier</a>
+<li class="chapter" data-level="2.8" data-path="ch-langage-r.html"><a href="ch-langage-r.html#accéder-aux-éléments-et-les-modifier"><i class="fa fa-check"></i><b>2.8</b> Accéder aux éléments et les modifier</a>
 <ul>
 <li class="chapter" data-level="2.8.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#vecteurs-1"><i class="fa fa-check"></i><b>2.8.1</b> Vecteurs</a></li>
 <li class="chapter" data-level="2.8.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#matrices-et-data-frames-ligne-colonne"><i class="fa fa-check"></i><b>2.8.2</b> Matrices et data frames : <code>[ligne, colonne]</code></a></li>
@@ -230,66 +230,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.10" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-programmation-modulaire"><i class="fa fa-check"></i><b>2.10</b> Fonctions et programmation modulaire</a>
 <ul>
-<li class="chapter" data-level="2.10.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#%C3%A9crire-une-fonction"><i class="fa fa-check"></i><b>2.10.1</b> Écrire une fonction</a></li>
-<li class="chapter" data-level="2.10.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-proc%C3%A9dures"><i class="fa fa-check"></i><b>2.10.2</b> Fonctions et procédures</a></li>
-<li class="chapter" data-level="2.10.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#appliquer-une-fonction-%C3%A0-chaque-%C3%A9l%C3%A9ment"><i class="fa fa-check"></i><b>2.10.3</b> Appliquer une fonction à chaque élément</a></li>
-<li class="chapter" data-level="2.10.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#d%C3%A9couper-un-programme-en-modules"><i class="fa fa-check"></i><b>2.10.4</b> Découper un programme en modules</a></li>
+<li class="chapter" data-level="2.10.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#écrire-une-fonction"><i class="fa fa-check"></i><b>2.10.1</b> Écrire une fonction</a></li>
+<li class="chapter" data-level="2.10.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#fonctions-et-procédures"><i class="fa fa-check"></i><b>2.10.2</b> Fonctions et procédures</a></li>
+<li class="chapter" data-level="2.10.3" data-path="ch-langage-r.html"><a href="ch-langage-r.html#appliquer-une-fonction-à-chaque-élément"><i class="fa fa-check"></i><b>2.10.3</b> Appliquer une fonction à chaque élément</a></li>
+<li class="chapter" data-level="2.10.4" data-path="ch-langage-r.html"><a href="ch-langage-r.html#découper-un-programme-en-modules"><i class="fa fa-check"></i><b>2.10.4</b> Découper un programme en modules</a></li>
 </ul></li>
 <li class="chapter" data-level="2.11" data-path="ch-langage-r.html"><a href="ch-langage-r.html#packages-et-aide"><i class="fa fa-check"></i><b>2.11</b> Packages et aide</a>
 <ul>
 <li class="chapter" data-level="2.11.1" data-path="ch-langage-r.html"><a href="ch-langage-r.html#installer-et-charger-un-package"><i class="fa fa-check"></i><b>2.11.1</b> Installer et charger un package</a></li>
 <li class="chapter" data-level="2.11.2" data-path="ch-langage-r.html"><a href="ch-langage-r.html#trouver-de-laide"><i class="fa fa-check"></i><b>2.11.2</b> Trouver de l’aide</a></li>
 </ul></li>
-<li class="chapter" data-level="2.12" data-path="ch-langage-r.html"><a href="ch-langage-r.html#r%C3%A9sum%C3%A9-1"><i class="fa fa-check"></i><b>2.12</b> Résumé</a></li>
+<li class="chapter" data-level="2.12" data-path="ch-langage-r.html"><a href="ch-langage-r.html#résumé-1"><i class="fa fa-check"></i><b>2.12</b> Résumé</a></li>
 <li class="chapter" data-level="2.13" data-path="ch-langage-r.html"><a href="ch-langage-r.html#exercices-1"><i class="fa fa-check"></i><b>2.13</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="ch-manipulation.html"><a href="ch-manipulation.html"><i class="fa fa-check"></i><b>3</b> Manipulation de données avec R</a>
 <ul>
-<li class="chapter" data-level="3.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#les-donn%C3%A9es-de-ce-chapitre"><i class="fa fa-check"></i><b>3.1</b> Les données de ce chapitre</a>
+<li class="chapter" data-level="3.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#les-données-de-ce-chapitre"><i class="fa fa-check"></i><b>3.1</b> Les données de ce chapitre</a>
 <ul>
-<li class="chapter" data-level="3.1.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#la-boutique-en-ligne-donn%C3%A9es-simul%C3%A9es"><i class="fa fa-check"></i><b>3.1.1</b> La boutique en ligne (données simulées)</a></li>
+<li class="chapter" data-level="3.1.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#la-boutique-en-ligne-données-simulées"><i class="fa fa-check"></i><b>3.1.1</b> La boutique en ligne (données simulées)</a></li>
 </ul></li>
-<li class="chapter" data-level="3.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#importer-et-exporter-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2</b> Importer et exporter des données</a>
+<li class="chapter" data-level="3.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#importer-et-exporter-des-données"><i class="fa fa-check"></i><b>3.2</b> Importer et exporter des données</a>
 <ul>
-<li class="chapter" data-level="3.2.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#le-r%C3%A9pertoire-de-travail"><i class="fa fa-check"></i><b>3.2.1</b> Le répertoire de travail</a></li>
+<li class="chapter" data-level="3.2.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#le-répertoire-de-travail"><i class="fa fa-check"></i><b>3.2.1</b> Le répertoire de travail</a></li>
 <li class="chapter" data-level="3.2.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#lire-un-fichier-csv"><i class="fa fa-check"></i><b>3.2.2</b> Lire un fichier CSV</a></li>
 <li class="chapter" data-level="3.2.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#autres-formats"><i class="fa fa-check"></i><b>3.2.3</b> Autres formats</a></li>
-<li class="chapter" data-level="3.2.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#%C3%A9crire-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.2.4</b> Écrire des données</a></li>
-<li class="chapter" data-level="3.2.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#donn%C3%A9es-int%C3%A9gr%C3%A9es-aux-packages"><i class="fa fa-check"></i><b>3.2.5</b> Données intégrées aux packages</a></li>
+<li class="chapter" data-level="3.2.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#écrire-des-données"><i class="fa fa-check"></i><b>3.2.4</b> Écrire des données</a></li>
+<li class="chapter" data-level="3.2.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-intégrées-aux-packages"><i class="fa fa-check"></i><b>3.2.5</b> Données intégrées aux packages</a></li>
 </ul></li>
-<li class="chapter" data-level="3.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#structure-dun-tableau-de-donn%C3%A9es"><i class="fa fa-check"></i><b>3.3</b> Structure d’un tableau de données</a></li>
-<li class="chapter" data-level="3.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-univari%C3%A9e"><i class="fa fa-check"></i><b>3.4</b> Analyse univariée</a>
+<li class="chapter" data-level="3.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#structure-dun-tableau-de-données"><i class="fa fa-check"></i><b>3.3</b> Structure d’un tableau de données</a></li>
+<li class="chapter" data-level="3.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-univariée"><i class="fa fa-check"></i><b>3.4</b> Analyse univariée</a>
 <ul>
 <li class="chapter" data-level="3.4.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-quantitative"><i class="fa fa-check"></i><b>3.4.1</b> Variable quantitative</a></li>
 <li class="chapter" data-level="3.4.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#variable-qualitative"><i class="fa fa-check"></i><b>3.4.2</b> Variable qualitative</a></li>
 </ul></li>
-<li class="chapter" data-level="3.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-bivari%C3%A9e"><i class="fa fa-check"></i><b>3.5</b> Analyse bivariée</a>
+<li class="chapter" data-level="3.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#analyse-bivariée"><i class="fa fa-check"></i><b>3.5</b> Analyse bivariée</a>
 <ul>
 <li class="chapter" data-level="3.5.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-qualitatives-un-test-ab"><i class="fa fa-check"></i><b>3.5.1</b> Deux variables qualitatives : un test A/B</a></li>
 <li class="chapter" data-level="3.5.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#une-variable-quantitative-et-une-qualitative"><i class="fa fa-check"></i><b>3.5.2</b> Une variable quantitative et une qualitative</a></li>
 <li class="chapter" data-level="3.5.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#deux-variables-quantitatives"><i class="fa fa-check"></i><b>3.5.3</b> Deux variables quantitatives</a></li>
 </ul></li>
-<li class="chapter" data-level="3.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#manipuler-des-donn%C3%A9es-avec-dplyr"><i class="fa fa-check"></i><b>3.6</b> Manipuler des données avec <code>dplyr</code></a>
+<li class="chapter" data-level="3.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#manipuler-des-données-avec-dplyr"><i class="fa fa-check"></i><b>3.6</b> Manipuler des données avec <code>dplyr</code></a>
 <ul>
 <li class="chapter" data-level="3.6.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#filtrer-les-lignes"><i class="fa fa-check"></i><b>3.6.1</b> Filtrer les lignes</a></li>
 <li class="chapter" data-level="3.6.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#trier"><i class="fa fa-check"></i><b>3.6.2</b> Trier</a></li>
-<li class="chapter" data-level="3.6.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#s%C3%A9lectionner-renommer-et-r%C3%A9ordonner-des-colonnes"><i class="fa fa-check"></i><b>3.6.3</b> Sélectionner, renommer et réordonner des colonnes</a></li>
-<li class="chapter" data-level="3.6.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#cr%C3%A9er-des-variables"><i class="fa fa-check"></i><b>3.6.4</b> Créer des variables</a></li>
-<li class="chapter" data-level="3.6.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#encha%C3%AEner-les-op%C3%A9rations-le-pipe"><i class="fa fa-check"></i><b>3.6.5</b> Enchaîner les opérations : le <em>pipe</em></a></li>
-<li class="chapter" data-level="3.6.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#r%C3%A9sumer-par-groupe"><i class="fa fa-check"></i><b>3.6.6</b> Résumer par groupe</a></li>
+<li class="chapter" data-level="3.6.3" data-path="ch-manipulation.html"><a href="ch-manipulation.html#sélectionner-renommer-et-réordonner-des-colonnes"><i class="fa fa-check"></i><b>3.6.3</b> Sélectionner, renommer et réordonner des colonnes</a></li>
+<li class="chapter" data-level="3.6.4" data-path="ch-manipulation.html"><a href="ch-manipulation.html#créer-des-variables"><i class="fa fa-check"></i><b>3.6.4</b> Créer des variables</a></li>
+<li class="chapter" data-level="3.6.5" data-path="ch-manipulation.html"><a href="ch-manipulation.html#enchaîner-les-opérations-le-pipe"><i class="fa fa-check"></i><b>3.6.5</b> Enchaîner les opérations : le <em>pipe</em></a></li>
+<li class="chapter" data-level="3.6.6" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumer-par-groupe"><i class="fa fa-check"></i><b>3.6.6</b> Résumer par groupe</a></li>
 <li class="chapter" data-level="3.6.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exemple-marketing-les-indicateurs-rfm"><i class="fa fa-check"></i><b>3.6.7</b> Exemple marketing : les indicateurs RFM</a></li>
-<li class="chapter" data-level="3.6.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#d%C3%A9caler-des-valeurs-lag-et-lead"><i class="fa fa-check"></i><b>3.6.8</b> Décaler des valeurs : <code>lag()</code> et <code>lead()</code></a></li>
-<li class="chapter" data-level="3.6.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#concat%C3%A9ner-des-tables"><i class="fa fa-check"></i><b>3.6.9</b> Concaténer des tables</a></li>
+<li class="chapter" data-level="3.6.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#décaler-des-valeurs-lag-et-lead"><i class="fa fa-check"></i><b>3.6.8</b> Décaler des valeurs : <code>lag()</code> et <code>lead()</code></a></li>
+<li class="chapter" data-level="3.6.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#concaténer-des-tables"><i class="fa fa-check"></i><b>3.6.9</b> Concaténer des tables</a></li>
 <li class="chapter" data-level="3.6.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#joindre-des-tables"><i class="fa fa-check"></i><b>3.6.10</b> Joindre des tables</a></li>
 </ul></li>
-<li class="chapter" data-level="3.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#donn%C3%A9es-rang%C3%A9es-tidy-data"><i class="fa fa-check"></i><b>3.7</b> Données rangées (<em>tidy data</em>)</a></li>
+<li class="chapter" data-level="3.7" data-path="ch-manipulation.html"><a href="ch-manipulation.html#données-rangées-tidy-data"><i class="fa fa-check"></i><b>3.7</b> Données rangées (<em>tidy data</em>)</a></li>
 <li class="chapter" data-level="3.8" data-path="ch-manipulation.html"><a href="ch-manipulation.html#valeurs-manquantes"><i class="fa fa-check"></i><b>3.8</b> Valeurs manquantes</a></li>
-<li class="chapter" data-level="3.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#g%C3%A9n%C3%A9rer-des-donn%C3%A9es"><i class="fa fa-check"></i><b>3.9</b> Générer des données</a>
+<li class="chapter" data-level="3.9" data-path="ch-manipulation.html"><a href="ch-manipulation.html#générer-des-données"><i class="fa fa-check"></i><b>3.9</b> Générer des données</a>
 <ul>
-<li class="chapter" data-level="3.9.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#s%C3%A9quences-r%C3%A9guli%C3%A8res"><i class="fa fa-check"></i><b>3.9.1</b> Séquences régulières</a></li>
-<li class="chapter" data-level="3.9.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#tirages-al%C3%A9atoires"><i class="fa fa-check"></i><b>3.9.2</b> Tirages aléatoires</a></li>
+<li class="chapter" data-level="3.9.1" data-path="ch-manipulation.html"><a href="ch-manipulation.html#séquences-régulières"><i class="fa fa-check"></i><b>3.9.1</b> Séquences régulières</a></li>
+<li class="chapter" data-level="3.9.2" data-path="ch-manipulation.html"><a href="ch-manipulation.html#tirages-aléatoires"><i class="fa fa-check"></i><b>3.9.2</b> Tirages aléatoires</a></li>
 </ul></li>
-<li class="chapter" data-level="3.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#r%C3%A9sum%C3%A9-2"><i class="fa fa-check"></i><b>3.10</b> Résumé</a></li>
+<li class="chapter" data-level="3.10" data-path="ch-manipulation.html"><a href="ch-manipulation.html#résumé-2"><i class="fa fa-check"></i><b>3.10</b> Résumé</a></li>
 <li class="chapter" data-level="3.11" data-path="ch-manipulation.html"><a href="ch-manipulation.html#exercices-2"><i class="fa fa-check"></i><b>3.11</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="4" data-path="ch-graphiques.html"><a href="ch-graphiques.html"><i class="fa fa-check"></i><b>4</b> Représentations graphiques et régression</a>
@@ -309,118 +309,125 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.3.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#superposer-plusieurs-geoms"><i class="fa fa-check"></i><b>4.3.5</b> Superposer plusieurs <em>geoms</em></a></li>
 <li class="chapter" data-level="4.3.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#faceting"><i class="fa fa-check"></i><b>4.3.6</b> <em>Faceting</em></a></li>
 <li class="chapter" data-level="4.3.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#scales"><i class="fa fa-check"></i><b>4.3.7</b> <em>Scales</em></a></li>
-<li class="chapter" data-level="4.3.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#titres-et-th%C3%A8mes"><i class="fa fa-check"></i><b>4.3.8</b> Titres et thèmes</a></li>
+<li class="chapter" data-level="4.3.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#titres-et-thèmes"><i class="fa fa-check"></i><b>4.3.8</b> Titres et thèmes</a></li>
 </ul></li>
-<li class="chapter" data-level="4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#r%C3%A9gression-lin%C3%A9aire-simple"><i class="fa fa-check"></i><b>4.4</b> Régression linéaire simple</a>
+<li class="chapter" data-level="4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-simple"><i class="fa fa-check"></i><b>4.4</b> Régression linéaire simple</a>
 <ul>
-<li class="chapter" data-level="4.4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-mod%C3%A8le"><i class="fa fa-check"></i><b>4.4.1</b> Le modèle</a></li>
-<li class="chapter" data-level="4.4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#ajuster-le-mod%C3%A8le-avec-lm"><i class="fa fa-check"></i><b>4.4.2</b> Ajuster le modèle avec <code>lm()</code></a></li>
-<li class="chapter" data-level="4.4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#pr%C3%A9dire"><i class="fa fa-check"></i><b>4.4.3</b> Prédire</a></li>
-<li class="chapter" data-level="4.4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#v%C3%A9rifier-les-hypoth%C3%A8ses-les-r%C3%A9sidus"><i class="fa fa-check"></i><b>4.4.4</b> Vérifier les hypothèses : les résidus</a></li>
+<li class="chapter" data-level="4.4.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle"><i class="fa fa-check"></i><b>4.4.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.4.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#ajuster-le-modèle-avec-lm"><i class="fa fa-check"></i><b>4.4.2</b> Ajuster le modèle avec <code>lm()</code></a></li>
+<li class="chapter" data-level="4.4.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire"><i class="fa fa-check"></i><b>4.4.3</b> Prédire</a></li>
+<li class="chapter" data-level="4.4.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#vérifier-les-hypothèses-les-résidus"><i class="fa fa-check"></i><b>4.4.4</b> Vérifier les hypothèses : les résidus</a></li>
 </ul></li>
-<li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#r%C3%A9gression-lin%C3%A9aire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
+<li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
 <ul>
-<li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-mod%C3%A8le-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
-<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-mod%C3%A8les"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
 <li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
-<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#%C3%A9valuer-la-pr%C3%A9dictibilit%C3%A9-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
 </ul></li>
-<li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#r%C3%A9gression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
+<li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
 <ul>
-<li class="chapter" data-level="4.6.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#quand-la-r%C3%A9ponse-est-binaire"><i class="fa fa-check"></i><b>4.6.1</b> Quand la réponse est binaire</a></li>
+<li class="chapter" data-level="4.6.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#quand-la-réponse-est-binaire"><i class="fa fa-check"></i><b>4.6.1</b> Quand la réponse est binaire</a></li>
 <li class="chapter" data-level="4.6.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exemple-choix-de-marque"><i class="fa fa-check"></i><b>4.6.2</b> Exemple : choix de marque</a></li>
-<li class="chapter" data-level="4.6.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#pr%C3%A9dire-des-probabilit%C3%A9s"><i class="fa fa-check"></i><b>4.6.3</b> Prédire des probabilités</a></li>
+<li class="chapter" data-level="4.6.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#prédire-des-probabilités"><i class="fa fa-check"></i><b>4.6.3</b> Prédire des probabilités</a></li>
 </ul></li>
-<li class="chapter" data-level="4.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#r%C3%A9sum%C3%A9-3"><i class="fa fa-check"></i><b>4.7</b> Résumé</a></li>
+<li class="chapter" data-level="4.7" data-path="ch-graphiques.html"><a href="ch-graphiques.html#résumé-3"><i class="fa fa-check"></i><b>4.7</b> Résumé</a></li>
 <li class="chapter" data-level="4.8" data-path="ch-graphiques.html"><a href="ch-graphiques.html#exercices-3"><i class="fa fa-check"></i><b>4.8</b> Exercices</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html"><i class="fa fa-check"></i><b>5</b> Analyse en composantes principales et arbres de décision</a>
+<li class="chapter" data-level="5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html"><i class="fa fa-check"></i><b>5</b> Analyse en composantes principales, arbres de décision et forêts aléatoires</a>
 <ul>
 <li class="chapter" data-level="5.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#analyse-en-composantes-principales-acp"><i class="fa fa-check"></i><b>5.1</b> Analyse en composantes principales (ACP)</a>
 <ul>
-<li class="chapter" data-level="5.1.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#le-probl%C3%A8me"><i class="fa fa-check"></i><b>5.1.1</b> Le problème</a></li>
-<li class="chapter" data-level="5.1.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe-math%C3%A9matique"><i class="fa fa-check"></i><b>5.1.2</b> Principe mathématique</a></li>
-<li class="chapter" data-level="5.1.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-1-le-d%C3%A9cathlon"><i class="fa fa-check"></i><b>5.1.3</b> Exemple 1 : le décathlon</a></li>
+<li class="chapter" data-level="5.1.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#le-problème"><i class="fa fa-check"></i><b>5.1.1</b> Le problème</a></li>
+<li class="chapter" data-level="5.1.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe-mathématique"><i class="fa fa-check"></i><b>5.1.2</b> Principe mathématique</a></li>
+<li class="chapter" data-level="5.1.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-1-le-décathlon"><i class="fa fa-check"></i><b>5.1.3</b> Exemple 1 : le décathlon</a></li>
 <li class="chapter" data-level="5.1.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exemple-2-le-comportement-des-clients-de-la-boutique"><i class="fa fa-check"></i><b>5.1.4</b> Exemple 2 : le comportement des clients de la boutique</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#arbres-de-d%C3%A9cision"><i class="fa fa-check"></i><b>5.2</b> Arbres de décision</a>
+<li class="chapter" data-level="5.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#arbres-de-décision"><i class="fa fa-check"></i><b>5.2</b> Arbres de décision</a>
 <ul>
 <li class="chapter" data-level="5.2.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#principe"><i class="fa fa-check"></i><b>5.2.1</b> Principe</a></li>
-<li class="chapter" data-level="5.2.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#les-donn%C3%A9es-le-choix-dune-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.2.2</b> Les données : le choix d’une marque de jus d’orange</a></li>
+<li class="chapter" data-level="5.2.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#les-données-le-choix-dune-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.2.2</b> Les données : le choix d’une marque de jus d’orange</a></li>
 <li class="chapter" data-level="5.2.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#construire-larbre"><i class="fa fa-check"></i><b>5.2.3</b> Construire l’arbre</a></li>
-<li class="chapter" data-level="5.2.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#%C3%A9laguer-larbre"><i class="fa fa-check"></i><b>5.2.4</b> Élaguer l’arbre</a></li>
-<li class="chapter" data-level="5.2.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#pr%C3%A9dire-1"><i class="fa fa-check"></i><b>5.2.5</b> Prédire</a></li>
+<li class="chapter" data-level="5.2.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#élaguer-larbre"><i class="fa fa-check"></i><b>5.2.4</b> Élaguer l’arbre</a></li>
+<li class="chapter" data-level="5.2.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#prédire-1"><i class="fa fa-check"></i><b>5.2.5</b> Prédire</a></li>
 <li class="chapter" data-level="5.2.6" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#matrice-de-confusion"><i class="fa fa-check"></i><b>5.2.6</b> Matrice de confusion</a></li>
 <li class="chapter" data-level="5.2.7" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#courbe-roc-et-auc"><i class="fa fa-check"></i><b>5.2.7</b> Courbe ROC et AUC</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#r%C3%A9sum%C3%A9-4"><i class="fa fa-check"></i><b>5.3</b> Résumé</a></li>
-<li class="chapter" data-level="5.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exercices-4"><i class="fa fa-check"></i><b>5.4</b> Exercices</a></li>
+<li class="chapter" data-level="5.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#forêts-aléatoires"><i class="fa fa-check"></i><b>5.3</b> Forêts aléatoires</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#pourquoi-aller-au-delà-dun-arbre"><i class="fa fa-check"></i><b>5.3.1</b> Pourquoi aller au-delà d’un arbre ?</a></li>
+<li class="chapter" data-level="5.3.2" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#rappels-théoriques"><i class="fa fa-check"></i><b>5.3.2</b> Rappels théoriques</a></li>
+<li class="chapter" data-level="5.3.3" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#classification-le-choix-de-la-marque-de-jus-dorange"><i class="fa fa-check"></i><b>5.3.3</b> Classification : le choix de la marque de jus d’orange</a></li>
+<li class="chapter" data-level="5.3.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#régression-les-ventes-de-sièges-auto"><i class="fa fa-check"></i><b>5.3.4</b> Régression : les ventes de sièges auto</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#résumé-4"><i class="fa fa-check"></i><b>5.4</b> Résumé</a></li>
+<li class="chapter" data-level="5.5" data-path="ch-acp-arbres.html"><a href="ch-acp-arbres.html#exercices-4"><i class="fa fa-check"></i><b>5.5</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="ch-classification.html"><a href="ch-classification.html"><i class="fa fa-check"></i><b>6</b> Classification automatique, éthique et R Shiny</a>
 <ul>
-<li class="chapter" data-level="6.1" data-path="ch-classification.html"><a href="ch-classification.html#classification-non-supervis%C3%A9e"><i class="fa fa-check"></i><b>6.1</b> Classification non supervisée</a>
+<li class="chapter" data-level="6.1" data-path="ch-classification.html"><a href="ch-classification.html#classification-non-supervisée"><i class="fa fa-check"></i><b>6.1</b> Classification non supervisée</a>
 <ul>
-<li class="chapter" data-level="6.1.1" data-path="ch-classification.html"><a href="ch-classification.html#supervis%C3%A9-ou-non-supervis%C3%A9"><i class="fa fa-check"></i><b>6.1.1</b> Supervisé ou non supervisé ?</a></li>
+<li class="chapter" data-level="6.1.1" data-path="ch-classification.html"><a href="ch-classification.html#supervisé-ou-non-supervisé"><i class="fa fa-check"></i><b>6.1.1</b> Supervisé ou non supervisé ?</a></li>
 <li class="chapter" data-level="6.1.2" data-path="ch-classification.html"><a href="ch-classification.html#distances-et-standardisation"><i class="fa fa-check"></i><b>6.1.2</b> Distances et standardisation</a></li>
-<li class="chapter" data-level="6.1.3" data-path="ch-classification.html"><a href="ch-classification.html#les-donn%C3%A9es-les-clients-de-la-boutique"><i class="fa fa-check"></i><b>6.1.3</b> Les données : les clients de la boutique</a></li>
+<li class="chapter" data-level="6.1.3" data-path="ch-classification.html"><a href="ch-classification.html#les-données-les-clients-de-la-boutique"><i class="fa fa-check"></i><b>6.1.3</b> Les données : les clients de la boutique</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="ch-classification.html"><a href="ch-classification.html#les-k-moyennes-k-means"><i class="fa fa-check"></i><b>6.2</b> Les k-moyennes (<em>k-means</em>)</a>
 <ul>
 <li class="chapter" data-level="6.2.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme"><i class="fa fa-check"></i><b>6.2.1</b> Algorithme</a></li>
-<li class="chapter" data-level="6.2.2" data-path="ch-classification.html"><a href="ch-classification.html#d%C3%A9composition-de-linertie"><i class="fa fa-check"></i><b>6.2.2</b> Décomposition de l’inertie</a></li>
+<li class="chapter" data-level="6.2.2" data-path="ch-classification.html"><a href="ch-classification.html#décomposition-de-linertie"><i class="fa fa-check"></i><b>6.2.2</b> Décomposition de l’inertie</a></li>
 </ul></li>
-<li class="chapter" data-level="6.3" data-path="ch-classification.html"><a href="ch-classification.html#classification-ascendante-hi%C3%A9rarchique-cah"><i class="fa fa-check"></i><b>6.3</b> Classification ascendante hiérarchique (CAH)</a>
+<li class="chapter" data-level="6.3" data-path="ch-classification.html"><a href="ch-classification.html#classification-ascendante-hiérarchique-cah"><i class="fa fa-check"></i><b>6.3</b> Classification ascendante hiérarchique (CAH)</a>
 <ul>
 <li class="chapter" data-level="6.3.1" data-path="ch-classification.html"><a href="ch-classification.html#algorithme-1"><i class="fa fa-check"></i><b>6.3.1</b> Algorithme</a></li>
 <li class="chapter" data-level="6.3.2" data-path="ch-classification.html"><a href="ch-classification.html#k-moyennes-ou-cah"><i class="fa fa-check"></i><b>6.3.2</b> k-moyennes ou CAH ?</a></li>
 </ul></li>
 <li class="chapter" data-level="6.4" data-path="ch-classification.html"><a href="ch-classification.html#choisir-le-nombre-de-classes"><i class="fa fa-check"></i><b>6.4</b> Choisir le nombre de classes</a>
 <ul>
-<li class="chapter" data-level="6.4.1" data-path="ch-classification.html"><a href="ch-classification.html#m%C3%A9thode-du-coude"><i class="fa fa-check"></i><b>6.4.1</b> Méthode du coude</a></li>
+<li class="chapter" data-level="6.4.1" data-path="ch-classification.html"><a href="ch-classification.html#méthode-du-coude"><i class="fa fa-check"></i><b>6.4.1</b> Méthode du coude</a></li>
 <li class="chapter" data-level="6.4.2" data-path="ch-classification.html"><a href="ch-classification.html#indice-de-silhouette"><i class="fa fa-check"></i><b>6.4.2</b> Indice de silhouette</a></li>
 <li class="chapter" data-level="6.4.3" data-path="ch-classification.html"><a href="ch-classification.html#le-saut-dinertie-du-dendrogramme"><i class="fa fa-check"></i><b>6.4.3</b> Le saut d’inertie du dendrogramme</a></li>
 </ul></li>
-<li class="chapter" data-level="6.5" data-path="ch-classification.html"><a href="ch-classification.html#d%C3%A9crire-les-classes"><i class="fa fa-check"></i><b>6.5</b> Décrire les classes</a>
+<li class="chapter" data-level="6.5" data-path="ch-classification.html"><a href="ch-classification.html#décrire-les-classes"><i class="fa fa-check"></i><b>6.5</b> Décrire les classes</a>
 <ul>
 <li class="chapter" data-level="6.5.1" data-path="ch-classification.html"><a href="ch-classification.html#moyennes-par-classe"><i class="fa fa-check"></i><b>6.5.1</b> Moyennes par classe</a></li>
-<li class="chapter" data-level="6.5.2" data-path="ch-classification.html"><a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simul%C3%A9e"><i class="fa fa-check"></i><b>6.5.2</b> Les classes retrouvent-elles la structure simulée ?</a></li>
+<li class="chapter" data-level="6.5.2" data-path="ch-classification.html"><a href="ch-classification.html#les-classes-retrouvent-elles-la-structure-simulée"><i class="fa fa-check"></i><b>6.5.2</b> Les classes retrouvent-elles la structure simulée ?</a></li>
 <li class="chapter" data-level="6.5.3" data-path="ch-classification.html"><a href="ch-classification.html#acp-puis-cah-la-fonction-hcpc"><i class="fa fa-check"></i><b>6.5.3</b> ACP puis CAH : la fonction <code>HCPC()</code></a></li>
 </ul></li>
-<li class="chapter" data-level="6.6" data-path="ch-classification.html"><a href="ch-classification.html#l%C3%A9thique-dans-la-science-des-donn%C3%A9es"><i class="fa fa-check"></i><b>6.6</b> L’éthique dans la science des données</a>
+<li class="chapter" data-level="6.6" data-path="ch-classification.html"><a href="ch-classification.html#léthique-dans-la-science-des-données"><i class="fa fa-check"></i><b>6.6</b> L’éthique dans la science des données</a>
 <ul>
 <li class="chapter" data-level="6.6.1" data-path="ch-classification.html"><a href="ch-classification.html#quelques-cas-marquants"><i class="fa fa-check"></i><b>6.6.1</b> Quelques cas marquants</a></li>
 <li class="chapter" data-level="6.6.2" data-path="ch-classification.html"><a href="ch-classification.html#enjeux-propres-au-marketing"><i class="fa fa-check"></i><b>6.6.2</b> Enjeux propres au marketing</a></li>
-<li class="chapter" data-level="6.6.3" data-path="ch-classification.html"><a href="ch-classification.html#sources-de-probl%C3%A8mes-%C3%A9thiques"><i class="fa fa-check"></i><b>6.6.3</b> Sources de problèmes éthiques</a></li>
-<li class="chapter" data-level="6.6.4" data-path="ch-classification.html"><a href="ch-classification.html#le-cadre-l%C3%A9gal-en-europe"><i class="fa fa-check"></i><b>6.6.4</b> Le cadre légal en Europe</a></li>
-<li class="chapter" data-level="6.6.5" data-path="ch-classification.html"><a href="ch-classification.html#questions-%C3%A0-se-poser-dans-tout-projet"><i class="fa fa-check"></i><b>6.6.5</b> Questions à se poser dans tout projet</a></li>
+<li class="chapter" data-level="6.6.3" data-path="ch-classification.html"><a href="ch-classification.html#sources-de-problèmes-éthiques"><i class="fa fa-check"></i><b>6.6.3</b> Sources de problèmes éthiques</a></li>
+<li class="chapter" data-level="6.6.4" data-path="ch-classification.html"><a href="ch-classification.html#le-cadre-légal-en-europe"><i class="fa fa-check"></i><b>6.6.4</b> Le cadre légal en Europe</a></li>
+<li class="chapter" data-level="6.6.5" data-path="ch-classification.html"><a href="ch-classification.html#questions-à-se-poser-dans-tout-projet"><i class="fa fa-check"></i><b>6.6.5</b> Questions à se poser dans tout projet</a></li>
 </ul></li>
 <li class="chapter" data-level="6.7" data-path="ch-classification.html"><a href="ch-classification.html#interfaces-graphiques-avec-r-shiny"><i class="fa fa-check"></i><b>6.7</b> Interfaces graphiques avec R Shiny</a>
 <ul>
 <li class="chapter" data-level="6.7.1" data-path="ch-classification.html"><a href="ch-classification.html#quest-ce-que-shiny"><i class="fa fa-check"></i><b>6.7.1</b> Qu’est-ce que Shiny ?</a></li>
 <li class="chapter" data-level="6.7.2" data-path="ch-classification.html"><a href="ch-classification.html#structure-dune-application"><i class="fa fa-check"></i><b>6.7.2</b> Structure d’une application</a></li>
 <li class="chapter" data-level="6.7.3" data-path="ch-classification.html"><a href="ch-classification.html#un-exemple-complet-explorer-la-segmentation-des-clients"><i class="fa fa-check"></i><b>6.7.3</b> Un exemple complet : explorer la segmentation des clients</a></li>
-<li class="chapter" data-level="6.7.4" data-path="ch-classification.html"><a href="ch-classification.html#la-r%C3%A9activit%C3%A9"><i class="fa fa-check"></i><b>6.7.4</b> La réactivité</a></li>
+<li class="chapter" data-level="6.7.4" data-path="ch-classification.html"><a href="ch-classification.html#la-réactivité"><i class="fa fa-check"></i><b>6.7.4</b> La réactivité</a></li>
 <li class="chapter" data-level="6.7.5" data-path="ch-classification.html"><a href="ch-classification.html#partager-une-application"><i class="fa fa-check"></i><b>6.7.5</b> Partager une application</a></li>
 </ul></li>
-<li class="chapter" data-level="6.8" data-path="ch-classification.html"><a href="ch-classification.html#r%C3%A9sum%C3%A9-5"><i class="fa fa-check"></i><b>6.8</b> Résumé</a></li>
+<li class="chapter" data-level="6.8" data-path="ch-classification.html"><a href="ch-classification.html#résumé-5"><i class="fa fa-check"></i><b>6.8</b> Résumé</a></li>
 <li class="chapter" data-level="6.9" data-path="ch-classification.html"><a href="ch-classification.html#exercices-5"><i class="fa fa-check"></i><b>6.9</b> Exercices</a></li>
 </ul></li>
 <li class="chapter" data-level="7" data-path="ch-projet.html"><a href="ch-projet.html"><i class="fa fa-check"></i><b>7</b> Projet et évaluation des acquis</a>
 <ul>
-<li class="chapter" data-level="7.1" data-path="ch-projet.html"><a href="ch-projet.html#d%C3%A9roul%C3%A9-dun-projet-le-dslc-en-pratique"><i class="fa fa-check"></i><b>7.1</b> Déroulé d’un projet : le DSLC en pratique</a></li>
+<li class="chapter" data-level="7.1" data-path="ch-projet.html"><a href="ch-projet.html#déroulé-dun-projet-le-dslc-en-pratique"><i class="fa fa-check"></i><b>7.1</b> Déroulé d’un projet : le DSLC en pratique</a></li>
 <li class="chapter" data-level="7.2" data-path="ch-projet.html"><a href="ch-projet.html#le-rendu-un-notebook-reproductible"><i class="fa fa-check"></i><b>7.2</b> Le rendu : un notebook reproductible</a></li>
-<li class="chapter" data-level="7.3" data-path="ch-projet.html"><a href="ch-projet.html#grille-dauto-%C3%A9valuation"><i class="fa fa-check"></i><b>7.3</b> Grille d’auto-évaluation</a></li>
-<li class="chapter" data-level="7.4" data-path="ch-projet.html"><a href="ch-projet.html#r%C3%A9ussir-la-soutenance"><i class="fa fa-check"></i><b>7.4</b> Réussir la soutenance</a></li>
-<li class="chapter" data-level="7.5" data-path="ch-projet.html"><a href="ch-projet.html#o%C3%B9-trouver-des-jeux-de-donn%C3%A9es"><i class="fa fa-check"></i><b>7.5</b> Où trouver des jeux de données</a></li>
-<li class="chapter" data-level="7.6" data-path="ch-projet.html"><a href="ch-projet.html#fiche-de-r%C3%A9vision"><i class="fa fa-check"></i><b>7.6</b> Fiche de révision</a>
+<li class="chapter" data-level="7.3" data-path="ch-projet.html"><a href="ch-projet.html#grille-dauto-évaluation"><i class="fa fa-check"></i><b>7.3</b> Grille d’auto-évaluation</a></li>
+<li class="chapter" data-level="7.4" data-path="ch-projet.html"><a href="ch-projet.html#réussir-la-soutenance"><i class="fa fa-check"></i><b>7.4</b> Réussir la soutenance</a></li>
+<li class="chapter" data-level="7.5" data-path="ch-projet.html"><a href="ch-projet.html#où-trouver-des-jeux-de-données"><i class="fa fa-check"></i><b>7.5</b> Où trouver des jeux de données</a></li>
+<li class="chapter" data-level="7.6" data-path="ch-projet.html"><a href="ch-projet.html#fiche-de-révision"><i class="fa fa-check"></i><b>7.6</b> Fiche de révision</a>
 <ul>
 <li class="chapter" data-level="7.6.1" data-path="ch-projet.html"><a href="ch-projet.html#le-langage-r-chapitre-2"><i class="fa fa-check"></i><b>7.6.1</b> Le langage R (chapitre 2)</a></li>
 <li class="chapter" data-level="7.6.2" data-path="ch-projet.html"><a href="ch-projet.html#manipulation-chapitre-3"><i class="fa fa-check"></i><b>7.6.2</b> Manipulation (chapitre 3)</a></li>
-<li class="chapter" data-level="7.6.3" data-path="ch-projet.html"><a href="ch-projet.html#graphiques-et-r%C3%A9gression-chapitre-4"><i class="fa fa-check"></i><b>7.6.3</b> Graphiques et régression (chapitre 4)</a></li>
-<li class="chapter" data-level="7.6.4" data-path="ch-projet.html"><a href="ch-projet.html#acp-et-arbres-chapitre-5"><i class="fa fa-check"></i><b>7.6.4</b> ACP et arbres (chapitre 5)</a></li>
+<li class="chapter" data-level="7.6.3" data-path="ch-projet.html"><a href="ch-projet.html#graphiques-et-régression-chapitre-4"><i class="fa fa-check"></i><b>7.6.3</b> Graphiques et régression (chapitre 4)</a></li>
+<li class="chapter" data-level="7.6.4" data-path="ch-projet.html"><a href="ch-projet.html#acp-arbres-et-forêts-aléatoires-chapitre-5"><i class="fa fa-check"></i><b>7.6.4</b> ACP, arbres et forêts aléatoires (chapitre 5)</a></li>
 <li class="chapter" data-level="7.6.5" data-path="ch-projet.html"><a href="ch-projet.html#classification-chapitre-6"><i class="fa fa-check"></i><b>7.6.5</b> Classification (chapitre 6)</a></li>
 </ul></li>
-<li class="chapter" data-level="7.7" data-path="ch-projet.html"><a href="ch-projet.html#questions-de-r%C3%A9vision"><i class="fa fa-check"></i><b>7.7</b> Questions de révision</a></li>
+<li class="chapter" data-level="7.7" data-path="ch-projet.html"><a href="ch-projet.html#questions-de-révision"><i class="fa fa-check"></i><b>7.7</b> Questions de révision</a></li>
 </ul></li>
 </ul>
 
@@ -440,7 +447,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="ch-acp-arbres" class="section level1 hasAnchor" number="5">
-<h1><span class="header-section-number">Chapitre 5</span> Analyse en composantes principales et arbres de décision<a href="ch-acp-arbres.html#ch-acp-arbres" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<h1><span class="header-section-number">Chapitre 5</span> Analyse en composantes principales, arbres de décision et forêts aléatoires<a href="ch-acp-arbres.html#ch-acp-arbres" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><strong>Objectifs du chapitre</strong></p>
 <ul>
 <li>Comprendre le principe de l’analyse en composantes principales (ACP).</li>
@@ -451,18 +458,21 @@ qualitatives pour interpréter les axes.</li>
 <li>Construire, élaguer et utiliser un arbre de décision avec <code>rpart</code>.</li>
 <li>Évaluer un classifieur : matrice de confusion, sensibilité, spécificité,
 courbe ROC et AUC.</li>
+<li>Comprendre le principe des forêts aléatoires, pour la classification et la
+régression, et les mettre en œuvre avec <code>randomForest</code>.</li>
 </ul>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="ch-acp-arbres.html#cb657-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb657-2"><a href="ch-acp-arbres.html#cb657-2" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)   <span class="co"># ACP</span></span>
-<span id="cb657-3"><a href="ch-acp-arbres.html#cb657-3" tabindex="-1"></a><span class="fu">library</span>(factoextra)   <span class="co"># graphiques des résultats d&#39;ACP</span></span>
-<span id="cb657-4"><a href="ch-acp-arbres.html#cb657-4" tabindex="-1"></a><span class="fu">library</span>(rpart)        <span class="co"># arbres de décision</span></span>
-<span id="cb657-5"><a href="ch-acp-arbres.html#cb657-5" tabindex="-1"></a><span class="fu">library</span>(pROC)         <span class="co"># courbes ROC</span></span>
-<span id="cb657-6"><a href="ch-acp-arbres.html#cb657-6" tabindex="-1"></a><span class="fu">library</span>(ISLR)         <span class="co"># jeux de données OJ et Caravan</span></span>
-<span id="cb657-7"><a href="ch-acp-arbres.html#cb657-7" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;R/boutique.R&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="ch-acp-arbres.html#cb657-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb657-2"><a href="ch-acp-arbres.html#cb657-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR)   <span class="co"># ACP</span></span>
+<span id="cb657-3"><a href="ch-acp-arbres.html#cb657-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra)   <span class="co"># graphiques des résultats d&#39;ACP</span></span>
+<span id="cb657-4"><a href="ch-acp-arbres.html#cb657-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rpart)        <span class="co"># arbres de décision</span></span>
+<span id="cb657-5"><a href="ch-acp-arbres.html#cb657-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pROC)         <span class="co"># courbes ROC</span></span>
+<span id="cb657-6"><a href="ch-acp-arbres.html#cb657-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(randomForest) <span class="co"># forêts aléatoires</span></span>
+<span id="cb657-7"><a href="ch-acp-arbres.html#cb657-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ISLR)         <span class="co"># jeux de données OJ et Caravan</span></span>
+<span id="cb657-8"><a href="ch-acp-arbres.html#cb657-8" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;R/boutique.R&quot;</span>)</span></code></pre></div>
 <div id="analyse-en-composantes-principales-acp" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Analyse en composantes principales (ACP)<a href="ch-acp-arbres.html#analyse-en-composantes-principales-acp" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="le-problème" class="section level3 hasAnchor" number="5.1.1">
-<h3><span class="header-section-number">5.1.1</span> Le problème<a href="ch-acp-arbres.html#le-probl%C3%A8me" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.1.1</span> Le problème<a href="ch-acp-arbres.html#le-problème" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On dispose de <span class="math inline">\(n\)</span> individus décrits par <span class="math inline">\(p\)</span> variables <strong>quantitatives</strong>. Avec
 <span class="math inline">\(p = 2\)</span>, un nuage de points suffit pour tout voir ; avec <span class="math inline">\(p = 10\)</span>, c’est
 impossible. L’ACP cherche à <strong>résumer</strong> le tableau par un petit nombre de
@@ -489,36 +499,35 @@ données par des consommateurs), ou à préparer une segmentation (chapitre
 <a href="ch-classification.html#ch-classification">6</a>).</p>
 </div>
 <div id="principe-mathématique" class="section level3 hasAnchor" number="5.1.2">
-<h3><span class="header-section-number">5.1.2</span> Principe mathématique<a href="ch-acp-arbres.html#principe-math%C3%A9matique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.1.2</span> Principe mathématique<a href="ch-acp-arbres.html#principe-mathématique" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ol style="list-style-type: decimal">
 <li><strong>Centrer-réduire</strong> les variables : <span class="math inline">\(z_{ij} = (x_{ij} - \bar x_j)/s_j\)</span>.
 C’est l’<strong>ACP normée</strong>, à utiliser dès que les variables ont des unités ou
 des ordres de grandeur différents (euros, jours, nombres de commandes).</li>
 <li>Calculer la <strong>matrice des corrélations</strong> <span class="math inline">\(R\)</span> (<span class="math inline">\(p \times p\)</span>).</li>
 <li>Diagonaliser <span class="math inline">\(R\)</span> : ses <strong>vecteurs propres</strong> <span class="math inline">\(u_1, \dots, u_p\)</span> donnent les
-directions des axes, ses <strong>valeurs propres</strong> <span class="math inline">\(\lambda_1 \ge \dots \ge
-\lambda_p\)</span> la variance portée par chaque axe.</li>
+directions des axes, ses <strong>valeurs propres</strong> <span class="math inline">\(\lambda_1 \ge \dots \ge \lambda_p\)</span> la variance portée par chaque axe.</li>
 <li>Coordonnées des individus sur l’axe <span class="math inline">\(k\)</span> : <span class="math inline">\(F_k = Z u_k\)</span>.</li>
 </ol>
 <p>En ACP normée, la variance totale (l’<strong>inertie</strong>) vaut <span class="math inline">\(p\)</span>, et la part
 d’inertie expliquée par l’axe <span class="math inline">\(k\)</span> est <span class="math inline">\(\lambda_k / p\)</span>.</p>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="ch-acp-arbres.html#cb658-1" tabindex="-1"></a><span class="co"># L&#39;ACP « à la main » sur trois variables de mtcars</span></span>
-<span id="cb658-2"><a href="ch-acp-arbres.html#cb658-2" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars[, <span class="fu">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)])   <span class="co"># centrer-réduire</span></span>
-<span id="cb658-3"><a href="ch-acp-arbres.html#cb658-3" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">cor</span>(Z)</span>
-<span id="cb658-4"><a href="ch-acp-arbres.html#cb658-4" tabindex="-1"></a>decomposition <span class="ot">&lt;-</span> <span class="fu">eigen</span>(R)</span>
-<span id="cb658-5"><a href="ch-acp-arbres.html#cb658-5" tabindex="-1"></a>decomposition<span class="sc">$</span>values                          <span class="co"># valeurs propres ; leur somme vaut 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="ch-acp-arbres.html#cb658-1" aria-hidden="true" tabindex="-1"></a><span class="co"># L&#39;ACP « à la main » sur trois variables de mtcars</span></span>
+<span id="cb658-2"><a href="ch-acp-arbres.html#cb658-2" aria-hidden="true" tabindex="-1"></a>Z <span class="ot">&lt;-</span> <span class="fu">scale</span>(mtcars[, <span class="fu">c</span>(<span class="st">&quot;mpg&quot;</span>, <span class="st">&quot;hp&quot;</span>, <span class="st">&quot;wt&quot;</span>)])   <span class="co"># centrer-réduire</span></span>
+<span id="cb658-3"><a href="ch-acp-arbres.html#cb658-3" aria-hidden="true" tabindex="-1"></a>R <span class="ot">&lt;-</span> <span class="fu">cor</span>(Z)</span>
+<span id="cb658-4"><a href="ch-acp-arbres.html#cb658-4" aria-hidden="true" tabindex="-1"></a>decomposition <span class="ot">&lt;-</span> <span class="fu">eigen</span>(R)</span>
+<span id="cb658-5"><a href="ch-acp-arbres.html#cb658-5" aria-hidden="true" tabindex="-1"></a>decomposition<span class="sc">$</span>values                          <span class="co"># valeurs propres ; leur somme vaut 3</span></span></code></pre></div>
 <pre><code>#&gt; [1] 2.5382 0.3521 0.1097</code></pre>
-<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="ch-acp-arbres.html#cb660-1" tabindex="-1"></a>decomposition<span class="sc">$</span>values <span class="sc">/</span> <span class="fu">sum</span>(decomposition<span class="sc">$</span>values)   <span class="co"># part d&#39;inertie</span></span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="ch-acp-arbres.html#cb660-1" aria-hidden="true" tabindex="-1"></a>decomposition<span class="sc">$</span>values <span class="sc">/</span> <span class="fu">sum</span>(decomposition<span class="sc">$</span>values)   <span class="co"># part d&#39;inertie</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.84606 0.11736 0.03657</code></pre>
 </div>
 <div id="exemple-1-le-décathlon" class="section level3 hasAnchor" number="5.1.3">
-<h3><span class="header-section-number">5.1.3</span> Exemple 1 : le décathlon<a href="ch-acp-arbres.html#exemple-1-le-d%C3%A9cathlon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.1.3</span> Exemple 1 : le décathlon<a href="ch-acp-arbres.html#exemple-1-le-décathlon" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le jeu <code>decathlon</code> (package <code>FactoMineR</code>) est l’exemple de référence de
 l’ACP : les performances de 41 athlètes aux dix épreuves du décathlon, lors de
 deux compétitions (Décastar et Jeux olympiques de 2004), ainsi que leur
 classement et leur nombre de points.</p>
-<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="ch-acp-arbres.html#cb662-1" tabindex="-1"></a><span class="fu">data</span>(decathlon)</span>
-<span id="cb662-2"><a href="ch-acp-arbres.html#cb662-2" tabindex="-1"></a><span class="fu">head</span>(decathlon[, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb662"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb662-1"><a href="ch-acp-arbres.html#cb662-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(decathlon)</span>
+<span id="cb662-2"><a href="ch-acp-arbres.html#cb662-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(decathlon[, <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>])</span></code></pre></div>
 <pre><code>#&gt;          100m Long.jump Shot.put High.jump  400m 110m.hurdle
 #&gt; SEBRLE  11.04      7.58    14.83      2.07 49.81       14.69
 #&gt; CLAY    10.76      7.40    14.26      1.86 49.37       14.05
@@ -530,21 +539,21 @@ classement et leur nombre de points.</p>
 axes. <code>Rank</code> et <code>Points</code> sont des variables <strong>quantitatives illustratives</strong>,
 <code>Competition</code> une variable <strong>qualitative illustrative</strong> : elles ne participent
 pas au calcul des axes, mais aident à les interpréter.</p>
-<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="ch-acp-arbres.html#cb664-1" tabindex="-1"></a>res_acp <span class="ot">&lt;-</span> <span class="fu">PCA</span>(decathlon,</span>
-<span id="cb664-2"><a href="ch-acp-arbres.html#cb664-2" tabindex="-1"></a>               <span class="at">quanti.sup =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>,   <span class="co"># Rank, Points</span></span>
-<span id="cb664-3"><a href="ch-acp-arbres.html#cb664-3" tabindex="-1"></a>               <span class="at">quali.sup  =</span> <span class="dv">13</span>,      <span class="co"># Competition</span></span>
-<span id="cb664-4"><a href="ch-acp-arbres.html#cb664-4" tabindex="-1"></a>               <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,    <span class="co"># ACP normée</span></span>
-<span id="cb664-5"><a href="ch-acp-arbres.html#cb664-5" tabindex="-1"></a>               <span class="at">graph =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb664"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb664-1"><a href="ch-acp-arbres.html#cb664-1" aria-hidden="true" tabindex="-1"></a>res_acp <span class="ot">&lt;-</span> <span class="fu">PCA</span>(decathlon,</span>
+<span id="cb664-2"><a href="ch-acp-arbres.html#cb664-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">quanti.sup =</span> <span class="dv">11</span><span class="sc">:</span><span class="dv">12</span>,   <span class="co"># Rank, Points</span></span>
+<span id="cb664-3"><a href="ch-acp-arbres.html#cb664-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">quali.sup  =</span> <span class="dv">13</span>,      <span class="co"># Competition</span></span>
+<span id="cb664-4"><a href="ch-acp-arbres.html#cb664-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,    <span class="co"># ACP normée</span></span>
+<span id="cb664-5"><a href="ch-acp-arbres.html#cb664-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">graph =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <div id="combien-daxes-retenir" class="section level4 hasAnchor" number="5.1.3.1">
 <h4><span class="header-section-number">5.1.3.1</span> Combien d’axes retenir ?<a href="ch-acp-arbres.html#combien-daxes-retenir" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="ch-acp-arbres.html#cb665-1" tabindex="-1"></a>res_acp<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="ch-acp-arbres.html#cb665-1" aria-hidden="true" tabindex="-1"></a>res_acp<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, ]</span></code></pre></div>
 <pre><code>#&gt;        eigenvalue percentage of variance cumulative percentage of variance
 #&gt; comp 1     3.2719                 32.719                             32.72
 #&gt; comp 2     1.7371                 17.371                             50.09
 #&gt; comp 3     1.4049                 14.049                             64.14
 #&gt; comp 4     1.0569                 10.569                             74.71
 #&gt; comp 5     0.6848                  6.848                             81.56</code></pre>
-<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="ch-acp-arbres.html#cb667-1" tabindex="-1"></a><span class="fu">fviz_eig</span>(res_acp, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="ch-acp-arbres.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(res_acp, <span class="at">addlabels =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/eigen-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Critères usuels (à combiner, pas à appliquer mécaniquement) :</p>
 <ul>
@@ -560,11 +569,11 @@ d’origine ;</li>
 fréquent quand les variables sont nombreuses et peu corrélées.</p>
 </div>
 <div id="le-cercle-des-corrélations" class="section level4 hasAnchor" number="5.1.3.2">
-<h4><span class="header-section-number">5.1.3.2</span> Le cercle des corrélations<a href="ch-acp-arbres.html#le-cercle-des-corr%C3%A9lations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">5.1.3.2</span> Le cercle des corrélations<a href="ch-acp-arbres.html#le-cercle-des-corrélations" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Chaque variable est représentée par une flèche dont les coordonnées sont ses
 <strong>corrélations</strong> avec les deux axes.</p>
-<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="ch-acp-arbres.html#cb668-1" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(res_acp, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">col.var =</span> <span class="st">&quot;cos2&quot;</span>,</span>
-<span id="cb668-2"><a href="ch-acp-arbres.html#cb668-2" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;grey70&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="ch-acp-arbres.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(res_acp, <span class="at">repel =</span> <span class="cn">TRUE</span>, <span class="at">col.var =</span> <span class="st">&quot;cos2&quot;</span>,</span>
+<span id="cb668-2"><a href="ch-acp-arbres.html#cb668-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">&quot;grey70&quot;</span>, <span class="st">&quot;steelblue&quot;</span>, <span class="st">&quot;darkblue&quot;</span>))</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/cercle-1.png" width="70%" style="display: block; margin: auto;" /></p>
 <p><strong>Règles de lecture</strong></p>
 <ul>
@@ -584,7 +593,7 @@ deuxième axe est porté par les <strong>lancers</strong> (poids, disque) mais a
 les courses longues (en haut) des athlètes plus légers et endurants (en bas).</p>
 <p>La variable illustrative <code>Points</code> est très corrélée au premier axe : celui-ci
 mesure donc la <strong>performance globale</strong>.</p>
-<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="ch-acp-arbres.html#cb669-1" tabindex="-1"></a><span class="fu">round</span>(res_acp<span class="sc">$</span>var<span class="sc">$</span>contrib[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">1</span>)     <span class="co"># contribution (%) de chaque variable aux axes</span></span></code></pre></div>
+<div class="sourceCode" id="cb669"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb669-1"><a href="ch-acp-arbres.html#cb669-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res_acp<span class="sc">$</span>var<span class="sc">$</span>contrib[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">1</span>)     <span class="co"># contribution (%) de chaque variable aux axes</span></span></code></pre></div>
 <pre><code>#&gt;             Dim.1 Dim.2
 #&gt; 100m         18.3   2.0
 #&gt; Long.jump    16.8   6.9
@@ -596,7 +605,7 @@ mesure donc la <strong>performance globale</strong>.</p>
 #&gt; Pole.vault    0.1   1.9
 #&gt; Javeline      2.3   5.8
 #&gt; 1500m         0.1  12.9</code></pre>
-<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="ch-acp-arbres.html#cb671-1" tabindex="-1"></a><span class="fu">round</span>(res_acp<span class="sc">$</span>var<span class="sc">$</span>cos2[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)        <span class="co"># qualité de représentation</span></span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="ch-acp-arbres.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res_acp<span class="sc">$</span>var<span class="sc">$</span>cos2[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)        <span class="co"># qualité de représentation</span></span></code></pre></div>
 <pre><code>#&gt;             Dim.1 Dim.2
 #&gt; 100m         0.60  0.04
 #&gt; Long.jump    0.55  0.12
@@ -611,9 +620,9 @@ mesure donc la <strong>performance globale</strong>.</p>
 </div>
 <div id="projection-des-individus" class="section level4 hasAnchor" number="5.1.3.3">
 <h4><span class="header-section-number">5.1.3.3</span> Projection des individus<a href="ch-acp-arbres.html#projection-des-individus" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="ch-acp-arbres.html#cb673-1" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(res_acp, <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb673-2"><a href="ch-acp-arbres.html#cb673-2" tabindex="-1"></a>             <span class="at">habillage =</span> <span class="st">&quot;Competition&quot;</span>,    <span class="co"># couleur selon la variable qualitative illustrative</span></span>
-<span id="cb673-3"><a href="ch-acp-arbres.html#cb673-3" tabindex="-1"></a>             <span class="at">addEllipses =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="ch-acp-arbres.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(res_acp, <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb673-2"><a href="ch-acp-arbres.html#cb673-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">habillage =</span> <span class="st">&quot;Competition&quot;</span>,    <span class="co"># couleur selon la variable qualitative illustrative</span></span>
+<span id="cb673-3"><a href="ch-acp-arbres.html#cb673-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">addEllipses =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/individus-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <ul>
 <li>Deux individus <strong>proches</strong> ont des profils semblables (s’ils sont bien
@@ -627,13 +636,13 @@ déterminer un axe.</li>
 </ul>
 </div>
 <div id="caractériser-les-axes-avec-les-variables-illustratives" class="section level4 hasAnchor" number="5.1.3.4">
-<h4><span class="header-section-number">5.1.3.4</span> Caractériser les axes avec les variables illustratives<a href="ch-acp-arbres.html#caract%C3%A9riser-les-axes-avec-les-variables-illustratives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<h4><span class="header-section-number">5.1.3.4</span> Caractériser les axes avec les variables illustratives<a href="ch-acp-arbres.html#caractériser-les-axes-avec-les-variables-illustratives" class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>La variable qualitative <code>Competition</code> est projetée au <strong>barycentre</strong> des
 individus de chaque modalité. La fonction <code>dimdesc()</code> décrit automatiquement
 chaque axe par les variables (actives et illustratives) qui lui sont le plus
 liées, avec un test de significativité :</p>
-<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="ch-acp-arbres.html#cb674-1" tabindex="-1"></a>description <span class="ot">&lt;-</span> <span class="fu">dimdesc</span>(res_acp, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
-<span id="cb674-2"><a href="ch-acp-arbres.html#cb674-2" tabindex="-1"></a>description<span class="sc">$</span>Dim<span class="fl">.1</span><span class="sc">$</span>quanti      <span class="co"># corrélations des variables quantitatives avec l&#39;axe 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb674"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb674-1"><a href="ch-acp-arbres.html#cb674-1" aria-hidden="true" tabindex="-1"></a>description <span class="ot">&lt;-</span> <span class="fu">dimdesc</span>(res_acp, <span class="at">axes =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>)</span>
+<span id="cb674-2"><a href="ch-acp-arbres.html#cb674-2" aria-hidden="true" tabindex="-1"></a>description<span class="sc">$</span>Dim<span class="fl">.1</span><span class="sc">$</span>quanti      <span class="co"># corrélations des variables quantitatives avec l&#39;axe 1</span></span></code></pre></div>
 <pre><code>#&gt;             correlation   p.value
 #&gt; Points           0.9562 2.099e-22
 #&gt; Long.jump        0.7419 2.850e-08
@@ -644,7 +653,7 @@ liées, avec un test de significativité :</p>
 #&gt; 400m            -0.6796 1.028e-06
 #&gt; 110m.hurdle     -0.7462 2.137e-08
 #&gt; 100m            -0.7747 2.778e-09</code></pre>
-<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="ch-acp-arbres.html#cb676-1" tabindex="-1"></a><span class="fu">round</span>(res_acp<span class="sc">$</span>quali.sup<span class="sc">$</span>v.test[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)   <span class="co"># position des modalités, en valeur-test</span></span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="ch-acp-arbres.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(res_acp<span class="sc">$</span>quali.sup<span class="sc">$</span>v.test[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)   <span class="co"># position des modalités, en valeur-test</span></span></code></pre></div>
 <pre><code>#&gt;          Dim.1 Dim.2
 #&gt; Decastar -1.43 -0.12
 #&gt; OlympicG  1.43  0.12</code></pre>
@@ -707,28 +716,28 @@ client actif en 2025 ses indicateurs de comportement :</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="ch-acp-arbres.html#cb678-1" tabindex="-1"></a>indicateurs <span class="ot">&lt;-</span> <span class="fu">indicateurs_clients</span>(<span class="fu">lire_boutique</span>(<span class="st">&quot;commandes&quot;</span>), <span class="fu">lire_boutique</span>(<span class="st">&quot;clients&quot;</span>))</span>
-<span id="cb678-2"><a href="ch-acp-arbres.html#cb678-2" tabindex="-1"></a></span>
-<span id="cb678-3"><a href="ch-acp-arbres.html#cb678-3" tabindex="-1"></a>clients_acp <span class="ot">&lt;-</span> indicateurs <span class="sc">|&gt;</span></span>
-<span id="cb678-4"><a href="ch-acp-arbres.html#cb678-4" tabindex="-1"></a>  <span class="fu">drop_na</span>(age) <span class="sc">|&gt;</span>                      <span class="co"># on écarte les clients sans âge renseigné</span></span>
-<span id="cb678-5"><a href="ch-acp-arbres.html#cb678-5" tabindex="-1"></a>  <span class="fu">select</span>(client_id, recence, frequence, montant_total, panier_moyen, part_promo,</span>
-<span id="cb678-6"><a href="ch-acp-arbres.html#cb678-6" tabindex="-1"></a>         nb_categories, articles_par_commande, anciennete,     <span class="co"># variables actives</span></span>
-<span id="cb678-7"><a href="ch-acp-arbres.html#cb678-7" tabindex="-1"></a>         age, canal_acquisition, newsletter) <span class="sc">|&gt;</span>                <span class="co"># variables illustratives</span></span>
-<span id="cb678-8"><a href="ch-acp-arbres.html#cb678-8" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;client_id&quot;</span>)</span>
-<span id="cb678-9"><a href="ch-acp-arbres.html#cb678-9" tabindex="-1"></a><span class="fu">dim</span>(clients_acp)</span></code></pre></div>
+<div class="sourceCode" id="cb678"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb678-1"><a href="ch-acp-arbres.html#cb678-1" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="ot">&lt;-</span> <span class="fu">indicateurs_clients</span>(<span class="fu">lire_boutique</span>(<span class="st">&quot;commandes&quot;</span>), <span class="fu">lire_boutique</span>(<span class="st">&quot;clients&quot;</span>))</span>
+<span id="cb678-2"><a href="ch-acp-arbres.html#cb678-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb678-3"><a href="ch-acp-arbres.html#cb678-3" aria-hidden="true" tabindex="-1"></a>clients_acp <span class="ot">&lt;-</span> indicateurs <span class="sc">|&gt;</span></span>
+<span id="cb678-4"><a href="ch-acp-arbres.html#cb678-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>(age) <span class="sc">|&gt;</span>                      <span class="co"># on écarte les clients sans âge renseigné</span></span>
+<span id="cb678-5"><a href="ch-acp-arbres.html#cb678-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(client_id, recence, frequence, montant_total, panier_moyen, part_promo,</span>
+<span id="cb678-6"><a href="ch-acp-arbres.html#cb678-6" aria-hidden="true" tabindex="-1"></a>         nb_categories, articles_par_commande, anciennete,     <span class="co"># variables actives</span></span>
+<span id="cb678-7"><a href="ch-acp-arbres.html#cb678-7" aria-hidden="true" tabindex="-1"></a>         age, canal_acquisition, newsletter) <span class="sc">|&gt;</span>                <span class="co"># variables illustratives</span></span>
+<span id="cb678-8"><a href="ch-acp-arbres.html#cb678-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">column_to_rownames</span>(<span class="st">&quot;client_id&quot;</span>)</span>
+<span id="cb678-9"><a href="ch-acp-arbres.html#cb678-9" aria-hidden="true" tabindex="-1"></a><span class="fu">dim</span>(clients_acp)</span></code></pre></div>
 <pre><code>#&gt; [1] 1688   11</code></pre>
 <p>Les huit indicateurs de comportement sont <strong>actifs</strong>. L’âge (quantitatif), le
 canal d’acquisition et l’abonnement à la newsletter (qualitatifs) sont
 <strong>illustratifs</strong> : on veut savoir s’ils sont liés aux profils de comportement,
 sans qu’ils construisent les axes.</p>
-<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="ch-acp-arbres.html#cb680-1" tabindex="-1"></a>acp_clients <span class="ot">&lt;-</span> <span class="fu">PCA</span>(clients_acp, <span class="at">quanti.sup =</span> <span class="dv">9</span>, <span class="at">quali.sup =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb680-2"><a href="ch-acp-arbres.html#cb680-2" tabindex="-1"></a><span class="fu">round</span>(acp_clients<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, ], <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="ch-acp-arbres.html#cb680-1" aria-hidden="true" tabindex="-1"></a>acp_clients <span class="ot">&lt;-</span> <span class="fu">PCA</span>(clients_acp, <span class="at">quanti.sup =</span> <span class="dv">9</span>, <span class="at">quali.sup =</span> <span class="dv">10</span><span class="sc">:</span><span class="dv">11</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb680-2"><a href="ch-acp-arbres.html#cb680-2" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(acp_clients<span class="sc">$</span>eig[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, ], <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>#&gt;        eigenvalue percentage of variance cumulative percentage of variance
 #&gt; comp 1        3.2                   39.9                              39.9
 #&gt; comp 2        1.9                   24.1                              64.0
 #&gt; comp 3        1.1                   13.3                              77.3
 #&gt; comp 4        0.7                    8.3                              85.6</code></pre>
-<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="ch-acp-arbres.html#cb682-1" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_clients, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="ch-acp-arbres.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_clients, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/clients-acp-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Les deux premiers axes résument environ 64 % de
 l’inertie, et se lisent clairement :</p>
@@ -744,10 +753,10 @@ clients aux paniers élevés, peu sensibles aux promotions.</li>
 </ul>
 <p>L’ancienneté est mal représentée dans ce plan : elle porte à elle seule le
 troisième axe.</p>
-<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="ch-acp-arbres.html#cb683-1" tabindex="-1"></a><span class="fu">round</span>(acp_clients<span class="sc">$</span>quanti.sup<span class="sc">$</span>coord[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)     <span class="co"># âge</span></span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="ch-acp-arbres.html#cb683-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(acp_clients<span class="sc">$</span>quanti.sup<span class="sc">$</span>coord[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">2</span>)     <span class="co"># âge</span></span></code></pre></div>
 <pre><code>#&gt; Dim.1 Dim.2 
 #&gt;  0.31 -0.38</code></pre>
-<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="ch-acp-arbres.html#cb685-1" tabindex="-1"></a><span class="fu">round</span>(acp_clients<span class="sc">$</span>quali.sup<span class="sc">$</span>v.test[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">1</span>)      <span class="co"># canal et newsletter</span></span></code></pre></div>
+<div class="sourceCode" id="cb685"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb685-1"><a href="ch-acp-arbres.html#cb685-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(acp_clients<span class="sc">$</span>quali.sup<span class="sc">$</span>v.test[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>], <span class="dv">1</span>)      <span class="co"># canal et newsletter</span></span></code></pre></div>
 <pre><code>#&gt;                     Dim.1 Dim.2
 #&gt; Affiliation          -4.9   8.3
 #&gt; Direct                8.8  -8.2
@@ -756,9 +765,9 @@ troisième axe.</p>
 #&gt; Réseaux sociaux      -4.2   6.4
 #&gt; Non                  -9.0  -6.2
 #&gt; Oui                   9.0   6.2</code></pre>
-<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="ch-acp-arbres.html#cb687-1" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_clients, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">habillage =</span> <span class="st">&quot;canal_acquisition&quot;</span>,</span>
-<span id="cb687-2"><a href="ch-acp-arbres.html#cb687-2" tabindex="-1"></a>             <span class="at">alpha.ind =</span> <span class="fl">0.3</span>, <span class="at">addEllipses =</span> <span class="cn">FALSE</span>, <span class="at">mean.point =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
-<span id="cb687-3"><a href="ch-acp-arbres.html#cb687-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Clients de la boutique selon leur canal d&#39;acquisition&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb687"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb687-1"><a href="ch-acp-arbres.html#cb687-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_clients, <span class="at">geom =</span> <span class="st">&quot;point&quot;</span>, <span class="at">habillage =</span> <span class="st">&quot;canal_acquisition&quot;</span>,</span>
+<span id="cb687-2"><a href="ch-acp-arbres.html#cb687-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">alpha.ind =</span> <span class="fl">0.3</span>, <span class="at">addEllipses =</span> <span class="cn">FALSE</span>, <span class="at">mean.point =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb687-3"><a href="ch-acp-arbres.html#cb687-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Clients de la boutique selon leur canal d&#39;acquisition&quot;</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/clients-acp-ind-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Les variables illustratives enrichissent l’interprétation :</p>
 <ul>
@@ -798,7 +807,7 @@ interface graphique : <code>Factoshiny::PCAshiny(decathlon)</code>.</p>
 </div>
 </div>
 <div id="arbres-de-décision" class="section level2 hasAnchor" number="5.2">
-<h2><span class="header-section-number">5.2</span> Arbres de décision<a href="ch-acp-arbres.html#arbres-de-d%C3%A9cision" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<h2><span class="header-section-number">5.2</span> Arbres de décision<a href="ch-acp-arbres.html#arbres-de-décision" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="principe" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Principe<a href="ch-acp-arbres.html#principe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Un arbre de décision prédit une variable cible en posant une <strong>suite de
@@ -830,40 +839,40 @@ des données peut changer tout l’arbre), tendance au <strong>sur-apprentissage
 l’arbre est trop profond.</p>
 </div>
 <div id="les-données-le-choix-dune-marque-de-jus-dorange" class="section level3 hasAnchor" number="5.2.2">
-<h3><span class="header-section-number">5.2.2</span> Les données : le choix d’une marque de jus d’orange<a href="ch-acp-arbres.html#les-donn%C3%A9es-le-choix-dune-marque-de-jus-dorange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.2.2</span> Les données : le choix d’une marque de jus d’orange<a href="ch-acp-arbres.html#les-données-le-choix-dune-marque-de-jus-dorange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On reprend le jeu <code>OJ</code> (chapitre <a href="ch-graphiques.html#ch-graphiques">4</a>) : 1 070 achats de
 Citrus Hill (<code>CH</code>) ou de Minute Maid (<code>MM</code>), avec prix, remises, mises en avant
 et fidélité du client (<code>LoyalCH</code>). Objectif : prédire la marque achetée, par
 exemple pour <strong>cibler</strong> les clients à qui envoyer un bon de réduction MM.</p>
 <p>On réserve un jeu de <strong>test</strong> dès le départ :</p>
-<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="ch-acp-arbres.html#cb688-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb688-2"><a href="ch-acp-arbres.html#cb688-2" tabindex="-1"></a>indices_train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(OJ), <span class="dv">800</span>)</span>
-<span id="cb688-3"><a href="ch-acp-arbres.html#cb688-3" tabindex="-1"></a>train <span class="ot">&lt;-</span> OJ[indices_train, ]</span>
-<span id="cb688-4"><a href="ch-acp-arbres.html#cb688-4" tabindex="-1"></a>test  <span class="ot">&lt;-</span> OJ[<span class="sc">-</span>indices_train, ]</span>
-<span id="cb688-5"><a href="ch-acp-arbres.html#cb688-5" tabindex="-1"></a><span class="fu">table</span>(train<span class="sc">$</span>Purchase)</span></code></pre></div>
+<div class="sourceCode" id="cb688"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb688-1"><a href="ch-acp-arbres.html#cb688-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb688-2"><a href="ch-acp-arbres.html#cb688-2" aria-hidden="true" tabindex="-1"></a>indices_train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(OJ), <span class="dv">800</span>)</span>
+<span id="cb688-3"><a href="ch-acp-arbres.html#cb688-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> OJ[indices_train, ]</span>
+<span id="cb688-4"><a href="ch-acp-arbres.html#cb688-4" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> OJ[<span class="sc">-</span>indices_train, ]</span>
+<span id="cb688-5"><a href="ch-acp-arbres.html#cb688-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(train<span class="sc">$</span>Purchase)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt;  CH  MM 
 #&gt; 485 315</code></pre>
 </div>
 <div id="construire-larbre" class="section level3 hasAnchor" number="5.2.3">
 <h3><span class="header-section-number">5.2.3</span> Construire l’arbre<a href="ch-acp-arbres.html#construire-larbre" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="ch-acp-arbres.html#cb690-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)   <span class="co"># rpart utilise une validation croisée aléatoire</span></span>
-<span id="cb690-2"><a href="ch-acp-arbres.html#cb690-2" tabindex="-1"></a>arbre <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> train, <span class="at">method =</span> <span class="st">&quot;class&quot;</span>,</span>
-<span id="cb690-3"><a href="ch-acp-arbres.html#cb690-3" tabindex="-1"></a>               <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.001</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb690"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb690-1"><a href="ch-acp-arbres.html#cb690-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)   <span class="co"># rpart utilise une validation croisée aléatoire</span></span>
+<span id="cb690-2"><a href="ch-acp-arbres.html#cb690-2" aria-hidden="true" tabindex="-1"></a>arbre <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> train, <span class="at">method =</span> <span class="st">&quot;class&quot;</span>,</span>
+<span id="cb690-3"><a href="ch-acp-arbres.html#cb690-3" aria-hidden="true" tabindex="-1"></a>               <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.001</span>))</span></code></pre></div>
 <p>La formule <code>Purchase ~ .</code> signifie « <code>Purchase</code> expliqué par toutes les autres
 variables ». Avec un paramètre de complexité <code>cp</code> très faible, l’arbre est
 volontairement très détaillé :</p>
-<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="ch-acp-arbres.html#cb691-1" tabindex="-1"></a><span class="fu">plot</span>(arbre, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.05</span>)</span>
-<span id="cb691-2"><a href="ch-acp-arbres.html#cb691-2" tabindex="-1"></a><span class="fu">text</span>(arbre, <span class="at">cex =</span> <span class="fl">0.6</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb691"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb691-1"><a href="ch-acp-arbres.html#cb691-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arbre, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.05</span>)</span>
+<span id="cb691-2"><a href="ch-acp-arbres.html#cb691-2" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(arbre, <span class="at">cex =</span> <span class="fl">0.6</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/arbre-plot-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Cet arbre apprend le bruit des données d’entraînement : il faut l’<strong>élaguer</strong>.</p>
 </div>
 <div id="élaguer-larbre" class="section level3 hasAnchor" number="5.2.4">
-<h3><span class="header-section-number">5.2.4</span> Élaguer l’arbre<a href="ch-acp-arbres.html#%C3%A9laguer-larbre" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<h3><span class="header-section-number">5.2.4</span> Élaguer l’arbre<a href="ch-acp-arbres.html#élaguer-larbre" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Le <strong>paramètre de complexité</strong> <code>cp</code> pénalise les arbres trop grands. <code>rpart</code>
 estime l’erreur de chaque taille d’arbre par <strong>validation croisée</strong> (colonne
 <code>xerror</code>).</p>
-<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="ch-acp-arbres.html#cb692-1" tabindex="-1"></a><span class="fu">printcp</span>(arbre)</span></code></pre></div>
+<div class="sourceCode" id="cb692"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb692-1"><a href="ch-acp-arbres.html#cb692-1" aria-hidden="true" tabindex="-1"></a><span class="fu">printcp</span>(arbre)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Classification tree:
 #&gt; rpart(formula = Purchase ~ ., data = train, method = &quot;class&quot;, 
@@ -885,17 +894,17 @@ estime l’erreur de chaque taille d’arbre par <strong>validation croisée</st
 #&gt; 5 0.0032     12      0.36   0.49 0.035
 #&gt; 6 0.0011     16      0.34   0.49 0.035
 #&gt; 7 0.0010     19      0.34   0.50 0.036</code></pre>
-<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="ch-acp-arbres.html#cb694-1" tabindex="-1"></a><span class="fu">plotcp</span>(arbre)</span></code></pre></div>
+<div class="sourceCode" id="cb694"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb694-1"><a href="ch-acp-arbres.html#cb694-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plotcp</span>(arbre)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/cp-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Règle usuelle : choisir le <code>cp</code> qui minimise <code>xerror</code>, ou le plus grand <code>cp</code>
 dont <code>xerror</code> reste à moins d’un écart-type du minimum (règle « 1-SE »), ce qui
 donne un arbre plus simple.</p>
-<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="ch-acp-arbres.html#cb695-1" tabindex="-1"></a>table_cp <span class="ot">&lt;-</span> arbre<span class="sc">$</span>cptable</span>
-<span id="cb695-2"><a href="ch-acp-arbres.html#cb695-2" tabindex="-1"></a>cp_optimal <span class="ot">&lt;-</span> table_cp[<span class="fu">which.min</span>(table_cp[, <span class="st">&quot;xerror&quot;</span>]), <span class="st">&quot;CP&quot;</span>]</span>
-<span id="cb695-3"><a href="ch-acp-arbres.html#cb695-3" tabindex="-1"></a>arbre_elague <span class="ot">&lt;-</span> <span class="fu">prune</span>(arbre, <span class="at">cp =</span> cp_optimal)</span>
-<span id="cb695-4"><a href="ch-acp-arbres.html#cb695-4" tabindex="-1"></a></span>
-<span id="cb695-5"><a href="ch-acp-arbres.html#cb695-5" tabindex="-1"></a><span class="fu">plot</span>(arbre_elague, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.08</span>)</span>
-<span id="cb695-6"><a href="ch-acp-arbres.html#cb695-6" tabindex="-1"></a><span class="fu">text</span>(arbre_elague, <span class="at">use.n =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">digits =</span> <span class="dv">4</span>)   <span class="co"># digits : affichage des effectifs</span></span></code></pre></div>
+<div class="sourceCode" id="cb695"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb695-1"><a href="ch-acp-arbres.html#cb695-1" aria-hidden="true" tabindex="-1"></a>table_cp <span class="ot">&lt;-</span> arbre<span class="sc">$</span>cptable</span>
+<span id="cb695-2"><a href="ch-acp-arbres.html#cb695-2" aria-hidden="true" tabindex="-1"></a>cp_optimal <span class="ot">&lt;-</span> table_cp[<span class="fu">which.min</span>(table_cp[, <span class="st">&quot;xerror&quot;</span>]), <span class="st">&quot;CP&quot;</span>]</span>
+<span id="cb695-3"><a href="ch-acp-arbres.html#cb695-3" aria-hidden="true" tabindex="-1"></a>arbre_elague <span class="ot">&lt;-</span> <span class="fu">prune</span>(arbre, <span class="at">cp =</span> cp_optimal)</span>
+<span id="cb695-4"><a href="ch-acp-arbres.html#cb695-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb695-5"><a href="ch-acp-arbres.html#cb695-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(arbre_elague, <span class="at">uniform =</span> <span class="cn">TRUE</span>, <span class="at">margin =</span> <span class="fl">0.08</span>)</span>
+<span id="cb695-6"><a href="ch-acp-arbres.html#cb695-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(arbre_elague, <span class="at">use.n =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="fl">0.8</span>, <span class="at">digits =</span> <span class="dv">4</span>)   <span class="co"># digits : affichage des effectifs</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/elagage-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p><strong>Lecture</strong> : chaque nœud indique une condition ; on va à <strong>gauche</strong> si elle
 est vraie. Chaque feuille affiche la classe prédite et les effectifs <code>CH/MM</code>
@@ -903,7 +912,7 @@ d’entraînement. Le premier critère est la <strong>fidélité</strong> à Cit
 clients peu fidèles à CH achètent majoritairement MM. Pour les clients à
 fidélité moyenne, c’est la <strong>différence de prix</strong> qui fait basculer le choix.
 L’arbre se traduit directement en règles commerciales.</p>
-<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="ch-acp-arbres.html#cb696-1" tabindex="-1"></a><span class="fu">round</span>(arbre_elague<span class="sc">$</span>variable.importance, <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb696"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb696-1"><a href="ch-acp-arbres.html#cb696-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(arbre_elague<span class="sc">$</span>variable.importance, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>#&gt;        LoyalCH    SalePriceMM      PriceDiff        StoreID        PriceMM 
 #&gt;          154.8           14.9           14.6           12.8           11.2 
 #&gt;  ListPriceDiff         DiscMM      PctDiscMM WeekofPurchase        PriceCH 
@@ -912,11 +921,11 @@ L’arbre se traduit directement en règles commerciales.</p>
 #&gt;            1.9            1.4            1.2</code></pre>
 </div>
 <div id="prédire-1" class="section level3 hasAnchor" number="5.2.5">
-<h3><span class="header-section-number">5.2.5</span> Prédire<a href="ch-acp-arbres.html#pr%C3%A9dire-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="ch-acp-arbres.html#cb698-1" tabindex="-1"></a>classe_predite <span class="ot">&lt;-</span> <span class="fu">predict</span>(arbre_elague, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span>
-<span id="cb698-2"><a href="ch-acp-arbres.html#cb698-2" tabindex="-1"></a>proba_mm <span class="ot">&lt;-</span> <span class="fu">predict</span>(arbre_elague, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)[, <span class="st">&quot;MM&quot;</span>]</span>
-<span id="cb698-3"><a href="ch-acp-arbres.html#cb698-3" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">data.frame</span>(<span class="at">observe =</span> test<span class="sc">$</span>Purchase, <span class="at">predit =</span> classe_predite,</span>
-<span id="cb698-4"><a href="ch-acp-arbres.html#cb698-4" tabindex="-1"></a>                <span class="at">proba_mm =</span> <span class="fu">round</span>(proba_mm, <span class="dv">2</span>)))</span></code></pre></div>
+<h3><span class="header-section-number">5.2.5</span> Prédire<a href="ch-acp-arbres.html#prédire-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb698"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb698-1"><a href="ch-acp-arbres.html#cb698-1" aria-hidden="true" tabindex="-1"></a>classe_predite <span class="ot">&lt;-</span> <span class="fu">predict</span>(arbre_elague, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>)</span>
+<span id="cb698-2"><a href="ch-acp-arbres.html#cb698-2" aria-hidden="true" tabindex="-1"></a>proba_mm <span class="ot">&lt;-</span> <span class="fu">predict</span>(arbre_elague, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)[, <span class="st">&quot;MM&quot;</span>]</span>
+<span id="cb698-3"><a href="ch-acp-arbres.html#cb698-3" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(<span class="fu">data.frame</span>(<span class="at">observe =</span> test<span class="sc">$</span>Purchase, <span class="at">predit =</span> classe_predite,</span>
+<span id="cb698-4"><a href="ch-acp-arbres.html#cb698-4" aria-hidden="true" tabindex="-1"></a>                <span class="at">proba_mm =</span> <span class="fu">round</span>(proba_mm, <span class="dv">2</span>)))</span></code></pre></div>
 <pre><code>#&gt;    observe predit proba_mm
 #&gt; 1       CH     CH     0.17
 #&gt; 11      CH     CH     0.04
@@ -928,8 +937,8 @@ L’arbre se traduit directement en règles commerciales.</p>
 <div id="matrice-de-confusion" class="section level3 hasAnchor" number="5.2.6">
 <h3><span class="header-section-number">5.2.6</span> Matrice de confusion<a href="ch-acp-arbres.html#matrice-de-confusion" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On compare les classes prédites aux classes observées sur le jeu de <strong>test</strong>.</p>
-<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="ch-acp-arbres.html#cb700-1" tabindex="-1"></a>confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">observe =</span> test<span class="sc">$</span>Purchase, <span class="at">predit =</span> classe_predite)</span>
-<span id="cb700-2"><a href="ch-acp-arbres.html#cb700-2" tabindex="-1"></a>confusion</span></code></pre></div>
+<div class="sourceCode" id="cb700"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb700-1"><a href="ch-acp-arbres.html#cb700-1" aria-hidden="true" tabindex="-1"></a>confusion <span class="ot">&lt;-</span> <span class="fu">table</span>(<span class="at">observe =</span> test<span class="sc">$</span>Purchase, <span class="at">predit =</span> classe_predite)</span>
+<span id="cb700-2"><a href="ch-acp-arbres.html#cb700-2" aria-hidden="true" tabindex="-1"></a>confusion</span></code></pre></div>
 <pre><code>#&gt;        predit
 #&gt; observe  CH  MM
 #&gt;      CH 136  32
@@ -992,16 +1001,16 @@ L’arbre se traduit directement en règles commerciales.</p>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="ch-acp-arbres.html#cb702-1" tabindex="-1"></a>evaluer <span class="ot">&lt;-</span> <span class="cf">function</span>(confusion, positif) {</span>
-<span id="cb702-2"><a href="ch-acp-arbres.html#cb702-2" tabindex="-1"></a>  negatif <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">colnames</span>(confusion), positif)</span>
-<span id="cb702-3"><a href="ch-acp-arbres.html#cb702-3" tabindex="-1"></a>  vp <span class="ot">&lt;-</span> confusion[positif, positif]; fn <span class="ot">&lt;-</span> confusion[positif, negatif]</span>
-<span id="cb702-4"><a href="ch-acp-arbres.html#cb702-4" tabindex="-1"></a>  vn <span class="ot">&lt;-</span> confusion[negatif, negatif]; fp <span class="ot">&lt;-</span> confusion[negatif, positif]</span>
-<span id="cb702-5"><a href="ch-acp-arbres.html#cb702-5" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">accuracy    =</span> (vp <span class="sc">+</span> vn) <span class="sc">/</span> <span class="fu">sum</span>(confusion),</span>
-<span id="cb702-6"><a href="ch-acp-arbres.html#cb702-6" tabindex="-1"></a>    <span class="at">sensibilite =</span> vp <span class="sc">/</span> (vp <span class="sc">+</span> fn),</span>
-<span id="cb702-7"><a href="ch-acp-arbres.html#cb702-7" tabindex="-1"></a>    <span class="at">specificite =</span> vn <span class="sc">/</span> (vn <span class="sc">+</span> fp),</span>
-<span id="cb702-8"><a href="ch-acp-arbres.html#cb702-8" tabindex="-1"></a>    <span class="at">precision   =</span> vp <span class="sc">/</span> (vp <span class="sc">+</span> fp))</span>
-<span id="cb702-9"><a href="ch-acp-arbres.html#cb702-9" tabindex="-1"></a>}</span>
-<span id="cb702-10"><a href="ch-acp-arbres.html#cb702-10" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">evaluer</span>(confusion, <span class="at">positif =</span> <span class="st">&quot;MM&quot;</span>), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb702"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb702-1"><a href="ch-acp-arbres.html#cb702-1" aria-hidden="true" tabindex="-1"></a>evaluer <span class="ot">&lt;-</span> <span class="cf">function</span>(confusion, positif) {</span>
+<span id="cb702-2"><a href="ch-acp-arbres.html#cb702-2" aria-hidden="true" tabindex="-1"></a>  negatif <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="fu">colnames</span>(confusion), positif)</span>
+<span id="cb702-3"><a href="ch-acp-arbres.html#cb702-3" aria-hidden="true" tabindex="-1"></a>  vp <span class="ot">&lt;-</span> confusion[positif, positif]; fn <span class="ot">&lt;-</span> confusion[positif, negatif]</span>
+<span id="cb702-4"><a href="ch-acp-arbres.html#cb702-4" aria-hidden="true" tabindex="-1"></a>  vn <span class="ot">&lt;-</span> confusion[negatif, negatif]; fp <span class="ot">&lt;-</span> confusion[negatif, positif]</span>
+<span id="cb702-5"><a href="ch-acp-arbres.html#cb702-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(<span class="at">accuracy    =</span> (vp <span class="sc">+</span> vn) <span class="sc">/</span> <span class="fu">sum</span>(confusion),</span>
+<span id="cb702-6"><a href="ch-acp-arbres.html#cb702-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">sensibilite =</span> vp <span class="sc">/</span> (vp <span class="sc">+</span> fn),</span>
+<span id="cb702-7"><a href="ch-acp-arbres.html#cb702-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">specificite =</span> vn <span class="sc">/</span> (vn <span class="sc">+</span> fp),</span>
+<span id="cb702-8"><a href="ch-acp-arbres.html#cb702-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">precision   =</span> vp <span class="sc">/</span> (vp <span class="sc">+</span> fp))</span>
+<span id="cb702-9"><a href="ch-acp-arbres.html#cb702-9" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb702-10"><a href="ch-acp-arbres.html#cb702-10" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">evaluer</span>(confusion, <span class="at">positif =</span> <span class="st">&quot;MM&quot;</span>), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt;    accuracy sensibilite specificite   precision 
 #&gt;       0.833       0.873       0.810       0.736</code></pre>
 <p>En marketing, le choix de l’indicateur dépend du <strong>coût des erreurs</strong> : envoyer
@@ -1030,18 +1039,18 @@ un classifieur parfait. C’est la probabilité qu’un individu positif tiré a
 hasard reçoive un score plus élevé qu’un individu négatif tiré au hasard.</li>
 </ul>
 <p>Comparons l’arbre à la régression logistique du chapitre <a href="ch-graphiques.html#ch-graphiques">4</a> :</p>
-<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="ch-acp-arbres.html#cb704-1" tabindex="-1"></a>logistique <span class="ot">&lt;-</span> <span class="fu">glm</span>(Purchase <span class="sc">~</span> PriceDiff <span class="sc">+</span> LoyalCH <span class="sc">+</span> SpecialMM <span class="sc">+</span> SpecialCH,</span>
-<span id="cb704-2"><a href="ch-acp-arbres.html#cb704-2" tabindex="-1"></a>                  <span class="at">data =</span> train, <span class="at">family =</span> binomial)</span>
-<span id="cb704-3"><a href="ch-acp-arbres.html#cb704-3" tabindex="-1"></a>proba_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(logistique, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb704-4"><a href="ch-acp-arbres.html#cb704-4" tabindex="-1"></a></span>
-<span id="cb704-5"><a href="ch-acp-arbres.html#cb704-5" tabindex="-1"></a>roc_arbre <span class="ot">&lt;-</span> <span class="fu">roc</span>(test<span class="sc">$</span>Purchase, proba_mm, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;CH&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>)</span>
-<span id="cb704-6"><a href="ch-acp-arbres.html#cb704-6" tabindex="-1"></a>roc_log   <span class="ot">&lt;-</span> <span class="fu">roc</span>(test<span class="sc">$</span>Purchase, proba_log, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;CH&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>)</span>
-<span id="cb704-7"><a href="ch-acp-arbres.html#cb704-7" tabindex="-1"></a></span>
-<span id="cb704-8"><a href="ch-acp-arbres.html#cb704-8" tabindex="-1"></a><span class="fu">plot</span>(roc_log, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">legacy.axes =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb704-9"><a href="ch-acp-arbres.html#cb704-9" tabindex="-1"></a><span class="fu">plot</span>(roc_arbre, <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb704-10"><a href="ch-acp-arbres.html#cb704-10" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;darkorange&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>,</span>
-<span id="cb704-11"><a href="ch-acp-arbres.html#cb704-11" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">&quot;Logistique, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log), <span class="dv">3</span>)),</span>
-<span id="cb704-12"><a href="ch-acp-arbres.html#cb704-12" tabindex="-1"></a>                  <span class="fu">paste</span>(<span class="st">&quot;Arbre, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_arbre), <span class="dv">3</span>))))</span></code></pre></div>
+<div class="sourceCode" id="cb704"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb704-1"><a href="ch-acp-arbres.html#cb704-1" aria-hidden="true" tabindex="-1"></a>logistique <span class="ot">&lt;-</span> <span class="fu">glm</span>(Purchase <span class="sc">~</span> PriceDiff <span class="sc">+</span> LoyalCH <span class="sc">+</span> SpecialMM <span class="sc">+</span> SpecialCH,</span>
+<span id="cb704-2"><a href="ch-acp-arbres.html#cb704-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> train, <span class="at">family =</span> binomial)</span>
+<span id="cb704-3"><a href="ch-acp-arbres.html#cb704-3" aria-hidden="true" tabindex="-1"></a>proba_log <span class="ot">&lt;-</span> <span class="fu">predict</span>(logistique, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb704-4"><a href="ch-acp-arbres.html#cb704-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb704-5"><a href="ch-acp-arbres.html#cb704-5" aria-hidden="true" tabindex="-1"></a>roc_arbre <span class="ot">&lt;-</span> <span class="fu">roc</span>(test<span class="sc">$</span>Purchase, proba_mm, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;CH&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>)</span>
+<span id="cb704-6"><a href="ch-acp-arbres.html#cb704-6" aria-hidden="true" tabindex="-1"></a>roc_log   <span class="ot">&lt;-</span> <span class="fu">roc</span>(test<span class="sc">$</span>Purchase, proba_log, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;CH&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>)</span>
+<span id="cb704-7"><a href="ch-acp-arbres.html#cb704-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb704-8"><a href="ch-acp-arbres.html#cb704-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_log, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">legacy.axes =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb704-9"><a href="ch-acp-arbres.html#cb704-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_arbre, <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb704-10"><a href="ch-acp-arbres.html#cb704-10" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;darkorange&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb704-11"><a href="ch-acp-arbres.html#cb704-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">&quot;Logistique, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log), <span class="dv">3</span>)),</span>
+<span id="cb704-12"><a href="ch-acp-arbres.html#cb704-12" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">paste</span>(<span class="st">&quot;Arbre, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_arbre), <span class="dv">3</span>))))</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/roc-1.png" width="65%" style="display: block; margin: auto;" /></p>
 <p>La courbe de l’arbre est formée de segments : un arbre élagué n’a que quelques
 feuilles, donc quelques valeurs de probabilité possibles. Ici, la régression
@@ -1051,7 +1060,7 @@ compromis entre <strong>performance</strong> et <strong>interprétabilité</stro
 sensibilité + spécificité (indice de Youden). En pratique, le seuil se choisit
 avec les équipes métier, en fonction du coût des erreurs et du budget de la
 campagne.</p>
-<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="ch-acp-arbres.html#cb705-1" tabindex="-1"></a><span class="fu">coords</span>(roc_log, <span class="st">&quot;best&quot;</span>, <span class="at">ret =</span> <span class="fu">c</span>(<span class="st">&quot;threshold&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb705"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb705-1"><a href="ch-acp-arbres.html#cb705-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coords</span>(roc_log, <span class="st">&quot;best&quot;</span>, <span class="at">ret =</span> <span class="fu">c</span>(<span class="st">&quot;threshold&quot;</span>, <span class="st">&quot;sensitivity&quot;</span>, <span class="st">&quot;specificity&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt;   threshold sensitivity specificity
 #&gt; 1     0.389      0.8725      0.8274</code></pre>
 <div class="attention">
@@ -1061,8 +1070,346 @@ sont trop optimistes (voir la fuite de données au chapitre <a href="ch-science.
 </div>
 </div>
 </div>
-<div id="résumé-4" class="section level2 hasAnchor" number="5.3">
-<h2><span class="header-section-number">5.3</span> Résumé<a href="ch-acp-arbres.html#r%C3%A9sum%C3%A9-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="forêts-aléatoires" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Forêts aléatoires<a href="ch-acp-arbres.html#forêts-aléatoires" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="pourquoi-aller-au-delà-dun-arbre" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Pourquoi aller au-delà d’un arbre ?<a href="ch-acp-arbres.html#pourquoi-aller-au-delà-dun-arbre" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un arbre de décision est lisible, mais <strong>instable</strong> : un léger changement des
+données d’apprentissage peut modifier la première coupure, et donc tout
+l’arbre. En termes statistiques, ses prédictions ont une <strong>variance</strong> élevée.
+Un arbre profond a peu de biais (il s’adapte finement aux données) mais
+beaucoup de variance ; l’élagage réduit la variance au prix d’un peu de biais.</p>
+<p>Les <strong>méthodes d’ensemble</strong> combinent de nombreux modèles pour réduire cette
+variance. La <strong>forêt aléatoire</strong> (<em>random forest</em>, Leo Breiman, 2001) est la
+plus utilisée d’entre elles : c’est l’une des méthodes les plus performantes
+« clés en main » sur des données tabulaires, comme on en rencontre sans cesse
+en marketing (clients, transactions, campagnes).</p>
+</div>
+<div id="rappels-théoriques" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Rappels théoriques<a href="ch-acp-arbres.html#rappels-théoriques" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="le-bagging" class="section level4 hasAnchor" number="5.3.2.1">
+<h4><span class="header-section-number">5.3.2.1</span> Le bagging<a href="ch-acp-arbres.html#le-bagging" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Le <em>bagging</em> (<em>bootstrap aggregating</em>, Breiman, 1996) procède en trois
+étapes :</p>
+<ol style="list-style-type: decimal">
+<li>tirer <span class="math inline">\(B\)</span> échantillons <strong>bootstrap</strong> : chacun contient <span class="math inline">\(n\)</span> observations
+tirées <strong>avec remise</strong> parmi les <span class="math inline">\(n\)</span> observations d’apprentissage ;</li>
+<li>construire un arbre <strong>profond, non élagué</strong> sur chaque échantillon :
+<span class="math inline">\(\hat f_1, \dots, \hat f_B\)</span> ;</li>
+<li><strong>agréger</strong> les <span class="math inline">\(B\)</span> prédictions.</li>
+</ol>
+<p>Pourquoi cela marche-t-il ? Si l’on moyenne <span class="math inline">\(B\)</span> prédictions de même variance
+<span class="math inline">\(\sigma^2\)</span> et de corrélation deux à deux <span class="math inline">\(\rho\)</span>, la variance de la moyenne vaut</p>
+<p><span class="math display">\[\operatorname{Var}\left(\frac{1}{B}\sum_{b=1}^B \hat f_b(x)\right)
+= \rho\,\sigma^2 + \frac{1 - \rho}{B}\,\sigma^2 .\]</span></p>
+<p>Le second terme disparaît quand <span class="math inline">\(B\)</span> augmente : moyenner beaucoup d’arbres
+réduit la variance <strong>sans augmenter le biais</strong>. Mais le premier terme demeure :
+si les arbres se ressemblent trop (corrélation <span class="math inline">\(\rho\)</span> forte), le gain est
+limité. Or, avec le bagging seul, les arbres se ressemblent : s’il existe une
+variable très prédictive (comme la fidélité <code>LoyalCH</code> du jeu <code>OJ</code>), presque
+tous les arbres la choisissent pour leur première coupure.</p>
+</div>
+<div id="lidée-de-la-forêt-aléatoire-décorréler-les-arbres" class="section level4 hasAnchor" number="5.3.2.2">
+<h4><span class="header-section-number">5.3.2.2</span> L’idée de la forêt aléatoire : décorréler les arbres<a href="ch-acp-arbres.html#lidée-de-la-forêt-aléatoire-décorréler-les-arbres" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>La forêt aléatoire ajoute une seconde source de hasard : <strong>à chaque nœud</strong> de
+chaque arbre, la meilleure coupure est cherchée parmi <span class="math inline">\(m\)</span> variables <strong>tirées
+au hasard</strong> parmi les <span class="math inline">\(p\)</span> variables explicatives (paramètre <code>mtry</code>), et non
+parmi toutes. Les variables moins dominantes ont ainsi leur chance, les arbres
+deviennent plus différents les uns des autres (<span class="math inline">\(\rho\)</span> diminue), et la moyenne
+est plus efficace.</p>
+<ul>
+<li>Avec <span class="math inline">\(m = p\)</span>, on retrouve le bagging.</li>
+<li>Valeurs par défaut de <code>randomForest</code> : <span class="math inline">\(m = \lfloor\sqrt{p}\rfloor\)</span> en
+classification, <span class="math inline">\(m = \lfloor p/3 \rfloor\)</span> en régression.</li>
+</ul>
+</div>
+<div id="classification-et-régression" class="section level4 hasAnchor" number="5.3.2.3">
+<h4><span class="header-section-number">5.3.2.3</span> Classification et régression<a href="ch-acp-arbres.html#classification-et-régression" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table>
+<colgroup>
+<col width="33%" />
+<col width="33%" />
+<col width="33%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"></th>
+<th align="left">Classification</th>
+<th align="left">Régression</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Variable cible</td>
+<td align="left">qualitative (achète / n’achète pas)</td>
+<td align="left">quantitative (montant, ventes)</td>
+</tr>
+<tr class="even">
+<td align="left">Critère de coupure dans chaque arbre</td>
+<td align="left">baisse de l’impureté de <strong>Gini</strong></td>
+<td align="left">baisse de la <strong>somme des carrés des résidus</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">Taille minimale des feuilles (<code>nodesize</code>)</td>
+<td align="left">1 : arbres très profonds</td>
+<td align="left">5</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mtry</code> par défaut</td>
+<td align="left"><span class="math inline">\(\lfloor\sqrt{p}\rfloor\)</span></td>
+<td align="left"><span class="math inline">\(\lfloor p/3 \rfloor\)</span></td>
+</tr>
+<tr class="odd">
+<td align="left">Prédiction de la forêt</td>
+<td align="left"><strong>vote majoritaire</strong> des <span class="math inline">\(B\)</span> arbres ; la <strong>probabilité</strong> d’une classe est la part des arbres qui la prédisent</td>
+<td align="left"><strong>moyenne</strong> des prédictions des <span class="math inline">\(B\)</span> arbres : <span class="math inline">\(\hat f(x) = \frac{1}{B}\sum_b \hat f_b(x)\)</span></td>
+</tr>
+<tr class="even">
+<td align="left">Erreur mesurée</td>
+<td align="left">taux d’erreur, matrice de confusion, AUC</td>
+<td align="left">erreur quadratique moyenne (MSE, RMSE), part de variance expliquée</td>
+</tr>
+</tbody>
+</table>
+<div class="attention">
+<p>En <strong>régression</strong>, une forêt prédit une moyenne de valeurs observées dans les
+feuilles : elle <strong>ne peut pas extrapoler</strong>. Ses prédictions restent dans
+l’intervalle des valeurs de la cible vues à l’apprentissage, et elle prolonge
+mal une tendance (par exemple des ventes en croissance continue).</p>
+</div>
+</div>
+<div id="lerreur-out-of-bag" class="section level4 hasAnchor" number="5.3.2.4">
+<h4><span class="header-section-number">5.3.2.4</span> L’erreur <em>out-of-bag</em><a href="ch-acp-arbres.html#lerreur-out-of-bag" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Un échantillon bootstrap ne contient pas toutes les observations : la
+probabilité qu’une observation donnée n’y figure pas est
+<span class="math inline">\((1 - 1/n)^n \approx e^{-1} \approx 0{,}37\)</span>. Environ un tiers des observations
+sont donc « hors du sac » (<em>out-of-bag</em>, OOB) pour chaque arbre.</p>
+<p>Pour chaque observation, on peut agréger les prédictions des seuls arbres qui
+<strong>ne l’ont pas vue</strong> : on obtient l’<strong>erreur OOB</strong>, une estimation de l’erreur
+de prédiction comparable à une validation croisée, <strong>sans jeu de validation
+séparé</strong>. Elle sert notamment à régler <code>mtry</code>. Elle ne dispense pas de garder
+un jeu de <strong>test</strong> pour l’évaluation finale si l’on compare plusieurs méthodes.</p>
+</div>
+<div id="importance-des-variables" class="section level4 hasAnchor" number="5.3.2.5">
+<h4><span class="header-section-number">5.3.2.5</span> Importance des variables<a href="ch-acp-arbres.html#importance-des-variables" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Une forêt de 500 arbres ne se lit pas comme un arbre unique. Deux mesures
+résument le rôle de chaque variable :</p>
+<ul>
+<li><strong>diminution moyenne de l’impureté</strong> (<code>MeanDecreaseGini</code> en classification,
+<code>IncNodePurity</code> en régression) : total des baisses d’impureté obtenues grâce
+aux coupures sur cette variable, moyenné sur les arbres. Rapide à calculer,
+mais elle favorise les variables quantitatives ou à nombreuses modalités ;</li>
+<li><strong>importance par permutation</strong> (<code>MeanDecreaseAccuracy</code> en classification,
+<code>%IncMSE</code> en régression) : on <strong>mélange au hasard</strong> les valeurs d’une
+variable dans les observations OOB et l’on mesure la <strong>dégradation</strong> de la
+prédiction. Si mélanger une variable ne change rien, elle n’est pas utile au
+modèle. Plus fiable, elle demande <code>importance = TRUE</code>.</li>
+</ul>
+<div class="attention">
+<p>L’importance mesure l’<strong>utilité pour prédire</strong>, pas un effet causal, et ne
+donne pas le <strong>sens</strong> de l’effet. Deux variables très corrélées se partagent
+l’importance : chacune peut paraître peu importante alors que l’information
+qu’elles portent l’est.</p>
+</div>
+</div>
+<div id="paramètres-à-régler" class="section level4 hasAnchor" number="5.3.2.6">
+<h4><span class="header-section-number">5.3.2.6</span> Paramètres à régler<a href="ch-acp-arbres.html#paramètres-à-régler" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<table>
+<colgroup>
+<col width="42%" />
+<col width="23%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Paramètre</th>
+<th align="left">Rôle</th>
+<th align="left">Conseil</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>ntree</code></td>
+<td align="left">nombre d’arbres <span class="math inline">\(B\)</span></td>
+<td align="left">500 par défaut ; augmenter ne provoque <strong>pas</strong> de sur-apprentissage, seulement un calcul plus long : vérifier que l’erreur OOB s’est stabilisée (<code>plot()</code>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>mtry</code></td>
+<td align="left">variables candidates à chaque nœud</td>
+<td align="left">le paramètre principal ; à régler avec l’erreur OOB</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>nodesize</code>, <code>maxnodes</code></td>
+<td align="left">taille des feuilles, nombre de feuilles</td>
+<td align="left">profondeur des arbres ; les valeurs par défaut conviennent souvent</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sampsize</code>, <code>strata</code>, <code>classwt</code></td>
+<td align="left">taille et composition des échantillons bootstrap</td>
+<td align="left">utiles quand les classes sont <strong>déséquilibrées</strong> (exercice 5.5)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Points forts</strong> : très bonnes performances avec peu de réglages, variables
+quantitatives et qualitatives sans transformation, interactions et effets non
+linéaires détectés automatiquement, estimation OOB gratuite.
+<strong>Points faibles</strong> : modèle peu interprétable (une « boîte noire » qu’on
+explore avec l’importance des variables et les graphiques de dépendance
+partielle), calcul plus lourd qu’un arbre, pas d’extrapolation en régression,
+pas de valeurs manquantes acceptées par <code>randomForest</code> (les traiter avant, par
+exemple avec <code>na.roughfix()</code>). Pour de grands volumes de données, le package
+<code>ranger</code> est beaucoup plus rapide.</p>
+</div>
+</div>
+<div id="classification-le-choix-de-la-marque-de-jus-dorange" class="section level3 hasAnchor" number="5.3.3">
+<h3><span class="header-section-number">5.3.3</span> Classification : le choix de la marque de jus d’orange<a href="ch-acp-arbres.html#classification-le-choix-de-la-marque-de-jus-dorange" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On reprend les données <code>OJ</code> et le <strong>même découpage</strong> entraînement / test que
+pour l’arbre (<code>train</code> : 800 achats, <code>test</code> : 270 achats), afin de comparer les
+méthodes sur les mêmes observations.</p>
+<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="ch-acp-arbres.html#cb707-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb707-2"><a href="ch-acp-arbres.html#cb707-2" aria-hidden="true" tabindex="-1"></a>foret <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> train, <span class="at">ntree =</span> <span class="dv">500</span>, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb707-3"><a href="ch-acp-arbres.html#cb707-3" aria-hidden="true" tabindex="-1"></a>foret</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt;  randomForest(formula = Purchase ~ ., data = train, ntree = 500,      importance = TRUE) 
+#&gt;                Type of random forest: classification
+#&gt;                      Number of trees: 500
+#&gt; No. of variables tried at each split: 4
+#&gt; 
+#&gt;         OOB estimate of  error rate: 19.25%
+#&gt; Confusion matrix:
+#&gt;     CH  MM class.error
+#&gt; CH 408  77      0.1588
+#&gt; MM  77 238      0.2444</code></pre>
+<p>La sortie indique le type de forêt (classification), le nombre d’arbres, la
+valeur de <code>mtry</code> (ici <span class="math inline">\(\lfloor\sqrt{17}\rfloor = 4\)</span>), l’<strong>erreur OOB</strong> et la
+matrice de confusion OOB, calculées sur les données d’apprentissage sans jeu
+de validation.</p>
+<p><strong>L’erreur s’est-elle stabilisée ?</strong> <code>plot()</code> trace l’erreur OOB (et celle de
+chaque classe) en fonction du nombre d’arbres :</p>
+<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="ch-acp-arbres.html#cb709-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(foret, <span class="at">main =</span> <span class="st">&quot;Erreur OOB selon le nombre d&#39;arbres&quot;</span>)</span>
+<span id="cb709-2"><a href="ch-acp-arbres.html#cb709-2" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="fu">colnames</span>(foret<span class="sc">$</span>err.rate), <span class="at">col =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">lty =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="at">cex =</span> <span class="fl">0.8</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/rf-oj-ntree-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Au-delà de 150 à 200 arbres, l’erreur ne fait plus qu’osciller légèrement :
+500 arbres suffisent largement.</p>
+<p><strong>Régler <code>mtry</code> avec l’erreur OOB</strong> :</p>
+<div class="sourceCode" id="cb710"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb710-1"><a href="ch-acp-arbres.html#cb710-1" aria-hidden="true" tabindex="-1"></a>erreur_oob <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>, <span class="cf">function</span>(m) {</span>
+<span id="cb710-2"><a href="ch-acp-arbres.html#cb710-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb710-3"><a href="ch-acp-arbres.html#cb710-3" aria-hidden="true" tabindex="-1"></a>  modele <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> train, <span class="at">mtry =</span> m)</span>
+<span id="cb710-4"><a href="ch-acp-arbres.html#cb710-4" aria-hidden="true" tabindex="-1"></a>  modele<span class="sc">$</span>err.rate[modele<span class="sc">$</span>ntree, <span class="st">&quot;OOB&quot;</span>]</span>
+<span id="cb710-5"><a href="ch-acp-arbres.html#cb710-5" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb710-6"><a href="ch-acp-arbres.html#cb710-6" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">setNames</span>(erreur_oob, <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>), <span class="dv">3</span>)</span></code></pre></div>
+<pre><code>#&gt;     1     2     3     4     5     6     7     8     9    10 
+#&gt; 0.229 0.202 0.189 0.189 0.198 0.194 0.199 0.201 0.208 0.202</code></pre>
+<p>L’erreur est la plus faible autour de <span class="math inline">\(m = 3\)</span> ou <span class="math inline">\(4\)</span> ; la valeur par défaut
+convient. Avec <span class="math inline">\(m = 1\)</span>, les coupures sont presque aléatoires ; avec <span class="math inline">\(m\)</span> grand,
+on se rapproche du bagging.</p>
+<p><strong>Évaluer sur le jeu de test</strong> et comparer à l’arbre élagué et à la régression
+logistique :</p>
+<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="ch-acp-arbres.html#cb712-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">observe =</span> test<span class="sc">$</span>Purchase, <span class="at">predit =</span> <span class="fu">predict</span>(foret, <span class="at">newdata =</span> test))</span></code></pre></div>
+<pre><code>#&gt;        predit
+#&gt; observe  CH  MM
+#&gt;      CH 138  30
+#&gt;      MM  20  82</code></pre>
+<div class="sourceCode" id="cb714"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb714-1"><a href="ch-acp-arbres.html#cb714-1" aria-hidden="true" tabindex="-1"></a>proba_foret <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret, <span class="at">newdata =</span> test, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)[, <span class="st">&quot;MM&quot;</span>]</span>
+<span id="cb714-2"><a href="ch-acp-arbres.html#cb714-2" aria-hidden="true" tabindex="-1"></a>roc_foret <span class="ot">&lt;-</span> <span class="fu">roc</span>(test<span class="sc">$</span>Purchase, proba_foret, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;CH&quot;</span>, <span class="st">&quot;MM&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>)</span>
+<span id="cb714-3"><a href="ch-acp-arbres.html#cb714-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb714-4"><a href="ch-acp-arbres.html#cb714-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_log, <span class="at">col =</span> <span class="st">&quot;darkblue&quot;</span>, <span class="at">legacy.axes =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb714-5"><a href="ch-acp-arbres.html#cb714-5" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_arbre, <span class="at">col =</span> <span class="st">&quot;darkorange&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb714-6"><a href="ch-acp-arbres.html#cb714-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(roc_foret, <span class="at">col =</span> <span class="st">&quot;forestgreen&quot;</span>, <span class="at">add =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb714-7"><a href="ch-acp-arbres.html#cb714-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;bottomright&quot;</span>, <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&quot;darkblue&quot;</span>, <span class="st">&quot;darkorange&quot;</span>, <span class="st">&quot;forestgreen&quot;</span>), <span class="at">lwd =</span> <span class="dv">2</span>,</span>
+<span id="cb714-8"><a href="ch-acp-arbres.html#cb714-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">legend =</span> <span class="fu">c</span>(<span class="fu">paste</span>(<span class="st">&quot;Logistique, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_log), <span class="dv">3</span>)),</span>
+<span id="cb714-9"><a href="ch-acp-arbres.html#cb714-9" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">paste</span>(<span class="st">&quot;Arbre, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_arbre), <span class="dv">3</span>)),</span>
+<span id="cb714-10"><a href="ch-acp-arbres.html#cb714-10" aria-hidden="true" tabindex="-1"></a>                  <span class="fu">paste</span>(<span class="st">&quot;Forêt, AUC =&quot;</span>, <span class="fu">round</span>(<span class="fu">auc</span>(roc_foret), <span class="dv">3</span>))))</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/rf-oj-test-1.png" width="65%" style="display: block; margin: auto;" /></p>
+<p>La forêt fait mieux que l’arbre unique : agréger 500 arbres stabilise les
+prédictions et donne des probabilités plus fines. Elle ne dépasse pourtant pas
+la régression logistique : dans ces données, l’essentiel de l’information tient
+dans deux variables (<code>LoyalCH</code> et <code>PriceDiff</code>) dont l’effet est presque
+linéaire sur l’échelle du logit, situation idéale pour un modèle logistique.</p>
+<p><strong>Importance des variables</strong> :</p>
+<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="ch-acp-arbres.html#cb715-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(foret, <span class="at">n.var =</span> <span class="dv">10</span>, <span class="at">main =</span> <span class="st">&quot;Importance des variables (OJ)&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/rf-oj-importance-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>La fidélité à la marque domine nettement, devant le magasin et les écarts de
+prix : on retrouve, sous une autre forme, les conclusions de l’arbre et de la
+régression logistique.</p>
+<p><strong>Dépendance partielle.</strong> Pour voir <strong>comment</strong> une variable influence la
+prédiction, <code>partialPlot()</code> trace la prédiction moyenne de la forêt quand on
+fait varier cette variable, les autres restant à leurs valeurs observées
+(l’axe vertical est sur l’échelle du logit de la probabilité de la classe
+choisie) :</p>
+<div class="sourceCode" id="cb716"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb716-1"><a href="ch-acp-arbres.html#cb716-1" aria-hidden="true" tabindex="-1"></a><span class="fu">partialPlot</span>(foret, <span class="at">pred.data =</span> <span class="fu">as.data.frame</span>(train), <span class="at">x.var =</span> <span class="st">&quot;LoyalCH&quot;</span>,</span>
+<span id="cb716-2"><a href="ch-acp-arbres.html#cb716-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">which.class =</span> <span class="st">&quot;MM&quot;</span>, <span class="at">main =</span> <span class="st">&quot;Effet de la fidélité à CH sur l&#39;achat de MM&quot;</span>,</span>
+<span id="cb716-3"><a href="ch-acp-arbres.html#cb716-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">xlab =</span> <span class="st">&quot;LoyalCH&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/rf-oj-partiel-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Plus un client est fidèle à Citrus Hill, moins la forêt prédit l’achat de
+Minute Maid, avec une chute marquée autour de 0,5. Les irrégularités de la
+courbe (bosse vers 0,7, remontée près de 1) ne doivent pas être
+surinterprétées : la forêt est une moyenne de fonctions en escalier, et
+certaines valeurs de <code>LoyalCH</code> sont rares dans les données. On lit la
+<strong>tendance générale</strong>, pas chaque variation.</p>
+</div>
+<div id="régression-les-ventes-de-sièges-auto" class="section level3 hasAnchor" number="5.3.4">
+<h3><span class="header-section-number">5.3.4</span> Régression : les ventes de sièges auto<a href="ch-acp-arbres.html#régression-les-ventes-de-sièges-auto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>On reprend le jeu <code>Carseats</code> (chapitre <a href="ch-graphiques.html#ch-graphiques">4</a>) pour prédire les
+ventes <code>Sales</code>, avec le même découpage 70 % / 30 % qu’au chapitre 4.</p>
+<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="ch-acp-arbres.html#cb717-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb717-2"><a href="ch-acp-arbres.html#cb717-2" aria-hidden="true" tabindex="-1"></a>indices_train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Carseats), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Carseats)))</span>
+<span id="cb717-3"><a href="ch-acp-arbres.html#cb717-3" aria-hidden="true" tabindex="-1"></a>ventes_train <span class="ot">&lt;-</span> Carseats[indices_train, ]</span>
+<span id="cb717-4"><a href="ch-acp-arbres.html#cb717-4" aria-hidden="true" tabindex="-1"></a>ventes_test  <span class="ot">&lt;-</span> Carseats[<span class="sc">-</span>indices_train, ]</span>
+<span id="cb717-5"><a href="ch-acp-arbres.html#cb717-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb717-6"><a href="ch-acp-arbres.html#cb717-6" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb717-7"><a href="ch-acp-arbres.html#cb717-7" aria-hidden="true" tabindex="-1"></a>foret_ventes <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Sales <span class="sc">~</span> ., <span class="at">data =</span> ventes_train, <span class="at">importance =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb717-8"><a href="ch-acp-arbres.html#cb717-8" aria-hidden="true" tabindex="-1"></a>foret_ventes</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt;  randomForest(formula = Sales ~ ., data = ventes_train, importance = TRUE) 
+#&gt;                Type of random forest: regression
+#&gt;                      Number of trees: 500
+#&gt; No. of variables tried at each split: 3
+#&gt; 
+#&gt;           Mean of squared residuals: 2.673
+#&gt;                     % Var explained: 64.83</code></pre>
+<p>En régression, la sortie donne l’erreur quadratique moyenne OOB
+(<em>Mean of squared residuals</em>) et la part de variance expliquée, l’équivalent
+d’un <span class="math inline">\(R^2\)</span> calculé hors échantillon. Ici, <code>mtry</code> vaut
+<span class="math inline">\(\lfloor 10/3 \rfloor = 3\)</span>.</p>
+<p>Comparons sur le jeu de test la référence naïve (la moyenne), un arbre de
+régression, la forêt et le modèle linéaire multiple du chapitre 4 :</p>
+<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="ch-acp-arbres.html#cb719-1" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(observe, predit) <span class="fu">sqrt</span>(<span class="fu">mean</span>((observe <span class="sc">-</span> predit)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb719-2"><a href="ch-acp-arbres.html#cb719-2" aria-hidden="true" tabindex="-1"></a>arbre_ventes <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Sales <span class="sc">~</span> ., <span class="at">data =</span> ventes_train)</span>
+<span id="cb719-3"><a href="ch-acp-arbres.html#cb719-3" aria-hidden="true" tabindex="-1"></a>lineaire <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> ShelveLoc <span class="sc">+</span> Age <span class="sc">+</span> Income,</span>
+<span id="cb719-4"><a href="ch-acp-arbres.html#cb719-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> ventes_train)</span>
+<span id="cb719-5"><a href="ch-acp-arbres.html#cb719-5" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">reference =</span> <span class="fu">rmse</span>(ventes_test<span class="sc">$</span>Sales, <span class="fu">mean</span>(ventes_train<span class="sc">$</span>Sales)),</span>
+<span id="cb719-6"><a href="ch-acp-arbres.html#cb719-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">arbre     =</span> <span class="fu">rmse</span>(ventes_test<span class="sc">$</span>Sales, <span class="fu">predict</span>(arbre_ventes, ventes_test)),</span>
+<span id="cb719-7"><a href="ch-acp-arbres.html#cb719-7" aria-hidden="true" tabindex="-1"></a>  <span class="at">foret     =</span> <span class="fu">rmse</span>(ventes_test<span class="sc">$</span>Sales, <span class="fu">predict</span>(foret_ventes, ventes_test)),</span>
+<span id="cb719-8"><a href="ch-acp-arbres.html#cb719-8" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineaire  =</span> <span class="fu">rmse</span>(ventes_test<span class="sc">$</span>Sales, <span class="fu">predict</span>(lineaire, ventes_test)))</span></code></pre></div>
+<pre><code>#&gt; reference     arbre     foret  lineaire 
+#&gt;     2.971     2.508     1.809     1.059</code></pre>
+<p>La forêt améliore nettement l’arbre unique, mais le <strong>modèle linéaire</strong> reste
+le meilleur. Les ventes de <code>Carseats</code> sont en effet construites comme une
+fonction presque <strong>linéaire</strong> du prix, de l’emplacement, de la publicité… Un
+modèle linéaire capture exactement cette structure ; une forêt doit
+l’approcher par une moyenne de fonctions en escalier.</p>
+<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="ch-acp-arbres.html#cb721-1" aria-hidden="true" tabindex="-1"></a><span class="fu">varImpPlot</span>(foret_ventes, <span class="at">main =</span> <span class="st">&quot;Importance des variables (Carseats)&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/rf-carseats-importance-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>L’emplacement en rayon et le prix dominent, comme dans le modèle linéaire. Les
+variables que le modèle linéaire n’avait pas retenues (population, niveau
+d’études, zone urbaine) ont une importance <strong>par permutation</strong> (<code>%IncMSE</code>)
+quasi nulle ; leur diminution d’impureté (<code>IncNodePurity</code>) n’est pourtant pas
+négligeable, car cette mesure favorise les variables quantitatives, sur
+lesquelles les arbres trouvent toujours des coupures, même inutiles.</p>
+<div class="retenir">
+<p><strong>Une forêt aléatoire est un excellent point de départ, pas une garantie.</strong>
+Comparez-la toujours, sur des données de test, à une référence naïve et à un
+modèle simple et interprétable (régression linéaire ou logistique). Si le
+modèle simple fait aussi bien, préférez-le : il s’explique plus facilement aux
+équipes métier et aux personnes concernées par la décision.</p>
+</div>
+</div>
+</div>
+<div id="résumé-4" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Résumé<a href="ch-acp-arbres.html#résumé-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="retenir">
 <ul>
 <li><strong>ACP</strong> : résumer <span class="math inline">\(p\)</span> variables quantitatives par quelques axes non corrélés
@@ -1078,11 +1425,16 @@ les interpréter (valeurs-test).</li>
 <li>Évaluer sur un jeu de <strong>test</strong> : matrice de confusion, sensibilité,
 spécificité, précision ; courbe ROC et AUC avec <code>pROC</code>. Choisir le seuil
 selon le coût des erreurs.</li>
+<li><strong>Forêt aléatoire</strong> : moyenne de nombreux arbres profonds construits sur des
+échantillons bootstrap, avec <span class="math inline">\(m\)</span> variables tirées au hasard à chaque nœud
+(<code>mtry</code>) pour décorréler les arbres. Vote majoritaire en classification,
+moyenne en régression. <code>randomForest()</code>, erreur OOB, <code>varImpPlot()</code>,
+<code>partialPlot()</code>. Toujours comparer à un modèle simple.</li>
 </ul>
 </div>
 </div>
-<div id="exercices-4" class="section level2 hasAnchor" number="5.4">
-<h2><span class="header-section-number">5.4</span> Exercices<a href="ch-acp-arbres.html#exercices-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="exercices-4" class="section level2 hasAnchor" number="5.5">
+<h2><span class="header-section-number">5.5</span> Exercices<a href="ch-acp-arbres.html#exercices-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div class="exercice">
 <p><strong>Exercice 5.1 — ACP sur <code>USArrests</code>.</strong> Le jeu <code>USArrests</code> donne, pour les 50
 États américains, le nombre d’arrestations pour 100 000 habitants pour
@@ -1095,19 +1447,19 @@ meurtre, agression et viol, ainsi que le pourcentage de population urbaine.</p>
 </ol>
 </div>
 <details><summary>Solution</summary>
-<div class="sourceCode" id="cb707"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb707-1"><a href="ch-acp-arbres.html#cb707-1" tabindex="-1"></a><span class="fu">sapply</span>(USArrests, var)        <span class="co"># variances très différentes : ACP normée nécessaire</span></span></code></pre></div>
+<div class="sourceCode" id="cb722"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb722-1"><a href="ch-acp-arbres.html#cb722-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sapply</span>(USArrests, var)        <span class="co"># variances très différentes : ACP normée nécessaire</span></span></code></pre></div>
 <pre><code>#&gt;   Murder  Assault UrbanPop     Rape 
 #&gt;    18.97  6945.17   209.52    87.73</code></pre>
-<div class="sourceCode" id="cb709"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb709-1"><a href="ch-acp-arbres.html#cb709-1" tabindex="-1"></a>acp_us <span class="ot">&lt;-</span> <span class="fu">PCA</span>(USArrests, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb709-2"><a href="ch-acp-arbres.html#cb709-2" tabindex="-1"></a>acp_us<span class="sc">$</span>eig</span></code></pre></div>
+<div class="sourceCode" id="cb724"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb724-1"><a href="ch-acp-arbres.html#cb724-1" aria-hidden="true" tabindex="-1"></a>acp_us <span class="ot">&lt;-</span> <span class="fu">PCA</span>(USArrests, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb724-2"><a href="ch-acp-arbres.html#cb724-2" aria-hidden="true" tabindex="-1"></a>acp_us<span class="sc">$</span>eig</span></code></pre></div>
 <pre><code>#&gt;        eigenvalue percentage of variance cumulative percentage of variance
 #&gt; comp 1     2.4802                 62.006                             62.01
 #&gt; comp 2     0.9898                 24.744                             86.75
 #&gt; comp 3     0.3566                  8.914                             95.66
 #&gt; comp 4     0.1734                  4.336                            100.00</code></pre>
-<div class="sourceCode" id="cb711"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb711-1"><a href="ch-acp-arbres.html#cb711-1" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_us, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb726"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb726-1"><a href="ch-acp-arbres.html#cb726-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_us, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex5-1-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb712"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb712-1"><a href="ch-acp-arbres.html#cb712-1" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_us, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb727"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb727-1"><a href="ch-acp-arbres.html#cb727-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_us, <span class="at">repel =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex5-1-2.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>L’axe 1 (environ 62 % de l’inertie) regroupe les trois types de crimes : c’est
 un axe de <strong>criminalité globale</strong>. L’axe 2 est porté par <code>UrbanPop</code> : il
@@ -1149,28 +1501,28 @@ souscripteurs atteint-il ? Comparer au hasard (10 %).</li>
 </ol>
 </div>
 <details><summary>Solution</summary>
-<div class="sourceCode" id="cb713"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb713-1"><a href="ch-acp-arbres.html#cb713-1" tabindex="-1"></a><span class="fu">mean</span>(Caravan<span class="sc">$</span>Purchase <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)          <span class="co"># environ 6 % : prédire &quot;No&quot; donne 94 % de bonnes réponses</span></span></code></pre></div>
+<div class="sourceCode" id="cb728"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb728-1"><a href="ch-acp-arbres.html#cb728-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(Caravan<span class="sc">$</span>Purchase <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)          <span class="co"># environ 6 % : prédire &quot;No&quot; donne 94 % de bonnes réponses</span></span></code></pre></div>
 <pre><code>#&gt; [1] 0.05977</code></pre>
-<div class="sourceCode" id="cb715"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb715-1"><a href="ch-acp-arbres.html#cb715-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
-<span id="cb715-2"><a href="ch-acp-arbres.html#cb715-2" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Caravan), <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Caravan)))</span>
-<span id="cb715-3"><a href="ch-acp-arbres.html#cb715-3" tabindex="-1"></a>car_train <span class="ot">&lt;-</span> Caravan[idx, ]</span>
-<span id="cb715-4"><a href="ch-acp-arbres.html#cb715-4" tabindex="-1"></a>car_test  <span class="ot">&lt;-</span> Caravan[<span class="sc">-</span>idx, ]</span>
-<span id="cb715-5"><a href="ch-acp-arbres.html#cb715-5" tabindex="-1"></a></span>
-<span id="cb715-6"><a href="ch-acp-arbres.html#cb715-6" tabindex="-1"></a>arbre_car <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> car_train, <span class="at">method =</span> <span class="st">&quot;class&quot;</span>,</span>
-<span id="cb715-7"><a href="ch-acp-arbres.html#cb715-7" tabindex="-1"></a>                   <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.002</span>))</span>
-<span id="cb715-8"><a href="ch-acp-arbres.html#cb715-8" tabindex="-1"></a><span class="fu">table</span>(<span class="at">observe =</span> car_test<span class="sc">$</span>Purchase,</span>
-<span id="cb715-9"><a href="ch-acp-arbres.html#cb715-9" tabindex="-1"></a>      <span class="at">predit =</span> <span class="fu">predict</span>(arbre_car, car_test, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="ch-acp-arbres.html#cb730-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb730-2"><a href="ch-acp-arbres.html#cb730-2" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Caravan), <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Caravan)))</span>
+<span id="cb730-3"><a href="ch-acp-arbres.html#cb730-3" aria-hidden="true" tabindex="-1"></a>car_train <span class="ot">&lt;-</span> Caravan[idx, ]</span>
+<span id="cb730-4"><a href="ch-acp-arbres.html#cb730-4" aria-hidden="true" tabindex="-1"></a>car_test  <span class="ot">&lt;-</span> Caravan[<span class="sc">-</span>idx, ]</span>
+<span id="cb730-5"><a href="ch-acp-arbres.html#cb730-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb730-6"><a href="ch-acp-arbres.html#cb730-6" aria-hidden="true" tabindex="-1"></a>arbre_car <span class="ot">&lt;-</span> <span class="fu">rpart</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> car_train, <span class="at">method =</span> <span class="st">&quot;class&quot;</span>,</span>
+<span id="cb730-7"><a href="ch-acp-arbres.html#cb730-7" aria-hidden="true" tabindex="-1"></a>                   <span class="at">control =</span> <span class="fu">rpart.control</span>(<span class="at">cp =</span> <span class="fl">0.002</span>))</span>
+<span id="cb730-8"><a href="ch-acp-arbres.html#cb730-8" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">observe =</span> car_test<span class="sc">$</span>Purchase,</span>
+<span id="cb730-9"><a href="ch-acp-arbres.html#cb730-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">predit =</span> <span class="fu">predict</span>(arbre_car, car_test, <span class="at">type =</span> <span class="st">&quot;class&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt;        predit
 #&gt; observe   No  Yes
 #&gt;     No  1629   13
 #&gt;     Yes  101    4</code></pre>
-<div class="sourceCode" id="cb717"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb717-1"><a href="ch-acp-arbres.html#cb717-1" tabindex="-1"></a>logit_car <span class="ot">&lt;-</span> <span class="fu">glm</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> car_train, <span class="at">family =</span> binomial)</span></code></pre></div>
+<div class="sourceCode" id="cb732"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb732-1"><a href="ch-acp-arbres.html#cb732-1" aria-hidden="true" tabindex="-1"></a>logit_car <span class="ot">&lt;-</span> <span class="fu">glm</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> car_train, <span class="at">family =</span> binomial)</span></code></pre></div>
 <pre><code>#&gt; Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred</code></pre>
-<div class="sourceCode" id="cb719"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb719-1"><a href="ch-acp-arbres.html#cb719-1" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">predict</span>(logit_car, car_test, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
-<span id="cb719-2"><a href="ch-acp-arbres.html#cb719-2" tabindex="-1"></a><span class="fu">auc</span>(<span class="fu">roc</span>(car_test<span class="sc">$</span>Purchase, score, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb734"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb734-1"><a href="ch-acp-arbres.html#cb734-1" aria-hidden="true" tabindex="-1"></a>score <span class="ot">&lt;-</span> <span class="fu">predict</span>(logit_car, car_test, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span>
+<span id="cb734-2"><a href="ch-acp-arbres.html#cb734-2" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(<span class="fu">roc</span>(car_test<span class="sc">$</span>Purchase, score, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt; Area under the curve: 0.729</code></pre>
-<div class="sourceCode" id="cb721"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb721-1"><a href="ch-acp-arbres.html#cb721-1" tabindex="-1"></a>cibles <span class="ot">&lt;-</span> score <span class="sc">&gt;=</span> <span class="fu">quantile</span>(score, <span class="fl">0.9</span>)          <span class="co"># les 10 % de meilleurs scores</span></span>
-<span id="cb721-2"><a href="ch-acp-arbres.html#cb721-2" tabindex="-1"></a><span class="fu">sum</span>(car_test<span class="sc">$</span>Purchase[cibles] <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>) <span class="sc">/</span> <span class="fu">sum</span>(car_test<span class="sc">$</span>Purchase <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb736"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb736-1"><a href="ch-acp-arbres.html#cb736-1" aria-hidden="true" tabindex="-1"></a>cibles <span class="ot">&lt;-</span> score <span class="sc">&gt;=</span> <span class="fu">quantile</span>(score, <span class="fl">0.9</span>)          <span class="co"># les 10 % de meilleurs scores</span></span>
+<span id="cb736-2"><a href="ch-acp-arbres.html#cb736-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(car_test<span class="sc">$</span>Purchase[cibles] <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>) <span class="sc">/</span> <span class="fu">sum</span>(car_test<span class="sc">$</span>Purchase <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.3238</code></pre>
 <p>Avec le seuil de 0,5, l’arbre ne prédit presque jamais « Yes » : son taux de
 bonne classification est élevé mais il ne sert à rien pour cibler. En classant
@@ -1180,13 +1532,159 @@ on atteint une part des souscripteurs bien supérieure à 10 % : c’est ce gain
 variables peut produire des avertissements de convergence ; les modèles
 régularisés (hors programme) sont plus adaptés.</p>
 </details>
+<div class="exercice">
+<p><strong>Exercice 5.3 — Questions sur les forêts aléatoires.</strong></p>
+<ol style="list-style-type: decimal">
+<li>Pourquoi agréger de nombreux arbres réduit-il l’erreur de prédiction ?
+Quelle composante de l’erreur (biais ou variance) est réduite ?</li>
+<li>Quelle est la différence entre le bagging et une forêt aléatoire ? Pourquoi
+cette différence améliore-t-elle les performances ?</li>
+<li>Comment une forêt produit-elle sa prédiction en classification ? En
+régression ?</li>
+<li>Quelle part des observations est « hors du sac » pour un arbre donné ? À
+quoi sert l’erreur OOB ?</li>
+<li>Augmenter le nombre d’arbres peut-il conduire au sur-apprentissage ?</li>
+<li>Une équipe marketing conclut d’une forte importance de la variable
+« nombre de visites du site » qu’augmenter les visites fera augmenter les
+achats. Qu’en pensez-vous ?</li>
+</ol>
+</div>
+<details><summary>Éléments de réponse</summary>
+<ol style="list-style-type: decimal">
+<li>Les arbres profonds ont un faible biais mais une forte <strong>variance</strong> : ils
+dépendent beaucoup de l’échantillon d’apprentissage. La moyenne de <span class="math inline">\(B\)</span>
+prédictions a une variance <span class="math inline">\(\rho\sigma^2 + (1-\rho)\sigma^2/B\)</span>, plus faible
+que celle d’un arbre, sans augmentation du biais.</li>
+<li>Le bagging construit chaque arbre sur un échantillon bootstrap en
+considérant toutes les variables à chaque nœud ; la forêt aléatoire ne
+considère que <span class="math inline">\(m\)</span> variables tirées au hasard. Les arbres sont alors moins
+corrélés (<span class="math inline">\(\rho\)</span> plus faible), donc leur moyenne réduit davantage la
+variance.</li>
+<li>Classification : vote majoritaire des arbres (et part des votes comme
+probabilité). Régression : moyenne des prédictions des arbres.</li>
+<li>Environ <span class="math inline">\(e^{-1} \approx 37\,\%\)</span>. L’erreur OOB, calculée en prédisant chaque
+observation avec les seuls arbres qui ne l’ont pas utilisée, estime
+l’erreur de prédiction sans jeu de validation ; elle sert à choisir <code>mtry</code>
+et à vérifier que le nombre d’arbres suffit.</li>
+<li>Non : ajouter des arbres stabilise la moyenne, l’erreur se stabilise puis
+ne bouge plus. Seul le temps de calcul augmente.</li>
+<li>L’importance mesure l’utilité d’une variable pour <strong>prédire</strong>, pas un effet
+<strong>causal</strong> : les clients qui visitent souvent le site sont déjà intéressés.
+Pour mesurer l’effet d’une action (augmenter les visites), il faut une
+expérience, par exemple un test A/B.</li>
+</ol>
+</details>
+<div class="exercice">
+<p><strong>Exercice 5.4 — Forêt aléatoire en régression.</strong> Avec <code>phbirths</code>
+(<code>datasets/phbirths.dat</code> : poids de naissance <code>grams</code>, durée de gestation
+<code>gestate</code>, tabagisme de la mère <code>smoke</code>, origine <code>black</code>, années d’études
+<code>educ</code>) :</p>
+<ol style="list-style-type: decimal">
+<li>Découper les données en 70 % pour l’entraînement et 30 % pour le test.</li>
+<li>Ajuster une forêt aléatoire de <code>grams</code> sur toutes les autres variables. Que
+vaut <code>mtry</code> ? Quelle part de variance est expliquée (OOB) ?</li>
+<li>Choisir <code>mtry</code> (de 1 à 4) avec l’erreur OOB.</li>
+<li>Comparer sur le jeu de test le RMSE de la forêt retenue à celui d’une
+régression linéaire et à celui de la référence naïve (la moyenne). Conclure.</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb738"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb738-1"><a href="ch-acp-arbres.html#cb738-1" aria-hidden="true" tabindex="-1"></a>phbirths <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;../datasets/phbirths.dat&quot;</span>)</span>
+<span id="cb738-2"><a href="ch-acp-arbres.html#cb738-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb738-3"><a href="ch-acp-arbres.html#cb738-3" aria-hidden="true" tabindex="-1"></a>idx <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(phbirths), <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(phbirths)))</span>
+<span id="cb738-4"><a href="ch-acp-arbres.html#cb738-4" aria-hidden="true" tabindex="-1"></a>ph_train <span class="ot">&lt;-</span> phbirths[idx, ]</span>
+<span id="cb738-5"><a href="ch-acp-arbres.html#cb738-5" aria-hidden="true" tabindex="-1"></a>ph_test  <span class="ot">&lt;-</span> phbirths[<span class="sc">-</span>idx, ]</span>
+<span id="cb738-6"><a href="ch-acp-arbres.html#cb738-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb738-7"><a href="ch-acp-arbres.html#cb738-7" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb738-8"><a href="ch-acp-arbres.html#cb738-8" aria-hidden="true" tabindex="-1"></a>foret_ph <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(grams <span class="sc">~</span> ., <span class="at">data =</span> ph_train)</span>
+<span id="cb738-9"><a href="ch-acp-arbres.html#cb738-9" aria-hidden="true" tabindex="-1"></a>foret_ph                                   <span class="co"># mtry = floor(4 / 3) = 1</span></span></code></pre></div>
+<pre><code>#&gt; 
+#&gt; Call:
+#&gt;  randomForest(formula = grams ~ ., data = ph_train) 
+#&gt;                Type of random forest: regression
+#&gt;                      Number of trees: 500
+#&gt; No. of variables tried at each split: 1
+#&gt; 
+#&gt;           Mean of squared residuals: 222885
+#&gt;                     % Var explained: 42.7</code></pre>
+<div class="sourceCode" id="cb740"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb740-1"><a href="ch-acp-arbres.html#cb740-1" aria-hidden="true" tabindex="-1"></a>erreur_oob <span class="ot">&lt;-</span> <span class="fu">sapply</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>, <span class="cf">function</span>(m) {</span>
+<span id="cb740-2"><a href="ch-acp-arbres.html#cb740-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb740-3"><a href="ch-acp-arbres.html#cb740-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tail</span>(<span class="fu">randomForest</span>(grams <span class="sc">~</span> ., <span class="at">data =</span> ph_train, <span class="at">mtry =</span> m)<span class="sc">$</span>mse, <span class="dv">1</span>)</span>
+<span id="cb740-4"><a href="ch-acp-arbres.html#cb740-4" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb740-5"><a href="ch-acp-arbres.html#cb740-5" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">setNames</span>(erreur_oob, <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>))</span></code></pre></div>
+<pre><code>#&gt;      1      2      3      4 
+#&gt; 222885 192152 199950 205937</code></pre>
+<div class="sourceCode" id="cb742"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb742-1"><a href="ch-acp-arbres.html#cb742-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb742-2"><a href="ch-acp-arbres.html#cb742-2" aria-hidden="true" tabindex="-1"></a>foret_ph <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(grams <span class="sc">~</span> ., <span class="at">data =</span> ph_train, <span class="at">mtry =</span> <span class="fu">which.min</span>(erreur_oob))</span>
+<span id="cb742-3"><a href="ch-acp-arbres.html#cb742-3" aria-hidden="true" tabindex="-1"></a>lineaire_ph <span class="ot">&lt;-</span> <span class="fu">lm</span>(grams <span class="sc">~</span> ., <span class="at">data =</span> ph_train)</span>
+<span id="cb742-4"><a href="ch-acp-arbres.html#cb742-4" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">reference =</span> <span class="fu">rmse</span>(ph_test<span class="sc">$</span>grams, <span class="fu">mean</span>(ph_train<span class="sc">$</span>grams)),</span>
+<span id="cb742-5"><a href="ch-acp-arbres.html#cb742-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">lineaire  =</span> <span class="fu">rmse</span>(ph_test<span class="sc">$</span>grams, <span class="fu">predict</span>(lineaire_ph, ph_test)),</span>
+<span id="cb742-6"><a href="ch-acp-arbres.html#cb742-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">foret     =</span> <span class="fu">rmse</span>(ph_test<span class="sc">$</span>grams, <span class="fu">predict</span>(foret_ph, ph_test)))</span></code></pre></div>
+<pre><code>#&gt; reference  lineaire     foret 
+#&gt;     655.4     431.7     452.1</code></pre>
+<p>Le réglage de <code>mtry</code> améliore la forêt, mais la régression linéaire reste
+meilleure. Avec seulement quatre variables explicatives et une relation
+essentiellement linéaire, une forêt n’a pas d’avantage : la régression
+linéaire, plus simple et interprétable, est à préférer.</p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 5.5 — Forêt aléatoire et classes déséquilibrées.</strong> On reprend le
+jeu <code>Caravan</code> et le découpage de l’exercice 5.2 (<code>car_train</code>, <code>car_test</code>).</p>
+<ol style="list-style-type: decimal">
+<li>Ajuster une forêt aléatoire de <code>Purchase</code> sur toutes les variables.
+Examiner la matrice de confusion OOB : combien de souscripteurs sont
+détectés ?</li>
+<li>Calculer l’AUC sur le jeu de test et la part des souscripteurs atteinte en
+ciblant les 10 % de clients aux probabilités les plus élevées. Comparer à la
+régression logistique de l’exercice 5.2.</li>
+<li>Refaire la forêt en construisant chaque arbre sur un échantillon
+<strong>équilibré</strong> de 200 non-souscripteurs et 200 souscripteurs
+(<code>sampsize = c(No = 200, Yes = 200), strata = car_train$Purchase</code>).
+Comparer la matrice de confusion sur le jeu de test et l’AUC.</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb744"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb744-1"><a href="ch-acp-arbres.html#cb744-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb744-2"><a href="ch-acp-arbres.html#cb744-2" aria-hidden="true" tabindex="-1"></a>foret_car <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> car_train)</span>
+<span id="cb744-3"><a href="ch-acp-arbres.html#cb744-3" aria-hidden="true" tabindex="-1"></a>foret_car<span class="sc">$</span>confusion                        <span class="co"># presque aucun souscripteur détecté</span></span></code></pre></div>
+<pre><code>#&gt;       No Yes class.error
+#&gt; No  3798  34    0.008873
+#&gt; Yes  242   1    0.995885</code></pre>
+<div class="sourceCode" id="cb746"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb746-1"><a href="ch-acp-arbres.html#cb746-1" aria-hidden="true" tabindex="-1"></a>score_foret <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret_car, car_test, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)[, <span class="st">&quot;Yes&quot;</span>]</span>
+<span id="cb746-2"><a href="ch-acp-arbres.html#cb746-2" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(<span class="fu">roc</span>(car_test<span class="sc">$</span>Purchase, score_foret, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; Area under the curve: 0.688</code></pre>
+<div class="sourceCode" id="cb748"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb748-1"><a href="ch-acp-arbres.html#cb748-1" aria-hidden="true" tabindex="-1"></a>cibles <span class="ot">&lt;-</span> score_foret <span class="sc">&gt;=</span> <span class="fu">quantile</span>(score_foret, <span class="fl">0.9</span>)</span>
+<span id="cb748-2"><a href="ch-acp-arbres.html#cb748-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(car_test<span class="sc">$</span>Purchase[cibles] <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>) <span class="sc">/</span> <span class="fu">sum</span>(car_test<span class="sc">$</span>Purchase <span class="sc">==</span> <span class="st">&quot;Yes&quot;</span>)</span></code></pre></div>
+<pre><code>#&gt; [1] 0.2952</code></pre>
+<div class="sourceCode" id="cb750"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb750-1"><a href="ch-acp-arbres.html#cb750-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb750-2"><a href="ch-acp-arbres.html#cb750-2" aria-hidden="true" tabindex="-1"></a>foret_equilibree <span class="ot">&lt;-</span> <span class="fu">randomForest</span>(Purchase <span class="sc">~</span> ., <span class="at">data =</span> car_train,</span>
+<span id="cb750-3"><a href="ch-acp-arbres.html#cb750-3" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">sampsize =</span> <span class="fu">c</span>(<span class="at">No =</span> <span class="dv">200</span>, <span class="at">Yes =</span> <span class="dv">200</span>),</span>
+<span id="cb750-4"><a href="ch-acp-arbres.html#cb750-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="at">strata =</span> car_train<span class="sc">$</span>Purchase)</span>
+<span id="cb750-5"><a href="ch-acp-arbres.html#cb750-5" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">observe =</span> car_test<span class="sc">$</span>Purchase, <span class="at">predit =</span> <span class="fu">predict</span>(foret_equilibree, car_test))</span></code></pre></div>
+<pre><code>#&gt;        predit
+#&gt; observe   No  Yes
+#&gt;     No  1370  272
+#&gt;     Yes   56   49</code></pre>
+<div class="sourceCode" id="cb752"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb752-1"><a href="ch-acp-arbres.html#cb752-1" aria-hidden="true" tabindex="-1"></a>score_eq <span class="ot">&lt;-</span> <span class="fu">predict</span>(foret_equilibree, car_test, <span class="at">type =</span> <span class="st">&quot;prob&quot;</span>)[, <span class="st">&quot;Yes&quot;</span>]</span>
+<span id="cb752-2"><a href="ch-acp-arbres.html#cb752-2" aria-hidden="true" tabindex="-1"></a><span class="fu">auc</span>(<span class="fu">roc</span>(car_test<span class="sc">$</span>Purchase, score_eq, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">&quot;No&quot;</span>, <span class="st">&quot;Yes&quot;</span>), <span class="at">direction =</span> <span class="st">&quot;&lt;&quot;</span>))</span></code></pre></div>
+<pre><code>#&gt; Area under the curve: 0.719</code></pre>
+<p>Avec les réglages par défaut, chaque arbre voit très peu de souscripteurs
+(environ 6 %) et vote presque toujours « No » : la forêt détecte à peine un
+souscripteur, et son classement est moins bon que celui de la régression
+logistique. En équilibrant les échantillons bootstrap, chaque arbre voit
+autant de souscripteurs que de non-souscripteurs : la forêt en détecte alors
+une bonne partie, au prix de nombreux faux positifs, et son AUC s’améliore.
+Le choix entre ces deux comportements dépend, encore une fois, du coût d’un
+contact inutile face à celui d’une vente manquée.</p>
+</details>
 <p><strong>Pour aller plus loin</strong></p>
 <ul>
 <li>F. Husson, S. Lê et J. Pagès, <em>Analyse de données avec R</em>, chapitre ACP ;
 vidéos de F. Husson sur YouTube (chaîne « François Husson »), en français.</li>
 <li>G. Saporta, <em>Probabilités, analyse des données et statistique</em>, chapitre 7.</li>
 <li>G. James et al., <em>An Introduction to Statistical Learning</em>, chapitres 8
-(arbres) et 12 (ACP).</li>
+(arbres, bagging et forêts aléatoires) et 12 (ACP).</li>
+<li>L. Breiman, « Random Forests », <em>Machine Learning</em>, 45, 2001, p. 5-32.</li>
 </ul>
 
 </div>
