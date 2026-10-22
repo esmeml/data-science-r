@@ -122,6 +122,9 @@ prédire
 vérifier-les-hypothèses-les-résidus
 régression-linéaire-multiple
 le-modèle-1
+lanalyse-de-la-variance-anova
+anova-à-un-facteur-comparer-les-moyennes-de-plusieurs-groupes
+comparer-deux-modèles-emboîtés
 comparer-des-modèles
 interactions
 évaluer-la-prédictibilité-cadre-pcs

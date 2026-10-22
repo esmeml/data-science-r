@@ -321,9 +321,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
-<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
-<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
-<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#lanalyse-de-la-variance-anova"><i class="fa fa-check"></i><b>4.5.2</b> L’analyse de la variance (ANOVA)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.3</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.4</b> Interactions</a></li>
+<li class="chapter" data-level="4.5.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.5</b> Évaluer la prédictibilité (cadre PCS)</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
 <ul>
@@ -529,33 +530,33 @@ fait nettement mieux que cette référence.</p>
 <p>Le rapport doit pouvoir être <strong>régénéré entièrement</strong> à partir des données
 brutes en cliquant sur <em>Render</em> (Quarto) ou <em>Knit</em> (R Markdown). Une structure
 possible, en Quarto :</p>
-<div class="sourceCode" id="cb794"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb794-1"><a href="ch-projet.html#cb794-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb794-2"><a href="ch-projet.html#cb794-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Titre qui énonce la question&quot;</span></span>
-<span id="cb794-3"><a href="ch-projet.html#cb794-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Noms des membres du groupe&quot;</span></span>
-<span id="cb794-4"><a href="ch-projet.html#cb794-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
-<span id="cb794-5"><a href="ch-projet.html#cb794-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb794-6"><a href="ch-projet.html#cb794-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
-<span id="cb794-7"><a href="ch-projet.html#cb794-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
-<span id="cb794-8"><a href="ch-projet.html#cb794-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
-<span id="cb794-9"><a href="ch-projet.html#cb794-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb794-10"><a href="ch-projet.html#cb794-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb794-11"><a href="ch-projet.html#cb794-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb794-12"><a href="ch-projet.html#cb794-12" aria-hidden="true" tabindex="-1"></a><span class="in">#| include: false</span></span>
-<span id="cb794-13"><a href="ch-projet.html#cb794-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
-<span id="cb794-14"><a href="ch-projet.html#cb794-14" aria-hidden="true" tabindex="-1"></a><span class="in">source(&quot;R/fonctions.R&quot;)</span></span>
-<span id="cb794-15"><a href="ch-projet.html#cb794-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb794-16"><a href="ch-projet.html#cb794-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb794-17"><a href="ch-projet.html#cb794-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># Résumé</span></span>
-<span id="cb794-18"><a href="ch-projet.html#cb794-18" aria-hidden="true" tabindex="-1"></a>Trois à cinq phrases : question, données, méthode, résultat principal, limite principale.</span>
-<span id="cb794-19"><a href="ch-projet.html#cb794-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb794-20"><a href="ch-projet.html#cb794-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Contexte et question</span></span>
-<span id="cb794-21"><a href="ch-projet.html#cb794-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Données : origine, signification des variables, qualité</span></span>
-<span id="cb794-22"><a href="ch-projet.html#cb794-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. Préparation : choix de nettoyage et leur justification</span></span>
-<span id="cb794-23"><a href="ch-projet.html#cb794-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># 4. Exploration</span></span>
-<span id="cb794-24"><a href="ch-projet.html#cb794-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5. Modélisation / analyse</span></span>
-<span id="cb794-25"><a href="ch-projet.html#cb794-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6. Évaluation : prédictibilité et stabilité</span></span>
-<span id="cb794-26"><a href="ch-projet.html#cb794-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># 7. Conclusions, limites et recommandations</span></span>
-<span id="cb794-27"><a href="ch-projet.html#cb794-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># Annexe : sessionInfo()</span></span></code></pre></div>
+<div class="sourceCode" id="cb820"><pre class="sourceCode markdown"><code class="sourceCode markdown"><span id="cb820-1"><a href="ch-projet.html#cb820-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb820-2"><a href="ch-projet.html#cb820-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Titre qui énonce la question&quot;</span></span>
+<span id="cb820-3"><a href="ch-projet.html#cb820-3" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> &quot;Noms des membres du groupe&quot;</span></span>
+<span id="cb820-4"><a href="ch-projet.html#cb820-4" aria-hidden="true" tabindex="-1"></a><span class="an">date:</span><span class="co"> today</span></span>
+<span id="cb820-5"><a href="ch-projet.html#cb820-5" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
+<span id="cb820-6"><a href="ch-projet.html#cb820-6" aria-hidden="true" tabindex="-1"></a><span class="co">  html:</span></span>
+<span id="cb820-7"><a href="ch-projet.html#cb820-7" aria-hidden="true" tabindex="-1"></a><span class="co">    toc: true</span></span>
+<span id="cb820-8"><a href="ch-projet.html#cb820-8" aria-hidden="true" tabindex="-1"></a><span class="co">    code-fold: true</span></span>
+<span id="cb820-9"><a href="ch-projet.html#cb820-9" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
+<span id="cb820-10"><a href="ch-projet.html#cb820-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb820-11"><a href="ch-projet.html#cb820-11" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb820-12"><a href="ch-projet.html#cb820-12" aria-hidden="true" tabindex="-1"></a><span class="in">#| include: false</span></span>
+<span id="cb820-13"><a href="ch-projet.html#cb820-13" aria-hidden="true" tabindex="-1"></a><span class="in">library(tidyverse)</span></span>
+<span id="cb820-14"><a href="ch-projet.html#cb820-14" aria-hidden="true" tabindex="-1"></a><span class="in">source(&quot;R/fonctions.R&quot;)</span></span>
+<span id="cb820-15"><a href="ch-projet.html#cb820-15" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb820-16"><a href="ch-projet.html#cb820-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb820-17"><a href="ch-projet.html#cb820-17" aria-hidden="true" tabindex="-1"></a><span class="fu"># Résumé</span></span>
+<span id="cb820-18"><a href="ch-projet.html#cb820-18" aria-hidden="true" tabindex="-1"></a>Trois à cinq phrases : question, données, méthode, résultat principal, limite principale.</span>
+<span id="cb820-19"><a href="ch-projet.html#cb820-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb820-20"><a href="ch-projet.html#cb820-20" aria-hidden="true" tabindex="-1"></a><span class="fu"># 1. Contexte et question</span></span>
+<span id="cb820-21"><a href="ch-projet.html#cb820-21" aria-hidden="true" tabindex="-1"></a><span class="fu"># 2. Données : origine, signification des variables, qualité</span></span>
+<span id="cb820-22"><a href="ch-projet.html#cb820-22" aria-hidden="true" tabindex="-1"></a><span class="fu"># 3. Préparation : choix de nettoyage et leur justification</span></span>
+<span id="cb820-23"><a href="ch-projet.html#cb820-23" aria-hidden="true" tabindex="-1"></a><span class="fu"># 4. Exploration</span></span>
+<span id="cb820-24"><a href="ch-projet.html#cb820-24" aria-hidden="true" tabindex="-1"></a><span class="fu"># 5. Modélisation / analyse</span></span>
+<span id="cb820-25"><a href="ch-projet.html#cb820-25" aria-hidden="true" tabindex="-1"></a><span class="fu"># 6. Évaluation : prédictibilité et stabilité</span></span>
+<span id="cb820-26"><a href="ch-projet.html#cb820-26" aria-hidden="true" tabindex="-1"></a><span class="fu"># 7. Conclusions, limites et recommandations</span></span>
+<span id="cb820-27"><a href="ch-projet.html#cb820-27" aria-hidden="true" tabindex="-1"></a><span class="fu"># Annexe : sessionInfo()</span></span></code></pre></div>
 </div>
 <div id="grille-dauto-évaluation" class="section level2 hasAnchor" number="7.3">
 <h2><span class="header-section-number">7.3</span> Grille d’auto-évaluation<a href="ch-projet.html#grille-dauto-évaluation" class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -777,6 +778,10 @@ avant de l’utiliser.</p>
 <td align="left"><code>lm(y ~ x1 + x2, data = df)</code>, <code>summary()</code>, <code>predict()</code></td>
 </tr>
 <tr class="even">
+<td align="left">ANOVA</td>
+<td align="left"><code>anova(lm(y ~ groupe, data = df))</code>, <code>TukeyHSD(aov(...))</code>, <code>kruskal.test()</code>, <code>anova(petit, grand)</code></td>
+</tr>
+<tr class="odd">
 <td align="left">régression logistique</td>
 <td align="left"><code>glm(y ~ ., data = df, family = binomial)</code>, <code>exp(coef())</code></td>
 </tr>
@@ -888,7 +893,8 @@ l’attrition.</li>
 Quelle jointure permet de trouver les clients sans commande ?</li>
 <li>Qu’est-ce qu’un jeu de données <em>tidy</em> ?</li>
 <li>Quand une variable va-t-elle dans <code>aes()</code>, et quand hors de <code>aes()</code> ?</li>
-<li>Comment interpréter un coefficient de régression multiple ? Pourquoi peut-il
+<li>Que teste une ANOVA à un facteur, et que faire après un résultat
+significatif ? Comment interpréter un coefficient de régression multiple ? Pourquoi peut-il
 changer quand on ajoute une variable ? Comment interpréter un rapport de
 cotes ?</li>
 <li>Pourquoi réduire les variables avant une ACP ou un calcul de distances ?</li>

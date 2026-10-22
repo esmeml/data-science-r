@@ -321,9 +321,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-linéaire-multiple"><i class="fa fa-check"></i><b>4.5</b> Régression linéaire multiple</a>
 <ul>
 <li class="chapter" data-level="4.5.1" data-path="ch-graphiques.html"><a href="ch-graphiques.html#le-modèle-1"><i class="fa fa-check"></i><b>4.5.1</b> Le modèle</a></li>
-<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.2</b> Comparer des modèles</a></li>
-<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.3</b> Interactions</a></li>
-<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.4</b> Évaluer la prédictibilité (cadre PCS)</a></li>
+<li class="chapter" data-level="4.5.2" data-path="ch-graphiques.html"><a href="ch-graphiques.html#lanalyse-de-la-variance-anova"><i class="fa fa-check"></i><b>4.5.2</b> L’analyse de la variance (ANOVA)</a></li>
+<li class="chapter" data-level="4.5.3" data-path="ch-graphiques.html"><a href="ch-graphiques.html#comparer-des-modèles"><i class="fa fa-check"></i><b>4.5.3</b> Comparer des modèles</a></li>
+<li class="chapter" data-level="4.5.4" data-path="ch-graphiques.html"><a href="ch-graphiques.html#interactions"><i class="fa fa-check"></i><b>4.5.4</b> Interactions</a></li>
+<li class="chapter" data-level="4.5.5" data-path="ch-graphiques.html"><a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs"><i class="fa fa-check"></i><b>4.5.5</b> Évaluer la prédictibilité (cadre PCS)</a></li>
 </ul></li>
 <li class="chapter" data-level="4.6" data-path="ch-graphiques.html"><a href="ch-graphiques.html#régression-logistique"><i class="fa fa-check"></i><b>4.6</b> Régression logistique</a>
 <ul>
@@ -1099,16 +1100,179 @@ qu’un mauvais. Pour changer de référence : <code>relevel()</code>.</li>
 <p>Le <span class="math inline">\(R^2\)</span> passe de 0.2 à
 0.87.</p>
 </div>
-<div id="comparer-des-modèles" class="section level3 hasAnchor" number="4.5.2">
-<h3><span class="header-section-number">4.5.2</span> Comparer des modèles<a href="ch-graphiques.html#comparer-des-modèles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="lanalyse-de-la-variance-anova" class="section level3 hasAnchor" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> L’analyse de la variance (ANOVA)<a href="ch-graphiques.html#lanalyse-de-la-variance-anova" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Le test de Fisher utilisé par la fonction <code>anova()</code> repose sur une idée simple :
+<strong>décomposer la variabilité</strong> de la variable réponse <span class="math inline">\(Y\)</span> en une part expliquée
+par le modèle et une part qui reste inexpliquée.</p>
+<p><span class="math display">\[\underbrace{\sum_{i=1}^n (Y_i - \bar Y)^2}_{\text{SCT : variabilité totale}}
+= \underbrace{\sum_{i=1}^n (\hat Y_i - \bar Y)^2}_{\text{SCE : expliquée par le modèle}}
++ \underbrace{\sum_{i=1}^n (Y_i - \hat Y_i)^2}_{\text{SCR : résiduelle}}\]</span></p>
+<p>(SC : somme des carrés.) Le coefficient de détermination en découle :
+<span class="math inline">\(R^2 = \text{SCE} / \text{SCT}\)</span>. L’analyse de la variance compare la part
+expliquée à la part résiduelle, chacune <strong>rapportée à son nombre de degrés de
+liberté</strong> : un modèle qui explique beaucoup de variabilité avec peu de
+paramètres est convaincant.</p>
+<div id="anova-à-un-facteur-comparer-les-moyennes-de-plusieurs-groupes" class="section level4 hasAnchor" number="4.5.2.1">
+<h4><span class="header-section-number">4.5.2.1</span> ANOVA à un facteur : comparer les moyennes de plusieurs groupes<a href="ch-graphiques.html#anova-à-un-facteur-comparer-les-moyennes-de-plusieurs-groupes" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>L’usage le plus connu de l’ANOVA est de comparer la moyenne d’une variable
+quantitative entre <strong>plusieurs groupes</strong> (le test <span class="math inline">\(t\)</span> de Student, vu au
+chapitre <a href="ch-manipulation.html#ch-manipulation">3</a>, n’en compare que deux). Question marketing :
+les ventes moyennes diffèrent-elles selon l’emplacement du produit en rayon ?</p>
+<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="ch-graphiques.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(Carseats<span class="sc">$</span>Sales, Carseats<span class="sc">$</span>ShelveLoc, mean)</span></code></pre></div>
+<pre><code>#&gt;    Bad   Good Medium 
+#&gt;  5.523 10.214  7.307</code></pre>
+<p>Notons <span class="math inline">\(k\)</span> le nombre de groupes (<span class="math inline">\(k = 3\)</span>) et <span class="math inline">\(\mu_1, \dots, \mu_k\)</span> les moyennes
+des groupes dans la population. Les hypothèses du test sont :</p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> : <span class="math inline">\(\mu_1 = \mu_2 = \dots = \mu_k\)</span> (l’emplacement n’a pas d’effet sur
+les ventes moyennes) ;</li>
+<li><span class="math inline">\(H_1\)</span> : au moins une moyenne diffère des autres.</li>
+</ul>
+<p>La variabilité se décompose alors en variabilité <strong>entre</strong> les groupes (écarts
+des moyennes de groupe à la moyenne générale) et variabilité <strong>à l’intérieur</strong>
+des groupes (écarts de chaque magasin à la moyenne de son groupe). La
+statistique de test est</p>
+<p><span class="math display">\[F = \frac{\text{SCE} / (k - 1)}{\text{SCR} / (n - k)},\]</span></p>
+<p>le rapport de la variabilité entre groupes à la variabilité intra-groupe, par
+degré de liberté. Si <span class="math inline">\(H_0\)</span> est vraie, <span class="math inline">\(F\)</span> suit une loi de Fisher à <span class="math inline">\((k - 1, n - k)\)</span> degrés de liberté et prend des valeurs proches de 1 ; une grande valeur
+de <span class="math inline">\(F\)</span> indique que les groupes diffèrent plus que ne le voudrait le hasard.</p>
+<p>En R, une ANOVA à un facteur est une régression sur une variable qualitative :</p>
+<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="ch-graphiques.html#cb610-1" aria-hidden="true" tabindex="-1"></a>anova_rayon <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> ShelveLoc, <span class="at">data =</span> Carseats)</span>
+<span id="cb610-2"><a href="ch-graphiques.html#cb610-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_rayon)</span></code></pre></div>
+<pre><code>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: Sales
+#&gt;            Df Sum Sq Mean Sq F value Pr(&gt;F)    
+#&gt; ShelveLoc   2   1010     505    92.2 &lt;2e-16 ***
+#&gt; Residuals 397   2173       5                   
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><strong>Lire la table d’ANOVA</strong></p>
+<table>
+<colgroup>
+<col width="11%" />
+<col width="44%" />
+<col width="44%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">Colonne</th>
+<th align="left">Ligne <code>ShelveLoc</code> (entre groupes)</th>
+<th align="left">Ligne <code>Residuals</code> (intra-groupes)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>Df</code></td>
+<td align="left">degrés de liberté : <span class="math inline">\(k - 1\)</span></td>
+<td align="left">degrés de liberté : <span class="math inline">\(n - k\)</span></td>
+</tr>
+<tr class="even">
+<td align="left"><code>Sum Sq</code></td>
+<td align="left">SCE, variabilité expliquée par l’emplacement</td>
+<td align="left">SCR, variabilité restante</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Mean Sq</code></td>
+<td align="left">carré moyen : <code>Sum Sq</code> / <code>Df</code></td>
+<td align="left">carré moyen résiduel (estimation de <span class="math inline">\(\sigma^2\)</span>)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>F value</code></td>
+<td align="left">rapport des deux carrés moyens</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>Pr(&gt;F)</code></td>
+<td align="left">p-valeur du test</td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+<p>Ici, <span class="math inline">\(F \approx\)</span> 92.2 et la
+p-valeur est minuscule : on rejette <span class="math inline">\(H_0\)</span>, les ventes moyennes dépendent de
+l’emplacement. L’emplacement explique à lui seul environ
+32 % de la variabilité des ventes
+(<span class="math inline">\(R^2 = \text{SCE}/\text{SCT}\)</span>).</p>
+<p><strong>Quels groupes diffèrent ?</strong> L’ANOVA dit seulement qu’<em>au moins une</em> moyenne
+diffère. Pour savoir lesquelles, on compare les groupes deux à deux en
+corrigeant pour la multiplicité des tests (sinon, on retombe dans le <em>data
+snooping</em> du chapitre <a href="ch-science.html#ch-science">1</a>) ; la méthode de Tukey est la plus
+utilisée :</p>
+<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="ch-graphiques.html#cb612-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(Sales <span class="sc">~</span> ShelveLoc, <span class="at">data =</span> Carseats))</span></code></pre></div>
+<pre><code>#&gt;   Tukey multiple comparisons of means
+#&gt;     95% family-wise confidence level
+#&gt; 
+#&gt; Fit: aov(formula = Sales ~ ShelveLoc, data = Carseats)
+#&gt; 
+#&gt; $ShelveLoc
+#&gt;               diff    lwr    upr p adj
+#&gt; Good-Bad     4.691  3.871  5.511     0
+#&gt; Medium-Bad   1.784  1.110  2.457     0
+#&gt; Medium-Good -2.907 -3.611 -2.204     0</code></pre>
+<p>Les trois écarts sont significatifs (colonne <code>p adj</code>) et leurs intervalles de
+confiance excluent 0 : un bon emplacement rapporte en moyenne environ 4 700
+unités de plus qu’un mauvais, par magasin. C’est l’argument chiffré d’une
+négociation avec la grande distribution sur le placement en rayon.</p>
+<p><strong>Conditions d’application.</strong> Comme la régression : observations
+indépendantes, résidus approximativement normaux dans chaque groupe et
+<strong>variances égales</strong> entre les groupes (test de Bartlett,
+<code>bartlett.test(Sales ~ ShelveLoc, data = Carseats)</code>, ou simple comparaison des
+boîtes à moustaches). Si ces conditions sont douteuses, le test non
+paramétrique de <strong>Kruskal-Wallis</strong> (<code>kruskal.test()</code>) compare les
+distributions des groupes sans supposer la normalité ; c’est la généralisation
+du test de Wilcoxon à plus de deux groupes.</p>
+<p>Avec deux groupes seulement, l’ANOVA et le test <span class="math inline">\(t\)</span> de Student (à variances
+égales) sont <strong>équivalents</strong> : <span class="math inline">\(F = t^2\)</span> et les p-valeurs sont identiques.</p>
+<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="ch-graphiques.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(Sales <span class="sc">~</span> US, <span class="at">data =</span> Carseats, <span class="at">var.equal =</span> <span class="cn">TRUE</span>)<span class="sc">$</span>statistic<span class="sc">^</span><span class="dv">2</span></span></code></pre></div>
+<pre><code>#&gt;     t 
+#&gt; 12.89</code></pre>
+<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="ch-graphiques.html#cb616-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> US, <span class="at">data =</span> Carseats))[<span class="dv">1</span>, <span class="st">&quot;F value&quot;</span>]</span></code></pre></div>
+<pre><code>#&gt; [1] 12.89</code></pre>
+</div>
+<div id="comparer-deux-modèles-emboîtés" class="section level4 hasAnchor" number="4.5.2.2">
+<h4><span class="header-section-number">4.5.2.2</span> Comparer deux modèles emboîtés<a href="ch-graphiques.html#comparer-deux-modèles-emboîtés" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Le même raisonnement permet de comparer deux modèles <strong>emboîtés</strong> : le petit
+modèle (à <span class="math inline">\(p_0\)</span> variables) est un cas particulier du grand (à <span class="math inline">\(p_1\)</span> variables),
+obtenu en annulant certains coefficients. Ajouter des variables diminue
+toujours la variabilité résiduelle ; la question est de savoir si la baisse est
+<strong>plus grande que ce que le hasard produirait</strong>. Avec <span class="math inline">\(q = p_1 - p_0\)</span>
+paramètres supplémentaires :</p>
+<p><span class="math display">\[F = \frac{(\text{SCR}_0 - \text{SCR}_1) / q}{\text{SCR}_1 / (n - p_1 - 1)}\]</span></p>
+<ul>
+<li><span class="math inline">\(H_0\)</span> : les coefficients des variables ajoutées sont <strong>tous nuls</strong> (le grand
+modèle n’apporte rien) ;</li>
+<li>sous <span class="math inline">\(H_0\)</span>, <span class="math inline">\(F\)</span> suit une loi de Fisher à <span class="math inline">\((q, n - p_1 - 1)\)</span> degrés de
+liberté.</li>
+</ul>
+<p>Dans la sortie de <code>anova(petit_modele, grand_modele)</code>, <code>Res.Df</code> donne les
+degrés de liberté résiduels de chaque modèle, <code>RSS</code> leur somme des carrés
+résiduelle (SCR), <code>Df</code> le nombre <span class="math inline">\(q\)</span> de paramètres ajoutés, <code>Sum of Sq</code> la
+baisse de SCR, puis viennent <code>F</code> et sa p-valeur <code>Pr(&gt;F)</code>.</p>
+<p>Le test <span class="math inline">\(F\)</span> affiché en bas de <code>summary()</code> d’une régression
+(<em>F-statistic</em>) est un cas particulier : il compare le modèle au modèle
+<strong>sans aucune variable</strong> (qui prédit la moyenne), et teste donc l’hypothèse
+que tous les coefficients sauf l’ordonnée à l’origine sont nuls.</p>
+<div class="attention">
+<p>Comme tout test, l’ANOVA mesure la <strong>significativité</strong>, pas l’<strong>importance</strong>
+d’un effet : avec beaucoup d’observations, des écarts minimes deviennent
+significatifs. Regardez toujours la taille des écarts entre moyennes (et la
+part de variabilité expliquée) avant de conclure.</p>
+</div>
+</div>
+</div>
+<div id="comparer-des-modèles" class="section level3 hasAnchor" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Comparer des modèles<a href="ch-graphiques.html#comparer-des-modèles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Le <span class="math inline">\(R^2\)</span> augmente <strong>toujours</strong> quand on ajoute une variable : il ne permet
 pas de comparer des modèles de tailles différentes. On utilise le
 <strong><span class="math inline">\(R^2\)</span> ajusté</strong>, l’<strong>AIC</strong> (plus petit = meilleur) ou, mieux, l’erreur de
 prédiction sur un jeu de <strong>validation</strong>.</li>
-<li>Deux modèles emboîtés se comparent avec un test de Fisher (<code>anova()</code>).</li>
+<li>Deux modèles emboîtés se comparent avec le test de Fisher de l’analyse de
+la variance, <code>anova(petit_modele, grand_modele)</code> (voir ci-dessus).</li>
 </ul>
-<div class="sourceCode" id="cb608"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb608-1"><a href="ch-graphiques.html#cb608-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modele_1, modele_2)</span></code></pre></div>
+<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="ch-graphiques.html#cb618-1" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modele_1, modele_2)</span></code></pre></div>
 <pre><code>#&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Model 1: Sales ~ Price
@@ -1118,19 +1282,23 @@ prédiction sur un jeu de <strong>validation</strong>.</li>
 #&gt; 2    392  407  6      2145 344 &lt;2e-16 ***
 #&gt; ---
 #&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
-<div class="sourceCode" id="cb610"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb610-1"><a href="ch-graphiques.html#cb610-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(modele_1, modele_2)</span></code></pre></div>
+<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="ch-graphiques.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(modele_1, modele_2)</span></code></pre></div>
 <pre><code>#&gt;          df  AIC
 #&gt; modele_1  3 1882
 #&gt; modele_2  9 1160</code></pre>
+<p>Ajouter les cinq variables (six coefficients, car <code>ShelveLoc</code> en compte deux)
+divise la somme des carrés résiduelle par plus de six ; <span class="math inline">\(F\)</span> est énorme et la
+p-valeur minuscule : le modèle multiple est nettement meilleur. L’AIC conduit à
+la même conclusion.</p>
 </div>
-<div id="interactions" class="section level3 hasAnchor" number="4.5.3">
-<h3><span class="header-section-number">4.5.3</span> Interactions<a href="ch-graphiques.html#interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="interactions" class="section level3 hasAnchor" number="4.5.4">
+<h3><span class="header-section-number">4.5.4</span> Interactions<a href="ch-graphiques.html#interactions" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>L’effet du prix dépend-il de l’emplacement en rayon ? Le terme
 <code>Price:ShelveLoc</code> (ou <code>Price * ShelveLoc</code>, qui inclut aussi les effets
 principaux) laisse la pente varier selon l’emplacement :</p>
-<div class="sourceCode" id="cb612"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb612-1"><a href="ch-graphiques.html#cb612-1" aria-hidden="true" tabindex="-1"></a>modele_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> ShelveLoc <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> Age <span class="sc">+</span> Income,</span>
-<span id="cb612-2"><a href="ch-graphiques.html#cb612-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Carseats)</span>
-<span id="cb612-3"><a href="ch-graphiques.html#cb612-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modele_2, modele_3)</span></code></pre></div>
+<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="ch-graphiques.html#cb622-1" aria-hidden="true" tabindex="-1"></a>modele_3 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">*</span> ShelveLoc <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> Age <span class="sc">+</span> Income,</span>
+<span id="cb622-2"><a href="ch-graphiques.html#cb622-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">data =</span> Carseats)</span>
+<span id="cb622-3"><a href="ch-graphiques.html#cb622-3" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(modele_2, modele_3)</span></code></pre></div>
 <pre><code>#&gt; Analysis of Variance Table
 #&gt; 
 #&gt; Model 1: Sales ~ Price + CompPrice + Advertising + ShelveLoc + Age + Income
@@ -1141,22 +1309,22 @@ principaux) laisse la pente varier selon l’emplacement :</p>
 <p>L’interaction n’est pas significative : l’effet du prix est le même quel que
 soit l’emplacement, ce que suggéraient les droites parallèles du graphique.</p>
 </div>
-<div id="évaluer-la-prédictibilité-cadre-pcs" class="section level3 hasAnchor" number="4.5.4">
-<h3><span class="header-section-number">4.5.4</span> Évaluer la prédictibilité (cadre PCS)<a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="évaluer-la-prédictibilité-cadre-pcs" class="section level3 hasAnchor" number="4.5.5">
+<h3><span class="header-section-number">4.5.5</span> Évaluer la prédictibilité (cadre PCS)<a href="ch-graphiques.html#évaluer-la-prédictibilité-cadre-pcs" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>On mesure la qualité prédictive sur des données <strong>non utilisées</strong> pour
 l’ajustement, et on la compare à une <strong>référence</strong> naïve (prédire la moyenne).</p>
-<div class="sourceCode" id="cb614"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb614-1"><a href="ch-graphiques.html#cb614-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
-<span id="cb614-2"><a href="ch-graphiques.html#cb614-2" aria-hidden="true" tabindex="-1"></a>indices_train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Carseats), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Carseats)))</span>
-<span id="cb614-3"><a href="ch-graphiques.html#cb614-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> Carseats[indices_train, ]</span>
-<span id="cb614-4"><a href="ch-graphiques.html#cb614-4" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> Carseats[<span class="sc">-</span>indices_train, ]</span>
-<span id="cb614-5"><a href="ch-graphiques.html#cb614-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-6"><a href="ch-graphiques.html#cb614-6" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(observe, predit) <span class="fu">sqrt</span>(<span class="fu">mean</span>((observe <span class="sc">-</span> predit)<span class="sc">^</span><span class="dv">2</span>))</span>
-<span id="cb614-7"><a href="ch-graphiques.html#cb614-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb614-8"><a href="ch-graphiques.html#cb614-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price, <span class="at">data =</span> train)</span>
-<span id="cb614-9"><a href="ch-graphiques.html#cb614-9" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> ShelveLoc <span class="sc">+</span> Age <span class="sc">+</span> Income, <span class="at">data =</span> train)</span>
-<span id="cb614-10"><a href="ch-graphiques.html#cb614-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">reference =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">mean</span>(train<span class="sc">$</span>Sales)),</span>
-<span id="cb614-11"><a href="ch-graphiques.html#cb614-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">simple    =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">predict</span>(m1, test)),</span>
-<span id="cb614-12"><a href="ch-graphiques.html#cb614-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">multiple  =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">predict</span>(m2, test)))</span></code></pre></div>
+<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="ch-graphiques.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2026</span>)</span>
+<span id="cb624-2"><a href="ch-graphiques.html#cb624-2" aria-hidden="true" tabindex="-1"></a>indices_train <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="fu">nrow</span>(Carseats), <span class="at">size =</span> <span class="fu">round</span>(<span class="fl">0.7</span> <span class="sc">*</span> <span class="fu">nrow</span>(Carseats)))</span>
+<span id="cb624-3"><a href="ch-graphiques.html#cb624-3" aria-hidden="true" tabindex="-1"></a>train <span class="ot">&lt;-</span> Carseats[indices_train, ]</span>
+<span id="cb624-4"><a href="ch-graphiques.html#cb624-4" aria-hidden="true" tabindex="-1"></a>test  <span class="ot">&lt;-</span> Carseats[<span class="sc">-</span>indices_train, ]</span>
+<span id="cb624-5"><a href="ch-graphiques.html#cb624-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb624-6"><a href="ch-graphiques.html#cb624-6" aria-hidden="true" tabindex="-1"></a>rmse <span class="ot">&lt;-</span> <span class="cf">function</span>(observe, predit) <span class="fu">sqrt</span>(<span class="fu">mean</span>((observe <span class="sc">-</span> predit)<span class="sc">^</span><span class="dv">2</span>))</span>
+<span id="cb624-7"><a href="ch-graphiques.html#cb624-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb624-8"><a href="ch-graphiques.html#cb624-8" aria-hidden="true" tabindex="-1"></a>m1 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price, <span class="at">data =</span> train)</span>
+<span id="cb624-9"><a href="ch-graphiques.html#cb624-9" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> Advertising <span class="sc">+</span> ShelveLoc <span class="sc">+</span> Age <span class="sc">+</span> Income, <span class="at">data =</span> train)</span>
+<span id="cb624-10"><a href="ch-graphiques.html#cb624-10" aria-hidden="true" tabindex="-1"></a><span class="fu">c</span>(<span class="at">reference =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">mean</span>(train<span class="sc">$</span>Sales)),</span>
+<span id="cb624-11"><a href="ch-graphiques.html#cb624-11" aria-hidden="true" tabindex="-1"></a>  <span class="at">simple    =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">predict</span>(m1, test)),</span>
+<span id="cb624-12"><a href="ch-graphiques.html#cb624-12" aria-hidden="true" tabindex="-1"></a>  <span class="at">multiple  =</span> <span class="fu">rmse</span>(test<span class="sc">$</span>Sales, <span class="fu">predict</span>(m2, test)))</span></code></pre></div>
 <pre><code>#&gt; reference    simple  multiple 
 #&gt;     2.971     2.638     1.059</code></pre>
 <p>La racine de l’erreur quadratique moyenne (RMSE) est en milliers d’unités. Le
@@ -1245,12 +1413,12 @@ données sont réutilisées au chapitre <a href="ch-acp-arbres.html#ch-acp-arbre
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb616"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb616-1"><a href="ch-graphiques.html#cb616-1" aria-hidden="true" tabindex="-1"></a>oj <span class="ot">&lt;-</span> OJ <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">achat_mm =</span> <span class="fu">as.integer</span>(Purchase <span class="sc">==</span> <span class="st">&quot;MM&quot;</span>))</span>
-<span id="cb616-2"><a href="ch-graphiques.html#cb616-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(oj<span class="sc">$</span>achat_mm)</span></code></pre></div>
+<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="ch-graphiques.html#cb626-1" aria-hidden="true" tabindex="-1"></a>oj <span class="ot">&lt;-</span> OJ <span class="sc">|&gt;</span> <span class="fu">mutate</span>(<span class="at">achat_mm =</span> <span class="fu">as.integer</span>(Purchase <span class="sc">==</span> <span class="st">&quot;MM&quot;</span>))</span>
+<span id="cb626-2"><a href="ch-graphiques.html#cb626-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(oj<span class="sc">$</span>achat_mm)</span></code></pre></div>
 <pre><code>#&gt; [1] 0.3897</code></pre>
-<div class="sourceCode" id="cb618"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb618-1"><a href="ch-graphiques.html#cb618-1" aria-hidden="true" tabindex="-1"></a>modele_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(achat_mm <span class="sc">~</span> PriceDiff <span class="sc">+</span> LoyalCH <span class="sc">+</span> SpecialMM <span class="sc">+</span> SpecialCH,</span>
-<span id="cb618-2"><a href="ch-graphiques.html#cb618-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> oj, <span class="at">family =</span> binomial)</span>
-<span id="cb618-3"><a href="ch-graphiques.html#cb618-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modele_log)</span></code></pre></div>
+<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="ch-graphiques.html#cb628-1" aria-hidden="true" tabindex="-1"></a>modele_log <span class="ot">&lt;-</span> <span class="fu">glm</span>(achat_mm <span class="sc">~</span> PriceDiff <span class="sc">+</span> LoyalCH <span class="sc">+</span> SpecialMM <span class="sc">+</span> SpecialCH,</span>
+<span id="cb628-2"><a href="ch-graphiques.html#cb628-2" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> oj, <span class="at">family =</span> binomial)</span>
+<span id="cb628-3"><a href="ch-graphiques.html#cb628-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(modele_log)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt; Call:
 #&gt; glm(formula = achat_mm ~ PriceDiff + LoyalCH + SpecialMM + SpecialCH, 
@@ -1276,7 +1444,7 @@ données sont réutilisées au chapitre <a href="ch-acp-arbres.html#ch-acp-arbre
 <p>Les coefficients sont sur l’échelle du <strong>log de la cote</strong>. Leur exponentielle
 est un <strong>rapport de cotes</strong> (<em>odds ratio</em>, OR) : OR &gt; 1 augmente la cote
 d’acheter MM, OR &lt; 1 la diminue.</p>
-<div class="sourceCode" id="cb620"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb620-1"><a href="ch-graphiques.html#cb620-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(modele_log), <span class="fu">confint.default</span>(modele_log))), <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="ch-graphiques.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">round</span>(<span class="fu">exp</span>(<span class="fu">cbind</span>(<span class="at">OR =</span> <span class="fu">coef</span>(modele_log), <span class="fu">confint.default</span>(modele_log))), <span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt;                 OR  2.5 % 97.5 %
 #&gt; (Intercept) 25.548 16.050 40.668
 #&gt; PriceDiff    0.063  0.030  0.131
@@ -1297,17 +1465,17 @@ comportement futur.</li>
 </div>
 <div id="prédire-des-probabilités" class="section level3 hasAnchor" number="4.6.3">
 <h3><span class="header-section-number">4.6.3</span> Prédire des probabilités<a href="ch-graphiques.html#prédire-des-probabilités" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb622"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb622-1"><a href="ch-graphiques.html#cb622-1" aria-hidden="true" tabindex="-1"></a>nouveaux <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">PriceDiff =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.3</span>), <span class="at">LoyalCH =</span> <span class="fl">0.5</span>, <span class="at">SpecialMM =</span> <span class="dv">0</span>, <span class="at">SpecialCH =</span> <span class="dv">0</span>)</span>
-<span id="cb622-2"><a href="ch-graphiques.html#cb622-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modele_log, <span class="at">newdata =</span> nouveaux, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="ch-graphiques.html#cb632-1" aria-hidden="true" tabindex="-1"></a>nouveaux <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">PriceDiff =</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.2</span>, <span class="fl">0.3</span>), <span class="at">LoyalCH =</span> <span class="fl">0.5</span>, <span class="at">SpecialMM =</span> <span class="dv">0</span>, <span class="at">SpecialCH =</span> <span class="dv">0</span>)</span>
+<span id="cb632-2"><a href="ch-graphiques.html#cb632-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(modele_log, <span class="at">newdata =</span> nouveaux, <span class="at">type =</span> <span class="st">&quot;response&quot;</span>)</span></code></pre></div>
 <pre><code>#&gt;      1      2 
 #&gt; 0.6498 0.3170</code></pre>
 <p>Pour un client sans préférence (<code>LoyalCH = 0,5</code>), la probabilité d’acheter MM
 passe d’environ 65 % quand MM est 20 centimes moins cher à environ 32 % quand
 il est 30 centimes plus cher : une mesure de la <strong>sensibilité au prix</strong>.</p>
-<div class="sourceCode" id="cb624"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb624-1"><a href="ch-graphiques.html#cb624-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(oj, <span class="fu">aes</span>(<span class="at">x =</span> LoyalCH, <span class="at">y =</span> achat_mm)) <span class="sc">+</span></span>
-<span id="cb624-2"><a href="ch-graphiques.html#cb624-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
-<span id="cb624-3"><a href="ch-graphiques.html#cb624-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> binomial), <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
-<span id="cb624-4"><a href="ch-graphiques.html#cb624-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Fidélité à Citrus Hill&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Achat de Minute Maid (0/1)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="ch-graphiques.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(oj, <span class="fu">aes</span>(<span class="at">x =</span> LoyalCH, <span class="at">y =</span> achat_mm)) <span class="sc">+</span></span>
+<span id="cb634-2"><a href="ch-graphiques.html#cb634-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">height =</span> <span class="fl">0.05</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>) <span class="sc">+</span></span>
+<span id="cb634-3"><a href="ch-graphiques.html#cb634-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;glm&quot;</span>, <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> binomial), <span class="at">formula =</span> y <span class="sc">~</span> x) <span class="sc">+</span></span>
+<span id="cb634-4"><a href="ch-graphiques.html#cb634-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Fidélité à Citrus Hill&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Achat de Minute Maid (0/1)&quot;</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/glm-courbe-1.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Transformer les probabilités en décisions (avec un <strong>seuil</strong>) et évaluer un
 classifieur (matrice de confusion, courbe ROC) est l’objet du chapitre
@@ -1325,6 +1493,11 @@ message, des axes avec unités, une source.</li>
 <li><code>ggplot2</code> : <code>ggplot(données) + geom_*(aes(...))</code> ; mappages <strong>dans</strong>
 <code>aes()</code>, constantes <strong>hors</strong> de <code>aes()</code> ; <code>position</code> des barres ;
 <code>facet_wrap(vars())</code> ; <code>scale_*()</code> ; <code>labs()</code>, <code>theme_*()</code> ; <code>ggsave()</code>.</li>
+<li><strong>ANOVA</strong> : décomposer la variabilité (SCT = SCE + SCR) ; test <span class="math inline">\(F\)</span> pour
+comparer les moyennes de plusieurs groupes (<code>anova(lm(y ~ groupe))</code>, puis
+<code>TukeyHSD()</code> pour savoir lesquels diffèrent ; Kruskal-Wallis si les
+conditions sont douteuses) ou deux modèles emboîtés
+(<code>anova(petit, grand)</code>).</li>
 <li>Régression linéaire : <code>lm(y ~ x1 + x2, data)</code>, <code>summary()</code>, <code>coef()</code>,
 <code>confint()</code>, <code>predict()</code>, diagnostics avec <code>plot(modele)</code>.</li>
 <li>Interpréter chaque coefficient « toutes choses égales par ailleurs » ;
@@ -1342,9 +1515,9 @@ donne les rapports de cotes ; <code>predict(type = "response")</code> les probab
 <p><strong>Exercice 4.1 — <code>ggplot2</code> sur <code>rp2018</code>.</strong> On utilise le jeu <code>rp2018</code>
 (package <code>questionr</code>), qui contient des résultats du recensement de 2018 pour
 les communes de plus de 2 000 habitants, restreint à cinq départements :</p>
-<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="ch-graphiques.html#cb625-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(rp2018)</span>
-<span id="cb625-2"><a href="ch-graphiques.html#cb625-2" aria-hidden="true" tabindex="-1"></a>rp <span class="ot">&lt;-</span> <span class="fu">filter</span>(rp2018, departement <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Oise&quot;</span>, <span class="st">&quot;Rhône&quot;</span>, <span class="st">&quot;Hauts-de-Seine&quot;</span>,</span>
-<span id="cb625-3"><a href="ch-graphiques.html#cb625-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&quot;Lozère&quot;</span>, <span class="st">&quot;Bouches-du-Rhône&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="ch-graphiques.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(rp2018)</span>
+<span id="cb635-2"><a href="ch-graphiques.html#cb635-2" aria-hidden="true" tabindex="-1"></a>rp <span class="ot">&lt;-</span> <span class="fu">filter</span>(rp2018, departement <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;Oise&quot;</span>, <span class="st">&quot;Rhône&quot;</span>, <span class="st">&quot;Hauts-de-Seine&quot;</span>,</span>
+<span id="cb635-3"><a href="ch-graphiques.html#cb635-3" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">&quot;Lozère&quot;</span>, <span class="st">&quot;Bouches-du-Rhône&quot;</span>))</span></code></pre></div>
 <p>Variables utiles : <code>commune</code> (nom), <code>departement</code>, <code>pop_tot</code> (population
 totale), <code>pop_cl</code> (taille de la commune en classes), et des pourcentages :
 <code>dipl_aucun</code> (sans diplôme), <code>dipl_sup</code> (diplômés du supérieur), <code>ouvr</code>
@@ -1385,46 +1558,46 @@ de 15 % de chômeurs.</li>
 </ol>
 </div>
 <details><summary>Solution</summary>
-<div class="sourceCode" id="cb626"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb626-1"><a href="ch-graphiques.html#cb626-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr))                         <span class="co"># 1</span></span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="ch-graphiques.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr))                         <span class="co"># 1</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="ch-graphiques.html#cb627-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>)  <span class="co"># 2</span></span></code></pre></div>
+<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="ch-graphiques.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.2</span>)  <span class="co"># 2</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-2.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb628"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb628-1"><a href="ch-graphiques.html#cb628-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">y =</span> proprio))                        <span class="co"># 3</span></span></code></pre></div>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="ch-graphiques.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">y =</span> proprio))                        <span class="co"># 3</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-3.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="ch-graphiques.html#cb629-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl))                                         <span class="co"># 4</span></span></code></pre></div>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="ch-graphiques.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl))                                         <span class="co"># 4</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-4.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="ch-graphiques.html#cb630-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement))    <span class="co"># 5</span></span></code></pre></div>
+<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="ch-graphiques.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement))    <span class="co"># 5</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-5.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb631"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb631-1"><a href="ch-graphiques.html#cb631-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement,     <span class="co"># 6</span></span>
-<span id="cb631-2"><a href="ch-graphiques.html#cb631-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> pop_tot))</span></code></pre></div>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="ch-graphiques.html#cb641-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement,     <span class="co"># 6</span></span>
+<span id="cb641-2"><a href="ch-graphiques.html#cb641-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> pop_tot))</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-6.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="ch-graphiques.html#cb632-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement,     <span class="co"># 7</span></span>
-<span id="cb632-2"><a href="ch-graphiques.html#cb632-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> pop_tot), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="ch-graphiques.html#cb642-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> ouvr, <span class="at">color =</span> departement,     <span class="co"># 7</span></span>
+<span id="cb642-2"><a href="ch-graphiques.html#cb642-2" aria-hidden="true" tabindex="-1"></a>                            <span class="at">size =</span> pop_tot), <span class="at">alpha =</span> <span class="fl">0.5</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-7.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="ch-graphiques.html#cb633-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">y =</span> proprio, <span class="at">fill =</span> departement))    <span class="co"># 8</span></span></code></pre></div>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="ch-graphiques.html#cb643-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">y =</span> proprio, <span class="at">fill =</span> departement))    <span class="co"># 8</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-8.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb634"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb634-1"><a href="ch-graphiques.html#cb634-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement))                     <span class="co"># 9</span></span></code></pre></div>
+<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="ch-graphiques.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement))                     <span class="co"># 9</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-9.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="ch-graphiques.html#cb635-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="co"># 10</span></span></code></pre></div>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="ch-graphiques.html#cb645-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement), <span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="co"># 10</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-10.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="ch-graphiques.html#cb636-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)  <span class="co"># 11</span></span></code></pre></div>
+<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="ch-graphiques.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span> <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> pop_cl, <span class="at">fill =</span> departement), <span class="at">position =</span> <span class="st">&quot;fill&quot;</span>)  <span class="co"># 11</span></span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-11.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb637"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb637-1"><a href="ch-graphiques.html#cb637-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span>                                                                   <span class="co"># 12</span></span>
-<span id="cb637-2"><a href="ch-graphiques.html#cb637-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cadres, <span class="at">y =</span> dipl_sup)) <span class="sc">+</span></span>
-<span id="cb637-3"><a href="ch-graphiques.html#cb637-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(departement))</span></code></pre></div>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="ch-graphiques.html#cb647-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span>                                                                   <span class="co"># 12</span></span>
+<span id="cb647-2"><a href="ch-graphiques.html#cb647-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cadres, <span class="at">y =</span> dipl_sup)) <span class="sc">+</span></span>
+<span id="cb647-3"><a href="ch-graphiques.html#cb647-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(departement))</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-facettes-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="ch-graphiques.html#cb638-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span>                                                                   <span class="co"># 13</span></span>
-<span id="cb638-2"><a href="ch-graphiques.html#cb638-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cadres, <span class="at">y =</span> dipl_sup, <span class="at">size =</span> pop_tot), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
-<span id="cb638-3"><a href="ch-graphiques.html#cb638-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(departement))</span></code></pre></div>
+<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="ch-graphiques.html#cb648-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp) <span class="sc">+</span>                                                                   <span class="co"># 13</span></span>
+<span id="cb648-2"><a href="ch-graphiques.html#cb648-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> cadres, <span class="at">y =</span> dipl_sup, <span class="at">size =</span> pop_tot), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span></span>
+<span id="cb648-3"><a href="ch-graphiques.html#cb648-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(departement))</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-facettes-2.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="ch-graphiques.html#cb639-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp, <span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> chom)) <span class="sc">+</span>                                    <span class="co"># 14</span></span>
-<span id="cb639-2"><a href="ch-graphiques.html#cb639-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb639-3"><a href="ch-graphiques.html#cb639-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> commune), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="ch-graphiques.html#cb649-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp, <span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> chom)) <span class="sc">+</span>                                    <span class="co"># 14</span></span>
+<span id="cb649-2"><a href="ch-graphiques.html#cb649-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb649-3"><a href="ch-graphiques.html#cb649-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="fu">aes</span>(<span class="at">label =</span> commune), <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-texte-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb640"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb640-1"><a href="ch-graphiques.html#cb640-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp, <span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> chom)) <span class="sc">+</span>                                    <span class="co"># 15</span></span>
-<span id="cb640-2"><a href="ch-graphiques.html#cb640-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb640-3"><a href="ch-graphiques.html#cb640-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">filter</span>(rp, chom <span class="sc">&gt;</span> <span class="dv">15</span>), <span class="fu">aes</span>(<span class="at">label =</span> commune),</span>
-<span id="cb640-4"><a href="ch-graphiques.html#cb640-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="ch-graphiques.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(rp, <span class="fu">aes</span>(<span class="at">x =</span> dipl_aucun, <span class="at">y =</span> chom)) <span class="sc">+</span>                                    <span class="co"># 15</span></span>
+<span id="cb650-2"><a href="ch-graphiques.html#cb650-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb650-3"><a href="ch-graphiques.html#cb650-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text</span>(<span class="at">data =</span> <span class="fu">filter</span>(rp, chom <span class="sc">&gt;</span> <span class="dv">15</span>), <span class="fu">aes</span>(<span class="at">label =</span> commune),</span>
+<span id="cb650-4"><a href="ch-graphiques.html#cb650-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">color =</span> <span class="st">&quot;red&quot;</span>, <span class="at">size =</span> <span class="fl">2.5</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-1-texte-2.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>Au graphique 14, les étiquettes se superposent et deviennent illisibles :
 c’est pourquoi on n’affiche, en général, que les noms des points remarquables
@@ -1442,26 +1615,26 @@ présenté à la direction.</li>
 </ol>
 </div>
 <details><summary>Solution (questions 1 à 3)</summary>
-<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="ch-graphiques.html#cb641-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
-<span id="cb641-2"><a href="ch-graphiques.html#cb641-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">semaine =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;week&quot;</span>, <span class="at">week_start =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb641-3"><a href="ch-graphiques.html#cb641-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(semaine) <span class="sc">|&gt;</span></span>
-<span id="cb641-4"><a href="ch-graphiques.html#cb641-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ca =</span> <span class="fu">sum</span>(montant)) <span class="sc">|&gt;</span></span>
-<span id="cb641-5"><a href="ch-graphiques.html#cb641-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(semaine, ca)) <span class="sc">+</span></span>
-<span id="cb641-6"><a href="ch-graphiques.html#cb641-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="ch-graphiques.html#cb651-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb651-2"><a href="ch-graphiques.html#cb651-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">semaine =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;week&quot;</span>, <span class="at">week_start =</span> <span class="dv">1</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb651-3"><a href="ch-graphiques.html#cb651-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(semaine) <span class="sc">|&gt;</span></span>
+<span id="cb651-4"><a href="ch-graphiques.html#cb651-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">ca =</span> <span class="fu">sum</span>(montant)) <span class="sc">|&gt;</span></span>
+<span id="cb651-5"><a href="ch-graphiques.html#cb651-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(semaine, ca)) <span class="sc">+</span></span>
+<span id="cb651-6"><a href="ch-graphiques.html#cb651-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-2-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb642"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb642-1"><a href="ch-graphiques.html#cb642-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
-<span id="cb642-2"><a href="ch-graphiques.html#cb642-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorie, promo) <span class="sc">|&gt;</span></span>
-<span id="cb642-3"><a href="ch-graphiques.html#cb642-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">panier_moyen =</span> <span class="fu">mean</span>(montant), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
-<span id="cb642-4"><a href="ch-graphiques.html#cb642-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categorie, <span class="at">y =</span> panier_moyen, <span class="at">fill =</span> promo)) <span class="sc">+</span></span>
-<span id="cb642-5"><a href="ch-graphiques.html#cb642-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb652"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb652-1"><a href="ch-graphiques.html#cb652-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb652-2"><a href="ch-graphiques.html#cb652-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(categorie, promo) <span class="sc">|&gt;</span></span>
+<span id="cb652-3"><a href="ch-graphiques.html#cb652-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">panier_moyen =</span> <span class="fu">mean</span>(montant), <span class="at">.groups =</span> <span class="st">&quot;drop&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb652-4"><a href="ch-graphiques.html#cb652-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> categorie, <span class="at">y =</span> panier_moyen, <span class="at">fill =</span> promo)) <span class="sc">+</span></span>
+<span id="cb652-5"><a href="ch-graphiques.html#cb652-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_col</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>)</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-2-2.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="ch-graphiques.html#cb643-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
-<span id="cb643-2"><a href="ch-graphiques.html#cb643-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb643-3"><a href="ch-graphiques.html#cb643-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois) <span class="sc">|&gt;</span></span>
-<span id="cb643-4"><a href="ch-graphiques.html#cb643-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">part_promo =</span> <span class="fu">mean</span>(promo)) <span class="sc">|&gt;</span></span>
-<span id="cb643-5"><a href="ch-graphiques.html#cb643-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mois, part_promo)) <span class="sc">+</span></span>
-<span id="cb643-6"><a href="ch-graphiques.html#cb643-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
-<span id="cb643-7"><a href="ch-graphiques.html#cb643-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="ch-graphiques.html#cb653-1" aria-hidden="true" tabindex="-1"></a>commandes <span class="sc">|&gt;</span></span>
+<span id="cb653-2"><a href="ch-graphiques.html#cb653-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">mois =</span> <span class="fu">floor_date</span>(date, <span class="st">&quot;month&quot;</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb653-3"><a href="ch-graphiques.html#cb653-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(mois) <span class="sc">|&gt;</span></span>
+<span id="cb653-4"><a href="ch-graphiques.html#cb653-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">part_promo =</span> <span class="fu">mean</span>(promo)) <span class="sc">|&gt;</span></span>
+<span id="cb653-5"><a href="ch-graphiques.html#cb653-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(mois, part_promo)) <span class="sc">+</span></span>
+<span id="cb653-6"><a href="ch-graphiques.html#cb653-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb653-7"><a href="ch-graphiques.html#cb653-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_continuous</span>(<span class="at">labels =</span> scales<span class="sc">::</span>percent, <span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="cn">NA</span>))</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-2-3.png" width="80%" style="display: block; margin: auto;" /></p>
 </details>
 <div class="exercice">
@@ -1476,22 +1649,22 @@ publicitaire différent ? Utiliser un graphique et un test.</li>
 </ol>
 </div>
 <details><summary>Solution</summary>
-<div class="sourceCode" id="cb644"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb644-1"><a href="ch-graphiques.html#cb644-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising, <span class="at">data =</span> Carseats))</span></code></pre></div>
+<div class="sourceCode" id="cb654"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb654-1"><a href="ch-graphiques.html#cb654-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising, <span class="at">data =</span> Carseats))</span></code></pre></div>
 <pre><code>#&gt; (Intercept) Advertising 
 #&gt;      6.7370      0.1144</code></pre>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="ch-graphiques.html#cb646-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising <span class="sc">+</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> ShelveLoc, <span class="at">data =</span> Carseats))</span></code></pre></div>
+<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="ch-graphiques.html#cb656-1" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising <span class="sc">+</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> ShelveLoc, <span class="at">data =</span> Carseats))</span></code></pre></div>
 <pre><code>#&gt;     (Intercept)     Advertising           Price       CompPrice   ShelveLocGood 
 #&gt;         3.84443         0.12028        -0.09359         0.09374         4.72932 
 #&gt; ShelveLocMedium 
 #&gt;         1.77276</code></pre>
-<div class="sourceCode" id="cb648"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb648-1"><a href="ch-graphiques.html#cb648-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising <span class="sc">+</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> ShelveLoc, <span class="at">data =</span> Carseats)</span>
-<span id="cb648-2"><a href="ch-graphiques.html#cb648-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Advertising =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">Price =</span> <span class="dv">110</span>,</span>
-<span id="cb648-3"><a href="ch-graphiques.html#cb648-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">CompPrice =</span> <span class="dv">125</span>, <span class="at">ShelveLoc =</span> <span class="st">&quot;Medium&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="ch-graphiques.html#cb658-1" aria-hidden="true" tabindex="-1"></a>m <span class="ot">&lt;-</span> <span class="fu">lm</span>(Sales <span class="sc">~</span> Advertising <span class="sc">+</span> Price <span class="sc">+</span> CompPrice <span class="sc">+</span> ShelveLoc, <span class="at">data =</span> Carseats)</span>
+<span id="cb658-2"><a href="ch-graphiques.html#cb658-2" aria-hidden="true" tabindex="-1"></a><span class="fu">predict</span>(m, <span class="at">newdata =</span> <span class="fu">tibble</span>(<span class="at">Advertising =</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">10</span>, <span class="dv">20</span>), <span class="at">Price =</span> <span class="dv">110</span>,</span>
+<span id="cb658-3"><a href="ch-graphiques.html#cb658-3" aria-hidden="true" tabindex="-1"></a>                            <span class="at">CompPrice =</span> <span class="dv">125</span>, <span class="at">ShelveLoc =</span> <span class="st">&quot;Medium&quot;</span>))</span></code></pre></div>
 <pre><code>#&gt;     1     2     3 
 #&gt; 7.040 8.243 9.446</code></pre>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="ch-graphiques.html#cb650-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x =</span> US, <span class="at">y =</span> Advertising)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb660"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb660-1"><a href="ch-graphiques.html#cb660-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(Carseats, <span class="fu">aes</span>(<span class="at">x =</span> US, <span class="at">y =</span> Advertising)) <span class="sc">+</span> <span class="fu">geom_boxplot</span>()</span></code></pre></div>
 <p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-3-1.png" width="80%" style="display: block; margin: auto;" /></p>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="ch-graphiques.html#cb651-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Advertising <span class="sc">~</span> US, <span class="at">data =</span> Carseats)</span></code></pre></div>
+<div class="sourceCode" id="cb661"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb661-1"><a href="ch-graphiques.html#cb661-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wilcox.test</span>(Advertising <span class="sc">~</span> US, <span class="at">data =</span> Carseats)</span></code></pre></div>
 <pre><code>#&gt; 
 #&gt;  Wilcoxon rank sum test with continuity correction
 #&gt; 
@@ -1509,16 +1682,103 @@ fonction de la durée de gestation, puis ajouter le tabagisme de la mère
 logistique du faible poids (moins de 2 500 g).</p>
 </div>
 <details><summary>Solution</summary>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="ch-graphiques.html#cb653-1" aria-hidden="true" tabindex="-1"></a>phbirths <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;../datasets/phbirths.dat&quot;</span>)</span>
-<span id="cb653-2"><a href="ch-graphiques.html#cb653-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(grams <span class="sc">~</span> gestate <span class="sc">+</span> smoke, <span class="at">data =</span> phbirths))</span></code></pre></div>
+<div class="sourceCode" id="cb663"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb663-1"><a href="ch-graphiques.html#cb663-1" aria-hidden="true" tabindex="-1"></a>phbirths <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;../datasets/phbirths.dat&quot;</span>)</span>
+<span id="cb663-2"><a href="ch-graphiques.html#cb663-2" aria-hidden="true" tabindex="-1"></a><span class="fu">coef</span>(<span class="fu">lm</span>(grams <span class="sc">~</span> gestate <span class="sc">+</span> smoke, <span class="at">data =</span> phbirths))</span></code></pre></div>
 <pre><code>#&gt; (Intercept)     gestate   smokeTRUE 
 #&gt;     -3027.0       162.0      -190.6</code></pre>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="ch-graphiques.html#cb655-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(<span class="fu">I</span>(grams <span class="sc">&lt;</span> <span class="dv">2500</span>) <span class="sc">~</span> gestate <span class="sc">+</span> smoke, <span class="at">data =</span> phbirths, <span class="at">family =</span> binomial) <span class="sc">|&gt;</span></span>
-<span id="cb655-2"><a href="ch-graphiques.html#cb655-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">exp</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb665"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb665-1"><a href="ch-graphiques.html#cb665-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glm</span>(<span class="fu">I</span>(grams <span class="sc">&lt;</span> <span class="dv">2500</span>) <span class="sc">~</span> gestate <span class="sc">+</span> smoke, <span class="at">data =</span> phbirths, <span class="at">family =</span> binomial) <span class="sc">|&gt;</span></span>
+<span id="cb665-2"><a href="ch-graphiques.html#cb665-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coef</span>() <span class="sc">|&gt;</span> <span class="fu">exp</span>() <span class="sc">|&gt;</span> <span class="fu">round</span>(<span class="dv">3</span>)</span></code></pre></div>
 <pre><code>#&gt; (Intercept)     gestate   smokeTRUE 
 #&gt;   1.061e+12   4.490e-01   2.349e+00</code></pre>
 <p>À durée de gestation égale, les bébés de mères fumeuses pèsent environ 190 g
 de moins en moyenne.</p>
+</details>
+<div class="exercice">
+<p><strong>Exercice 4.5 — ANOVA : le panier moyen selon le canal d’acquisition.</strong> Avec
+les données de la boutique, on calcule le panier moyen de chaque client actif :</p>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="ch-graphiques.html#cb667-1" aria-hidden="true" tabindex="-1"></a>indicateurs <span class="ot">&lt;-</span> <span class="fu">indicateurs_clients</span>(commandes, clients)</span></code></pre></div>
+<ol style="list-style-type: decimal">
+<li>Calculer le panier moyen (<code>panier_moyen</code>) par canal d’acquisition et
+représenter sa distribution par canal avec des boîtes à moustaches.</li>
+<li>Réaliser une ANOVA à un facteur. Énoncer les hypothèses, lire la table et
+conclure. Quelle part de la variabilité des paniers le canal explique-t-il ?</li>
+<li>Les variances sont-elles égales entre les canaux ? Vérifier la conclusion
+avec le test de Kruskal-Wallis et avec l’ANOVA de Welch
+(<code>oneway.test()</code>), qui ne suppose pas l’égalité des variances.</li>
+<li>Quels canaux diffèrent deux à deux ? Quelles recommandations en tirer pour
+les investissements d’acquisition ?</li>
+</ol>
+</div>
+<details><summary>Solution</summary>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="ch-graphiques.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tapply</span>(indicateurs<span class="sc">$</span>panier_moyen, indicateurs<span class="sc">$</span>canal_acquisition, mean)</span></code></pre></div>
+<pre><code>#&gt;         Affiliation              Direct               Email Moteur de recherche 
+#&gt;               45.61               74.95               70.01               58.52 
+#&gt;     Réseaux sociaux 
+#&gt;               50.65</code></pre>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="ch-graphiques.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(indicateurs, <span class="fu">aes</span>(<span class="at">x =</span> canal_acquisition, <span class="at">y =</span> panier_moyen)) <span class="sc">+</span></span>
+<span id="cb670-2"><a href="ch-graphiques.html#cb670-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb670-3"><a href="ch-graphiques.html#cb670-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="cn">NULL</span>, <span class="at">y =</span> <span class="st">&quot;Panier moyen du client (€)&quot;</span>)</span></code></pre></div>
+<p><img src="notes-de-cours-data-science-sous-R_files/figure-html/ex4-5-1.png" width="80%" style="display: block; margin: auto;" /></p>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="ch-graphiques.html#cb671-1" aria-hidden="true" tabindex="-1"></a>anova_canal <span class="ot">&lt;-</span> <span class="fu">lm</span>(panier_moyen <span class="sc">~</span> canal_acquisition, <span class="at">data =</span> indicateurs)</span>
+<span id="cb671-2"><a href="ch-graphiques.html#cb671-2" aria-hidden="true" tabindex="-1"></a><span class="fu">anova</span>(anova_canal)</span></code></pre></div>
+<pre><code>#&gt; Analysis of Variance Table
+#&gt; 
+#&gt; Response: panier_moyen
+#&gt;                     Df  Sum Sq Mean Sq F value Pr(&gt;F)    
+#&gt; canal_acquisition    4  176029   44007      74 &lt;2e-16 ***
+#&gt; Residuals         1736 1031844     594                   
+#&gt; ---
+#&gt; Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<div class="sourceCode" id="cb673"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb673-1"><a href="ch-graphiques.html#cb673-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(anova_canal)<span class="sc">$</span>r.squared</span></code></pre></div>
+<pre><code>#&gt; [1] 0.1457</code></pre>
+<div class="sourceCode" id="cb675"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb675-1"><a href="ch-graphiques.html#cb675-1" aria-hidden="true" tabindex="-1"></a><span class="fu">bartlett.test</span>(panier_moyen <span class="sc">~</span> canal_acquisition, <span class="at">data =</span> indicateurs)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Bartlett test of homogeneity of variances
+#&gt; 
+#&gt; data:  panier_moyen by canal_acquisition
+#&gt; Bartlett&#39;s K-squared = 27, df = 4, p-value = 2e-05</code></pre>
+<div class="sourceCode" id="cb677"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb677-1"><a href="ch-graphiques.html#cb677-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kruskal.test</span>(panier_moyen <span class="sc">~</span> canal_acquisition, <span class="at">data =</span> indicateurs)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  Kruskal-Wallis rank sum test
+#&gt; 
+#&gt; data:  panier_moyen by canal_acquisition
+#&gt; Kruskal-Wallis chi-squared = 259, df = 4, p-value &lt;2e-16</code></pre>
+<div class="sourceCode" id="cb679"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb679-1"><a href="ch-graphiques.html#cb679-1" aria-hidden="true" tabindex="-1"></a><span class="fu">oneway.test</span>(panier_moyen <span class="sc">~</span> canal_acquisition, <span class="at">data =</span> indicateurs)</span></code></pre></div>
+<pre><code>#&gt; 
+#&gt;  One-way analysis of means (not assuming equal variances)
+#&gt; 
+#&gt; data:  panier_moyen and canal_acquisition
+#&gt; F = 78, num df = 4, denom df = 728, p-value &lt;2e-16</code></pre>
+<div class="sourceCode" id="cb681"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb681-1"><a href="ch-graphiques.html#cb681-1" aria-hidden="true" tabindex="-1"></a><span class="fu">TukeyHSD</span>(<span class="fu">aov</span>(panier_moyen <span class="sc">~</span> canal_acquisition, <span class="at">data =</span> indicateurs))</span></code></pre></div>
+<pre><code>#&gt;   Tukey multiple comparisons of means
+#&gt;     95% family-wise confidence level
+#&gt; 
+#&gt; Fit: aov(formula = panier_moyen ~ canal_acquisition, data = indicateurs)
+#&gt; 
+#&gt; $canal_acquisition
+#&gt;                                        diff     lwr     upr  p adj
+#&gt; Direct-Affiliation                   29.337  23.498  35.176 0.0000
+#&gt; Email-Affiliation                    24.395  18.286  30.505 0.0000
+#&gt; Moteur de recherche-Affiliation      12.903   7.722  18.084 0.0000
+#&gt; Réseaux sociaux-Affiliation           5.035  -0.123  10.194 0.0596
+#&gt; Email-Direct                         -4.942 -10.927   1.043 0.1604
+#&gt; Moteur de recherche-Direct          -16.434 -21.468 -11.401 0.0000
+#&gt; Réseaux sociaux-Direct              -24.302 -29.312 -19.291 0.0000
+#&gt; Moteur de recherche-Email           -11.493 -16.838  -6.148 0.0000
+#&gt; Réseaux sociaux-Email               -19.360 -24.683 -14.037 0.0000
+#&gt; Réseaux sociaux-Moteur de recherche  -7.867 -12.093  -3.642 0.0000</code></pre>
+<p><span class="math inline">\(H_0\)</span> : le panier moyen est le même pour tous les canaux. La p-valeur de
+l’ANOVA est minuscule : on rejette <span class="math inline">\(H_0\)</span>. Le canal explique pourtant moins de
+15 % de la variabilité des paniers : les différences entre clients d’un même
+canal restent bien plus grandes. Le test de Bartlett rejette l’égalité des
+variances, mais le test de Kruskal-Wallis et l’ANOVA de Welch confirment la
+conclusion. D’après Tukey, toutes les paires diffèrent, sauf <em>Direct</em> et
+<em>Email</em> d’une part, <em>Affiliation</em> et <em>Réseaux sociaux</em> d’autre part. Les
+clients venus en direct ou par email ont les paniers les plus élevés, ceux
+venus par affiliation ou réseaux sociaux les plus faibles. Pour décider où
+investir, il faudrait toutefois comparer la <strong>valeur totale</strong> des clients
+(fréquence comprise) au <strong>coût d’acquisition</strong> de chaque canal, que ces données
+ne contiennent pas.</p>
 </details>
 <p><strong>Pour aller plus loin</strong></p>
 <ul>
